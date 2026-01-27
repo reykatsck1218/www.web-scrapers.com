@@ -1,0 +1,22 @@
+# Zola output directory
+/public
+
+# Zola cache files
+/.zola_cache
+
+# Zola config and content temporary files
+# Used by some editors/IDEs, e.g. Emacs
+*.zw*
+*.tmp
+
+# IDEs and OS generated files
+.DS_Store
+.vscode/
+.idea/
+
+# Dotenv files
+.env
+.env.*
+
+# Add theme if it's a git submodule
+# /themes/your_theme_name
