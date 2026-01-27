@@ -1,0 +1,45 @@
+#!/bin/bash
+
+echo "Updating submodules..."
+git submodule update --init --recursive
+
+# Check if zola is installed
+if ! command -v zola &> /dev/null
+then
+    echo "zola could not be found, please install it: https://www.getzola.org/documentation/getting-started/installation/"
+    exit 1
+fi
+
+echo "Building Zola site..."
+zola build
+
+# Deploy to GitHub Pages
+echo "Deploying to GitHub Pages..."
+cd public
+
+# Initialize a new git repo if it doesn't exist
+if [ ! -d ".git" ]; then
+  git init
+fi
+
+# Set the remote origin if it's not already set
+if ! git remote get-url origin &> /dev/null; then
+  git remote add origin git@github.com:reykatsck1218/www.reykats.com.git
+fi
+
+git checkout -B gh-pages
+
+# Prevent Jekyll from building your site
+touch .nojekyll
+
+# Copy CNAME if it exists
+if [ -f "../CNAME" ]; then
+  cp ../CNAME .
+fi
+
+git add .
+git commit -m "Deploy to GitHub Pages"
+
+git push -f origin gh-pages
+
+echo "Deployment complete! Your site should be live on GitHub Pages shortly."
