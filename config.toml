@@ -1,0 +1,37 @@
+# The base URL for your site
+base_url = "https://www.web-scrapers.com"
+
+# The title of your site
+title = "Web-Scrapers.com"
+
+# The theme to use
+theme = "tanuki"
+
+# Whether to build a search index
+build_search_index = true
+
+
+
+# Extra configuration for the Tanuki theme
+[extra]
+# Sets the site layout mode.
+# Options: "docs", "book", "blog"
+mode = "docs"
+edit_url = "https://github.com/raskell-io/web-scrapers/blob/main/"
+
+# Main navigation menu
+[[extra.nav]]
+name = "Top Scrapers"
+url = "/reviews/"
+
+[[extra.nav]]
+name = "Proxy Directory"
+url = "/comparisons/"
+
+[[extra.nav]]
+name = "Industry Solutions"
+url = "/solutions/"
+
+[[extra.nav]]
+name = "Learning Center"
+url = "/learn/"

@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title | default(value=config.title) }}{% endblock %}
+
+{% block header %}
+{# Custom header for landing page, consistent with docs mode #}
+<header class="header" role="banner">
+    <div class="header__left">
+        {# Home site link (e.g., back to main landing page) #}
+        {% if config.extra.home_site %}
+        <a href="{{ config.extra.home_site.url | safe }}" class="header__home" aria-label="Go to {{ config.extra.home_site.name | default(value='home') }}" title="{{ config.extra.home_site.name | default(value='Home') }}">
+            {% if config.extra.home_site.logo %}
+            {% set home_logo_path = config.extra.home_site.logo %}
+            {% if not home_logo_path is containing("/") %}
+                {% set home_logo_path = "assets/" ~ home_logo_path %}
+            {% endif %}
+            <img src="{{ get_url(path=home_logo_path) | safe }}" alt="{{ config.extra.home_site.name | default(value='Home') }}" class="header__home-logo">
+            {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            {% endif %}
+        </a>
+        <span class="header__separator" aria-hidden="true"></span>
+        {% endif %}
+
+        {# Logo / Title #}
+        <a href="{{ config.base_url | safe }}" class="header__logo" aria-label="{{ config.title }} - Go to homepage">
+            {% if config.extra.logo %}
+            {% set logo_path = config.extra.logo %}
+            {% if not logo_path is containing("/") %}
+                {% set logo_path = "assets/" ~ logo_path %}
+            {% endif %}
+            <img src="{{ get_url(path=logo_path) | safe }}" alt="" aria-hidden="true">
+            {% endif %}
+            <span>{{ config.title }}</span>
+        </a>
+    </div>
+
+    {# Navigation Links #}
+    <nav class="header__nav" role="navigation" aria-label="Main navigation">
+        {% if config.extra.nav %}
+            {% for link in config.extra.nav %}
+            <a href="{{ link.url | safe }}" class="header__link {% if current_path is defined and current_path == link.url %}active{% endif %}">
+                {{ link.name }}
+            </a>
+            {% endfor %}
+        {% endif %}
+        <a href="#newsletter" class="btn btn--secondary">Join 5k+ Developers</a>
+    </nav>
+
+    {# Actions #}
+    <div class="header__actions" role="group" aria-label="Site actions">
+        {# Search toggle #}
+        {% if config.build_search_index %}
+        <button class="search-toggle" type="button" aria-label="Open search dialog" aria-keyshortcuts="/" aria-haspopup="dialog" title="Search (press /)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+            </svg>
+        </button>
+        {% endif %}
+
+        {# Desktop-only actions for docs mode #}
+        <div class="header__actions-desktop">
+            {# Version picker (for docs mode only) #}
+            {% if config.extra.versions is defined %}
+            {% include "partials/version-picker.html" %}
+            {% endif %}
+
+            {# Theme toggle #}
+            {% if config.extra.show_theme_toggle | default(value=true) %}
+            {% include "partials/theme-toggle.html" %}
+            {% endif %}
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+
+
+{% block content %}
+<section class="hero hero--landing">
+    <div class="hero__content">
+        <h1 class="hero__title">{{ section.title }}</h1>
+        <p class="hero__subtitle">Independent benchmarks, technical guides, and proxy performance data for 2026.</p>
+
+        <div class="scraper-selector-widget">
+            <h3>The Scraper Selector</h3>
+            <div class="scraper-selector-widget__form">
+                <div class="scraper-selector-widget__group">
+                    <label for="scrape-target">I need to scrape:</label>
+                    <select id="scrape-target">
+                        <option>Amazon</option>
+                        <option>Google</option>
+                        <option>Social</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="scraper-selector-widget__group">
+                    <label for="preferred-stack">I prefer:</label>
+                    <select id="preferred-stack">
+                        <option>No-Code</option>
+                        <option>Python</option>
+                        <option>Node.js</option>
+                    </select>
+                </div>
+                <div class="scraper-selector-widget__group">
+                    <label for="monthly-budget">My monthly budget:</label>
+                    <select id="monthly-budget">
+                        <option>$</option>
+                        <option>$$</option>
+                        <option>$$$</option>
+                    </select>
+                </div>
+                <button class="btn btn--primary">View My Matches</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="top-3-compare">
+    <div class="container">
+        <h2 class="section__title">Top 3 Quick-Compare</h2>
+        <div class="compare-grid">
+            <div class="compare-card">
+                <h3 class="compare-card__title">Bright Data</h3>
+                <p><strong>Success Rate:</strong> 99.8%</p>
+                <p><strong>Best For:</strong> Large-Scale Enterprise</p>
+                <p><strong>Rating:</strong> 4.8/5</p>
+                <a href="/reviews/bright-data/" class="btn btn--secondary">View Review</a>
+            </div>
+            <div class="compare-card">
+                <h3 class="compare-card__title">Oxylabs</h3>
+                <p><strong>Success Rate:</strong> 99.5%</p>
+                <p><strong>Best For:</strong> AI & ML Data Collection</p>
+                <p><strong>Rating:</strong> 4.7/5</p>
+                <a href="/reviews/oxylabs/" class="btn btn--secondary">View Review</a>
+            </div>
+            <div class="compare-card">
+                <h3 class="compare-card__title">Smartproxy</h3>
+                <p><strong>Success Rate:</strong> 99.2%</p>
+                <p><strong>Best For:</strong> Small-Medium Businesses</p>
+                <p><strong>Rating:</strong> 4.5/5</p>
+                <a href="/reviews/smartproxy/" class="btn btn--secondary">View Review</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="live-data">
+    <div class="container">
+        <h2 class="section__title">Live Data Pulse</h2>
+        <div class="pulse-indicator">
+            <div class="pulse-item">
+                <span class="pulse-item__target">Amazon</span>
+                <span class="pulse-item__status pulse-item__status--up"></span>
+                <span class="pulse-item__rate">99.7% Success</span>
+            </div>
+            <div class="pulse-item">
+                <span class="pulse-item__target">Google</span>
+                <span class="pulse-item__status pulse-item__status--up"></span>
+                <span class="pulse-item__rate">99.5% Success</span>
+            </div>
+             <div class="pulse-item">
+                <span class="pulse-item__target">Walmart</span>
+                <span class="pulse-item__status pulse-item__status--down"></span>
+                <span class="pulse-item__rate">98.2% Success</span>
+            </div>
+        </div>
+        <p class="section__subtitle" style="text-align: center; margin-top: 1rem;">
+            *Real-time success rates of major providers on top targets. This is a placeholder and requires a live data feed.
+        </p>
+    </div>
+</section>
+
+<style>
+    .scraper-selector-widget {
+        background: var(--bg-offset);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-top: 2rem;
+    }
+    .scraper-selector-widget__form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: flex-end;
+    }
+    .scraper-selector-widget__group {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .top-3-compare {
+        padding: 4rem 0;
+    }
+    .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    .compare-card {
+        background: var(--bg-offset);
+        padding: 2rem;
+        border-radius: 12px;
+    }
+    .live-data {
+        padding: 4rem 0;
+    }
+    .pulse-indicator {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    .pulse-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--bg-offset);
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+    }
+    .pulse-item__status {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+    .pulse-item__status--up {
+        background: #a6e3a1; /* Catppuccin Green */
+    }
+    .pulse-item__status--down {
+        background: #f38ba8; /* Catppuccin Red */
+    }
+</style>
+{% endblock %}
