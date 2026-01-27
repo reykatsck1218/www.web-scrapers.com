@@ -114,8 +114,9 @@
                         <option>$$$</option>
                     </select>
                 </div>
-                <button class="btn btn--primary">View My Matches</button>
+                <button class="btn btn--primary" id="view-matches-button">View My Matches</button>
             </div>
+            <div id="recommendations-output" class="recommendations-output"></div>
         </div>
     </div>
 </section>
@@ -243,6 +244,7 @@
         border-radius: 8px;
         overflow: hidden;
         border: 1px solid var(--border-color);
+        margin-top: 2rem; /* Added margin for separation */
     }
 
     .data-table__header,
@@ -324,66 +326,58 @@
         color: #f38ba8; /* Catppuccin Red */
         font-weight: var(--font-semibold);
     }
-</style>
 
-<style>
-    .scraper-selector-widget {
-        background: var(--bg-offset);
-        padding: 2rem;
-        border-radius: 12px;
+    /* Recommendations output styling */
+    .recommendations-output {
         margin-top: 2rem;
-    }
-    .scraper-selector-widget__form {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        align-items: flex-end;
-    }
-    .scraper-selector-widget__group {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-    .top-3-compare {
-        padding: 4rem 0;
-    }
-    .compare-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-    .compare-card {
-        background: var(--bg-offset);
-        padding: 2rem;
-        border-radius: 12px;
-    }
-    .live-data {
-        padding: 4rem 0;
-    }
-    .pulse-indicator {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-    .pulse-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: var(--bg-offset);
-        padding: 1rem 1.5rem;
+        padding: 1.5rem;
+        background: var(--bg-offset-plus);
         border-radius: 8px;
+        border: 1px solid var(--border-color);
     }
-    .pulse-item__status {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
+
+    .recommendations-output h4 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: var(--color-accent);
+        font-size: var(--text-lg);
     }
-    .pulse-item__status--up {
-        background: #a6e3a1; /* Catppuccin Green */
+
+    .recommendation-card {
+        background: var(--color-bg-base);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
     }
-    .pulse-item__status--down {
-        background: #f38ba8; /* Catppuccin Red */
+
+    .recommendation-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .recommendation-card h5 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: var(--text-base);
+    }
+
+    .recommendation-card p {
+        font-size: var(--text-sm);
+        color: var(--color-text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .recommendation-card a {
+        display: inline-block;
+        font-size: var(--text-sm);
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        text-decoration: none;
+        background: var(--color-accent);
+        color: var(--color-bg-base);
+    }
+
+    .recommendation-card a:hover {
+        opacity: 0.9;
     }
 </style>
-{% endblock %}
