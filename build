@@ -1,45 +1,77 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# vi: ft=bash
 
-echo "Updating submodules..."
-git submodule update --init --recursive
+set -e
 
-# Check if zola is installed
-if ! command -v zola &> /dev/null
-then
-    echo "zola could not be found, please install it: https://www.getzola.org/documentation/getting-started/installation/"
-    exit 1
+# --- Color Setup ---
+GREEN=''
+RED=''
+RESET=''
+if [[ -t 1 ]]; then # Check if stdout is a TTY (to support colors)
+  GREEN='\033[0;32m'
+  RED='\033[0;31m'
+  RESET='\033[0m'
+fi
+# --- End Color Setup ---
+
+echo -e "${GREEN}⚙️${RESET} Updating Git submodules..."
+git submodule update --init --recursive --quiet
+
+echo -e "${GREEN}🔍${RESET} Checking Zola installation..."
+if ! command -v zola &>/dev/null; then
+  echo -e "${RED}❌${RESET} Error: Zola is not installed. Please install Zola to proceed." >&2
+  echo -e "${RED}📚${RESET} See: https://www.getzola.org/documentation/getting-started/installation/" >&2
+  exit 1
 fi
 
-echo "Building Zola site..."
-zola build
+echo -e "${GREEN}🏗️${RESET} Building Zola site..."
+# Redirect stdout to /dev/null to suppress Zola's regular build output,
+# but allow stderr (errors) to pass through.
+zola build &>/dev/null
 
-# Deploy to GitHub Pages
-echo "Deploying to GitHub Pages..."
-cd public
+pushd public &>/dev/null
 
-# Initialize a new git repo if it doesn't exist
+echo -e "${GREEN}🌱${RESET} Initializing Git repository in public/ (if not already present)..."
 if [ ! -d ".git" ]; then
-  git init
+  git init --quiet
 fi
 
-# Set the remote origin if it's not already set
-if ! git remote get-url origin &> /dev/null; then
-  git remote add origin git@github.com:reykatsck1218/www.reykats.com.git
+echo -e "${GREEN}🌐${RESET} Verifying Git remote 'origin' configuration..."
+REQUIRED_ORIGIN="git@github.com:reykatsck1218/www.reykats.com.git"
+CURRENT_ORIGIN=$(git remote get-url origin 2>/dev/null || echo "")
+
+if [ "$CURRENT_ORIGIN" != "$REQUIRED_ORIGIN" ]; then
+  echo -e "${GREEN}🔗${RESET} Configuring Git remote 'origin'..."
+  if git remote get-url origin &>/dev/null; then
+    git remote set-url origin "$REQUIRED_ORIGIN" &>/dev/null
+  else
+    git remote add origin "$REQUIRED_ORIGIN" &>/dev/null
+  fi
+else
+  echo -e "${GREEN}✅${RESET} Git remote 'origin' is correctly configured."
 fi
 
-git checkout -B gh-pages
-
-# Prevent Jekyll from building your site
+echo -e "${GREEN}📄${RESET} Creating .nojekyll file to prevent Jekyll processing..."
 touch .nojekyll
 
-# Copy CNAME if it exists
 if [ -f "../CNAME" ]; then
-  cp ../CNAME .
+  echo -e "${GREEN}📋${RESET} Copying CNAME file..."
+  cp ../CNAME . &>/dev/null
 fi
 
-git add .
-git commit -m "Deploy to GitHub Pages"
+echo -e "${GREEN}➕${RESET} Staging changes for commit..."
+git add -A
 
-git push -f origin gh-pages
+echo -e "${GREEN}💾${RESET} Committing changes..."
+if git diff --cached --exit-code --quiet; then
+  echo -e "${GREEN}➡️${RESET} No new changes to commit."
+else
+  git commit -m "Deploy to GitHub Pages" --quiet
+fi
 
-echo "Deployment complete! Your site should be live on GitHub Pages shortly."
+echo -e "${GREEN}🚀${RESET} Pushing to gh-pages branch..."
+git push -f origin HEAD:gh-pages --quiet
+
+echo -e "${GREEN}🎉${RESET} Deployment complete."
+
+popd &>/dev/null
