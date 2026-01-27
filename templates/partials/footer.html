@@ -1,13 +1,34 @@
+{# Footer - raskell.io style for site/blog mode #}
+{% set mode = config.extra.mode | default(value="site") %}
+
+{% if mode == "site" or mode == "blog" %}
+<footer class="footer flex" role="contentinfo">
+    <section class="container">
+        <nav class="footer-links" role="navigation" aria-label="Footer navigation">
+            {% if config.generate_feeds %}
+            <a href="{{ get_url(path='rss.xml') }}">RSS</a>
+            {% endif %}
+        </nav>
+    </section>
+    <script src="{{ get_url(path='js/app.js') | safe }}"></script>
+</footer>
+{% else %}
+{# Original tanuki footer for docs/book/product modes #}
 <footer class="footer" role="contentinfo">
     <div class="container">
+        <div id="newsletter" class="newsletter-signup">
+            <h3>Join 5k+ Developers</h3>
+            <p>Get the latest web scraping news and tutorials, straight to your inbox.</p>
+            <form>
+                <input type="email" placeholder="Your email address" aria-label="Email address">
+                <button type="submit" class="btn btn--primary">Subscribe</button>
+            </form>
+        </div>
         <div class="footer__content">
             <p class="footer__copyright">
                 &copy; {{ now() | date(format="%Y") }} {{ config.extra.author | default(value=config.title) }}.
                 Built with <a href="https://www.getzola.org" target="_blank" rel="noopener noreferrer" aria-label="Zola static site generator (opens in new tab)">Zola</a>
                 and the <a href="https://github.com/raskell-io/tanuki" target="_blank" rel="noopener noreferrer" aria-label="Tanuki theme on GitHub (opens in new tab)">Tanuki</a> theme.
-            </p>
-            <p class="footer__disclosure">
-                Affiliate Disclosure: web-scrapers.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. We also participate in other affiliate programs and may earn a commission on purchases made through our links.
             </p>
 
             {% if config.extra.social_links %}
@@ -22,3 +43,18 @@
         </div>
     </div>
 </footer>
+<style>
+.newsletter-signup {
+    text-align: center;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.newsletter-signup form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+</style>
+{% endif %}
