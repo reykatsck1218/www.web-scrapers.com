@@ -45,7 +45,7 @@ if [ "$CURRENT_ORIGIN" != "$REQUIRED_ORIGIN" ]; then
   if git remote get-url origin &>/dev/null; then
     git remote set-url origin "$REQUIRED_ORIGIN" &>/dev/null
   else
-    git remote add origin "$REQUIRED_ORIGIN" &>/dev/null
+  git remote add origin git@github.com:reykatsck1218/www.web-scrapers.com.git
   fi
 else
   echo -e "${GREEN}✅${RESET} Git remote 'origin' is correctly configured."
