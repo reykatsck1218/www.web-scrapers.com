@@ -78,7 +78,13 @@
 </header>
 {% endblock %}
 
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ get_url(path='css/scraper-selector.css') | safe }}">
+{% endblock %}
 
+{% block page_scripts %}
+<script src="{{ get_url(path='js/scraper-selector.js') | safe }}" defer></script>
+{% endblock %}
 
 {% block content %}
 <section class="hero hero--landing">
@@ -202,11 +208,4 @@
         </div>
     </div>
 </section>
-
-{% block extra_styles %}
-<link rel="stylesheet" href="{{ get_url(path='css/scraper-selector.css') | safe }}">
-{% endblock %}
-
-{% block page_scripts %}
-<script src="{{ get_url(path='js/scraper-selector.js') | safe }}" defer></script>
 {% endblock %}
