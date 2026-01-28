@@ -3,9 +3,13 @@
 {% block title %}{{ section.title | default(value=config.title) }}{% endblock %}
 
 {% block header %}
-{# Custom header for landing page, consistent with docs mode #}
+{# Custom header for landing page, consistent with docs mode, with "Join 5k+ Developers" button #}
 <header class="header" role="banner">
     <div class="header__left">
+        {# Sidebar toggle for docs mode - desktop only (not needed on landing page, but keeping structure consistent) #}
+        {# ToC button for docs mode (mobile only) - opens sidebar (not needed on landing page) #}
+        {# ToC button for book mode - opens ToC overlay (not needed on landing page) #}
+
         {# Home site link (e.g., back to main landing page) #}
         {% if config.extra.home_site %}
         <a href="{{ config.extra.home_site.url | safe }}" class="header__home" aria-label="Go to {{ config.extra.home_site.name | default(value='home') }}" title="{{ config.extra.home_site.name | default(value='Home') }}">
@@ -14,7 +18,7 @@
             {% if not home_logo_path is containing("/") %}
                 {% set home_logo_path = "assets/" ~ home_logo_path %}
             {% endif %}
-            <img src="{{ get_url(path=home_logo_path) | safe }}" alt="{{ config.extra.home_site.name | default(value='Home') }}" aria-hidden="true">
+            <img src="{{ get_url(path=home_logo_path) | safe }}" alt="{{ config.extra.home_site.name | default(value='Home') }}" class="header__home-logo">
             {% else %}
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -47,7 +51,7 @@
             </a>
             {% endfor %}
         {% endif %}
-        <a href="#newsletter" class="btn btn--secondary">Join 5k+ Developers</a>
+        <a href="#newsletter" class="btn btn--secondary">Join 5k+ Developers</a> {# Custom button #}
     </nav>
 
     {# Actions #}

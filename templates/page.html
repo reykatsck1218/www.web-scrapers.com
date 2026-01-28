@@ -1,4 +1,4 @@
-{% extends "themes/tanuki/templates/page.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 {# This block re-implements the content from themes/tanuki/templates/page.html #}
@@ -17,7 +17,7 @@
                     <div class="post-meta">
                         <div class="meta-line">
                             {% if config.extra.author or page.extra.author %}
-                            <span class="author">{{ page.extra.author | default(value=config.extra.author) }}</span>
+                            <span class="author">{{ config.extra.author | default(value=config.extra.author) }}</span>
                             {% endif %}
                             {% if page.date %}
                             {% if config.extra.author or page.extra.author %}<span class="separator">·</span>{% endif %}
