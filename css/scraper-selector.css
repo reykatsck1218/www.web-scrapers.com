@@ -1,0 +1,176 @@
+.scraper-selector-widget {
+    background: var(--bg-offset);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+.scraper-selector-widget__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+}
+.scraper-selector-widget__group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.top-3-compare {
+    padding: 4rem 0;
+}
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+.compare-card {
+    background: var(--bg-offset);
+    padding: 2rem;
+    border-radius: 12px;
+}
+.live-data {
+    padding: 4rem 0;
+}
+
+/* New styles for responsive data table */
+.data-table {
+    display: grid;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-top: 2rem; /* Added margin for separation */
+}
+
+.data-table__header,
+.data-table__row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px; /* Separator between cells */
+}
+
+.data-table__header {
+    background: var(--bg-offset);
+    font-weight: var(--font-semibold);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table__row {
+    background: var(--color-bg-base);
+    border-bottom: 1px solid var(--border-color);
+}
+.data-table__row:last-child {
+    border-bottom: none;
+}
+
+.data-table__cell {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .data-table__header {
+        display: none; /* Hide header on small screens */
+    }
+    .data-table {
+        border: none;
+    }
+    .data-table__row {
+        grid-template-columns: 1fr; /* Stack cells vertically */
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: var(--bg-offset);
+    }
+    .data-table__row:last-child {
+        margin-bottom: 0;
+    }
+
+    .data-table__cell {
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0.8rem 1rem;
+    }
+    .data-table__cell:first-child {
+        font-weight: var(--font-bold);
+        background: var(--bg-offset-plus);
+        border-bottom: 1px solid var(--border-color);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .data-table__cell:not(:first-child) {
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* Add labels to cells for better context on mobile */
+    .data-table__row .data-table__cell:nth-child(2)::before { content: "Target: "; font-weight: var(--font-semibold); margin-right: 0.5rem; }
+    .data-table__row .data-table__cell:nth-child(3)::before { content: "Success: "; font-weight: var(--font-semibold); margin-right: 0.5rem; }
+    .data-table__row .data-table__cell:nth-child(4)::before { content: "Response: "; font-weight: var(--font-semibold); margin-right: 0.5rem; }
+}
+
+/* Status indicators */
+.status--up {
+    color: #a6e3a1; /* Catppuccin Green */
+    font-weight: var(--font-semibold);
+}
+.status--down {
+    color: #f38ba8; /* Catppuccin Red */
+    font-weight: var(--font-semibold);
+}
+
+/* Recommendations output styling */
+.recommendations-output {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-offset-plus);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.recommendations-output h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: var(--text-lg);
+}
+
+.recommendation-card {
+    background: var(--color-bg-base);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.recommendation-card:last-child {
+    margin-bottom: 0;
+}
+
+.recommendation-card h5 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: var(--text-base);
+}
+
+.recommendation-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.recommendation-card a {
+    display: inline-block;
+    font-size: var(--text-sm);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    background: var(--color-accent);
+    color: var(--color-bg-base);
+}
+
+.recommendation-card a:hover {
+    opacity: 0.9;
+}
