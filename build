@@ -37,7 +37,7 @@ if [ ! -d ".git" ]; then
 fi
 
 echo -e "${GREEN}🌐${RESET} Verifying Git remote 'origin' configuration..."
-REQUIRED_ORIGIN="git@github.com:reykatsck1218/www.reykats.com.git"
+REQUIRED_ORIGIN="git@github.com:reykatsck1218/www.web-scrapers.com.git"
 CURRENT_ORIGIN=$(git remote get-url origin 2>/dev/null || echo "")
 
 if [ "$CURRENT_ORIGIN" != "$REQUIRED_ORIGIN" ]; then
@@ -45,7 +45,7 @@ if [ "$CURRENT_ORIGIN" != "$REQUIRED_ORIGIN" ]; then
   if git remote get-url origin &>/dev/null; then
     git remote set-url origin "$REQUIRED_ORIGIN" &>/dev/null
   else
-  git remote add origin git@github.com:reykatsck1218/www.web-scrapers.com.git
+    git remote add origin "$REQUIRED_ORIGIN" &>/dev/null
   fi
 else
   echo -e "${GREEN}✅${RESET} Git remote 'origin' is correctly configured."
