@@ -1,24 +1,11 @@
-{% extends "base.html" %}
+{% extends "themes/tanuki/templates/page.html" %}
 
-{% block title %}{{ page.title }}{% endblock %}
-
-{% block body_class %}page-{{ page.slug }}{% endblock %}
+{% block content %}
+{# This block re-implements the content from themes/tanuki/templates/page.html #}
+{# but removes the GitHub edit link in the docs mode header #}
 
 {% set mode = config.extra.mode | default(value="site") %}
 
-{% block sidebar %}
-{% if mode == "docs" %}
-{% include "partials/sidebar.html" %}
-{% endif %}
-{% endblock %}
-
-{% block nav_buttons %}
-{% if mode == "docs" or mode == "book" %}
-{% include "partials/nav-buttons.html" %}
-{% endif %}
-{% endblock %}
-
-{% block content %}
 {% if mode == "site" or mode == "blog" %}
 {# raskell.io style article page #}
 <div class="container">
