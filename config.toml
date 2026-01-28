@@ -14,6 +14,7 @@ build_search_index = true
 
 # Extra configuration for the Tanuki theme
 [extra]
+gtm_id = "GTM-52X8PLW5"
 # Sets the site layout mode.
 # Options: "docs", "book", "blog"
 mode = "docs"
