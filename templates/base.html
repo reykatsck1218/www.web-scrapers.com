@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark light">
 
+    {# ===== Google Analytics (GA4) ===== #}
+    {% if config.extra.ga4_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.ga4_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ config.extra.ga4_id }}');
+    </script>
+    {% endif %}
+    {# ===== End Google Analytics ===== #}
+
     {# ===== Primary Meta Tags ===== #}
     <title>{% block title %}{{ page.title | default(value=section.title) | default(value=config.title) }}{% endblock %} | {{ config.title }}</title>
 
