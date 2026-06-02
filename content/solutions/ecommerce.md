@@ -17,6 +17,16 @@ E-commerce is one of the most common use cases for web scraping. Businesses of a
 - **Data Volume:** E-commerce sites can have millions of products, which can make it challenging to scrape all the data you need.
 - **Data Structure:** Product data can be complex and nested, which can make it difficult to extract and parse.
 
+## Step-by-Step Scrapers (with Code)
+
+Ready-to-run product trackers with real code samples in **PHP, Node.js, and Rust**:
+
+- **[Amazon Product Tracking](/solutions/amazon-product-tracking/)** — track price, availability, and rating by ASIN.
+- **[Walmart Product Tracking](/solutions/walmart-product-tracking/)** — parse Walmart's `__NEXT_DATA__` for clean structured data.
+- **[AliExpress Product Tracking](/solutions/aliexpress-product-tracking/)** — extract product JSON for dropshipping research.
+
+Need search data too? See **[Google Search Scraping](/solutions/google-search-scraping/)**.
+
 ## Recommended Tools
 
 - **Bright Data:** Their Web Unlocker is excellent at bypassing anti-scraping measures.
