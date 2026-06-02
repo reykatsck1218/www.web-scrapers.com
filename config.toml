@@ -36,6 +36,10 @@ edit_url = "https://github.com/raskell-io/web-scrapers/blob/main/"
 
 # Main navigation menu
 [[extra.nav]]
+name = "Proxy Providers"
+url = "/proxy-providers/"
+
+[[extra.nav]]
 name = "Top Scrapers"
 url = "/reviews/"
 
