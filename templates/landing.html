@@ -97,36 +97,73 @@
         <p class="hero__subtitle">Independent benchmarks, technical guides, and proxy performance data for 2026.</p>
 
         <div class="scraper-selector-widget">
-            <h3>The Scraper Selector</h3>
+            <div class="scraper-selector-widget__head">
+                <h3>The Scraper Selector</h3>
+                <p>Answer three quick questions — your matches update instantly.</p>
+            </div>
+
             <div class="scraper-selector-widget__form">
                 <div class="scraper-selector-widget__group">
-                    <label for="scrape-target">I need to scrape:</label>
-                    <select id="scrape-target">
-                        <option>Amazon</option>
-                        <option>Google</option>
-                        <option>Social</option>
-                        <option>Other</option>
-                    </select>
+                    <span class="selector-label">I need to scrape</span>
+                    <div class="selector-group" data-field="target" role="radiogroup" aria-label="Target to scrape">
+                        <button type="button" class="selector-option is-active" data-value="Amazon" role="radio" aria-checked="true">Amazon</button>
+                        <button type="button" class="selector-option" data-value="Google" role="radio" aria-checked="false">Google</button>
+                        <button type="button" class="selector-option" data-value="Social" role="radio" aria-checked="false">Social</button>
+                        <button type="button" class="selector-option" data-value="Other" role="radio" aria-checked="false">Other</button>
+                    </div>
                 </div>
                 <div class="scraper-selector-widget__group">
-                    <label for="preferred-stack">I prefer:</label>
-                    <select id="preferred-stack">
-                        <option>No-Code</option>
-                        <option>Python</option>
-                        <option>Node.js</option>
-                    </select>
+                    <span class="selector-label">I prefer to work in</span>
+                    <div class="selector-group" data-field="stack" role="radiogroup" aria-label="Preferred stack">
+                        <button type="button" class="selector-option is-active" data-value="No-Code" role="radio" aria-checked="true">No-Code</button>
+                        <button type="button" class="selector-option" data-value="Python" role="radio" aria-checked="false">Python</button>
+                        <button type="button" class="selector-option" data-value="Node.js" role="radio" aria-checked="false">Node.js</button>
+                    </div>
                 </div>
                 <div class="scraper-selector-widget__group">
-                    <label for="monthly-budget">My monthly budget:</label>
-                    <select id="monthly-budget">
-                        <option>$</option>
-                        <option>$$</option>
-                        <option>$$$</option>
-                    </select>
+                    <span class="selector-label">My monthly budget</span>
+                    <div class="selector-group" data-field="budget" role="radiogroup" aria-label="Monthly budget">
+                        <button type="button" class="selector-option" data-value="$" role="radio" aria-checked="false" title="Starter / hobby">$</button>
+                        <button type="button" class="selector-option is-active" data-value="$$" role="radio" aria-checked="true" title="Growth">$$</button>
+                        <button type="button" class="selector-option" data-value="$$$" role="radio" aria-checked="false" title="Enterprise">$$$</button>
+                    </div>
                 </div>
-                <button class="btn btn--primary" id="view-matches-button">View My Matches</button>
+                <button class="btn btn--primary scraper-selector-widget__cta" id="view-matches-button">View My Matches</button>
             </div>
-            <div id="recommendations-output" class="recommendations-output"></div>
+
+            <div id="recommendations-output" class="recommendations-output" aria-live="polite"></div>
+        </div>
+    </div>
+</section>
+
+<section class="bd-spotlight">
+    <div class="container">
+        <div class="bd-spotlight__card">
+            <div class="bd-spotlight__body">
+                <span class="bd-spotlight__eyebrow">Editor's Choice · 2026</span>
+                <h2 class="bd-spotlight__title">Bright Data Scraping Browser</h2>
+                <p class="bd-spotlight__lead">
+                    Run Playwright, Puppeteer, or Selenium on a fully hosted browser with
+                    built-in CAPTCHA solving, automatic IP rotation, and unlimited concurrent
+                    sessions — connect in a single line of code.
+                </p>
+                <ul class="bd-spotlight__features">
+                    <li>72M+ residential IPs across 195 countries</li>
+                    <li>Automatic CAPTCHA solving &amp; fingerprint management</li>
+                    <li>Pay-as-you-go from $5/GB · 7-day free trial, no card</li>
+                </ul>
+                <div class="bd-spotlight__actions">
+                    {# Bright Data referral link applied. #}
+                    <a href="https://get.brightdata.com/5q1kr89k0efo" class="btn btn--primary" target="_blank" rel="sponsored noopener noreferrer">Start Free Trial →</a>
+                    <a href="/learn/bright-data-scraping-browser/" class="btn btn--secondary">Read the Full Guide</a>
+                </div>
+            </div>
+            <div class="bd-spotlight__stats">
+                <div class="bd-stat"><span class="bd-stat__num">99.8%</span><span class="bd-stat__label">Success rate</span></div>
+                <div class="bd-stat"><span class="bd-stat__num">195</span><span class="bd-stat__label">Countries</span></div>
+                <div class="bd-stat"><span class="bd-stat__num">$5</span><span class="bd-stat__label">Per GB</span></div>
+                <div class="bd-stat"><span class="bd-stat__num">4.8/5</span><span class="bd-stat__label">Our rating</span></div>
+            </div>
         </div>
     </div>
 </section>
@@ -135,7 +172,8 @@
     <div class="container">
         <h2 class="section__title">Top 3 Quick-Compare</h2>
         <div class="compare-grid">
-            <div class="compare-card">
+            <div class="compare-card compare-card--featured">
+                <span class="compare-card__badge">★ Top Pick</span>
                 <h3 class="compare-card__title">Bright Data</h3>
                 <p><strong>Success Rate:</strong> 99.8%</p>
                 <p><strong>Best For:</strong> Large-Scale Enterprise</p>

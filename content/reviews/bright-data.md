@@ -10,8 +10,19 @@ Bright Data (formerly Luminati) is a giant in the web scraping industry. They of
 - **Proxy Network:** Over 72 million IPs across 195 countries.
 - **Proxy Types:** Residential, datacenter, ISP, and mobile proxies.
 - **Web Unlocker:** Automated tool to handle CAPTCHAs and blocks.
-- **Scraping Browser:** Puppeteer/Playwright-compatible browser for complex scraping.
+- **Scraping Browser:** Puppeteer/Playwright/Selenium-compatible browser for complex scraping.
 - **Dataset Marketplace:** Pre-collected datasets available for purchase.
+
+## Spotlight: The Scraping Browser
+
+One of Bright Data's standout products is the **[Scraping Browser](/learn/bright-data-scraping-browser/)** — a fully hosted, cloud-based browser with built-in CAPTCHA solving and automatic anti-bot evasion. Instead of running headless Chrome on your own servers and bolting on proxy rotation and unblocking logic, you connect Playwright, Puppeteer, or Selenium to Bright Data's browser with a single line of code, and every session automatically routes through their residential network.
+
+- **Unlimited concurrent sessions** with no infrastructure to manage.
+- **Built-in CAPTCHA solving**, fingerprint management, and cookie handling.
+- **Full JavaScript rendering** for dynamic, JS-heavy sites.
+- **Pay-as-you-go from $5/GB** with a 7-day free trial (no credit card required).
+
+For a deep dive with code examples and use cases, see our dedicated guide: **[Bright Data Scraping Browser](/learn/bright-data-scraping-browser/)**.
 
 ## Pricing
 
@@ -24,6 +35,25 @@ Bright Data's pricing is based on a pay-as-you-go model, with different rates fo
 ## Performance
 
 We tested Bright Data's residential proxies on a variety of targets, including Amazon, Walmart, and Google. The success rates were consistently above 99.5%, with an average response time of under 2 seconds.
+
+## In-Depth Product Reviews
+
+Bright Data offers a full suite of products. We've reviewed each one in detail:
+
+**Proxy products**
+
+- [Residential Proxies](/reviews/bright-data-residential-proxies/) — 72M+ IPs, the industry's largest network
+- [ISP Proxies](/reviews/bright-data-isp-proxies/) — static residential IPs at datacenter speed
+- [Mobile Proxies](/reviews/bright-data-mobile-proxies/) — 7M+ real 3G/4G IPs
+- [Datacenter Proxies](/reviews/bright-data-datacenter-proxies/) — fastest and most cost-effective
+- [SERP API](/reviews/bright-data-serp-api/) — structured search engine data
+- [Web Unlocker](/reviews/bright-data-web-unlocker/) — automated unblocking with a 99.99% success rate
+
+**Web data products**
+
+- [Web Scraper IDE](/reviews/bright-data-web-scraper-ide/) — build scrapers 75% faster
+- [Datasets](/reviews/bright-data-datasets/) — ready-made and custom web data at scale
+- [Scraping Browser](/learn/bright-data-scraping-browser/) — hosted Playwright/Puppeteer/Selenium
 
 ## Conclusion
 

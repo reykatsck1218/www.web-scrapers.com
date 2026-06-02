@@ -18,5 +18,8 @@
 .env
 .env.*
 
+# Source ebooks / reference PDFs (not part of the built site)
+/*.pdf
+
 # Add theme if it's a git submodule
 # /themes/your_theme_name
