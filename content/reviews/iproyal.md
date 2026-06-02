@@ -29,7 +29,7 @@ IPRoyal is a well-rounded proxy provider that has earned a loyal following for i
 
 IPRoyal uses an affordable **pay-as-you-go** model, with residential proxies among the more competitively priced in the market. Because purchased residential traffic doesn't expire, you can buy in advance and use it whenever you need it.
 
-> Check the [current pricing](https://iproyal.com/?r=222748) for exact per-GB rates, as promotional pricing is updated periodically.
+> Check the [current pricing](/goto/iproyal/) for exact per-GB rates, as promotional pricing is updated periodically.
 
 ## Performance
 
@@ -53,6 +53,6 @@ IPRoyal delivers reliable performance on mainstream targets across its residenti
 
 IPRoyal hits a sweet spot of price, flexibility, and features. The non-expiring traffic alone makes it worth a look for anyone with irregular scraping needs, and its broad proxy lineup covers most everyday use cases. For demanding enterprise targets you may want a premium provider, but for value and flexibility, IPRoyal is an easy recommendation.
 
-**[Get started with IPRoyal →](https://iproyal.com/?r=222748)**
+**[Get started with IPRoyal →](/goto/iproyal/)**
 
 *Comparing options? See our [Bright Data review](/reviews/bright-data/) and [DataImpulse review](/reviews/dataimpulse/).*

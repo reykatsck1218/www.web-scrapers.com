@@ -40,6 +40,6 @@ Mobile proxies route traffic through real cellular devices, making them virtuall
 
 When your target treats mobile traffic differently — or when you need to verify mobile ads and app behavior — Bright Data Mobile Proxies provide an unmatched, carrier-grade footprint.
 
-**[Start your free trial of Bright Data Mobile Proxies →](https://get.brightdata.com/5q1kr89k0efo)**
+**[Start your free trial of Bright Data Mobile Proxies →](/goto/brightdata/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*

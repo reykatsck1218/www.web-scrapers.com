@@ -6,10 +6,10 @@
    ========================================================================= */
 
 // Bright Data referral link.
-const AFFILIATE_URL = "https://get.brightdata.com/5q1kr89k0efo";
+const AFFILIATE_URL = "/goto/brightdata/";
 
 // ScraperAPI affiliate link.
-const SCRAPERAPI_URL = "https://www.scraperapi.com/?fp_ref=web-guru-scraping";
+const SCRAPERAPI_URL = "/goto/scraperapi/";
 
 const state = { target: "Amazon", stack: "No-Code", budget: "$$" };
 

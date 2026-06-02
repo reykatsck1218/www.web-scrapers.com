@@ -45,7 +45,7 @@ ScraperAPI uses a **credit-based, pay-as-you-grow model**. Plans scale by the nu
 - **Free trial:** Bonus credits for 7 days, no commitment.
 - **Paid plans:** Start at an entry-level monthly tier and scale up to high-volume and enterprise plans.
 
-> Credit costs vary by request type — JavaScript rendering and premium residential/mobile proxies consume more credits than a basic request. Check the [current pricing](https://www.scraperapi.com/?fp_ref=web-guru-scraping) for exact figures, as plans are updated periodically.
+> Credit costs vary by request type — JavaScript rendering and premium residential/mobile proxies consume more credits than a basic request. Check the [current pricing](/goto/scraperapi/) for exact figures, as plans are updated periodically.
 
 ## Performance
 
@@ -69,6 +69,6 @@ ScraperAPI performs reliably on mainstream targets, with strong success rates on
 
 ScraperAPI is an excellent choice if you value simplicity and speed of integration over fine-grained control. For most developers and small teams, it removes nearly all the friction of web scraping — proxies, browsers, and CAPTCHAs — behind a single API call. If you need maximum control over a massive proxy network, a dedicated provider may suit you better, but for getting up and running fast, ScraperAPI is hard to beat.
 
-**[Start scraping with ScraperAPI — get free credits →](https://www.scraperapi.com/?fp_ref=web-guru-scraping)**
+**[Start scraping with ScraperAPI — get free credits →](/goto/scraperapi/)**
 
 *Comparing options? See our [Bright Data review](/reviews/bright-data/) and [Oxylabs review](/reviews/oxylabs/).*

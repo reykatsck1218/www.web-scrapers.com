@@ -41,6 +41,6 @@ Datacenter Proxies are not affiliated with an Internet Service Provider, which m
 
 For speed-sensitive, budget-conscious scraping of less-protected targets, Datacenter Proxies deliver the best price-to-performance ratio in Bright Data's lineup. Step up to Residential or ISP proxies only when a target's defenses demand it.
 
-**[Start your free trial of Bright Data Datacenter Proxies →](https://get.brightdata.com/5q1kr89k0efo)**
+**[Start your free trial of Bright Data Datacenter Proxies →](/goto/brightdata/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*

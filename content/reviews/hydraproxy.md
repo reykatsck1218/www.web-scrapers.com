@@ -29,7 +29,7 @@ HydraProxy is a proxy provider built for flexibility and small budgets. With low
 
 HydraProxy's appeal is its **low-cost, pay-as-you-go model** with small minimum top-ups and no monthly commitment. Residential and mobile proxies are billed by usage, and because traffic doesn't expire, you only pay for what you actually use.
 
-> Check the [current pricing](https://app.hydraproxy.com/aff=291/) for exact per-GB rates, as promotional pricing is updated periodically.
+> Check the [current pricing](/goto/hydraproxy/) for exact per-GB rates, as promotional pricing is updated periodically.
 
 ## Performance
 
@@ -53,6 +53,6 @@ HydraProxy performs well on mainstream targets and is particularly handy for mob
 
 HydraProxy is a great fit when flexibility and low cost are your priorities. Its low minimums and non-expiring traffic make it easy to start small, and the mobile proxy option is a nice bonus for social tasks. For demanding enterprise targets you'll want a premium provider, but as an affordable, flexible everyday proxy, HydraProxy delivers strong value.
 
-**[Get started with HydraProxy →](https://app.hydraproxy.com/aff=291/)**
+**[Get started with HydraProxy →](/goto/hydraproxy/)**
 
 *Comparing options? See our [Bright Data review](/reviews/bright-data/), [IPRoyal review](/reviews/iproyal/), and [DataImpulse review](/reviews/dataimpulse/).*

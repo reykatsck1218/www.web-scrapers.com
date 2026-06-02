@@ -6,7 +6,7 @@ template = "page.html"
 og_image = "assets/og/comparisons-iproyal-vs-dataimpulse.png"
 +++
 
-If you want reliable residential proxies without enterprise-level bills, [IPRoyal](https://iproyal.com/?r=222748) and [DataImpulse](https://dataimpulse.com/?aff=100161) are two of the most popular budget-friendly, pay-as-you-go options. Both skip mandatory subscriptions and let you pay only for the traffic you use — but they have different strengths. Here's how they compare.
+If you want reliable residential proxies without enterprise-level bills, [IPRoyal](/goto/iproyal/) and [DataImpulse](/goto/dataimpulse/) are two of the most popular budget-friendly, pay-as-you-go options. Both skip mandatory subscriptions and let you pay only for the traffic you use — but they have different strengths. Here's how they compare.
 
 ## Proxy Network
 
@@ -27,7 +27,7 @@ Both use affordable pay-as-you-go pricing with no forced monthly commitment:
 - **IPRoyal:** Competitively priced per GB, with the standout benefit that purchased residential traffic doesn't expire.
 - **DataImpulse:** Among the most affordable residential proxies on the market, billed against a top-up balance.
 
-> Promotional rates change often — check current per-GB pricing for [IPRoyal](https://iproyal.com/?r=222748) and [DataImpulse](https://dataimpulse.com/?aff=100161) directly.
+> Promotional rates change often — check current per-GB pricing for [IPRoyal](/goto/iproyal/) and [DataImpulse](/goto/dataimpulse/) directly.
 
 ## Performance
 
@@ -47,4 +47,4 @@ Both deliver reliable success rates on mainstream targets across their residenti
 - **Use IPRoyal if:** You scrape occasionally or seasonally and want traffic that never expires, or you need sneaker proxies. Read the full [IPRoyal review](/reviews/iproyal/).
 - **Use DataImpulse if:** Absolute lowest cost is your priority and you want a simple top-up model. Read the full [DataImpulse review](/reviews/dataimpulse/).
 
-*Need maximum success rates on heavily protected sites instead? See [Bright Data](https://get.brightdata.com/5q1kr89k0efo) — 7-day free trial, no credit card required.*
+*Need maximum success rates on heavily protected sites instead? See [Bright Data](/goto/brightdata/) — 7-day free trial, no credit card required.*

@@ -29,7 +29,7 @@ DataImpulse is a fast-growing proxy provider built around one simple idea: relia
 
 DataImpulse's headline feature is its **low, pay-as-you-go pricing**, with residential proxies among the most affordable in the market. You top up a balance and pay per GB, with no obligation to commit to a recurring plan — making it easy to start small and scale only as your project grows.
 
-> Check the [current pricing](https://dataimpulse.com/?aff=100161) for exact per-GB rates, as promotional pricing is updated periodically.
+> Check the [current pricing](/goto/dataimpulse/) for exact per-GB rates, as promotional pricing is updated periodically.
 
 ## Performance
 
@@ -53,6 +53,6 @@ For mainstream targets, DataImpulse delivers reliable success rates with its res
 
 If price is a primary concern and you want flexible, no-commitment proxies, DataImpulse is one of the best values around. It won't replace an enterprise provider for the toughest targets, but for everyday scraping at a fraction of the cost, it's an easy recommendation.
 
-**[Get started with DataImpulse →](https://dataimpulse.com/?aff=100161)**
+**[Get started with DataImpulse →](/goto/dataimpulse/)**
 
 *Comparing options? See our [Bright Data review](/reviews/bright-data/) and [Oxylabs review](/reviews/oxylabs/).*

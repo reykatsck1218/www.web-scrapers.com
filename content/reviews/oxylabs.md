@@ -33,6 +33,6 @@ We tested Oxylabs' residential proxies and Web Scraper API on a range of targets
 
 Oxylabs is a strong contender for the top spot in the web scraping market. Their AI-powered tools and extensive proxy network make them a great choice for a wide range of use cases. They are a particularly good fit for users who need to scrape data from complex websites or who want to take advantage of their specialized scraper APIs.
 
-**[Get started with Oxylabs →](https://oxylabs.go2cloud.org/aff_c?offer_id=7&aff_id=513)**
+**[Get started with Oxylabs →](/goto/oxylabs/)**
 
 *Comparing options? See our [Bright Data review](/reviews/bright-data/) and [Bright Data vs Oxylabs comparison](/comparisons/bright-data-vs-oxylabs/).*

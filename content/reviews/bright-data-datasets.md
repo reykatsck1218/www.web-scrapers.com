@@ -45,6 +45,6 @@ Datasets can be filtered into subsets for a cost-effective, time-saving solution
 
 When you need data without the overhead of building and maintaining scrapers, Bright Data Datasets deliver structured, compliant web data on a schedule — with the option to commission custom datasets when the marketplace doesn't already have what you need.
 
-**[Explore Bright Data Datasets →](https://get.brightdata.com/5q1kr89k0efo)**
+**[Explore Bright Data Datasets →](/goto/brightdata/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/) and the [Web Scraper IDE review](/reviews/bright-data-web-scraper-ide/).*

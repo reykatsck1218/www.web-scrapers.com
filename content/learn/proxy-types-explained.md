@@ -32,7 +32,7 @@ Residential proxies route through real consumer devices using IPs assigned by IS
 - **Cons:** More expensive than datacenter proxies; typically slower; usually billed by bandwidth (per GB).
 - **Best for:** Scraping protected sites (e-commerce, travel, social media, sneaker/ticket sites), ad verification, and any target that blocks datacenter IPs.
 
-> See the [Bright Data Residential Proxies review](/reviews/bright-data-residential-proxies/). Budget options worth comparing: [IPRoyal](https://iproyal.com/?r=222748), [DataImpulse](https://dataimpulse.com/?aff=100161), and [HydraProxy](https://app.hydraproxy.com/aff=291/).
+> See the [Bright Data Residential Proxies review](/reviews/bright-data-residential-proxies/). Budget options worth comparing: [IPRoyal](/goto/iproyal/), [DataImpulse](/goto/dataimpulse/), and [HydraProxy](/goto/hydraproxy/).
 
 ## Mobile Proxies
 
@@ -82,6 +82,6 @@ Independent of type, proxies are delivered in two modes:
 
 There's no single "best" proxy type — only the best fit for your target and budget. Datacenter proxies win on cost and speed, residential proxies win on stealth, mobile proxies win against the toughest defenses, and ISP proxies balance speed with trust. For most scrapers, rotating residential proxies are the sweet spot.
 
-> **Get started free:** [Bright Data](https://get.brightdata.com/5q1kr89k0efo) offers all four proxy types with a **7-day free trial — no credit card required**. [Explore the network →](https://get.brightdata.com/5q1kr89k0efo)
+> **Get started free:** [Bright Data](/goto/brightdata/) offers all four proxy types with a **7-day free trial — no credit card required**. [Explore the network →](/goto/brightdata/)
 
 *Want to compare providers head-to-head? Browse our [proxy and scraper reviews](/reviews/) or read [Bright Data vs. Oxylabs](/comparisons/bright-data-vs-oxylabs/).*
