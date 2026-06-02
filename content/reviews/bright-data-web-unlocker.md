@@ -1,5 +1,6 @@
 +++
 title = "Bright Data Web Unlocker Review: Automated Unblocking with a 99.99% Success Rate"
+description = "Bright Data Web Unlocker review: automated unblocking with CAPTCHA solving and a 99.99% success rate. Send a URL and get clean HTML back."
 template = "page.html"
 +++
 

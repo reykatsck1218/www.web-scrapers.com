@@ -1,5 +1,6 @@
 +++
 title = "AliExpress Product Tracking: Scraper Code Samples (PHP, Node.js, Rust)"
+description = "Track AliExpress product prices with ready-to-run scraper code in PHP, Node.js, and Rust that extracts product JSON for dropshipping research."
 template = "page.html"
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Residential vs. Datacenter vs. Mobile Proxies: Which Should You Use for Web Scraping?"
+description = "Residential, datacenter, mobile, and ISP proxies explained: compare detection risk, speed, and cost to choose the right proxy type for web scraping."
 template = "page.html"
 +++
 

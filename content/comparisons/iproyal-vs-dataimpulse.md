@@ -1,5 +1,6 @@
 +++
 title = "IPRoyal vs DataImpulse: Which Budget Proxy Provider Wins?"
+description = "IPRoyal vs DataImpulse: two affordable pay-as-you-go proxy providers compared on pricing, proxy types, and features like non-expiring traffic."
 template = "page.html"
 +++
 

@@ -1,5 +1,6 @@
 +++
 title = "Bright Data Datacenter Proxies Review: Fastest & Most Cost-Effective"
+description = "Bright Data Datacenter Proxies review: the fastest, most cost-effective option for high-volume scraping of lightly protected targets."
 template = "page.html"
 +++
 

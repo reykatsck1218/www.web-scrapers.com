@@ -1,5 +1,6 @@
 +++
 title = "Walmart Product Tracking: Scraper Code Samples (PHP, Node.js, Rust)"
+description = "Track Walmart product prices by parsing the __NEXT_DATA__ JSON blob, with ready-to-run scraper code samples in PHP, Node.js, and Rust."
 template = "page.html"
 +++
 

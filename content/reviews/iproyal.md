@@ -1,5 +1,6 @@
 +++
 title = "IPRoyal Review: Flexible, Affordable Proxies with Non-Expiring Traffic"
+description = "IPRoyal review: flexible, affordable proxies with non-expiring residential traffic, plus ISP, datacenter, mobile, and sneaker proxy options."
 template = "page.html"
 +++
 

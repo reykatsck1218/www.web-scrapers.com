@@ -1,5 +1,6 @@
 +++
 title = "HydraProxy Review: Flexible Micro-Budget Residential & Mobile Proxies"
+description = "HydraProxy review: flexible, micro-budget residential and mobile proxies with low minimum top-ups and non-expiring traffic for small-scale scraping."
 template = "page.html"
 +++
 

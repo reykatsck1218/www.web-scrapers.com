@@ -1,5 +1,6 @@
 +++
 title = "Bright Data Review: The Gold Standard for Web Scraping?"
+description = "Bright Data review: the gold standard for web scraping with 72M+ IPs, a powerful Web Unlocker, Scraping Browser, and 99.5%+ success rates."
 template = "page.html"
 +++
 

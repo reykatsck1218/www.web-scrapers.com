@@ -1,5 +1,6 @@
 +++
 title = "Bright Data vs Oxylabs: Which is the Best Web Scraping Platform?"
+description = "Bright Data vs Oxylabs compared on proxy networks, features, and pricing to help you pick the best web scraping platform for your needs."
 template = "page.html"
 +++
 

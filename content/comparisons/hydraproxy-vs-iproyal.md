@@ -1,5 +1,6 @@
 +++
 title = "HydraProxy vs IPRoyal: Best Flexible, Low-Budget Proxies?"
+description = "Compare HydraProxy and IPRoyal on proxy types, pricing, and flexibility to find the best low-budget residential and mobile proxies for scraping."
 template = "page.html"
 +++
 

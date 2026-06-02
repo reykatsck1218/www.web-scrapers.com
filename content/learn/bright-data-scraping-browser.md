@@ -1,5 +1,6 @@
 +++
 title = "Bright Data Scraping Browser: Automated Browser Scraping with Built-In CAPTCHA Solving"
+description = "Bright Data Scraping Browser review: run Playwright, Puppeteer, or Selenium on a hosted browser with built-in CAPTCHA solving and automatic unblocking."
 template = "page.html"
 +++
 

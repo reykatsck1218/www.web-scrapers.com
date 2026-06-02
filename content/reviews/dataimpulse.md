@@ -1,5 +1,6 @@
 +++
 title = "DataImpulse Review: Affordable Pay-As-You-Go Proxies"
+description = "DataImpulse review: affordable, pay-as-you-go residential and mobile proxies with no monthly commitment, great value for indie developers and startups."
 template = "page.html"
 +++
 

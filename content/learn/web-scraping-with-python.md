@@ -1,5 +1,6 @@
 +++
 title = "Web Scraping with Python: A Beginner's Guide"
+description = "A beginner's guide to web scraping with Python using Requests, Beautiful Soup, Scrapy, and Selenium, with a simple example to get you started."
 template = "page.html"
 +++
 

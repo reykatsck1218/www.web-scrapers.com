@@ -4,17 +4,31 @@ base_url = "https://www.web-scrapers.com"
 # The title of your site
 title = "Web-Scrapers.com"
 
+# Site-wide description (SEO fallback for pages without their own description)
+description = "Independent web scraping reviews, proxy benchmarks, and hands-on scraping guides with code samples in Python, PHP, Node.js, and Rust."
+
 # The theme to use
 theme = "tanuki"
 
 # Whether to build a search index
 build_search_index = true
 
+# Generate RSS/Atom feeds
+generate_feeds = true
+
 
 
 # Extra configuration for the Tanuki theme
 [extra]
 ga4_id = "G-2340JEW0BT"
+
+# SEO / social sharing
+author = "Web-Scrapers.com"
+og_image = "assets/og-image.png"
+og_image_width = 1200
+og_image_height = 630
+og_image_alt = "Web-Scrapers.com — web scraping reviews, proxy benchmarks & guides"
+# twitter_site = "@yourhandle"  # uncomment and set your real X/Twitter handle
 # Sets the site layout mode.
 # Options: "docs", "book", "blog"
 mode = "docs"

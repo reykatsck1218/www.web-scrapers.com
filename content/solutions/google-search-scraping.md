@@ -1,5 +1,6 @@
 +++
 title = "Google Search Scraping: Code Samples (PHP, Node.js, Rust)"
+description = "Scrape Google Search results into structured JSON with ready-to-run code samples in PHP, Node.js, and Rust using a SERP API."
 template = "page.html"
 +++
 
