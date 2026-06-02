@@ -51,7 +51,7 @@ const budgetPitch = {
 };
 
 /* ---- Alternatives pool (non-Bright Data) --------------------------------- */
-const priceTier = { Smartproxy: 1, ScraperAPI: 1, Zenrows: 2, Oxylabs: 3 };
+const priceTier = { DataImpulse: 1, IPRoyal: 1, HydraProxy: 1, ScraperAPI: 1, Oxylabs: 3 };
 
 const alternatives = {
     Amazon: {
@@ -60,54 +60,62 @@ const alternatives = {
             { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Robust, affordable API for scalable Amazon extraction." }
         ],
         "Python": [
-            { name: "Zenrows (Python)", provider: "Zenrows", link: "/reviews/zenrows/", description: "Simplifies Amazon scraping with built-in anti-bot bypass." },
-            { name: "ScraperAPI (Python)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Easy integration and a generous free tier for Python." }
+            { name: "ScraperAPI (Python)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Easy integration and a generous free tier for Python." },
+            { name: "DataImpulse (Python)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Budget-friendly residential proxies, ideal for Python scripts." },
+            { name: "IPRoyal (Python)", provider: "IPRoyal", link: "/reviews/iproyal/", description: "Affordable proxies with non-expiring traffic for Python." }
         ],
         "Node.js": [
             { name: "ScraperAPI (Node.js)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Scalable API for Node.js Amazon scraping." },
-            { name: "Zenrows (Node.js)", provider: "Zenrows", link: "/reviews/zenrows/", description: "Effortless Amazon scraping with Node.js." }
+            { name: "HydraProxy (Node.js)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "Low-minimum pay-as-you-go proxies for Node.js scraping." },
+            { name: "DataImpulse (Node.js)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Affordable pay-as-you-go proxies for Node.js projects." }
         ]
     },
     Google: {
         "No-Code": [
             { name: "Oxylabs SERP Scraper API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "AI-powered Google scraping with high accuracy." },
-            { name: "Zenrows No-Code", provider: "Zenrows", link: "/reviews/zenrows/", description: "Quickly extract Google data without writing code." }
+            { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Structured Google data via a simple API." }
         ],
         "Python": [
-            { name: "Zenrows (Python)", provider: "Zenrows", link: "/reviews/zenrows/", description: "Effective at bypassing Google's anti-bot measures." },
-            { name: "Oxylabs (Python)", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "High-performance proxies for Python SERP scraping." }
+            { name: "Oxylabs (Python)", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "High-performance proxies for Python SERP scraping." },
+            { name: "IPRoyal (Python)", provider: "IPRoyal", link: "/reviews/iproyal/", description: "Affordable proxies with city-level targeting for SERP data." },
+            { name: "HydraProxy (Python)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "Flexible, low-cost proxies for Python SERP collection." }
         ],
         "Node.js": [
             { name: "ScraperAPI (Node.js)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Robust API for Google data with Node.js." },
-            { name: "Oxylabs (Node.js)", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Fast, reliable proxies for Node.js SERP projects." }
+            { name: "DataImpulse (Node.js)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Low-cost proxies for Node.js SERP collection." },
+            { name: "IPRoyal (Node.js)", provider: "IPRoyal", link: "/reviews/iproyal/", description: "Budget-friendly proxies for Node.js SERP scraping." }
         ]
     },
     Social: {
         "No-Code": [
             { name: "Oxylabs Public Data API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Tailored managed solutions for social media data." },
-            { name: "Zenrows No-Code", provider: "Zenrows", link: "/reviews/zenrows/", description: "Effortless social media data extraction." }
+            { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Simple API for collecting public social data." }
         ],
         "Python": [
-            { name: "Zenrows (Python)", provider: "Zenrows", link: "/reviews/zenrows/", description: "Simplifies social media scraping in Python." },
-            { name: "Oxylabs (Python)", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Reliable proxies for Python social scraping." }
+            { name: "Oxylabs (Python)", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Reliable proxies for Python social scraping." },
+            { name: "DataImpulse (Python)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Affordable residential & mobile proxies for social scraping." },
+            { name: "HydraProxy (Python)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "Mobile proxies that stay unblocked on social platforms." }
         ],
         "Node.js": [
             { name: "ScraperAPI (Node.js)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Dedicated API for social data in Node.js." },
-            { name: "Zenrows (Node.js)", provider: "Zenrows", link: "/reviews/zenrows/", description: "Streamlined social media scraping with Node.js." }
+            { name: "HydraProxy (Node.js)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "4G/5G mobile proxies for Node.js social scraping." },
+            { name: "IPRoyal (Node.js)", provider: "IPRoyal", link: "/reviews/iproyal/", description: "Flexible mobile & residential proxies for Node.js." }
         ]
     },
     Other: {
         "No-Code": [
             { name: "Oxylabs Web Scraper API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Versatile API for a wide range of scraping needs." },
-            { name: "Zenrows No-Code", provider: "Zenrows", link: "/reviews/zenrows/", description: "General-purpose scraping without writing code." }
+            { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "General-purpose scraping via a single API endpoint." }
         ],
         "Python": [
-            { name: "Zenrows (Python)", provider: "Zenrows", link: "/reviews/zenrows/", description: "General-purpose scraping API for Python." },
-            { name: "Smartproxy (Python)", provider: "Smartproxy", link: "/reviews/smartproxy/", description: "Affordable, beginner-friendly proxies for Python." }
+            { name: "ScraperAPI (Python)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "General-purpose scraping API for Python." },
+            { name: "HydraProxy (Python)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "Low-minimum, flexible proxies for any Python task." },
+            { name: "DataImpulse (Python)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Low-cost, flexible proxies for any Python scraping task." }
         ],
         "Node.js": [
             { name: "ScraperAPI (Node.js)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Reliable API for general Node.js scraping." },
-            { name: "Smartproxy (Node.js)", provider: "Smartproxy", link: "/reviews/smartproxy/", description: "Budget-friendly proxies for Node.js projects." }
+            { name: "IPRoyal (Node.js)", provider: "IPRoyal", link: "/reviews/iproyal/", description: "Flexible pay-as-you-go proxies for Node.js scraping." },
+            { name: "HydraProxy (Node.js)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "Affordable pay-as-you-go proxies for Node.js scraping." }
         ]
     }
 };
