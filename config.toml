@@ -29,6 +29,12 @@ og_image_width = 1200
 og_image_height = 630
 og_image_alt = "Web-Scrapers.com — web scraping reviews, proxy benchmarks & guides"
 # twitter_site = "@yourhandle"  # uncomment and set your real X/Twitter handle
+
+# Branding: logo + favicons (see static/assets/)
+logo = "logo.svg"
+favicon = "assets/favicon.png"
+favicon_svg = "assets/logo.svg"
+apple_touch_icon = "assets/apple-touch-icon.png"
 # Sets the site layout mode.
 # Options: "docs", "book", "blog"
 mode = "docs"

@@ -260,12 +260,17 @@
     <link rel="preload" href="{{ get_url(path='fonts/GeistMono-Variable.woff2') | safe }}" as="font" type="font/woff2" crossorigin>
 
     {# ===== Favicon ===== #}
+    {% if config.extra.favicon_svg is defined %}
+    <link rel="icon" type="image/svg+xml" href="{{ get_url(path=config.extra.favicon_svg) | safe }}">
+    {% endif %}
     {% if config.extra.favicon %}
-    <link rel="icon" href="{{ get_url(path=config.extra.favicon) | safe }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path=config.extra.favicon) | safe }}">
     {% endif %}
     {% if config.extra.apple_touch_icon is defined %}
     <link rel="apple-touch-icon" href="{{ get_url(path=config.extra.apple_touch_icon) | safe }}">
     {% endif %}
+    <link rel="manifest" href="{{ get_url(path='site.webmanifest') | safe }}">
+    <meta name="theme-color" content="#3884ff">
 
     {# ===== RSS Feed ===== #}
     {% if config.generate_feeds %}
