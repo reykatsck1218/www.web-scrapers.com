@@ -2,6 +2,8 @@
 title = "Amazon Product Tracking: Scraper Code Samples (PHP, Node.js, Rust)"
 description = "Track Amazon product prices and availability by ASIN with ready-to-run scraper code samples in PHP, Node.js, and Rust."
 template = "page.html"
+[extra]
+og_image = "assets/og/solutions-amazon-product-tracking.png"
 +++
 
 Tracking Amazon product prices and availability is one of the most popular e-commerce scraping use cases — for repricing, competitor monitoring, and deal alerts. Amazon's anti-bot systems make raw requests unreliable, so the samples below route requests through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) (which handles CAPTCHAs, fingerprinting, and IP rotation) and then parse the product page for title, price, availability, and rating.

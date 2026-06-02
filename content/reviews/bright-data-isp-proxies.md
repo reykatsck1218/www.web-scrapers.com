@@ -2,6 +2,8 @@
 title = "Bright Data ISP Proxies Review: Static Residential IPs at Datacenter Speed"
 description = "Bright Data ISP Proxies review: static residential IPs with datacenter speed and residential-level trust for stable, long-running sessions."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data-isp-proxies.png"
 +++
 
 <!-- Bright Data referral link applied. -->

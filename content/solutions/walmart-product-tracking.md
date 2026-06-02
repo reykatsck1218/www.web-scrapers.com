@@ -2,6 +2,8 @@
 title = "Walmart Product Tracking: Scraper Code Samples (PHP, Node.js, Rust)"
 description = "Track Walmart product prices by parsing the __NEXT_DATA__ JSON blob, with ready-to-run scraper code samples in PHP, Node.js, and Rust."
 template = "page.html"
+[extra]
+og_image = "assets/og/solutions-walmart-product-tracking.png"
 +++
 
 Walmart is a top target for price tracking and assortment monitoring, but its product pages are built with Next.js — which means the cleanest data source isn't the visible HTML, it's the `__NEXT_DATA__` JSON blob the page ships with. Parsing that script tag gives you structured, reliable fields (name, price, availability) without brittle CSS selectors. The samples below fetch the page through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) and read straight from `__NEXT_DATA__`.

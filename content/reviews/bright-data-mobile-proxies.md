@@ -2,6 +2,8 @@
 title = "Bright Data Mobile Proxies Review: 7M+ Real 3G/4G IPs"
 description = "Bright Data Mobile Proxies review: 7M+ real 3G/4G IPs for the hardest social and app targets where mobile-grade trust is essential."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data-mobile-proxies.png"
 +++
 
 <!-- Bright Data referral link applied. -->

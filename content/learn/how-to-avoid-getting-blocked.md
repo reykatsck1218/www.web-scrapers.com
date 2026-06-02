@@ -2,6 +2,8 @@
 title = "How to Avoid Getting Blocked While Web Scraping: 10 Proven Techniques"
 description = "Learn 10 proven techniques to avoid getting blocked while web scraping, from rotating proxies and headers to headless browsers and Web Unlockers."
 template = "page.html"
+[extra]
+og_image = "assets/og/learn-how-to-avoid-getting-blocked.png"
 +++
 
 The single biggest reason web scrapers fail isn't bad code — it's getting blocked. Modern websites deploy sophisticated anti-bot systems (Cloudflare, DataDome, PerimeterX, Akamai) that detect and ban automated traffic within seconds. The good news: with the right techniques, you can scrape reliably at scale. This guide walks through the ten most effective methods, from quick wins to production-grade infrastructure.

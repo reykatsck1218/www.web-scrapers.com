@@ -2,6 +2,8 @@
 title = "Bright Data Web Scraper IDE Review: Build Scrapers 75% Faster"
 description = "Bright Data Web Scraper IDE review: prebuilt templates and tools to build and deploy web scrapers up to 75% faster on managed infrastructure."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data-web-scraper-ide.png"
 +++
 
 <!-- Bright Data referral link applied. -->

@@ -2,6 +2,8 @@
 title = "Bright Data vs ScraperAPI: Proxy Network or Scraping API?"
 description = "Bright Data vs ScraperAPI: a full proxy network with unblocking tools versus an all-in-one scraping API. See which fits your project and budget."
 template = "page.html"
+[extra]
+og_image = "assets/og/comparisons-bright-data-vs-scraperapi.png"
 +++
 
 [Bright Data](https://get.brightdata.com/5q1kr89k0efo) and [ScraperAPI](https://www.scraperapi.com/?fp_ref=web-guru-scraping) solve the same problem — getting unblocked data at scale — but with different philosophies. Bright Data gives you a vast proxy network plus a toolkit of unblocking products. ScraperAPI wraps everything into a single, dead-simple API endpoint. Here's how to choose.

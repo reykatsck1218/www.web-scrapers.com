@@ -2,6 +2,8 @@
 title = "ScraperAPI Review: The Easiest Way to Scrape at Scale"
 description = "ScraperAPI review: the easiest way to scrape at scale with automatic proxy rotation, CAPTCHA handling, and JavaScript rendering behind one API."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-scraperapi.png"
 +++
 
 <!-- ScraperAPI affiliate link applied. -->

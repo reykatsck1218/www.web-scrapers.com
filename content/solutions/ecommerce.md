@@ -2,6 +2,8 @@
 title = "E-commerce Web Scraping Solutions"
 description = "E-commerce web scraping solutions for price monitoring, product data, and review tracking, plus step-by-step scrapers with PHP, Node.js, and Rust code."
 template = "page.html"
+[extra]
+og_image = "assets/og/solutions-ecommerce.png"
 +++
 
 E-commerce is one of the most common use cases for web scraping. Businesses of all sizes use web scraping to monitor competitor prices, track product availability, and gather customer sentiment data.

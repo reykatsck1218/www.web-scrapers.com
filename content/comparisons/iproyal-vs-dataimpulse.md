@@ -2,6 +2,8 @@
 title = "IPRoyal vs DataImpulse: Which Budget Proxy Provider Wins?"
 description = "IPRoyal vs DataImpulse: two affordable pay-as-you-go proxy providers compared on pricing, proxy types, and features like non-expiring traffic."
 template = "page.html"
+[extra]
+og_image = "assets/og/comparisons-iproyal-vs-dataimpulse.png"
 +++
 
 If you want reliable residential proxies without enterprise-level bills, [IPRoyal](https://iproyal.com/?r=222748) and [DataImpulse](https://dataimpulse.com/?aff=100161) are two of the most popular budget-friendly, pay-as-you-go options. Both skip mandatory subscriptions and let you pay only for the traffic you use — but they have different strengths. Here's how they compare.

@@ -2,6 +2,8 @@
 title = "Oxylabs Review: AI-Powered Proxies and Web Scraping"
 description = "Oxylabs review: AI-powered scraper APIs and a 100M+ proxy network built for large-scale, enterprise web scraping and data collection."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-oxylabs.png"
 +++
 
 <!-- Oxylabs affiliate link applied. -->

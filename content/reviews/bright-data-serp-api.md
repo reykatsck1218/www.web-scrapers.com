@@ -2,6 +2,8 @@
 title = "Bright Data SERP API Review: Structured Search Engine Data on Demand"
 description = "Bright Data SERP API review: get structured search engine results on demand with automatic unblocking, ideal for rank tracking and SERP monitoring."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data-serp-api.png"
 +++
 
 <!-- Bright Data referral link applied. -->

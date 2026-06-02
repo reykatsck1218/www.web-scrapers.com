@@ -2,6 +2,8 @@
 title = "Residential vs. Datacenter vs. Mobile Proxies: Which Should You Use for Web Scraping?"
 description = "Residential, datacenter, mobile, and ISP proxies explained: compare detection risk, speed, and cost to choose the right proxy type for web scraping."
 template = "page.html"
+[extra]
+og_image = "assets/og/learn-proxy-types-explained.png"
 +++
 
 Proxies are the backbone of any serious web scraping operation — they're how you rotate IP addresses, avoid blocks, and access geo-restricted content. But not all proxies are created equal. Choosing the wrong type can mean wasted money, constant bans, or painfully slow scrapes. This guide explains the four main proxy types, when to use each, and how to pick the right one for your project.

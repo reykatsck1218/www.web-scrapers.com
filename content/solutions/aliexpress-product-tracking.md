@@ -2,6 +2,8 @@
 title = "AliExpress Product Tracking: Scraper Code Samples (PHP, Node.js, Rust)"
 description = "Track AliExpress product prices with ready-to-run scraper code in PHP, Node.js, and Rust that extracts product JSON for dropshipping research."
 template = "page.html"
+[extra]
+og_image = "assets/og/solutions-aliexpress-product-tracking.png"
 +++
 
 AliExpress is a goldmine for dropshippers and product researchers who need to track prices, ratings, and order volumes. Unlike Amazon, AliExpress embeds its product data as a JSON object inside the page (`window.runParams`) rather than in plain HTML — so the reliable approach is to extract and parse that JSON blob. The samples below fetch the page through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) and pull out the title and price.

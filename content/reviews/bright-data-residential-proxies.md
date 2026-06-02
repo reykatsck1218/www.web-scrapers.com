@@ -2,6 +2,8 @@
 title = "Bright Data Residential Proxies Review: The Industry's Largest Network"
 description = "Bright Data Residential Proxies review: 72M+ IPs across 195 countries, the industry's largest network for scraping the most protected sites."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data-residential-proxies.png"
 +++
 
 <!-- Bright Data referral link applied. -->

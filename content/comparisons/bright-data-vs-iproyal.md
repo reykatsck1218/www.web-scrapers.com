@@ -2,6 +2,8 @@
 title = "Bright Data vs IPRoyal: Premium Power or Budget Flexibility?"
 description = "Compare Bright Data and IPRoyal on network size, features, pricing, and performance to choose between premium power and budget-friendly flexibility."
 template = "page.html"
+[extra]
+og_image = "assets/og/comparisons-bright-data-vs-iproyal.png"
 +++
 
 [Bright Data](https://get.brightdata.com/5q1kr89k0efo) and [IPRoyal](https://iproyal.com/?r=222748) sit at two ends of the proxy market. Bright Data is the enterprise gold standard with the industry's largest network and a full suite of unblocking tools. IPRoyal is the flexible, affordable favorite for developers who want dependable proxies without a big commitment. Which one fits your project?

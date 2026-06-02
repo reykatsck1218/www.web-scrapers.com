@@ -2,6 +2,8 @@
 title = "Bright Data Scraping Browser: Automated Browser Scraping with Built-In CAPTCHA Solving"
 description = "Bright Data Scraping Browser review: run Playwright, Puppeteer, or Selenium on a hosted browser with built-in CAPTCHA solving and automatic unblocking."
 template = "page.html"
+[extra]
+og_image = "assets/og/learn-bright-data-scraping-browser.png"
 +++
 
 If you've ever built a scraper that worked perfectly in testing only to get blocked, fingerprinted, or buried under CAPTCHAs the moment it hit production, the [Bright Data Scraping Browser](https://get.brightdata.com/5q1kr89k0efo) is built to solve exactly that problem. It's a fully hosted, cloud-based browser that combines real browser automation with Bright Data's industry-leading unblocking infrastructure — so you can run Playwright, Puppeteer, or Selenium scripts at scale without managing proxies, headless browser farms, or anti-bot countermeasures yourself.

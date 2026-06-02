@@ -2,6 +2,8 @@
 title = "Web Scraping with Python: A Beginner's Guide"
 description = "A beginner's guide to web scraping with Python using Requests, Beautiful Soup, Scrapy, and Selenium, with a simple example to get you started."
 template = "page.html"
+[extra]
+og_image = "assets/og/learn-web-scraping-with-python.png"
 +++
 
 Python is the most popular language for web scraping, and for good reason. It has a rich ecosystem of libraries that make it easy to scrape data from any website.

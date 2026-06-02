@@ -2,6 +2,8 @@
 title = "Bright Data Review: The Gold Standard for Web Scraping?"
 description = "Bright Data review: the gold standard for web scraping with 72M+ IPs, a powerful Web Unlocker, Scraping Browser, and 99.5%+ success rates."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data.png"
 +++
 
 Bright Data (formerly Luminati) is a giant in the web scraping industry. They offer a huge range of proxy services and data collection tools. In this review, we'll break down their offerings and help you decide if they're the right fit for your project.

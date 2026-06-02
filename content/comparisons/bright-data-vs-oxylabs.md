@@ -2,6 +2,8 @@
 title = "Bright Data vs Oxylabs: Which is the Best Web Scraping Platform?"
 description = "Bright Data vs Oxylabs compared on proxy networks, features, and pricing to help you pick the best web scraping platform for your needs."
 template = "page.html"
+[extra]
+og_image = "assets/og/comparisons-bright-data-vs-oxylabs.png"
 +++
 
 Choosing the right web scraping platform is crucial for success. Bright Data and Oxylabs are two of the biggest names in the industry, but they have different strengths and weaknesses. In this comparison, we'll help you decide which one is the best fit for your needs.

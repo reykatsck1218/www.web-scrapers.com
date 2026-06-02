@@ -2,6 +2,8 @@
 title = "Bright Data Datasets Review: Ready-Made & Custom Web Data at Scale"
 description = "Bright Data Datasets review: ready-made and custom web datasets delivered at scale, so you can skip scraping and get structured data directly."
 template = "page.html"
+[extra]
+og_image = "assets/og/reviews-bright-data-datasets.png"
 +++
 
 <!-- Bright Data referral link applied. -->
