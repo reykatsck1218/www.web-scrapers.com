@@ -26,6 +26,7 @@ AFFILIATES = {
     "iproyal":     "https://iproyal.com/?r=222748",
     "hydraproxy":  "https://app.hydraproxy.com/aff=291/",
     "scraperapi":  "https://www.scraperapi.com/?fp_ref=web-guru-scraping",
+    "zenrows":     "https://www.zenrows.com?fpr=e1b9z00",
 }
 
 # Tracking script (only injected when a GA4 ID is configured). Fires an

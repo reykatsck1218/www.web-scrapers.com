@@ -78,7 +78,12 @@ We've tested and reviewed the leading proxy and web scraping providers on real-w
 
 ## Prefer an all-in-one scraping API?
 
-If you'd rather skip proxy management entirely, [ScraperAPI](/goto/scraperapi/) wraps proxy rotation, CAPTCHA handling, and JavaScript rendering behind a single API endpoint. See our [ScraperAPI review](/reviews/scraperapi/) for details.
+If you'd rather skip proxy management entirely, these scraping APIs wrap proxy rotation, CAPTCHA handling, and JavaScript rendering behind a single endpoint:
+
+- **[ZenRows](/goto/zenrows/)** — anti-bot-first API that bypasses Cloudflare, DataDome, and friends, with residential proxies and HTML/JSON/Markdown output. Read our [ZenRows review](/reviews/zenrows/).
+- **[ScraperAPI](/goto/scraperapi/)** — simple, scalable API with a generous free tier and pre-built structured data endpoints. Read our [ScraperAPI review](/reviews/scraperapi/).
+
+Not sure which? See [ZenRows vs ScraperAPI](/comparisons/zenrows-vs-scraperapi/).
 
 ## How we rank providers
 

@@ -11,6 +11,9 @@ const AFFILIATE_URL = "/goto/brightdata/";
 // ScraperAPI affiliate link.
 const SCRAPERAPI_URL = "/goto/scraperapi/";
 
+// ZenRows affiliate link.
+const ZENROWS_URL = "/goto/zenrows/";
+
 const state = { target: "Amazon", stack: "No-Code", budget: "$$" };
 
 /* ---- Bright Data top pick: best-fit product per (target, stack) ---------- */
@@ -51,15 +54,17 @@ const budgetPitch = {
 };
 
 /* ---- Alternatives pool (non-Bright Data) --------------------------------- */
-const priceTier = { DataImpulse: 1, IPRoyal: 1, HydraProxy: 1, ScraperAPI: 1, Oxylabs: 3 };
+const priceTier = { DataImpulse: 1, IPRoyal: 1, HydraProxy: 1, ScraperAPI: 1, ZenRows: 2, Oxylabs: 3 };
 
 const alternatives = {
     Amazon: {
         "No-Code": [
+            { name: "ZenRows", provider: "ZenRows", link: ZENROWS_URL, description: "Anti-bot API that powers through Amazon's defenses, no code required." },
             { name: "Oxylabs Web Scraper API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Powerful managed API for high-volume Amazon data." },
             { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Robust, affordable API for scalable Amazon extraction." }
         ],
         "Python": [
+            { name: "ZenRows (Python)", provider: "ZenRows", link: ZENROWS_URL, description: "Bypass Amazon anti-bot with a single Python request." },
             { name: "ScraperAPI (Python)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Easy integration and a generous free tier for Python." },
             { name: "DataImpulse (Python)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Budget-friendly residential proxies, ideal for Python scripts." },
             { name: "IPRoyal (Python)", provider: "IPRoyal", link: "/reviews/iproyal/", description: "Affordable proxies with non-expiring traffic for Python." }
@@ -73,6 +78,7 @@ const alternatives = {
     Google: {
         "No-Code": [
             { name: "Oxylabs SERP Scraper API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "AI-powered Google scraping with high accuracy." },
+            { name: "ZenRows", provider: "ZenRows", link: ZENROWS_URL, description: "Anti-bot API that returns clean Google data without code." },
             { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Structured Google data via a simple API." }
         ],
         "Python": [
@@ -89,6 +95,7 @@ const alternatives = {
     Social: {
         "No-Code": [
             { name: "Oxylabs Public Data API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Tailored managed solutions for social media data." },
+            { name: "ZenRows", provider: "ZenRows", link: ZENROWS_URL, description: "Anti-bot API for extracting public social data without code." },
             { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "Simple API for collecting public social data." }
         ],
         "Python": [
@@ -104,10 +111,12 @@ const alternatives = {
     },
     Other: {
         "No-Code": [
+            { name: "ZenRows", provider: "ZenRows", link: ZENROWS_URL, description: "Anti-bot scraping API that handles virtually any target, no code." },
             { name: "Oxylabs Web Scraper API", provider: "Oxylabs", link: "/reviews/oxylabs/", description: "Versatile API for a wide range of scraping needs." },
             { name: "ScraperAPI", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "General-purpose scraping via a single API endpoint." }
         ],
         "Python": [
+            { name: "ZenRows (Python)", provider: "ZenRows", link: ZENROWS_URL, description: "Bypass tough anti-bot systems with one Python request." },
             { name: "ScraperAPI (Python)", provider: "ScraperAPI", link: SCRAPERAPI_URL, description: "General-purpose scraping API for Python." },
             { name: "HydraProxy (Python)", provider: "HydraProxy", link: "/reviews/hydraproxy/", description: "Low-minimum, flexible proxies for any Python task." },
             { name: "DataImpulse (Python)", provider: "DataImpulse", link: "/reviews/dataimpulse/", description: "Low-cost, flexible proxies for any Python scraping task." }
