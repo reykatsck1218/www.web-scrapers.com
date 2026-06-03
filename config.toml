@@ -21,6 +21,7 @@ generate_feeds = true
 # Extra configuration for the Tanuki theme
 [extra]
 ga4_id = "G-2340JEW0BT"
+hotjar_id = 3142858
 
 # SEO / social sharing
 author = "Web-Scrapers.com"
