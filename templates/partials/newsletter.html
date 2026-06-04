@@ -165,7 +165,7 @@
         var email = form.email.value.trim();
         if (!email) return;
         try {
-            navigator.sendBeacon("{{ config.extra.goto_log_url }}", JSON.stringify({
+            navigator.sendBeacon("{{ config.extra.goto_log_url | safe }}", JSON.stringify({
                 type: 'subscribe',
                 email: email,
                 page: location.pathname,
