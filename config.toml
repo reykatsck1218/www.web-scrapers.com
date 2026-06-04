@@ -26,6 +26,9 @@ adsense_client = "ca-pub-2119108362521032"
 # Slot ID for the end-of-article ad unit (templates/partials/adsense.html)
 adsense_slot = "2937189529"
 
+# A-ADS (a-ads.com) ad unit id for the site-wide footer ad (templates/partials/aads.html)
+aads_unit = "2441049"
+
 # Google Apps Script web app URL that logs /goto/ affiliate clicks to a Google
 # Sheet (read by scripts/gen-goto.py — re-run it after changing this):
 goto_log_url = "https://script.google.com/macros/s/AKfycbxk_gwmKSz4nmbo-HWW3IHrq1cCnjcVIyeEUg_2YagGq6G1YyrgDc2IyzBS4CtC2_oG/exec"

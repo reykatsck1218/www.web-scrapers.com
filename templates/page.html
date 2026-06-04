@@ -76,6 +76,8 @@
         </a>
         {% endif %}
     </nav>
+
+    {% include "partials/aads.html" %}
 </div>
 
 {% else %}
@@ -123,5 +125,7 @@
     {% endif %}
 </nav>
 {% endif %}
+
+{% include "partials/aads.html" %}
 {% endif %}
 {% endblock %}

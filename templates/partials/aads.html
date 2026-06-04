@@ -1,0 +1,9 @@
+{# ===== A-ADS (a-ads.com) adaptive ad unit ===== #}
+{# Renders only when extra.aads_unit (the numeric ad unit id) is set in config.toml #}
+{% if config.extra.aads_unit %}
+<div class="aads-unit" style="width: 100%; margin: 0 auto 2rem; position: relative; z-index: 99998;">
+    <iframe data-aa="{{ config.extra.aads_unit }}" src="//acceptable.a-ads.com/{{ config.extra.aads_unit }}/?size=Adaptive"
+            style="border:0; padding:0; width:70%; height:auto; overflow:hidden; display:block; margin:auto"
+            title="Advertisement" loading="lazy"></iframe>
+</div>
+{% endif %}
