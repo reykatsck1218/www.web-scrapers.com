@@ -5,29 +5,8 @@
         <div id="newsletter" class="newsletter-signup">
             <h3>Join 5k+ Developers</h3>
             <p>Get the latest web scraping news and tutorials, straight to your inbox.</p>
-            <form id="newsletter-form">
-                <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
-                <button type="submit" class="btn btn--primary">Subscribe</button>
-            </form>
-            <p id="newsletter-thanks" hidden>Thanks for subscribing! 🎉</p>
+            <button type="button" class="btn btn--primary" data-newsletter>Subscribe</button>
         </div>
-        <script>
-            document.getElementById('newsletter-form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                var email = this.email.value.trim();
-                if (!email) return;
-                try {
-                    navigator.sendBeacon("{{ config.extra.goto_log_url }}", JSON.stringify({
-                        type: 'subscribe',
-                        email: email,
-                        page: location.pathname,
-                        ua: navigator.userAgent
-                    }));
-                } catch (err) {}
-                this.hidden = true;
-                document.getElementById('newsletter-thanks').hidden = false;
-            });
-        </script>
         {% endif %}
         <div class="footer__content">
             <p class="footer__copyright">

@@ -428,6 +428,9 @@
     </button>
     {% endif %}
 
+    {# Newsletter signup popup #}
+    {% include "partials/newsletter.html" %}
+
     {# Scroll to top button (not for book mode) #}
     {% if mode != "book" %}
     <button class="fab scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
