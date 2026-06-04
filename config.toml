@@ -26,6 +26,10 @@ adsense_client = "ca-pub-2119108362521032"
 # Slot ID for the end-of-article ad unit (templates/partials/adsense.html)
 adsense_slot = "2937189529"
 
+# Google Apps Script web app URL that logs /goto/ affiliate clicks to a Google
+# Sheet (read by scripts/gen-goto.py — re-run it after changing this):
+goto_log_url = "https://script.google.com/macros/s/AKfycbx0u0sS4OdSm8wWp5XQU-u71aQXHYn40JPaQ3igq4I7AFRxaQ8h_NTql1xAgefAOQw3RQ/exec"
+
 # SEO / social sharing
 author = "Web-Scrapers.com"
 og_image = "assets/og-image.png"

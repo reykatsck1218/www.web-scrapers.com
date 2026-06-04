@@ -11,6 +11,10 @@ and they never appear in sitemap.xml.
 The GA4 ID is read from config.toml (extra.ga4_id) so it stays in sync; if absent,
 tracking is omitted and the page still redirects.
 
+If extra.goto_log_url is set in config.toml (a Google Apps Script web app URL),
+each click is also POSTed there via sendBeacon so it can be appended to a Google
+Sheet. The beacon is fire-and-forget: it survives the redirect and never blocks it.
+
 To add/update a provider: edit AFFILIATES below and re-run:  python3 scripts/gen-goto.py
 Then update any on-site links to point at /goto/<slug>/.
 """
@@ -52,6 +56,21 @@ TRACKING = """<script async src="https://www.googletagmanager.com/gtag/js?id={ga
 # Plain redirect script used when no GA4 ID is configured.
 NO_TRACKING = """<script>window.location.replace("{url_js}");</script>"""
 
+# Click-logging beacon (only injected when extra.goto_log_url is configured).
+# Posts the click to a Google Apps Script web app that appends a row to a
+# Google Sheet. sendBeacon queues the request and survives navigation, so the
+# redirect is never delayed; the try/catch keeps old browsers from breaking it.
+LOG_BEACON = """<script>
+  try {{
+    navigator.sendBeacon("{log_url}", JSON.stringify({{
+      provider: "{slug}",
+      dest: "{url_js}",
+      referrer: document.referrer,
+      ua: navigator.userAgent
+    }}));
+  }} catch (e) {{}}
+</script>"""
+
 TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,20 +86,22 @@ TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
-def read_ga4_id(root):
-    """Pull extra.ga4_id from config.toml so the tracking ID stays in sync."""
+def read_config_str(root, key):
+    """Pull a string value from config.toml so settings stay in sync."""
     try:
         cfg = open(os.path.join(root, "config.toml")).read()
     except OSError:
         return None
-    m = re.search(r'^\s*ga4_id\s*=\s*"([^"]+)"', cfg, re.M)
+    m = re.search(r'^\s*' + re.escape(key) + r'\s*=\s*"([^"]+)"', cfg, re.M)
     return m.group(1) if m else None
 
 def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     base = os.path.join(root, "static", "goto")
-    ga4 = read_ga4_id(root)
-    print(f"GA4 tracking: {'enabled (' + ga4 + ')' if ga4 else 'disabled (no ga4_id in config.toml)'}\n")
+    ga4 = read_config_str(root, "ga4_id")
+    log_url = read_config_str(root, "goto_log_url")
+    print(f"GA4 tracking: {'enabled (' + ga4 + ')' if ga4 else 'disabled (no ga4_id in config.toml)'}")
+    print(f"Sheet logging: {'enabled' if log_url else 'disabled (no goto_log_url in config.toml)'}\n")
 
     for slug, url in AFFILIATES.items():
         out_dir = os.path.join(base, slug)
@@ -90,6 +111,9 @@ def main():
             script = TRACKING.format(ga4=ga4, url_js=url, slug=slug)
         else:
             script = NO_TRACKING.format(url_js=url)
+        # The beacon goes first so it is queued before any redirect can fire.
+        if log_url:
+            script = LOG_BEACON.format(log_url=log_url, slug=slug, url_js=url) + "\n" + script
         html = TEMPLATE.format(url_attr=escape(url, quote=True), redirect_script=script)
         with open(os.path.join(out_dir, "index.html"), "w") as f:
             f.write(html)
