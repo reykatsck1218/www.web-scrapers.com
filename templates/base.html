@@ -32,6 +32,12 @@
     {% endif %}
     {# ===== End Hotjar ===== #}
 
+    {# ===== Google AdSense ===== #}
+    {% if config.extra.adsense_client %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ config.extra.adsense_client }}" crossorigin="anonymous"></script>
+    {% endif %}
+    {# ===== End Google AdSense ===== #}
+
     {# ===== Primary Meta Tags ===== #}
     <title>{% block title %}{{ page.title | default(value=section.title) | default(value=config.title) }}{% endblock %} | {{ config.title }}</title>
 

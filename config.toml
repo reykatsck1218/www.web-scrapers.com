@@ -22,6 +22,10 @@ generate_feeds = true
 [extra]
 ga4_id = "G-2340JEW0BT"
 hotjar_id = 3142858
+adsense_client = "ca-pub-2119108362521032"
+# Create a "Display ad" unit in the AdSense dashboard and paste its slot ID here
+# to enable the end-of-article ad unit (templates/partials/adsense.html):
+# adsense_slot = "1234567890"
 
 # SEO / social sharing
 author = "Web-Scrapers.com"
