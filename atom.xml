@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Web-Scrapers.com</title>
+    <subtitle>Independent web scraping reviews, proxy benchmarks, and hands-on scraping guides with code samples in Python, PHP, Node.js, and Rust.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    
+    <id>https://www.web-scrapers.com/atom.xml</id>
+</feed>

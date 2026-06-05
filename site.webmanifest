@@ -1,0 +1,13 @@
+{
+  "name": "Web-Scrapers.com",
+  "short_name": "Web-Scrapers",
+  "description": "Independent web scraping reviews, proxy benchmarks, and hands-on scraping guides.",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#3884ff",
+  "background_color": "#0a0f1a",
+  "display": "standalone",
+  "start_url": "/"
+}
