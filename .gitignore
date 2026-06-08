@@ -1,6 +1,10 @@
 # Zola output directory
 /public
 
+# Zola binary and man pages downloaded for local builds
+/zola
+/artifacts/
+
 # Zola cache files
 /.zola_cache
 
