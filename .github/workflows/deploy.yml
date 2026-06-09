@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+# Builds the Zola site and publishes it to the gh-pages branch whenever a change
+# lands on main (e.g. when a weekly-article PR is approved and merged). This
+# replaces the manual ./build script — merging is now the deploy trigger.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}   # allow manual "Run workflow" from the Actions tab
+
+# Let the default GITHUB_TOKEN push the built site to the gh-pages branch.
+permissions:
+  contents: write
+
+# Never run two deploys at once; cancel an in-flight one if a newer push arrives.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with theme submodule)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Zola
+        run: |
+          curl -sL https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv zola /usr/local/bin/zola
+          zola --version
+
+      - name: Build
+        run: zola build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          cname: www.web-scrapers.com
+          # peaceiris adds .nojekyll automatically (enable_jekyll defaults to false)
+          commit_message: "Deploy ${{ github.sha }}"
