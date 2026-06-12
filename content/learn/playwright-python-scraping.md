@@ -186,7 +186,7 @@ page = context.new_page()
 
 For serious scraping, residential proxies are far less likely to be blocked than datacenter IPs — they route through real consumer devices and look indistinguishable from normal traffic. See our [proxy types guide](/learn/proxy-types-explained/) for a full breakdown of your options.
 
-> **Recommended proxies for Playwright:** [Bright Data](/goto/brightdata/) offers a 400M+ residential IP pool with automatic rotation — try it free for 7 days, no credit card required. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/), [DataImpulse](/goto/dataimpulse/), and [HydraProxy](/goto/hydraproxy/). Browse all head-to-head comparisons in our [proxy and scraper reviews](/reviews/).
+> **Recommended proxies for Playwright:** [Bright Data](/goto/bd-residential/) offers a 400M+ residential IP pool with automatic rotation — try it free for 7 days, no credit card required. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/), [DataImpulse](/goto/dataimpulse/), and [HydraProxy](/goto/hydraproxy/). Browse all head-to-head comparisons in our [proxy and scraper reviews](/reviews/).
 
 ## Async Playwright for Parallel Scraping
 
@@ -240,6 +240,6 @@ Compare providers in our [scraping service comparisons](/comparisons/).
 
 Playwright is the most capable self-hosted option for scraping JavaScript-heavy sites. Its Python API is clean, its waiting primitives are reliable, and it handles everything from simple HTML extraction to authenticated multi-page crawls. Pair it with stealth patches and rotating residential proxies, and you have a scraper that handles the vast majority of real-world targets without a managed service.
 
-**[Get rotating residential proxies for your Playwright scraper →](/goto/brightdata/)**
+**[Get rotating residential proxies for your Playwright scraper →](/goto/bd-residential/)**
 
 *New to scraping? Start with our [Web Scraping with Python guide](/learn/web-scraping-with-python/), or read [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/) for the full anti-bot playbook.*

@@ -50,4 +50,4 @@ Both perform well on mainstream targets. HydraProxy shines for mobile-IP tasks l
 - **Use HydraProxy if:** You want the lowest possible entry point and need mobile IPs for social or app tasks. Read the full [HydraProxy review](/reviews/hydraproxy/).
 - **Use IPRoyal if:** You want more proxy types, finer geo-targeting, and a dependable all-rounder. Read the full [IPRoyal review](/reviews/iproyal/).
 
-*For the toughest targets, step up to [Bright Data](/goto/brightdata/) — 7-day free trial, no credit card required.*
+*For the toughest targets, step up to [Bright Data](/goto/bd-products/) — 7-day free trial, no credit card required.*

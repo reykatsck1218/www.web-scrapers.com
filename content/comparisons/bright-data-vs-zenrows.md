@@ -6,7 +6,7 @@ template = "page.html"
 og_image = "assets/og/comparisons-bright-data-vs-zenrows.png"
 +++
 
-[Bright Data](/goto/brightdata/) and [ZenRows](/goto/zenrows/) both get you unblocked data at scale, but they come at the problem from different angles. Bright Data is a full proxy platform with the industry's largest network and a suite of unblocking tools. ZenRows is an anti-bot-first scraping API that wraps everything into a single endpoint. Here's how to choose.
+[Bright Data](/goto/bd-products/) and [ZenRows](/goto/zenrows/) both get you unblocked data at scale, but they come at the problem from different angles. Bright Data is a full proxy platform with the industry's largest network and a suite of unblocking tools. ZenRows is an anti-bot-first scraping API that wraps everything into a single endpoint. Here's how to choose.
 
 ## Approach
 

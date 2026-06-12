@@ -14,7 +14,7 @@ Walmart is a top target for price tracking and assortment monitoring, but its pr
 export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.superproxy.io:22225"
 ```
 
-> **New to Bright Data?** **7-day free trial, no credit card required.** [Get started →](/goto/brightdata/)
+> **New to Bright Data?** **7-day free trial, no credit card required.** [Get started →](/goto/bd-walmart/)
 
 Products are identified by their **item ID** from the URL: `https://www.walmart.com/ip/<id>`.
 
@@ -144,4 +144,4 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 *See our [E-commerce Web Scraping Solutions](/solutions/ecommerce/) overview, the [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
-**[Start your free 7-day Bright Data trial →](/goto/brightdata/)**
+**[Start your free 7-day Bright Data trial →](/goto/bd-walmart/)**

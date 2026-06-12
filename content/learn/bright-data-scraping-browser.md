@@ -6,9 +6,9 @@ template = "page.html"
 og_image = "assets/og/learn-bright-data-scraping-browser.png"
 +++
 
-If you've ever built a scraper that worked perfectly in testing only to get blocked, fingerprinted, or buried under CAPTCHAs the moment it hit production, the [Bright Data Scraping Browser](/goto/brightdata/) is built to solve exactly that problem. It's a fully hosted, cloud-based browser that combines real browser automation with Bright Data's industry-leading unblocking infrastructure — so you can run Playwright, Puppeteer, or Selenium scripts at scale without managing proxies, headless browser farms, or anti-bot countermeasures yourself.
+If you've ever built a scraper that worked perfectly in testing only to get blocked, fingerprinted, or buried under CAPTCHAs the moment it hit production, the [Bright Data Scraping Browser](/goto/bd-web-unlocker/) is built to solve exactly that problem. It's a fully hosted, cloud-based browser that combines real browser automation with Bright Data's industry-leading unblocking infrastructure — so you can run Playwright, Puppeteer, or Selenium scripts at scale without managing proxies, headless browser farms, or anti-bot countermeasures yourself.
 
-> **Try it free:** Bright Data offers a **7-day free trial with no credit card required**. [Start scraping →](/goto/brightdata/)
+> **Try it free:** Bright Data offers a **7-day free trial with no credit card required**. [Start scraping →](/goto/bd-web-unlocker/)
 > <!-- Bright Data referral link applied. -->
 
 ## What Is the Scraping Browser?
@@ -100,6 +100,6 @@ Selenium connections work the same way through the remote WebDriver endpoint —
 
 If your scraping projects keep running into blocks, the Bright Data Scraping Browser removes the most painful parts of browser automation — proxies, CAPTCHAs, and fingerprinting — while letting you keep the Playwright, Puppeteer, or Selenium code you already know. For teams that need reliable, scalable access to tough targets, it's one of the most capable options on the market.
 
-**[Start your free 7-day trial of the Bright Data Scraping Browser →](/goto/brightdata/)**
+**[Start your free 7-day trial of the Bright Data Scraping Browser →](/goto/bd-web-unlocker/)**
 
 *Want the full picture on Bright Data's tools and pricing? Read our complete [Bright Data review](/reviews/bright-data/).*

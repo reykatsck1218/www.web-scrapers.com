@@ -82,6 +82,6 @@ Independent of type, proxies are delivered in two modes:
 
 There's no single "best" proxy type — only the best fit for your target and budget. Datacenter proxies win on cost and speed, residential proxies win on stealth, mobile proxies win against the toughest defenses, and ISP proxies balance speed with trust. For most scrapers, rotating residential proxies are the sweet spot.
 
-> **Get started free:** [Bright Data](/goto/brightdata/) offers all four proxy types with a **7-day free trial — no credit card required**. [Explore the network →](/goto/brightdata/)
+> **Get started free:** [Bright Data](/goto/bd-proxy-types/) offers all four proxy types with a **7-day free trial — no credit card required**. [Explore the network →](/goto/bd-proxy-types/)
 
 *Want to compare providers head-to-head? Browse our [proxy and scraper reviews](/reviews/) or read [Bright Data vs. Oxylabs](/comparisons/bright-data-vs-oxylabs/).*

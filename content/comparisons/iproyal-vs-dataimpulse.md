@@ -47,4 +47,4 @@ Both deliver reliable success rates on mainstream targets across their residenti
 - **Use IPRoyal if:** You scrape occasionally or seasonally and want traffic that never expires, or you need sneaker proxies. Read the full [IPRoyal review](/reviews/iproyal/).
 - **Use DataImpulse if:** Absolute lowest cost is your priority and you want a simple top-up model. Read the full [DataImpulse review](/reviews/dataimpulse/).
 
-*Need maximum success rates on heavily protected sites instead? See [Bright Data](/goto/brightdata/) — 7-day free trial, no credit card required.*
+*Need maximum success rates on heavily protected sites instead? See [Bright Data](/goto/bd-products/) — 7-day free trial, no credit card required.*

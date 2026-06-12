@@ -6,7 +6,7 @@ template = "page.html"
 og_image = "assets/og/comparisons-bright-data-vs-scraperapi.png"
 +++
 
-[Bright Data](/goto/brightdata/) and [ScraperAPI](/goto/scraperapi/) solve the same problem — getting unblocked data at scale — but with different philosophies. Bright Data gives you a vast proxy network plus a toolkit of unblocking products. ScraperAPI wraps everything into a single, dead-simple API endpoint. Here's how to choose.
+[Bright Data](/goto/bd-products/) and [ScraperAPI](/goto/scraperapi/) solve the same problem — getting unblocked data at scale — but with different philosophies. Bright Data gives you a vast proxy network plus a toolkit of unblocking products. ScraperAPI wraps everything into a single, dead-simple API endpoint. Here's how to choose.
 
 ## Approach
 

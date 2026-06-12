@@ -31,6 +31,49 @@ AFFILIATES = {
     "hydraproxy":  "https://app.hydraproxy.com/aff=291/",
     "scraperapi":  "https://www.scraperapi.com/?fp_ref=web-guru-scraping",
     "zenrows":     "https://www.zenrows.com?fpr=e1b9z00",
+
+    # Bright Data deep links (product/proxy/use-case specific) — all "bd-*".
+    # Proxy types
+    "bd-proxy-types":     "https://get.brightdata.com/proxy-types43",
+    "bd-residential":     "https://get.brightdata.com/proxy-type-residential-proxies",
+    "bd-isp":             "https://get.brightdata.com/proxy-type-isp-proxies",
+    "bd-datacenter":      "https://get.brightdata.com/proxy-type-data-center",
+    "bd-mobile":          "https://get.brightdata.com/mobile-proxies1230",
+    "bd-network":         "https://get.brightdata.com/proxy-network-g",
+    "bd-shared":          "https://get.brightdata.com/solutions-shared-proxies",
+    "bd-dedicated":       "https://get.brightdata.com/solutions-dedicated-proxies",
+    # Geo proxies
+    "bd-proxies-us":      "https://get.brightdata.com/proxy-location-us",
+    "bd-proxies-cn":      "https://get.brightdata.com/proxy-location-cn",
+    # Educational
+    "bd-proxy-guide":     "https://get.brightdata.com/blog-ultimate-guide-to-proxy-types",
+    # Unlocking
+    "bd-web-unlocker":    "https://get.brightdata.com/web-unlocker1387",
+    # Data collectors / products (general)
+    "bd-collector":       "https://get.brightdata.com/product-data-collector",
+    "bd-collector-pro":   "https://get.brightdata.com/web-guro-data-collector",
+    "bd-products":        "https://get.brightdata.com/products",
+    "bd-use-cases":       "https://get.brightdata.com/use-cases",
+    "bd-sdk":             "https://get.brightdata.com/sdk-program",
+    # Datasets
+    "bd-datasets":        "https://get.brightdata.com/product-datasets",
+    "bd-datasets-amazon": "https://get.brightdata.com/product-datasets-amazon",
+    # Platform data collectors
+    "bd-amazon":          "https://get.brightdata.com/product-data-collector-amazon",
+    "bd-walmart":         "https://get.brightdata.com/product-data-collector-walmart",
+    "bd-ebay":            "https://get.brightdata.com/product-data-collector-ebay",
+    "bd-linkedin":        "https://get.brightdata.com/data-collector-linkedin",
+    "bd-tiktok":          "https://get.brightdata.com/product-data-collector-tiktok",
+    "bd-instagram":       "https://get.brightdata.com/product-data-collector-instagram",
+    "bd-facebook":        "https://get.brightdata.com/product-data-collector-facebook",
+    "bd-alibaba":         "https://get.brightdata.com/product-data-collector-alibaba",
+    "bd-airbnb":          "https://get.brightdata.com/product-data-collector-airbnb",
+    "bd-booking":         "https://get.brightdata.com/product-data-collector-booking",
+    "bd-kayak":           "https://get.brightdata.com/product-data-collector-kayak",
+    # Industry use cases
+    "bd-ecommerce":       "https://get.brightdata.com/use-case-ecommerce",
+    "bd-travel":          "https://get.brightdata.com/use-case-travel",
+    "bd-social":          "https://get.brightdata.com/use-case-socila-media",
 }
 
 # Tracking script (only injected when a GA4 ID is configured). Fires an

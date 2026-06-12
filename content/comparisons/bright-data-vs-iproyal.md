@@ -6,7 +6,7 @@ template = "page.html"
 og_image = "assets/og/comparisons-bright-data-vs-iproyal.png"
 +++
 
-[Bright Data](/goto/brightdata/) and [IPRoyal](/goto/iproyal/) sit at two ends of the proxy market. Bright Data is the enterprise gold standard with the industry's largest network and a full suite of unblocking tools. IPRoyal is the flexible, affordable favorite for developers who want dependable proxies without a big commitment. Which one fits your project?
+[Bright Data](/goto/bd-products/) and [IPRoyal](/goto/iproyal/) sit at two ends of the proxy market. Bright Data is the enterprise gold standard with the industry's largest network and a full suite of unblocking tools. IPRoyal is the flexible, affordable favorite for developers who want dependable proxies without a big commitment. Which one fits your project?
 
 ## Proxy Network
 
@@ -46,4 +46,4 @@ In testing, Bright Data's residential proxies hit **99.5%+ success rates** on to
 - **Use Bright Data if:** You need maximum success rates, the largest network, or unblocking tools like the Web Unlocker and Scraping Browser. Read the full [Bright Data review](/reviews/bright-data/).
 - **Use IPRoyal if:** You want reliable, affordable proxies for mainstream targets and value non-expiring traffic. Read the full [IPRoyal review](/reviews/iproyal/).
 
-**[Start your free 7-day Bright Data trial →](/goto/brightdata/)**
+**[Start your free 7-day Bright Data trial →](/goto/bd-products/)**
