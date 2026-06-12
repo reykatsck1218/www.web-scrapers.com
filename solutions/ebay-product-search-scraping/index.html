@@ -168,7 +168,7 @@
                 
                 
                 
-                "word_count": 591,
+                "word_count": 614,
                 
                 "inLanguage": "en"
             }
@@ -670,12 +670,12 @@ fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
 <li><strong>Store price history</strong> — write <code>{query, title, price, timestamp}</code> to a database or CSV on each run.</li>
 <li><strong>Alert on drops</strong> — compare the latest price against a rolling minimum and fire a notification when a new low appears.</li>
 </ol>
-<p>The <a href="/solutions/amazon-product-tracking/">Amazon Product Tracking</a> and <a href="/solutions/walmart-product-tracking/">Walmart Product Tracking</a> guides use the same store-and-compare pattern with different parsers.</p>
+<p>The <a href="/solutions/amazon-product-tracking/">Amazon Product Tracking</a> and <a href="/solutions/walmart-product-tracking/">Walmart Product Tracking</a> guides use the same store-and-compare pattern with different parsers. To track a single eBay listing by item ID (rather than search results), see <a href="/solutions/ebay-product-tracking/">eBay Product Tracking</a>.</p>
 <h2 id="notes">Notes</h2>
 <ul>
 <li><strong>Selector drift</strong> — eBay's CSS classes are reasonably stable, but they shift with major redesigns. If results come back empty, open the live page in DevTools, inspect a listing card, and update the selectors.</li>
 <li><strong>Price strings</strong> — prices can be ranges (<code>$20.00 to $60.00</code> for lot sales) or include text like "or Best Offer". Store the raw string and parse it downstream, or use a regex to extract the lower bound.</li>
-<li><strong>Alternative unblocking services</strong> — if you need higher throughput or different billing models, <a href="/goto/brightdata/">Bright Data's Web Unlocker</a> and <a href="/goto/oxylabs/">Oxylabs</a> are strong alternatives. See our <a href="/comparisons/zenrows-vs-scraperapi/">ZenRows vs. ScraperAPI comparison</a> and the broader <a href="/comparisons/">proxy and scraping tool comparisons</a> for a side-by-side view.</li>
+<li><strong>Alternative unblocking services</strong> — if you need higher throughput or different billing models, <a href="/goto/bd-web-unlocker/">Bright Data's Web Unlocker</a> and <a href="/goto/oxylabs/">Oxylabs</a> are strong alternatives. See our <a href="/comparisons/zenrows-vs-scraperapi/">ZenRows vs. ScraperAPI comparison</a> and the broader <a href="/comparisons/">proxy and scraping tool comparisons</a> for a side-by-side view.</li>
 </ul>
 <p><em>See also: <a href="/solutions/ecommerce/">E-commerce Web Scraping Solutions</a>, <a href="/reviews/zenrows/">ZenRows review</a>, and <a href="/learn/how-to-avoid-getting-blocked/">How to Avoid Getting Blocked</a>.</em></p>
 <p><strong><a href="/goto/zenrows/">Get started with ZenRows →</a></strong></p>
