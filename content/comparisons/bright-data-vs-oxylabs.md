@@ -10,7 +10,7 @@ Choosing the right web scraping platform is crucial for success. Bright Data and
 
 ## Proxy Network
 
-- **Bright Data:** Over 72 million IPs.
+- **Bright Data:** Over 400 million IPs.
 - **Oxylabs:** Over 100 million IPs.
 
 Oxylabs has a larger proxy network, but both platforms offer a wide range of locations and IP types.

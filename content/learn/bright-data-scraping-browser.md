@@ -20,7 +20,7 @@ In short: you write normal browser-automation code, and Bright Data handles the 
 ## Key Features
 
 - **Fully hosted with unlimited concurrent sessions.** Scale from one browser to thousands without provisioning any infrastructure of your own.
-- **Massive residential IP pool.** Access to 72M+ residential IPs across 195 countries, so your traffic looks like a real user from virtually anywhere.
+- **Massive residential IP pool.** Access to 400M+ residential IPs across 195 countries, so your traffic looks like a real user from virtually anywhere.
 - **Built-in CAPTCHA solving.** CAPTCHAs are detected and solved automatically as part of the unlocking flow.
 - **Automatic anti-bot evasion.** Browser fingerprint management, cookie handling, user-agent and referral header configuration, and automatic retries with IP rotation are all handled for you.
 - **Full JavaScript rendering.** Dynamic, JS-heavy sites render exactly as they would in a real browser, with data-integrity validation built in.

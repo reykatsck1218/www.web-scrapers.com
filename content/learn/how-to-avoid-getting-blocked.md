@@ -14,7 +14,7 @@ If hundreds of requests hit a site from a single IP in a short window, that IP g
 
 This is the foundation of reliable scraping. Datacenter proxies are cheap and fast but easier to detect; residential and mobile proxies route through real consumer devices and are far harder to block. See our full breakdown in [Residential vs. Datacenter vs. Mobile Proxies](/learn/proxy-types-explained/).
 
-> **Recommended:** [Bright Data](/goto/brightdata/) offers a 72M+ residential IP pool with automatic rotation and a **7-day free trial, no credit card required**. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/) and [DataImpulse](/goto/dataimpulse/).
+> **Recommended:** [Bright Data](/goto/brightdata/) offers a 400M+ residential IP pool with automatic rotation and a **7-day free trial, no credit card required**. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/) and [DataImpulse](/goto/dataimpulse/).
 
 ## 2. Set a Realistic User-Agent
 

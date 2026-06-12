@@ -33,7 +33,7 @@ We've tested and reviewed the leading proxy and web scraping providers on real-w
 <div class="pp-rank">1</div>
 <div class="pp-body">
 <div class="pp-head"><h3>Bright Data</h3><span class="pp-badge">★ Top Pick</span></div>
-<p class="pp-desc">The industry gold standard. 72M+ residential IPs across 195 countries, plus the Web Unlocker, Scraping Browser, and SERP API for the toughest targets.</p>
+<p class="pp-desc">The industry gold standard. 400M+ residential IPs across 195 countries, plus the Web Unlocker, Scraping Browser, and SERP API for the toughest targets.</p>
 <div class="pp-meta"><span>Rating: <b>4.8/5</b></span><span>Success: <b>99.8%</b></span><span>Best for: <b>Enterprise &amp; hard targets</b></span></div>
 </div>
 <div class="pp-actions"><a class="btn btn--primary" href="/goto/brightdata/" target="_blank" rel="sponsored noopener noreferrer">Visit Bright Data →</a><a class="pp-review" href="/reviews/bright-data/">Read our review</a></div>

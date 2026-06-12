@@ -1,6 +1,6 @@
 +++
 title = "Bright Data Review: The Gold Standard for Web Scraping?"
-description = "Bright Data review: the gold standard for web scraping with 72M+ IPs, a powerful Web Unlocker, Scraping Browser, and 99.5%+ success rates."
+description = "Bright Data review: the gold standard for web scraping with 400M+ IPs, a powerful Web Unlocker, Scraping Browser, and 99.5%+ success rates."
 template = "page.html"
 [extra]
 og_image = "assets/og/reviews-bright-data.png"
@@ -10,7 +10,7 @@ Bright Data (formerly Luminati) is a giant in the web scraping industry. They of
 
 ## Key Features
 
-- **Proxy Network:** Over 72 million IPs across 195 countries.
+- **Proxy Network:** Over 400 million IPs across 195 countries.
 - **Proxy Types:** Residential, datacenter, ISP, and mobile proxies.
 - **Web Unlocker:** Automated tool to handle CAPTCHAs and blocks.
 - **Scraping Browser:** Puppeteer/Playwright/Selenium-compatible browser for complex scraping.
@@ -45,7 +45,7 @@ Bright Data offers a full suite of products. We've reviewed each one in detail:
 
 **Proxy products**
 
-- [Residential Proxies](/reviews/bright-data-residential-proxies/) — 72M+ IPs, the industry's largest network
+- [Residential Proxies](/reviews/bright-data-residential-proxies/) — 400M+ IPs, the industry's largest network
 - [ISP Proxies](/reviews/bright-data-isp-proxies/) — static residential IPs at datacenter speed
 - [Mobile Proxies](/reviews/bright-data-mobile-proxies/) — 7M+ real 3G/4G IPs
 - [Datacenter Proxies](/reviews/bright-data-datacenter-proxies/) — fastest and most cost-effective

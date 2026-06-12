@@ -15,7 +15,7 @@ og_image = "assets/og/comparisons-bright-data-vs-scraperapi.png"
 
 ## Proxy Network
 
-- **Bright Data:** Over **72 million residential IPs** across 195 countries, plus datacenter, ISP, and mobile.
+- **Bright Data:** Over **400 million residential IPs** across 195 countries, plus datacenter, ISP, and mobile.
 - **ScraperAPI:** Automatic rotation across datacenter, residential, and mobile proxies (millions of IPs), selected for you based on the request.
 
 Bright Data exposes the raw network; ScraperAPI abstracts it away.

@@ -186,7 +186,7 @@ page = context.new_page()
 
 For serious scraping, residential proxies are far less likely to be blocked than datacenter IPs — they route through real consumer devices and look indistinguishable from normal traffic. See our [proxy types guide](/learn/proxy-types-explained/) for a full breakdown of your options.
 
-> **Recommended proxies for Playwright:** [Bright Data](/goto/brightdata/) offers a 72M+ residential IP pool with automatic rotation — try it free for 7 days, no credit card required. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/), [DataImpulse](/goto/dataimpulse/), and [HydraProxy](/goto/hydraproxy/). Browse all head-to-head comparisons in our [proxy and scraper reviews](/reviews/).
+> **Recommended proxies for Playwright:** [Bright Data](/goto/brightdata/) offers a 400M+ residential IP pool with automatic rotation — try it free for 7 days, no credit card required. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/), [DataImpulse](/goto/dataimpulse/), and [HydraProxy](/goto/hydraproxy/). Browse all head-to-head comparisons in our [proxy and scraper reviews](/reviews/).
 
 ## Async Playwright for Parallel Scraping
 

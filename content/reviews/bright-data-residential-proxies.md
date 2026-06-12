@@ -1,6 +1,6 @@
 +++
 title = "Bright Data Residential Proxies Review: The Industry's Largest Network"
-description = "Bright Data Residential Proxies review: 72M+ IPs across 195 countries, the industry's largest network for scraping the most protected sites."
+description = "Bright Data Residential Proxies review: 400M+ IPs across 195 countries, the industry's largest network for scraping the most protected sites."
 template = "page.html"
 [extra]
 og_image = "assets/og/reviews-bright-data-residential-proxies.png"
@@ -8,7 +8,7 @@ og_image = "assets/og/reviews-bright-data-residential-proxies.png"
 
 <!-- Bright Data referral link applied. -->
 
-Bright Data's Residential Proxy network is the largest and fastest in the industry, with **over 72 million IPs sourced with consent from real users**. Customers can choose between dedicated or shared IPs in every country and major city, making it the go-to choice for serious, large-scale web scraping.
+Bright Data's Residential Proxy network is the largest and fastest in the industry, with **over 400 million IPs sourced with consent from real users**. Customers can choose between dedicated or shared IPs in every country and major city, making it the go-to choice for serious, large-scale web scraping.
 
 ## About
 
@@ -23,7 +23,7 @@ Residential proxies route your requests through real devices on real ISPs, so yo
 
 ## Key Benefits
 
-- **72 million+ IPs** across **195 countries**
+- **400 million+ IPs** across **195 countries**
 - Target by **country, city, carrier, ZIP code & ASN**
 - **99.9% success rate** and **99.9% network uptime**
 - Shared or dedicated IPs

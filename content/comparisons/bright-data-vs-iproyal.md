@@ -10,7 +10,7 @@ og_image = "assets/og/comparisons-bright-data-vs-iproyal.png"
 
 ## Proxy Network
 
-- **Bright Data:** Over **72 million residential IPs** across 195 countries, plus datacenter, ISP, and 7M+ mobile IPs.
+- **Bright Data:** Over **400 million residential IPs** across 195 countries, plus datacenter, ISP, and 7M+ mobile IPs.
 - **IPRoyal:** Millions of ethically sourced residential IPs with country, state, and city targeting, plus ISP, datacenter, mobile, and sneaker proxies.
 
 Bright Data's network is far larger and more granular, which matters most when you need high concurrency or hard-to-reach geographies.
@@ -35,7 +35,7 @@ In testing, Bright Data's residential proxies hit **99.5%+ success rates** on to
 
 | | Bright Data | IPRoyal |
 | --- | --- | --- |
-| Network size | 72M+ residential | Millions of IPs |
+| Network size | 400M+ residential | Millions of IPs |
 | Tooling | Full unblocking suite | Proxies only |
 | Pricing | Premium | Budget-friendly |
 | Free trial | 7 days, no card | Pay-as-you-go |

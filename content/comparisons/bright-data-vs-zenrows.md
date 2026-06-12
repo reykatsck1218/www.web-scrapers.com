@@ -15,7 +15,7 @@ og_image = "assets/og/comparisons-bright-data-vs-zenrows.png"
 
 ## Proxy Network
 
-- **Bright Data:** Over **72 million residential IPs** across 195 countries, plus datacenter, ISP, and mobile proxies — exposed for direct use.
+- **Bright Data:** Over **400 million residential IPs** across 195 countries, plus datacenter, ISP, and mobile proxies — exposed for direct use.
 - **ZenRows:** A large residential pool across 190+ countries, abstracted behind the API via `premium_proxy=true`.
 
 Bright Data gives you the raw network; ZenRows manages proxy selection for you.
@@ -38,7 +38,7 @@ Bandwidth-based vs. request-based billing is a key difference: heavy-HTML pages 
 | --- | --- | --- |
 | Model | Proxy network + tools | Anti-bot scraping API |
 | Control | High | Low (handled for you) |
-| Network | 72M+ residential | Large residential pool |
+| Network | 400M+ residential | Large residential pool |
 | Billing | Per GB | Per credit/request |
 | Best for | Custom, large-scale pipelines | Fast anti-bot bypass |
 
