@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2340JEW0BT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2340JEW0BT');
+    </script>
+    
+    
+
+    
+    
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:3142858,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    
+    
+
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2119108362521032" crossorigin="anonymous"></script>
+    
+    
+
+    
+    <title>How to Handle Pagination in Web Scraping: The Complete Guide | Web-Scrapers.com</title>
+
+    
+    
+    <meta name="description" content="Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples.">
+    
+
+    
+    
+
+    
+    
+    <meta name="author" content="Web-Scrapers.com">
+    
+
+    
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    
+    
+    <link rel="canonical" href="https://www.web-scrapers.com/learn/handling-pagination/">
+    
+
+    
+    
+        
+    
+    
+        
+    
+
+    
+    <meta property="og:type" content="article">
+    
+    <meta property="og:url" content="https://www.web-scrapers.com/learn/handling-pagination/">
+    
+    
+    <meta property="og:title" content="How to Handle Pagination in Web Scraping: The Complete Guide">
+    
+    
+    <meta property="og:description" content="Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples.">
+    
+    
+    <meta property="og:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="How to Handle Pagination in Web Scraping: The Complete Guide">
+    
+    <meta property="og:site_name" content="Web-Scrapers.com">
+    <meta property="og:locale" content="en">
+
+    
+    
+    
+    
+    
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <meta name="twitter:url" content="https://www.web-scrapers.com/learn/handling-pagination/">
+    
+    
+    <meta name="twitter:title" content="How to Handle Pagination in Web Scraping: The Complete Guide">
+    
+    
+    <meta name="twitter:description" content="Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples.">
+    
+    
+    <meta name="twitter:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="twitter:image:alt" content="How to Handle Pagination in Web Scraping: The Complete Guide">
+    
+    
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://www.web-scrapers.com#website",
+                "url": "https://www.web-scrapers.com",
+                "name": "Web-Scrapers.com",
+                "description": "Independent web scraping reviews, proxy benchmarks, and hands-on scraping guides with code samples in Python, PHP, Node.js, and Rust.",
+                
+                "author": {
+                    "@type": "Person",
+                    "name": "Web-Scrapers.com"
+                },
+                
+                "inLanguage": "en"
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://www.web-scrapers.com/learn/handling-pagination/#webpage",
+                "url": "https://www.web-scrapers.com/learn/handling-pagination/",
+                "name": "How to Handle Pagination in Web Scraping: The Complete Guide",
+                "isPartOf": {
+                    "@id": "https://www.web-scrapers.com#website"
+                },
+                "description": "Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples.",
+                "inLanguage": "en"
+                
+                
+            }
+            
+            ,{
+                "@type": "Article",
+                "@id": "https://www.web-scrapers.com/learn/handling-pagination/#article",
+                "isPartOf": {
+                    "@id": "https://www.web-scrapers.com/learn/handling-pagination/#webpage"
+                },
+                "headline": "How to Handle Pagination in Web Scraping: The Complete Guide",
+                
+                "description": "Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples.",
+                
+                
+                
+                
+                "author": {
+                    "@type": "Person",
+                    "name": "Web-Scrapers.com"
+                },
+                
+                
+                
+                "word_count": 967,
+                
+                "inLanguage": "en"
+            }
+            
+        ]
+    }
+    </script>
+
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Web-Scrapers.com",
+                "item": "https://www.web-scrapers.com"
+            }
+            
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Find the Right Web Scraping Infrastructure for Your Scale.",
+                "item": "https://www.web-scrapers.com/"
+            }
+            
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learning Center",
+                "item": "https://www.web-scrapers.com/learn/"
+            }
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 4,
+                "name": "How to Handle Pagination in Web Scraping: The Complete Guide",
+                "item": "https://www.web-scrapers.com/learn/handling-pagination/"
+            }
+        ]
+    }
+    </script>
+    
+
+    
+    <link rel="stylesheet" href="https://www.web-scrapers.com/style.css">
+     
+
+    
+    
+
+    
+    <link rel="preload" href="https://www.web-scrapers.com/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://www.web-scrapers.com/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+
+    
+    
+    <link rel="icon" type="image/svg+xml" href="https://www.web-scrapers.com/assets/logo.svg">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.web-scrapers.com/assets/favicon.png">
+    
+    
+    <link rel="apple-touch-icon" href="https://www.web-scrapers.com/assets/apple-touch-icon.png">
+    
+    <link rel="manifest" href="https://www.web-scrapers.com/site.webmanifest">
+    <meta name="theme-color" content="#3884ff">
+
+    
+    
+    <link rel="alternate" type="application/rss+xml" title="Web-Scrapers.com" href="https://www.web-scrapers.com/rss.xml">
+    
+
+    
+    
+    
+    
+    <script>
+        (function() {
+            try {
+                var stored = localStorage.getItem('tanuki-theme') || 'auto';
+                var theme = stored === 'auto'
+                    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                    : stored;
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme-setting', stored);
+            } catch(e) {}
+        })();
+    </script>
+    
+
+    
+</head>
+<body class="">
+    
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    
+    
+
+    
+    
+        
+    
+
+    
+    <div class="layout layout--docs layout--fixed-header" data-mode="docs">
+        
+
+        <div class="layout__main">
+            
+            
+
+
+
+
+<header class="header" role="banner">
+    <div class="header__left">
+        
+        
+        <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar navigation" aria-expanded="true" aria-controls="sidebar" title="Toggle sidebar">
+            <svg class="sidebar-toggle__icon sidebar-toggle__icon--open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="M9 3v18"/>
+                <path d="m16 15-3-3 3-3"/>
+            </svg>
+            <svg class="sidebar-toggle__icon sidebar-toggle__icon--closed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="M9 3v18"/>
+                <path d="m14 9 3 3-3 3"/>
+            </svg>
+        </button>
+        
+
+        
+        
+        <button class="toc-toggle toc-toggle--docs" type="button" aria-label="Open table of contents" aria-expanded="false" aria-controls="sidebar" title="Table of contents">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="M9 3v18"/>
+                <path d="m16 15-3-3 3-3"/>
+            </svg>
+        </button>
+        
+
+        
+        
+
+        
+        
+
+        
+        <a href="https://www.web-scrapers.com" class="header__logo" aria-label="Web-Scrapers.com - Go to homepage">
+            
+            
+            
+                
+            
+            <img src="https://www.web-scrapers.com/assets/logo.svg" alt="" aria-hidden="true">
+            
+            <span>Web-Scrapers.com</span>
+        </a>
+    </div>
+
+    
+    <nav class="header__nav" role="navigation" aria-label="Main navigation">
+        
+            
+            <a href="/proxy-providers/" class="header__link ">
+                Proxy Providers
+            </a>
+            
+            <a href="/reviews/" class="header__link ">
+                Top Scrapers
+            </a>
+            
+            <a href="/comparisons/" class="header__link ">
+                Proxy Directory
+            </a>
+            
+            <a href="/solutions/" class="header__link ">
+                Industry Solutions
+            </a>
+            
+            <a href="/learn/" class="header__link ">
+                Learning Center
+            </a>
+            
+        
+    </nav>
+
+    
+    <div class="header__actions" role="group" aria-label="Site actions">
+        
+        
+        <button class="search-toggle" type="button" aria-label="Open search dialog" aria-keyshortcuts="/" aria-haspopup="dialog" title="Search (press /)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+            </svg>
+        </button>
+        
+
+        
+        <div class="header__actions-desktop">
+            
+            
+
+            
+            
+            
+<button class="theme-toggle" type="button" aria-label="Toggle color theme: cycles through light, dark, and auto modes" aria-live="polite" title="Toggle theme">
+    <span class="theme-toggle__icons">
+        
+        <span class="theme-toggle__sun" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2"/>
+                <path d="M12 20v2"/>
+                <path d="m4.93 4.93 1.41 1.41"/>
+                <path d="m17.66 17.66 1.41 1.41"/>
+                <path d="M2 12h2"/>
+                <path d="M20 12h2"/>
+                <path d="m6.34 17.66-1.41 1.41"/>
+                <path d="m19.07 4.93-1.41 1.41"/>
+            </svg>
+        </span>
+
+        
+        <span class="theme-toggle__moon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            </svg>
+        </span>
+
+        
+        <span class="theme-toggle__auto" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a7 7 0 1 0 7 7"/>
+            </svg>
+        </span>
+    </span>
+    <span class="sr-only theme-toggle__status">Current theme: auto</span>
+</button>
+
+            
+
+            
+            
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;raskell-io&#x2F;web-scrapers&#x2F;blob&#x2F;main&#x2F;/learn&#x2F;handling-pagination.md" class="btn btn--icon btn--ghost" aria-label="Edit this page on GitHub (opens in new tab)" target="_blank" rel="noopener noreferrer" title="Edit this page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                    <path d="m15 5 4 4"/>
+                </svg>
+            </a>
+            
+
+            
+            
+        </div>
+    </div>
+</header>
+
+
+            
+
+            
+            
+            <div class="scroll-progress" aria-hidden="true">
+                <div class="scroll-progress__bar"></div>
+                <span class="scroll-progress__percent">0%</span>
+            </div>
+            
+
+            
+
+            <div class="layout__content-area">
+                <main id="main-content" class="main-content" role="main" aria-label="Main content">
+                    
+
+
+
+
+
+
+
+<article class="article" itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
+    
+    <header class="article__header article__header--docs">
+        <h1 id="article-title" itemprop="headline">How to Handle Pagination in Web Scraping: The Complete Guide</h1>
+        
+        <p class="article__description" itemprop="description">Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples.</p>
+        
+        
+    </header>
+
+    <div class="article__content" itemprop="articleBody">
+        <p>Pagination is one of the first obstacles every web scraper hits. Product listings, search results, news archives — any site with more items than fit on one page uses some form of it. Miss it, and your scraper silently collects a fraction of the data you need without any error to alert you.</p>
+<p>This guide covers every pagination pattern you'll encounter in the wild and shows you exactly how to handle each one in Python.</p>
+<h2 id="why-pagination-matters">Why Pagination Matters</h2>
+<p>A single product category on a large e-commerce site can span hundreds of pages. A news site's archive may run thousands. If your scraper stops at page one, you might capture 1% of the data you actually need — and you won't even know it's missing.</p>
+<p>The goal: build a loop that keeps following pages until there are no more.</p>
+<h2 id="pattern-1-query-string-pagination-page-n">Pattern 1: Query String Pagination (<code>?page=N</code>)</h2>
+<p>The simplest and most common pattern. Each page is a distinct URL with a numeric parameter:</p>
+<pre><code>https://example.com/products?page=1
+https://example.com/products?page=2
+https://example.com/products?page=3
+</code></pre>
+<p><strong>How to detect it:</strong> Click "Next" or a page number and watch the URL. If a <code>page=</code>, <code>p=</code>, or <code>start=</code> parameter appears or increments, you're dealing with query string pagination.</p>
+<p><strong>How to scrape it:</strong></p>
+<pre><code data-lang="python">import requests
+from bs4 import BeautifulSoup
+
+BASE_URL = &quot;https://example.com/products&quot;
+all_items = []
+
+page = 1
+while True:
+    response = requests.get(BASE_URL, params={&quot;page&quot;: page})
+    soup = BeautifulSoup(response.text, &quot;html.parser&quot;)
+
+    items = soup.select(&quot;.product-card&quot;)
+    if not items:
+        break  # no more results
+
+    all_items.extend(items)
+    page += 1
+</code></pre>
+<p>The key is a <strong>termination condition</strong> — here we stop when the page returns no items. Alternatives include checking for a disabled "Next" button or comparing the current page number against a total page count you extract from the HTML.</p>
+<h2 id="pattern-2-offset-cursor-pagination">Pattern 2: Offset / Cursor Pagination</h2>
+<p>Many sites (and especially JSON APIs) use an <code>offset</code> rather than a page number:</p>
+<pre><code>https://example.com/products?offset=0&amp;limit=24
+https://example.com/products?offset=24&amp;limit=24
+https://example.com/products?offset=48&amp;limit=24
+</code></pre>
+<p>Handle this by incrementing <code>offset</code> by the page size each iteration:</p>
+<pre><code data-lang="python">LIMIT = 24
+offset = 0
+
+while True:
+    response = requests.get(BASE_URL, params={&quot;limit&quot;: LIMIT, &quot;offset&quot;: offset})
+    data = response.json()
+
+    if not data[&quot;items&quot;]:
+        break
+
+    process(data[&quot;items&quot;])
+    offset += LIMIT
+</code></pre>
+<p>Some APIs return a <code>next_cursor</code> token instead of a numeric offset. Pass <code>cursor=&lt;token&gt;</code> in the next request and stop when the response contains no cursor field.</p>
+<h2 id="pattern-3-next-button-crawling">Pattern 3: "Next" Button Crawling</h2>
+<p>Some sites don't expose the total page count — they just render a "Next" link. Your scraper needs to find and follow it:</p>
+<pre><code data-lang="python">from urllib.parse import urljoin
+import requests
+from bs4 import BeautifulSoup
+
+url = &quot;https://example.com/products&quot;
+
+while url:
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, &quot;html.parser&quot;)
+
+    items = soup.select(&quot;.product-card&quot;)
+    process(items)
+
+    next_link = soup.select_one(&quot;a.pagination__next&quot;)
+    if next_link and next_link.get(&quot;href&quot;):
+        url = urljoin(url, next_link[&quot;href&quot;])
+    else:
+        url = None  # no more pages
+</code></pre>
+<p><code>urljoin</code> handles relative URLs gracefully — many sites link to <code>/products?page=2</code> rather than a full absolute URL.</p>
+<blockquote>
+<p><strong>Tip:</strong> If you're getting blocked mid-pagination, rotating proxies will help. Distributing requests across different IP addresses prevents any single IP from accumulating a suspicious request count. See <a href="/learn/proxy-types-explained/">Residential vs. Datacenter vs. Mobile Proxies</a> for guidance on which type to use, or check out <a href="/goto/brightdata/">Bright Data's residential proxy network</a> which offers 72M+ IPs with automatic rotation and a <strong>7-day free trial</strong>.</p>
+</blockquote>
+<h2 id="pattern-4-infinite-scroll-ajax-xhr">Pattern 4: Infinite Scroll (AJAX / XHR)</h2>
+<p>The most deceptive pattern. The page appears to have no pagination — content loads as you scroll. Under the hood, the browser fires XHR requests to load batches of results.</p>
+<p><strong>How to detect it:</strong> Open DevTools → Network → XHR/Fetch. Scroll the page and watch for new requests. You'll usually see a JSON endpoint being called with <code>page</code> or <code>offset</code> parameters.</p>
+<p><strong>Option A: Hit the underlying API directly.</strong> This is faster and cleaner than automating a real browser. Copy the XHR URL from DevTools and replicate the request:</p>
+<pre><code data-lang="python"># The underlying API endpoint discovered via DevTools
+API_URL = &quot;https://example.com/api/products&quot;
+headers = {
+    &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;,
+    &quot;Accept&quot;: &quot;application/json&quot;,
+}
+
+page = 1
+while True:
+    response = requests.get(API_URL, params={&quot;page&quot;: page}, headers=headers)
+    data = response.json()
+
+    if not data.get(&quot;results&quot;):
+        break
+
+    process(data[&quot;results&quot;])
+    page += 1
+</code></pre>
+<p><strong>Option B: Use Playwright to simulate scrolling.</strong> If the underlying API is obfuscated or requires complex auth tokens, drive a real browser:</p>
+<pre><code data-lang="python">from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
+    page.goto(&quot;https://example.com/products&quot;)
+
+    prev_height = 0
+    while True:
+        page.evaluate(&quot;window.scrollTo(0, document.body.scrollHeight)&quot;)
+        page.wait_for_timeout(2000)  # wait for new content to load
+
+        new_height = page.evaluate(&quot;document.body.scrollHeight&quot;)
+        if new_height == prev_height:
+            break  # reached the bottom
+        prev_height = new_height
+
+    html = page.content()
+    browser.close()
+</code></pre>
+<blockquote>
+<p><strong>For JavaScript-heavy pagination on tough sites</strong>, a managed scraping browser handles rendering, fingerprinting, and proxy rotation for you — no Playwright configuration required. <a href="/learn/bright-data-scraping-browser/">Bright Data's Scraping Browser</a> is purpose-built for exactly this use case.</p>
+</blockquote>
+<h2 id="pattern-5-directory-detail-pages-two-pass-crawl">Pattern 5: Directory + Detail Pages (Two-Pass Crawl)</h2>
+<p>For directory-style sites — real estate listings, job boards, business directories — you typically need two loops: one for the paginated index, one for each detail page linked from it.</p>
+<pre><code data-lang="python">from urllib.parse import urljoin
+import requests
+from bs4 import BeautifulSoup
+
+INDEX_URL = &quot;https://example.com/listings?page={page}&quot;
+detail_urls = []
+
+# Pass 1: collect all detail-page URLs from the paginated index
+page = 1
+while True:
+    soup = BeautifulSoup(
+        requests.get(INDEX_URL.format(page=page)).text, &quot;html.parser&quot;
+    )
+    links = [urljoin(INDEX_URL, a[&quot;href&quot;]) for a in soup.select(&quot;a.listing-link&quot;)]
+    if not links:
+        break
+    detail_urls.extend(links)
+    page += 1
+
+# Pass 2: scrape each detail page
+for url in detail_urls:
+    detail = BeautifulSoup(requests.get(url).text, &quot;html.parser&quot;)
+    process(detail)
+</code></pre>
+<h2 id="handling-duplicates-and-resumability">Handling Duplicates and Resumability</h2>
+<p>Long pagination runs can fail halfway through — a network error, a block, or a timeout. Protect yourself with a seen-set so you don't reprocess items, and save progress to disk so you can resume:</p>
+<pre><code data-lang="python">import json, os
+
+STATE_FILE = &quot;scrape_state.json&quot;
+seen = set(json.load(open(STATE_FILE)) if os.path.exists(STATE_FILE) else [])
+
+for item in scraped_items:
+    if item[&quot;id&quot;] not in seen:
+        save(item)
+        seen.add(item[&quot;id&quot;])
+
+# checkpoint regularly so a crash doesn&#39;t lose everything
+json.dump(list(seen), open(STATE_FILE, &quot;w&quot;))
+</code></pre>
+<h2 id="rate-limiting-and-politeness">Rate Limiting and Politeness</h2>
+<p>Pagination scrapers fire many requests in a tight loop — exactly the pattern anti-bot systems watch for. Always add a randomized delay between page requests:</p>
+<pre><code data-lang="python">import time, random
+
+time.sleep(random.uniform(1.5, 4.0))
+</code></pre>
+<p>For large crawls, combine this with proxy rotation so no single IP bears your full request volume. The <a href="/learn/how-to-avoid-getting-blocked/">full anti-blocking playbook is here</a>.</p>
+<p>If you'd rather skip the infrastructure work entirely, managed scraping APIs handle proxy rotation, retries, and JavaScript rendering behind a single endpoint. <a href="/goto/scraperapi/">ScraperAPI</a> and <a href="/goto/zenrows/">ZenRows</a> are popular options; <a href="/goto/oxylabs/">Oxylabs</a> covers enterprise-scale crawls. Compare them head-to-head in our <a href="/reviews/">scraping API reviews</a> and <a href="/comparisons/">Bright Data vs. Oxylabs comparison</a>.</p>
+<h2 id="quick-reference">Quick Reference</h2>
+<table><thead><tr><th>Pagination Pattern</th><th>How to Detect</th><th>Scraping Approach</th></tr></thead><tbody>
+<tr><td>Query string (<code>?page=N</code>)</td><td>URL parameter increments on "Next"</td><td>Loop incrementing <code>page</code> param</td></tr>
+<tr><td>Offset (<code>?offset=N</code>)</td><td>URL offset increases by page size</td><td>Loop incrementing <code>offset</code> by page size</td></tr>
+<tr><td>Next-button crawl</td><td>"Next" link present, no page count</td><td>Follow <code>href</code> of "Next" link</td></tr>
+<tr><td>Infinite scroll — JSON API</td><td>XHR requests visible in DevTools</td><td>Call the XHR endpoint directly</td></tr>
+<tr><td>Infinite scroll — rendered</td><td>No clean XHR endpoint found</td><td>Playwright scroll-to-bottom loop</td></tr>
+<tr><td>Directory + detail pages</td><td>Index lists links, detail pages hold data</td><td>Two-pass loop</td></tr>
+</tbody></table>
+<h2 id="the-bottom-line">The Bottom Line</h2>
+<p>Most pagination boils down to a loop: request a page, collect what you need, find the next URL, repeat until done. The tricky cases — infinite scroll, obfuscated APIs, aggressive anti-bot systems — are solved either by reverse-engineering the underlying network request or by driving a real browser.</p>
+<p>Build in a termination condition, add politeness delays, and rotate your IPs on any large run. Those three habits transform a fragile one-off script into a reliable data pipeline.</p>
+<p><strong><a href="/goto/brightdata/">Get started with Bright Data — 7-day free trial, no credit card required →</a></strong></p>
+<p><em>New to scraping? Start with our <a href="/learn/web-scraping-with-python/">Web Scraping with Python guide</a> or read <a href="/learn/how-to-avoid-getting-blocked/">How to Avoid Getting Blocked While Scraping</a>.</em></p>
+
+    </div>
+
+    
+
+
+<div class="adsense-unit" style="margin: 2rem 0; text-align: center;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2119108362521032"
+         data-ad-slot="2937189529"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+
+
+    
+    
+    <meta itemprop="author" content="Web-Scrapers.com">
+    
+    
+</article>
+
+
+
+<nav class="page-nav" aria-label="Page navigation">
+    
+
+    
+</nav>
+
+
+
+
+
+<div class="aads-unit" style="width: 100%; margin: 0 auto 2rem; position: relative; z-index: 99998;">
+    <iframe data-aa="2441049" src="//acceptable.a-ads.com/2441049/?size=Adaptive"
+            style="border:0; padding:0; width:70%; height:auto; overflow:hidden; display:block; margin:auto"
+            title="Advertisement" loading="lazy"></iframe>
+</div>
+
+
+
+
+                </main>
+
+                
+                
+                
+
+
+
+
+<aside id="page-toc-panel" class="page-toc-panel" aria-hidden="true" aria-label="On this page">
+    <div class="page-toc-panel__content">
+        <div class="page-toc-panel__header">
+            <span class="page-toc-panel__title">On this page</span>
+            <button class="page-toc-panel__close" type="button" aria-label="Close table of contents">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 6 6 18"/>
+                    <path d="m6 6 12 12"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="page-toc-panel__nav" aria-label="Page sections">
+            <ul class="page-toc-panel__list">
+                
+                <li class="page-toc-panel__item">
+                    <a href="#why-pagination-matters" class="page-toc-panel__link">
+                        Why Pagination Matters
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#pattern-1-query-string-pagination-page-n" class="page-toc-panel__link">
+                        Pattern 1: Query String Pagination (?page=N)
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#pattern-2-offset-cursor-pagination" class="page-toc-panel__link">
+                        Pattern 2: Offset &#x2F; Cursor Pagination
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#pattern-3-next-button-crawling" class="page-toc-panel__link">
+                        Pattern 3: &quot;Next&quot; Button Crawling
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#pattern-4-infinite-scroll-ajax-xhr" class="page-toc-panel__link">
+                        Pattern 4: Infinite Scroll (AJAX &#x2F; XHR)
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#pattern-5-directory-detail-pages-two-pass-crawl" class="page-toc-panel__link">
+                        Pattern 5: Directory + Detail Pages (Two-Pass Crawl)
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#handling-duplicates-and-resumability" class="page-toc-panel__link">
+                        Handling Duplicates and Resumability
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#rate-limiting-and-politeness" class="page-toc-panel__link">
+                        Rate Limiting and Politeness
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#quick-reference" class="page-toc-panel__link">
+                        Quick Reference
+                    </a>
+                    
+                </li>
+                
+                <li class="page-toc-panel__item">
+                    <a href="#the-bottom-line" class="page-toc-panel__link">
+                        The Bottom Line
+                    </a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</aside>
+
+
+                
+            </div>
+
+            
+            
+            
+        </div>
+    </div>
+
+    
+    <div class="sidebar-overlay" aria-hidden="true"></div>
+
+    
+    
+    
+<div class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-describedby="search-description">
+    <div class="search">
+        <h2 id="search-title" class="sr-only">Search documentation</h2>
+        <p id="search-description" class="sr-only">Type to search. Use arrow keys to navigate results, Enter to select, Escape to close.</p>
+
+        <div class="search__input-wrapper">
+            <span class="search__icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                </svg>
+            </span>
+            <input
+                type="search"
+                class="search__input"
+                placeholder="Search documentation..."
+                autocomplete="off"
+                autofocus
+                aria-label="Search query"
+                aria-controls="search-results"
+                aria-autocomplete="list"
+            >
+            <span class="search__shortcut" aria-hidden="true">/</span>
+            <button class="search__close" type="button" aria-label="Close search dialog" title="Close (Esc)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 6 6 18"/>
+                    <path d="m6 6 12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <div id="search-results" class="search__results" role="listbox" aria-label="Search results">
+            
+        </div>
+
+        <footer class="search__footer">
+            <nav class="search__hints" aria-label="Keyboard shortcuts">
+                <span class="search__hint">
+                    <kbd aria-label="Up and down arrows">↑</kbd><kbd aria-hidden="true">↓</kbd> <span>Navigate</span>
+                </span>
+                <span class="search__hint">
+                    <kbd aria-label="Enter">↵</kbd> <span>Select</span>
+                </span>
+                <span class="search__hint">
+                    <kbd aria-label="Escape">esc</kbd> <span>Close</span>
+                </span>
+            </nav>
+            <span class="search__powered-by">Powered by <a href="https://github.com/weixsong/elasticlunr.js" target="_blank" rel="noopener noreferrer" aria-label="elasticlunr.js on GitHub (opens in new tab)">elasticlunr</a></span>
+        </footer>
+    </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+
+     
+
+    
+    
+    
+    <button class="page-toc-toggle" type="button" aria-label="Toggle table of contents" aria-expanded="false" aria-controls="page-toc-panel" title="On this page">
+        <svg class="page-toc-toggle__icon page-toc-toggle__icon--list" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 5H3"/>
+            <path d="M16 12H3"/>
+            <path d="M16 19H3"/>
+            <path d="M21 5h.01"/>
+            <path d="M21 12h.01"/>
+            <path d="M21 19h.01"/>
+        </svg>
+        <svg class="page-toc-toggle__icon page-toc-toggle__icon--close" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+        </svg>
+    </button>
+    
+
+    
+    
+
+
+<div id="newsletter-modal" class="nl-overlay" hidden>
+    <div class="nl-card" role="dialog" aria-modal="true" aria-labelledby="nl-title">
+        <button type="button" class="nl-close" aria-label="Close">&times;</button>
+        <div class="nl-emoji" aria-hidden="true">📬</div>
+        <h3 id="nl-title">Join 5k+ Developers</h3>
+        <p class="nl-blurb">Get the latest web scraping news and tutorials, straight to your inbox.</p>
+        <form id="newsletter-form">
+            <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit" class="nl-submit">Subscribe</button>
+        </form>
+        <p class="nl-privacy">No spam, ever. Unsubscribe anytime.</p>
+        <div id="newsletter-thanks" hidden>
+            <div class="nl-emoji" aria-hidden="true">🎉</div>
+            <p class="nl-thanks-title">You're in!</p>
+            <p class="nl-blurb">Thanks for subscribing — the next issue is headed your way.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.nl-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(5, 8, 16, 0.65);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.nl-overlay[hidden] { display: none; }
+.nl-card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    padding: 2.25rem 2rem 1.75rem;
+    text-align: center;
+    background: var(--color-bg-elevated, #1e2030);
+    border: 1px solid var(--color-border, #363a4f);
+    border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+    animation: nl-pop 0.25s ease-out;
+}
+@keyframes nl-pop {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+}
+.nl-card h3 { margin: 0 0 0.5rem; }
+.nl-emoji { font-size: 2.25rem; line-height: 1; margin-bottom: 0.75rem; }
+.nl-blurb { margin: 0; color: var(--color-text-secondary, #b8c0e0); }
+.nl-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: inherit;
+    opacity: 0.55;
+    cursor: pointer;
+}
+.nl-close:hover { opacity: 1; }
+#newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+#newsletter-form[hidden], .nl-privacy[hidden] { display: none; }
+#newsletter-form input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--color-text, #cad3f5);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--color-border, #363a4f);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+#newsletter-form input[type="email"]::placeholder { color: var(--color-text-muted, #8087a2); }
+#newsletter-form input[type="email"]:focus {
+    border-color: var(--color-accent, #c6a0f6);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent, #c6a0f6) 25%, transparent);
+}
+.nl-submit {
+    padding: 0.75rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ctp-base, #181926);
+    background: var(--color-accent, #c6a0f6);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+.nl-submit:hover { background: var(--color-accent-hover, #f5bde6); }
+.nl-submit:active { transform: scale(0.97); }
+.nl-privacy {
+    margin: 0.85rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #8087a2);
+}
+#newsletter-thanks { margin-top: 1.25rem; }
+.nl-thanks-title { margin: 0 0 0.35rem; font-size: 1.2rem; font-weight: 700; }
+@media (max-width: 480px) {
+    #newsletter-form { flex-direction: column; }
+}
+</style>
+
+<script>
+(function () {
+    var overlay = document.getElementById('newsletter-modal');
+    if (!overlay) return;
+    var form = document.getElementById('newsletter-form');
+    var thanks = document.getElementById('newsletter-thanks');
+    var privacy = overlay.querySelector('.nl-privacy');
+    var KEY = 'nl-dismissed';
+
+    function seen() {
+        try { return !!localStorage.getItem(KEY); } catch (e) { return true; }
+    }
+    function markSeen() {
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    function open() {
+        overlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(function () { if (!form.hidden) form.email.focus(); }, 60);
+    }
+    function close() {
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+        markSeen(); // don't auto-nag a visitor who already closed it
+    }
+
+    overlay.querySelector('.nl-close').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !overlay.hidden) close();
+    });
+
+    // Any "#newsletter" link or [data-newsletter] element opens the popup
+    document.addEventListener('click', function (e) {
+        var t = e.target.closest('a[href$="#newsletter"], [data-newsletter]');
+        if (t) { e.preventDefault(); open(); }
+    });
+
+    // Auto-show once per visitor, 15s into their first visit
+    if (!seen()) setTimeout(function () { if (overlay.hidden) open(); }, 15000);
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (!email) return;
+        try {
+            navigator.sendBeacon("https://script.google.com/macros/s/AKfycbxk_gwmKSz4nmbo-HWW3IHrq1cCnjcVIyeEUg_2YagGq6G1YyrgDc2IyzBS4CtC2_oG/exec", JSON.stringify({
+                type: 'subscribe',
+                email: email,
+                page: location.pathname,
+                ua: navigator.userAgent
+            }));
+        } catch (err) {}
+        form.hidden = true;
+        privacy.hidden = true;
+        thanks.hidden = false;
+        markSeen();
+        setTimeout(close, 3500);
+    });
+})();
+</script>
+
+
+
+    
+    
+    <button class="fab scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
+    
+
+</body>
+</html>
