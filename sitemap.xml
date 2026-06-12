@@ -34,6 +34,9 @@
         <loc>https://www.web-scrapers.com/learn/bright-data-scraping-browser/</loc>
     </url>
     <url>
+        <loc>https://www.web-scrapers.com/learn/datasets-vs-web-scraping/</loc>
+    </url>
+    <url>
         <loc>https://www.web-scrapers.com/learn/how-to-avoid-getting-blocked/</loc>
     </url>
     <url>
@@ -106,10 +109,16 @@
         <loc>https://www.web-scrapers.com/solutions/amazon-product-tracking/</loc>
     </url>
     <url>
+        <loc>https://www.web-scrapers.com/solutions/ebay-product-tracking/</loc>
+    </url>
+    <url>
         <loc>https://www.web-scrapers.com/solutions/ecommerce/</loc>
     </url>
     <url>
         <loc>https://www.web-scrapers.com/solutions/google-search-scraping/</loc>
+    </url>
+    <url>
+        <loc>https://www.web-scrapers.com/solutions/linkedin-scraping/</loc>
     </url>
     <url>
         <loc>https://www.web-scrapers.com/solutions/walmart-product-tracking/</loc>
