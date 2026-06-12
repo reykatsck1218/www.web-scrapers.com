@@ -42,6 +42,6 @@ Residential proxies route your requests through real devices on real ISPs, so yo
 
 If you need maximum reliability against the toughest anti-bot systems, Bright Data Residential Proxies are the gold standard. The combination of network size, targeting granularity, and a 99.9% success rate makes them ideal for enterprise-scale data collection.
 
-**[Start your free trial of Bright Data Residential Proxies →](/goto/bd-residential/)**
+**[Get started with Bright Data Residential Proxies →](/goto/bd-residential/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/) and the [Scraping Browser guide](/learn/bright-data-scraping-browser/).*

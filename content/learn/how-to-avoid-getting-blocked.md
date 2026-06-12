@@ -14,7 +14,7 @@ If hundreds of requests hit a site from a single IP in a short window, that IP g
 
 This is the foundation of reliable scraping. Datacenter proxies are cheap and fast but easier to detect; residential and mobile proxies route through real consumer devices and are far harder to block. See our full breakdown in [Residential vs. Datacenter vs. Mobile Proxies](/learn/proxy-types-explained/).
 
-> **Recommended:** [Bright Data](/goto/bd-residential/) offers a 400M+ residential IP pool with automatic rotation and a **7-day free trial, no credit card required**. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/) and [DataImpulse](/goto/dataimpulse/).
+> **Recommended:** [Bright Data](/goto/bd-residential/) offers a 400M+ residential IP pool with automatic rotation. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/) and [DataImpulse](/goto/dataimpulse/).
 
 ## 2. Set a Realistic User-Agent
 
@@ -107,7 +107,7 @@ session.get("https://example.com/page/2")   # reuses them
 
 When you're up against the most aggressive anti-bot systems, managing all of the above yourself becomes a full-time job. Web Unlockers and scraping APIs bundle proxy rotation, header management, fingerprinting, CAPTCHA solving, and automatic retries into a single endpoint — you send a URL and get clean HTML back.
 
-> **Try it free:** The [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) handles blocks automatically and comes with a **7-day free trial**. [Start scraping →](/goto/bd-web-unlocker/)
+> **For tough targets:** The [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) handles blocks automatically. [Start scraping →](/goto/bd-web-unlocker/)
 >
 > For a simpler pay-as-you-go API, [ScraperAPI](/goto/scraperapi/) is also worth a look.
 
@@ -129,6 +129,6 @@ When you're up against the most aggressive anti-bot systems, managing all of the
 
 Avoiding blocks is about looking like a real user: rotating IPs, sending believable headers, pacing your requests, and rendering JavaScript when needed. For small projects, the manual techniques here go a long way. For scraping protected sites at scale, a managed solution that bundles unblocking infrastructure will save you enormous time.
 
-**[Start your free 7-day trial of Bright Data →](/goto/bd-web-unlocker/)**
+**[Get started with Bright Data →](/goto/bd-web-unlocker/)**
 
 *New to scraping? Start with our [Web Scraping with Python guide](/learn/web-scraping-with-python/), or compare providers in our [proxy and scraper reviews](/reviews/).*

@@ -29,7 +29,7 @@ ZenRows tends to have the edge on the most heavily protected targets; ScraperAPI
 
 Both use **credit-based, pay-as-you-grow** pricing where JS rendering and premium proxies cost more credits:
 
-- **ZenRows:** Free trial (no card); paid plans from an entry developer tier up to enterprise.
+- **ZenRows:** Free trial available; paid plans from an entry developer tier up to enterprise.
 - **ScraperAPI:** Free monthly credits plus a trial; entry tier scaling to high-volume plans.
 
 > Check current pricing for [ZenRows](/goto/zenrows/) and [ScraperAPI](/goto/scraperapi/) — plans change periodically.
@@ -49,4 +49,4 @@ Both use **credit-based, pay-as-you-grow** pricing where JS rendering and premiu
 - **Use ZenRows if:** Your targets are protected by Cloudflare/DataDome and anti-bot bypass is your priority, or you want Markdown output for AI pipelines. Read the full [ZenRows review](/reviews/zenrows/).
 - **Use ScraperAPI if:** You want the simplest integration, a generous free tier, and ready-made structured endpoints for e-commerce and search. Read the full [ScraperAPI review](/reviews/scraperapi/).
 
-*Need a full proxy network with maximum control instead? See [Bright Data](/goto/bd-products/) — 7-day free trial, no credit card required.*
+*Need a full proxy network with maximum control instead? See [Bright Data](/goto/bd-products/).*

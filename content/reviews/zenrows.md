@@ -40,7 +40,7 @@ That one request transparently handles fingerprinting, CAPTCHAs, retries, and ro
 
 ZenRows uses a **request/credit-based, pay-as-you-grow model**. Plans scale by API credits per month, with higher tiers unlocking more concurrency and premium residential proxies. Requests that need JS rendering or premium proxies consume more credits than a basic request.
 
-- **Free trial:** Test credits with no credit card required.
+- **Free trial:** Free test credits to start.
 - **Paid plans:** Start at an entry-level monthly developer tier and scale up to business and enterprise.
 
 > Credit costs vary by request type. Check the [current pricing](/goto/zenrows/) for exact figures, as plans are updated periodically.
@@ -56,7 +56,7 @@ ZenRows' strength is success rate on **hard targets**. On sites guarded by Cloud
 - Best-in-class anti-bot bypass behind a single API call
 - Multiple output formats (HTML, JSON, Markdown) — great for AI pipelines
 - Scraping Browser option for full interaction when you need it
-- Free trial with no credit card
+- Free trial available
 
 **Cons**
 
@@ -67,6 +67,6 @@ ZenRows' strength is success rate on **hard targets**. On sites guarded by Cloud
 
 ZenRows is an excellent choice when **getting blocked is your main problem**. Its anti-bot bypass, residential proxies, and flexible output formats remove nearly all the friction of scraping protected sites — without managing any infrastructure. If you only scrape simple pages, a basic proxy may be cheaper, but for tough targets ZenRows is one of the most reliable APIs on the market.
 
-**[Start scraping with ZenRows — free trial →](/goto/zenrows/)**
+**[Start scraping with ZenRows →](/goto/zenrows/)**
 
 *Comparing options? See [ZenRows vs ScraperAPI](/comparisons/zenrows-vs-scraperapi/), [Bright Data vs ZenRows](/comparisons/bright-data-vs-zenrows/), and our [Bright Data review](/reviews/bright-data/).*

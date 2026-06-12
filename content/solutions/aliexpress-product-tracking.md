@@ -14,7 +14,7 @@ AliExpress is a goldmine for dropshippers and product researchers who need to tr
 export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.superproxy.io:22225"
 ```
 
-> **New to Bright Data?** **7-day free trial, no credit card required.** [Get started →](/goto/bd-ecommerce/)
+> **New to Bright Data?** [Get started →](/goto/bd-ecommerce/)
 
 Products are identified by their numeric **item ID** from the URL: `https://www.aliexpress.com/item/<id>.html`.
 
@@ -202,4 +202,4 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 *See our [E-commerce Web Scraping Solutions](/solutions/ecommerce/) overview and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
-**[Start your free 7-day Bright Data trial →](/goto/bd-ecommerce/)**
+**[Get started with Bright Data →](/goto/bd-ecommerce/)**

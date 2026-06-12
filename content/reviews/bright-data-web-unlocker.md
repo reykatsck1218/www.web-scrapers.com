@@ -40,6 +40,6 @@ Both products share Bright Data's unblocking engine. Choose the **Web Unlocker**
 
 Web Unlocker is the simplest way to get past anti-bot defenses without managing proxies or CAPTCHA solvers yourself — a single API call in, structured data out, billed only on success.
 
-**[Start your free trial of Bright Data Web Unlocker →](/goto/bd-web-unlocker/)**
+**[Get started with Bright Data Web Unlocker →](/goto/bd-web-unlocker/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*

@@ -27,7 +27,7 @@ Bright Data gives you the raw network; ZenRows manages proxy selection for you.
 
 ## Pricing
 
-- **Bright Data:** Pay-as-you-go from **$5/GB** (bandwidth-based), with volume discounts and a **7-day free trial, no credit card**.
+- **Bright Data:** Pay-as-you-go, bandwidth-based pricing with volume discounts.
 - **ZenRows:** Credit/request-based pricing with a free trial; cost scales with JS rendering and premium proxies.
 
 Bandwidth-based vs. request-based billing is a key difference: heavy-HTML pages can favor a request model, while light high-volume scraping can favor bandwidth pricing.

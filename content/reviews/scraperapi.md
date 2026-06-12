@@ -42,7 +42,7 @@ That one request transparently handles rotation, retries, and unblocking — no 
 ScraperAPI uses a **credit-based, pay-as-you-grow model**. Plans scale by the number of API credits per month, with higher tiers unlocking more concurrent threads, residential/mobile proxies, and premium features.
 
 - **Free plan:** Free API credits every month to test and run small jobs.
-- **Free trial:** Bonus credits for 7 days, no commitment.
+- **Free trial:** Free credits to start, no commitment.
 - **Paid plans:** Start at an entry-level monthly tier and scale up to high-volume and enterprise plans.
 
 > Credit costs vary by request type — JavaScript rendering and premium residential/mobile proxies consume more credits than a basic request. Check the [current pricing](/goto/scraperapi/) for exact figures, as plans are updated periodically.

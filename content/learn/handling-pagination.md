@@ -106,7 +106,7 @@ while url:
 
 `urljoin` handles relative URLs gracefully — many sites link to `/products?page=2` rather than a full absolute URL.
 
-> **Tip:** If you're getting blocked mid-pagination, rotating proxies will help. Distributing requests across different IP addresses prevents any single IP from accumulating a suspicious request count. See [Residential vs. Datacenter vs. Mobile Proxies](/learn/proxy-types-explained/) for guidance on which type to use, or check out [Bright Data's residential proxy network](/goto/bd-residential/) which offers 400M+ IPs with automatic rotation and a **7-day free trial**.
+> **Tip:** If you're getting blocked mid-pagination, rotating proxies will help. Distributing requests across different IP addresses prevents any single IP from accumulating a suspicious request count. See [Residential vs. Datacenter vs. Mobile Proxies](/learn/proxy-types-explained/) for guidance on which type to use, or check out [Bright Data's residential proxy network](/goto/bd-residential/) which offers 400M+ IPs with automatic rotation.
 
 ## Pattern 4: Infinite Scroll (AJAX / XHR)
 
@@ -242,6 +242,6 @@ Most pagination boils down to a loop: request a page, collect what you need, fin
 
 Build in a termination condition, add politeness delays, and rotate your IPs on any large run. Those three habits transform a fragile one-off script into a reliable data pipeline.
 
-**[Get started with Bright Data — 7-day free trial, no credit card required →](/goto/bd-residential/)**
+**[Get started with Bright Data →](/goto/bd-residential/)**
 
 *New to scraping? Start with our [Web Scraping with Python guide](/learn/web-scraping-with-python/) or read [How to Avoid Getting Blocked While Scraping](/learn/how-to-avoid-getting-blocked/).*

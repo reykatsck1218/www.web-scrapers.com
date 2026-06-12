@@ -38,6 +38,6 @@ The SERP API handles the hard parts of search scraping — proxies, unblocking, 
 
 For SEO monitoring, rank tracking, and competitive research at scale, the SERP API removes every operational headache of search scraping and bills only for results you actually receive.
 
-**[Start your free trial of the Bright Data SERP API →](/goto/bd-products/)**
+**[Get started with the Bright Data SERP API →](/goto/bd-products/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*

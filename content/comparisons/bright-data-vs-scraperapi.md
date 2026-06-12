@@ -27,8 +27,8 @@ Bright Data exposes the raw network; ScraperAPI abstracts it away.
 
 ## Pricing
 
-- **Bright Data:** Pay-as-you-go from **$5/GB**, with volume discounts and a **7-day free trial (no credit card)**. You pay for bandwidth.
-- **ScraperAPI:** A **credit-based, pay-as-you-grow** model — plans scale by monthly API credits, with a generous free tier and a 7-day trial with bonus credits. You pay per request (JS rendering and premium proxies cost more credits).
+- **Bright Data:** Pay-as-you-go, bandwidth-based pricing with volume discounts. You pay for bandwidth.
+- **ScraperAPI:** A **credit-based, pay-as-you-grow** model — plans scale by monthly API credits, with a generous free tier and a free trial. You pay per request (JS rendering and premium proxies cost more credits).
 
 Bandwidth-based vs. request-based billing is the key difference: heavy-HTML pages favor a credit model, while light high-volume scraping can favor bandwidth pricing.
 

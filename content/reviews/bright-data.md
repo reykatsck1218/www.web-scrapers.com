@@ -23,7 +23,7 @@ One of Bright Data's standout products is the **[Scraping Browser](/learn/bright
 - **Unlimited concurrent sessions** with no infrastructure to manage.
 - **Built-in CAPTCHA solving**, fingerprint management, and cookie handling.
 - **Full JavaScript rendering** for dynamic, JS-heavy sites.
-- **Pay-as-you-go from $5/GB** with a 7-day free trial (no credit card required).
+- **Pay-as-you-go, bandwidth-based pricing.**
 
 For a deep dive with code examples and use cases, see our dedicated guide: **[Bright Data Scraping Browser](/learn/bright-data-scraping-browser/)**.
 

@@ -24,7 +24,7 @@ Bright Data is a platform; IPRoyal is a clean, affordable proxy service.
 
 ## Pricing
 
-- **Bright Data:** Pay-as-you-go from **$5/GB** (residential from ~$15/GB), with volume discounts on monthly/yearly plans and a **7-day free trial, no credit card required**.
+- **Bright Data:** Pay-as-you-go, bandwidth-based pricing with volume discounts on monthly and yearly plans.
 - **IPRoyal:** Competitively priced per GB with non-expiring traffic and no monthly commitment — generally cheaper for small to mid-size projects.
 
 ## Performance
@@ -38,7 +38,7 @@ In testing, Bright Data's residential proxies hit **99.5%+ success rates** on to
 | Network size | 400M+ residential | Millions of IPs |
 | Tooling | Full unblocking suite | Proxies only |
 | Pricing | Premium | Budget-friendly |
-| Free trial | 7 days, no card | Pay-as-you-go |
+| Free trial | Available | Pay-as-you-go |
 | Best for | Enterprise / tough targets | Cost-conscious developers |
 
 ## Conclusion
@@ -46,4 +46,4 @@ In testing, Bright Data's residential proxies hit **99.5%+ success rates** on to
 - **Use Bright Data if:** You need maximum success rates, the largest network, or unblocking tools like the Web Unlocker and Scraping Browser. Read the full [Bright Data review](/reviews/bright-data/).
 - **Use IPRoyal if:** You want reliable, affordable proxies for mainstream targets and value non-expiring traffic. Read the full [IPRoyal review](/reviews/iproyal/).
 
-**[Start your free 7-day Bright Data trial →](/goto/bd-products/)**
+**[Get started with Bright Data →](/goto/bd-products/)**

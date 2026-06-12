@@ -49,6 +49,6 @@ The IDE removes the operational burden of scraping: there's no infrastructure to
 
 For dev teams that want the control of code without the maintenance of infrastructure, the Web Scraper IDE is a productivity multiplier — ready-made functions and templates cut development time dramatically while Bright Data handles proxies, unblocking, and scale.
 
-**[Start your free trial of the Bright Data Web Scraper IDE →](/goto/bd-collector/)**
+**[Get started with the Bright Data Web Scraper IDE →](/goto/bd-collector/)**
 
 *Prefer your own framework? See the [Scraping Browser guide](/learn/bright-data-scraping-browser/) for Playwright, Puppeteer & Selenium. Or read our full [Bright Data review](/reviews/bright-data/).*

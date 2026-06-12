@@ -41,6 +41,6 @@ ISP Proxies are static residential IPs that you can rotate or keep for as long a
 
 ISP Proxies are the right pick when you need a stable, long-lived IP that still looks residential — perfect for account-based workflows and fast scraping of moderately protected targets.
 
-**[Start your free trial of Bright Data ISP Proxies →](/goto/bd-isp/)**
+**[Get started with Bright Data ISP Proxies →](/goto/bd-isp/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*
