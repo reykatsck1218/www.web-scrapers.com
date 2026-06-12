@@ -49,6 +49,7 @@ AFFILIATES = {
     "bd-proxy-guide":     "https://get.brightdata.com/blog-ultimate-guide-to-proxy-types",
     # Unlocking
     "bd-web-unlocker":    "https://get.brightdata.com/web-unlocker1387",
+    "bd-captcha":         "https://get.brightdata.com/unblocker-captcha-solver",
     # Data collectors / products (general)
     "bd-collector":       "https://get.brightdata.com/product-data-collector",
     "bd-collector-pro":   "https://get.brightdata.com/web-guro-data-collector",
