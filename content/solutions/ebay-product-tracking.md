@@ -153,6 +153,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 Hitting thousands of eBay listings on a schedule means rotating IPs, handling blocks, and absorbing layout changes — maintenance that adds up fast. Bright Data's [eBay data collector](/goto/bd-ebay/) returns structured listing data without you managing any of that infrastructure, and pre-built [datasets](/goto/bd-datasets/) cover bulk historical pulls.
 
-*See our [E-commerce Web Scraping Solutions](/solutions/ecommerce/) overview, the [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
+*See our [E-commerce Web Scraping Solutions](/solutions/ecommerce/) overview, the [eBay Product Search Scraping](/solutions/ebay-product-search-scraping/) guide for market-level pricing, the [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
 **[Scrape eBay at scale with Bright Data →](/goto/bd-ebay/)**

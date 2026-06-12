@@ -230,13 +230,13 @@ Turn this scraper into a lightweight price monitor:
 2. **Store price history** — write `{query, title, price, timestamp}` to a database or CSV on each run.
 3. **Alert on drops** — compare the latest price against a rolling minimum and fire a notification when a new low appears.
 
-The [Amazon Product Tracking](/solutions/amazon-product-tracking/) and [Walmart Product Tracking](/solutions/walmart-product-tracking/) guides use the same store-and-compare pattern with different parsers.
+The [Amazon Product Tracking](/solutions/amazon-product-tracking/) and [Walmart Product Tracking](/solutions/walmart-product-tracking/) guides use the same store-and-compare pattern with different parsers. To track a single eBay listing by item ID (rather than search results), see [eBay Product Tracking](/solutions/ebay-product-tracking/).
 
 ## Notes
 
 - **Selector drift** — eBay's CSS classes are reasonably stable, but they shift with major redesigns. If results come back empty, open the live page in DevTools, inspect a listing card, and update the selectors.
 - **Price strings** — prices can be ranges (`$20.00 to $60.00` for lot sales) or include text like "or Best Offer". Store the raw string and parse it downstream, or use a regex to extract the lower bound.
-- **Alternative unblocking services** — if you need higher throughput or different billing models, [Bright Data's Web Unlocker](/goto/brightdata/) and [Oxylabs](/goto/oxylabs/) are strong alternatives. See our [ZenRows vs. ScraperAPI comparison](/comparisons/zenrows-vs-scraperapi/) and the broader [proxy and scraping tool comparisons](/comparisons/) for a side-by-side view.
+- **Alternative unblocking services** — if you need higher throughput or different billing models, [Bright Data's Web Unlocker](/goto/bd-web-unlocker/) and [Oxylabs](/goto/oxylabs/) are strong alternatives. See our [ZenRows vs. ScraperAPI comparison](/comparisons/zenrows-vs-scraperapi/) and the broader [proxy and scraping tool comparisons](/comparisons/) for a side-by-side view.
 
 *See also: [E-commerce Web Scraping Solutions](/solutions/ecommerce/), [ZenRows review](/reviews/zenrows/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
