@@ -1,0 +1,89 @@
+name: Deploy to DigitalOcean Spaces
+
+# Builds the Zola site and syncs public/ to a DigitalOcean Spaces bucket
+# (S3-compatible), then optionally purges the Spaces CDN cache.
+#
+# Required GitHub repo VARIABLES (Settings -> Secrets and variables -> Actions -> Variables):
+#   SPACES_BUCKET   e.g. web-scrapers
+#   SPACES_REGION   e.g. sgp1   (the region slug, no domain)
+# Optional VARIABLE:
+#   SPACES_CDN_ID   the CDN endpoint UUID, to enable cache purge
+# Required SECRETS:
+#   SPACES_ACCESS_KEY
+#   SPACES_SECRET_KEY
+# Optional SECRET (needed only if SPACES_CDN_ID is set):
+#   DO_API_TOKEN    a DigitalOcean API token with CDN write scope
+#
+# Manual-dispatch only for now (so it can't fail before secrets are set). Once
+# verified, add `push: { branches: [main] }` here and remove deploy.yml (gh-pages).
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-spaces
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.SPACES_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.SPACES_SECRET_KEY }}
+      AWS_DEFAULT_REGION: ${{ vars.SPACES_REGION }}
+      ENDPOINT: https://${{ vars.SPACES_REGION }}.digitaloceanspaces.com
+      BUCKET: ${{ vars.SPACES_BUCKET }}
+    steps:
+      - name: Checkout (with theme submodule)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Zola
+        run: |
+          curl -sL https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv zola /usr/local/bin/zola
+          zola --version
+
+      - name: Build
+        run: zola build
+
+      # Pass 1: assets (everything except HTML) with a long cache.
+      - name: Sync assets (long cache)
+        run: |
+          aws s3 sync public/ "s3://$BUCKET/" \
+            --endpoint-url "$ENDPOINT" \
+            --acl public-read \
+            --delete \
+            --exclude "*.html" \
+            --cache-control "public, max-age=604800" \
+            --no-progress
+
+      # Pass 2: HTML + sitemap/robots with a short cache so content updates show fast.
+      - name: Sync HTML (short cache)
+        run: |
+          aws s3 sync public/ "s3://$BUCKET/" \
+            --endpoint-url "$ENDPOINT" \
+            --acl public-read \
+            --exclude "*" \
+            --include "*.html" \
+            --include "*.xml" \
+            --include "*.txt" \
+            --cache-control "public, max-age=300" \
+            --content-type "text/html; charset=utf-8" \
+            --no-progress
+          # Fix content-type for the non-HTML text files the include caught.
+          aws s3 cp "s3://$BUCKET/sitemap.xml" "s3://$BUCKET/sitemap.xml" \
+            --endpoint-url "$ENDPOINT" --acl public-read --metadata-directive REPLACE \
+            --cache-control "public, max-age=300" --content-type "application/xml" || true
+          aws s3 cp "s3://$BUCKET/robots.txt" "s3://$BUCKET/robots.txt" \
+            --endpoint-url "$ENDPOINT" --acl public-read --metadata-directive REPLACE \
+            --cache-control "public, max-age=300" --content-type "text/plain" || true
+
+      - name: Purge CDN cache
+        if: ${{ vars.SPACES_CDN_ID != '' }}
+        run: |
+          curl -fsS -X DELETE \
+            -H "Authorization: Bearer ${{ secrets.DO_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"files":["*"]}' \
+            "https://api.digitalocean.com/v2/cdn/endpoints/${{ vars.SPACES_CDN_ID }}/cache"
