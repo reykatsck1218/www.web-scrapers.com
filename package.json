@@ -1,6 +1,0 @@
-{
-  "name": "web-scrapers",
-  "version": "1.0.0",
-  "private": true,
-  "description": "web-scrapers.com static site (Zola). This package.json exists so DigitalOcean App Platform detects a build environment; the build downloads Zola and runs `zola build` (see .do/app.yaml)."
-}
