@@ -78,6 +78,23 @@ the feature renders nothing. Follow this pattern for anything new.
   `public/` to `gh-pages`). Still works but redundant now.
 - GitHub Pages caches ~10 min; hard-refresh when verifying. `public/` is gitignored.
 
+### Hosting decision (settled — don't re-litigate)
+
+**Stay on GitHub Pages.** Evaluated and rejected DO Spaces, DO App Platform, and a
+DO droplet (2026-06):
+- **DO Spaces** — object storage, won't resolve pretty URLs (`/learn/` → 403, no
+  index-document for nested dirs). Wrong tool for this site.
+- **DO App Platform** — works but **costs money**; GitHub Pages does the same free.
+- **DO droplet** (user owns one) — a downgrade for a *static* site: no global CDN,
+  manual TLS/certbot, single point of failure, OS/nginx upkeep. "Already paid" is
+  sunk cost; moving adds ops + worse latency for zero benefit.
+
+GitHub Pages already gives free global CDN, auto-TLS + renewal, and apex→www
+redirect with zero ops. **Only revisit** if the site gains **server-side** needs
+(backend/API, auth, dynamic pages — e.g. the [[playground-feature-idea]] live-scraping
+demo). Even then: keep the static site on Pages and run only the backend on the
+droplet/Cloudflare — don't move the whole site.
+
 ## Click & subscriber tracking (Google Sheet)
 
 A Google Apps Script web app (`scripts/goto-click-logger.gs`, deployed from the
