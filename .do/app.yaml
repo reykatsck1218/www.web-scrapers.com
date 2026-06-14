@@ -1,0 +1,31 @@
+# DigitalOcean App Platform — static site spec for web-scrapers.com
+#
+# Create the app once (you must connect GitHub to DO Apps first):
+#   doctl apps create --spec .do/app.yaml
+# or: DO control panel -> Apps -> Create App -> GitHub repo -> "Edit your app spec" -> paste this.
+#
+# After creation, deploy_on_push redeploys automatically on every push to main.
+# App Platform handles clean URLs (index_document), TLS, and apex->www redirect.
+name: web-scrapers
+region: sfo
+static_sites:
+  - name: site
+    github:
+      repo: reykatsck1218/www.web-scrapers.com
+      branch: main
+      deploy_on_push: true
+    # Node buildpack is detected via package.json; the build then fetches the
+    # theme submodule (with a clone fallback) and Zola, and renders to public/.
+    build_command: |
+      git submodule update --init --recursive 2>/dev/null || true
+      [ -f themes/tanuki/theme.toml ] || git clone --depth 1 https://github.com/raskell-io/tanuki themes/tanuki
+      curl -sL https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
+      ./zola build
+    output_dir: public
+    index_document: index.html
+    error_document: 404.html
+domains:
+  - domain: www.web-scrapers.com
+    type: PRIMARY
+  - domain: web-scrapers.com
+    type: ALIAS
