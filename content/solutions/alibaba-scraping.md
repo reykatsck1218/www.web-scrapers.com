@@ -1,7 +1,8 @@
 +++
-title = "How to Scrape Alibaba: B2B Product and Supplier Data (PHP, Node.js, Rust)"
+title = "How to Scrape Alibaba: B2B Product and Supplier Data"
 description = "Scrape Alibaba B2B product listings and supplier pages by parsing JSON-LD and embedded product state, with ready-to-run code in PHP, Node.js, and Rust."
 template = "page.html"
+date = 2026-08-04
 +++
 
 Alibaba is the world's largest B2B marketplace — a primary source for procurement research, competitive benchmarking, supplier discovery, and price range intelligence. Product listing pages expose structured data in two machine-readable layers: a **JSON-LD** `Product` block for core metadata (name, price range, supplier) and an **embedded JavaScript state object** for B2B-specific fields like minimum order quantity, certifications, and trade capacity. Both are publicly accessible without authentication.
