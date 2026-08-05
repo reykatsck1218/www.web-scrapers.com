@@ -2,6 +2,8 @@
 title = "Bright Data vs IPRoyal: Premium Power or Budget Flexibility?"
 description = "Compare Bright Data and IPRoyal on network size, features, pricing, and performance to choose between premium power and budget-friendly flexibility."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/comparisons-bright-data-vs-iproyal.png"
 +++

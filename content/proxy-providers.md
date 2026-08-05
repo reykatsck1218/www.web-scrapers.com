@@ -1,8 +1,10 @@
 +++
-title = "Proxy Providers: The Best Proxy & Scraping Services, Ranked (2026)"
+title = "Best Proxy & Scraping Services, Ranked (2026)"
 description = "Our ranked directory of the best proxy and web scraping providers for 2026, led by Bright Data, with success rates, ratings, and links to each provider."
 template = "page.html"
 
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/proxy-providers.png"
 +++

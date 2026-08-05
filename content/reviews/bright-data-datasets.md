@@ -1,8 +1,12 @@
 +++
-title = "Bright Data Datasets Review: Ready-Made & Custom Web Data at Scale"
+title = "Bright Data Datasets Review: Web Data at Scale"
 description = "Bright Data Datasets review: ready-made and custom web datasets delivered at scale, so you can skip scraping and get structured data directly."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data Datasets"
+review_rating = 4.4
 og_image = "assets/og/reviews-bright-data-datasets.png"
 +++
 
@@ -48,3 +52,11 @@ When you need data without the overhead of building and maintaining scrapers, Br
 **[Explore Bright Data Datasets →](/goto/bd-datasets/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/) and the [Web Scraper IDE review](/reviews/bright-data-web-scraper-ide/).*
+
+## Related Bright Data Products
+
+- **[Bright Data SERP API](/reviews/bright-data-serp-api/)**
+- **[Bright Data Residential Proxies](/reviews/bright-data-residential-proxies/)**
+- **[Bright Data Web Scraper IDE](/reviews/bright-data-web-scraper-ide/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

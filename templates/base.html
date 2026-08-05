@@ -227,9 +227,54 @@
                 "inLanguage": "{{ lang | default(value='en') }}"
             }
             {% endif %}
+            {% if page.extra.review_rating is defined %}
+            ,{
+                "@type": "Product",
+                "@id": "{{ current_url | safe }}#product",
+                "name": {{ page.extra.review_product | default(value=page.title) | json_encode | safe }},
+                {% if page.description is defined and page.description %}
+                "description": {{ page.description | json_encode | safe }},
+                {% endif %}
+                "review": {
+                    "@type": "Review",
+                    "author": {
+                        "@type": "{% if config.extra.author_type is defined %}{{ config.extra.author_type }}{% else %}Person{% endif %}",
+                        "name": "{{ config.extra.author }}"
+                    },
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": {{ page.extra.review_rating }},
+                        "bestRating": 5,
+                        "worstRating": 1
+                    }
+                }
+            }
+            {% endif %}
         ]
     }
     </script>
+
+    {# ===== FAQ JSON-LD (pages with [extra] faq = [{q, a}, ...]) ===== #}
+    {% if page.extra.faq is defined and page.extra.faq | length > 0 %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {% for item in page.extra.faq %}
+            {
+                "@type": "Question",
+                "name": {{ item.q | json_encode | safe }},
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": {{ item.a | json_encode | safe }}
+                }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]
+    }
+    </script>
+    {% endif %}
 
     {# ===== Breadcrumb JSON-LD ===== #}
     {% if page.ancestors is defined and page.ancestors | length > 0 %}
@@ -295,7 +340,7 @@
 
     {# ===== RSS Feed ===== #}
     {% if config.generate_feeds %}
-    <link rel="alternate" type="application/rss+xml" title="{{ config.title }}" href="{{ get_url(path='rss.xml') | safe }}">
+    <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml') | safe }}">
     {% endif %}
 
     {# ===== Theme script (inline to prevent flash) ===== #}

@@ -1,8 +1,12 @@
 +++
-title = "Bright Data Datacenter Proxies Review: Fastest & Most Cost-Effective"
+title = "Bright Data Datacenter Proxies Review: Speed & Pricing"
 description = "Bright Data Datacenter Proxies review: the fastest, most cost-effective option for high-volume scraping of lightly protected targets."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data Datacenter Proxies"
+review_rating = 4.5
 og_image = "assets/og/reviews-bright-data-datacenter-proxies.png"
 +++
 
@@ -44,3 +48,11 @@ For speed-sensitive, budget-conscious scraping of less-protected targets, Datace
 **[Get started with Bright Data Datacenter Proxies →](/goto/bd-datacenter/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*
+
+## Related Bright Data Products
+
+- **[Bright Data Residential Proxies](/reviews/bright-data-residential-proxies/)**
+- **[Bright Data ISP Proxies](/reviews/bright-data-isp-proxies/)**
+- **[Bright Data SERP API](/reviews/bright-data-serp-api/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

@@ -1,7 +1,8 @@
 +++
-title = "eBay Product Tracking: Scraper Code Samples (PHP, Node.js, Rust)"
+title = "eBay Product Tracking: Scraper Code Samples"
 description = "Scrape eBay item prices and availability by parsing JSON-LD product data, with ready-to-run scraper code samples in PHP, Node.js, and Rust."
 template = "page.html"
+date = 2026-06-12
 +++
 
 eBay is a prime target for price tracking, competitor monitoring, and deal sourcing — but its listing pages are heavily A/B-tested, so scraping rendered HTML with CSS selectors breaks constantly. The reliable source is the **JSON-LD** block eBay embeds in every item page: a `<script type="application/ld+json">` tag containing a clean `Product` object with name, price, currency, and availability. The samples below fetch the page through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) and read straight from that structured data.

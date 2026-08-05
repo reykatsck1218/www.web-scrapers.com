@@ -1,7 +1,9 @@
 +++
-title = "eBay Product Search Scraping: Code Samples (PHP, Node.js, Rust)"
+title = "eBay Product Search Scraping: Code Samples"
 description = "Scrape eBay search results for titles, prices, and conditions with ready-to-run code in PHP, Node.js, and Rust — ideal for price research and market monitoring."
 template = "page.html"
+date = 2026-06-08
+updated = 2026-06-12
 +++
 
 Scraping eBay search results gives you market-level pricing data that a single product page can't: you see dozens of competing listings at once, complete with condition grades, shipping costs, and seller ratings. That makes eBay one of the best targets for price benchmarking, resale arbitrage research, and competitive inventory monitoring.

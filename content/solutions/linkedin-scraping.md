@@ -1,7 +1,8 @@
 +++
-title = "How to Scrape LinkedIn Data: Public Profiles, Companies, and Jobs"
+title = "How to Scrape LinkedIn: Public Profiles, Companies, Jobs"
 description = "A practical guide to scraping public LinkedIn data — what's possible, the legal limits, why DIY breaks, and how to collect profiles, companies, and jobs at scale."
 template = "page.html"
+date = 2026-06-12
 +++
 
 LinkedIn is the richest source of professional data on the web — profiles, companies, job postings, and hiring signals that power recruiting tools, lead generation, and market research. It's also one of the **hardest and most legally sensitive** targets to scrape. This guide covers what you can realistically collect, where the limits are, and the approaches that actually hold up at scale.

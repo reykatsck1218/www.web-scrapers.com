@@ -1,8 +1,12 @@
 +++
-title = "Bright Data Web Unlocker Review: Automated Unblocking with a 99.99% Success Rate"
+title = "Bright Data Web Unlocker Review: Automated Unblocking"
 description = "Bright Data Web Unlocker review: automated unblocking with CAPTCHA solving and a 99.99% success rate. Send a URL and get clean HTML back."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data Web Unlocker"
+review_rating = 4.6
 og_image = "assets/og/reviews-bright-data-web-unlocker.png"
 +++
 
@@ -43,3 +47,11 @@ Web Unlocker is the simplest way to get past anti-bot defenses without managing 
 **[Get started with Bright Data Web Unlocker →](/goto/bd-web-unlocker/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*
+
+## Related Bright Data Products
+
+- **[Bright Data Residential Proxies](/reviews/bright-data-residential-proxies/)**
+- **[Bright Data SERP API](/reviews/bright-data-serp-api/)**
+- **[Bright Data Datacenter Proxies](/reviews/bright-data-datacenter-proxies/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

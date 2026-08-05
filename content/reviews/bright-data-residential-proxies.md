@@ -1,8 +1,12 @@
 +++
-title = "Bright Data Residential Proxies Review: The Industry's Largest Network"
+title = "Bright Data Residential Proxies Review: Largest Network"
 description = "Bright Data Residential Proxies review: 400M+ IPs across 195 countries, the industry's largest network for scraping the most protected sites."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data Residential Proxies"
+review_rating = 4.7
 og_image = "assets/og/reviews-bright-data-residential-proxies.png"
 +++
 
@@ -45,3 +49,11 @@ If you need maximum reliability against the toughest anti-bot systems, Bright Da
 **[Get started with Bright Data Residential Proxies →](/goto/bd-residential/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/) and the [Scraping Browser guide](/learn/bright-data-scraping-browser/).*
+
+## Related Bright Data Products
+
+- **[Bright Data ISP Proxies](/reviews/bright-data-isp-proxies/)**
+- **[Bright Data Mobile Proxies](/reviews/bright-data-mobile-proxies/)**
+- **[Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

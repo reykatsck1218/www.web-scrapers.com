@@ -2,7 +2,11 @@
 title = "Bright Data Mobile Proxies Review: 7M+ Real 3G/4G IPs"
 description = "Bright Data Mobile Proxies review: 7M+ real 3G/4G IPs for the hardest social and app targets where mobile-grade trust is essential."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data Mobile Proxies"
+review_rating = 4.4
 og_image = "assets/og/reviews-bright-data-mobile-proxies.png"
 +++
 
@@ -43,3 +47,11 @@ When your target treats mobile traffic differently — or when you need to verif
 **[Get started with Bright Data Mobile Proxies →](/goto/bd-mobile/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*
+
+## Related Bright Data Products
+
+- **[Bright Data Residential Proxies](/reviews/bright-data-residential-proxies/)**
+- **[Bright Data ISP Proxies](/reviews/bright-data-isp-proxies/)**
+- **[Bright Data SERP API](/reviews/bright-data-serp-api/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

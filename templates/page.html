@@ -89,6 +89,12 @@
         {% if page.description %}
         <p class="article__description" itemprop="description">{{ page.description }}</p>
         {% endif %}
+        {% if page.date or page.extra.review_rating is defined %}
+        <p class="article__meta">
+            {% if page.updated %}Updated <time itemprop="dateModified" datetime="{{ page.updated }}">{{ page.updated | date(format="%B %d, %Y") }}</time>{% elif page.date %}Published <time itemprop="datePublished" datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>{% endif %}
+            {% if page.extra.review_rating is defined %}{% if page.date %} · {% endif %}<span class="article__rating">Our rating: {{ page.extra.review_rating }}/5 ★</span>{% endif %}
+        </p>
+        {% endif %}
         {# The GitHub edit link was here, but we're intentionally omitting it #}
     </header>
 

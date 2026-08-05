@@ -1,7 +1,9 @@
 +++
-title = "Bright Data Scraping Browser: Automated Browser Scraping with Built-In CAPTCHA Solving"
+title = "Bright Data Scraping Browser: CAPTCHA-Solving Cloud Browser"
 description = "Bright Data Scraping Browser review: run Playwright, Puppeteer, or Selenium on a hosted browser with built-in CAPTCHA solving and automatic unblocking."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/learn-bright-data-scraping-browser.png"
 +++

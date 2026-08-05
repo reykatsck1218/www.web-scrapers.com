@@ -2,6 +2,8 @@
 title = "Bright Data vs ScraperAPI: Proxy Network or Scraping API?"
 description = "Bright Data vs ScraperAPI: a full proxy network with unblocking tools versus an all-in-one scraping API. See which fits your project and budget."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/comparisons-bright-data-vs-scraperapi.png"
 +++

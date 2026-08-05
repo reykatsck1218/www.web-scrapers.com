@@ -1,7 +1,8 @@
 +++
-title = "Datasets vs. Web Scraping: When to Buy Data Instead of Building a Scraper"
+title = "Datasets vs Web Scraping: When to Buy Data Instead"
 description = "A build-vs-buy breakdown of pre-built datasets versus running your own scraper — true costs, trade-offs, and when buying web data is the smarter choice."
 template = "page.html"
+date = 2026-06-12
 +++
 
 Most "how to scrape X" guides assume you should build a scraper. Often you should — it's flexible and cheap at small scale. But for many real projects, **buying a ready-made dataset is faster, cheaper, and lower-risk** than building and maintaining your own pipeline. This guide lays out the honest trade-offs so you can make the call.

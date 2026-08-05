@@ -1,7 +1,8 @@
 +++
-title = "How to Scrape Public Instagram Data: Profiles, Posts, and Hashtags"
+title = "Scrape Public Instagram Data: Profiles, Posts, Hashtags"
 description = "Scrape public Instagram profiles, posts, and hashtag feeds by parsing embedded JSON-LD, with ready-to-run code samples in PHP, Node.js, and Rust."
 template = "page.html"
+date = 2026-06-12
 +++
 
 Instagram is among the richest sources of public social data on the web — brand sentiment, influencer reach, competitor engagement, and trending content all surface through its public-facing pages. This guide covers what you can realistically collect from Instagram **without authentication**, why naive scrapers fail within minutes, and working code that extracts structured profile data from public pages.

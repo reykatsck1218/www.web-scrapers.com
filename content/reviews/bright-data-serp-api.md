@@ -1,8 +1,12 @@
 +++
-title = "Bright Data SERP API Review: Structured Search Engine Data on Demand"
+title = "Bright Data SERP API Review: Search Data on Demand"
 description = "Bright Data SERP API review: get structured search engine results on demand with automatic unblocking, ideal for rank tracking and SERP monitoring."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data SERP API"
+review_rating = 4.4
 og_image = "assets/og/reviews-bright-data-serp-api.png"
 +++
 
@@ -41,3 +45,11 @@ For SEO monitoring, rank tracking, and competitive research at scale, the SERP A
 **[Get started with the Bright Data SERP API →](/goto/bd-products/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*
+
+## Related Bright Data Products
+
+- **[Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/)**
+- **[Bright Data Datasets](/reviews/bright-data-datasets/)**
+- **[Bright Data Datacenter Proxies](/reviews/bright-data-datacenter-proxies/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

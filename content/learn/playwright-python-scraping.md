@@ -1,7 +1,9 @@
 +++
-title = "Web Scraping with Playwright in Python: A Complete Guide to Dynamic Content"
+title = "Web Scraping with Playwright in Python: Full Guide"
 description = "Learn to scrape JavaScript-rendered websites with Playwright and Python. Covers setup, dynamic content, pagination, stealth, and production proxies."
 template = "page.html"
+date = 2026-06-08
+updated = 2026-06-12
 +++
 
 Plain HTTP requests fail on the modern web. A growing share of sites — e-commerce storefronts, travel search engines, social platforms — render their content entirely in JavaScript. Send a `requests.get()` to one of those URLs and you'll get an empty shell. That's where Playwright comes in.

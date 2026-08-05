@@ -1,7 +1,9 @@
 +++
-title = "How to Avoid Getting Blocked While Web Scraping: 10 Proven Techniques"
+title = "How to Avoid Getting Blocked While Web Scraping"
 description = "Learn 10 proven techniques to avoid getting blocked while web scraping, from rotating proxies and headers to headless browsers and Web Unlockers."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/learn-how-to-avoid-getting-blocked.png"
 +++

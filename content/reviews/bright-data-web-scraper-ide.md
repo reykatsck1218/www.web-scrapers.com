@@ -1,8 +1,12 @@
 +++
-title = "Bright Data Web Scraper IDE Review: Build Scrapers 75% Faster"
+title = "Bright Data Web Scraper IDE Review"
 description = "Bright Data Web Scraper IDE review: prebuilt templates and tools to build and deploy web scrapers up to 75% faster on managed infrastructure."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data Web Scraper IDE"
+review_rating = 4.2
 og_image = "assets/og/reviews-bright-data-web-scraper-ide.png"
 +++
 
@@ -52,3 +56,11 @@ For dev teams that want the control of code without the maintenance of infrastru
 **[Get started with the Bright Data Web Scraper IDE →](/goto/bd-collector/)**
 
 *Prefer your own framework? See the [Scraping Browser guide](/learn/bright-data-scraping-browser/) for Playwright, Puppeteer & Selenium. Or read our full [Bright Data review](/reviews/bright-data/).*
+
+## Related Bright Data Products
+
+- **[Bright Data Datasets](/reviews/bright-data-datasets/)**
+- **[Bright Data SERP API](/reviews/bright-data-serp-api/)**
+- **[Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

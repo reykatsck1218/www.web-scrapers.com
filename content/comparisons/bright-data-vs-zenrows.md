@@ -2,6 +2,8 @@
 title = "Bright Data vs ZenRows: Proxy Platform or Anti-Bot API?"
 description = "Bright Data vs ZenRows compared on network size, anti-bot bypass, features, and pricing to help you choose the right web scraping solution."
 template = "page.html"
+date = 2026-06-03
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/comparisons-bright-data-vs-zenrows.png"
 +++

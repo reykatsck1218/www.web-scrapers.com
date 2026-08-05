@@ -2,6 +2,8 @@
 title = "ZenRows vs ScraperAPI: Which Web Scraping API Wins?"
 description = "ZenRows vs ScraperAPI compared on anti-bot bypass, features, pricing, and ease of use to help you pick the best web scraping API for your project."
 template = "page.html"
+date = 2026-06-03
+updated = 2026-06-12
 [extra]
 og_image = "assets/og/comparisons-zenrows-vs-scraperapi.png"
 +++

@@ -2,6 +2,8 @@
 title = "How to Handle Pagination in Web Scraping: The Complete Guide"
 description = "Learn how to scrape paginated websites: query string pagination, next-button crawling, infinite scroll, and API-based pagination with Python examples."
 template = "page.html"
+date = 2026-06-08
+updated = 2026-06-12
 +++
 
 Pagination is one of the first obstacles every web scraper hits. Product listings, search results, news archives — any site with more items than fit on one page uses some form of it. Miss it, and your scraper silently collects a fraction of the data you need without any error to alert you.

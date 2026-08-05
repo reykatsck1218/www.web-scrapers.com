@@ -35,6 +35,7 @@ goto_log_url = "https://script.google.com/macros/s/AKfycbxk_gwmKSz4nmbo-HWW3IHrq
 
 # SEO / social sharing
 author = "Web-Scrapers.com"
+author_type = "Organization"
 og_image = "assets/og-image.png"
 og_image_width = 1200
 og_image_height = 630

@@ -1,8 +1,12 @@
 +++
-title = "Bright Data ISP Proxies Review: Static Residential IPs at Datacenter Speed"
+title = "Bright Data ISP Proxies Review: Static Residential IPs"
 description = "Bright Data ISP Proxies review: static residential IPs with datacenter speed and residential-level trust for stable, long-running sessions."
 template = "page.html"
+date = 2026-06-02
+updated = 2026-06-12
 [extra]
+review_product = "Bright Data ISP Proxies"
+review_rating = 4.5
 og_image = "assets/og/reviews-bright-data-isp-proxies.png"
 +++
 
@@ -44,3 +48,11 @@ ISP Proxies are the right pick when you need a stable, long-lived IP that still 
 **[Get started with Bright Data ISP Proxies →](/goto/bd-isp/)**
 
 *See also our full [Bright Data review](/reviews/bright-data/).*
+
+## Related Bright Data Products
+
+- **[Bright Data Residential Proxies](/reviews/bright-data-residential-proxies/)**
+- **[Bright Data Datacenter Proxies](/reviews/bright-data-datacenter-proxies/)**
+- **[Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/)**
+
+Or head back to our [full Bright Data review](/reviews/bright-data/) for the complete product lineup.

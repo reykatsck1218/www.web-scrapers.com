@@ -1,5 +1,6 @@
 +++
 title = "Industry Solutions"
+description = "Industry-specific web scraping guides with ready-to-run code for Amazon, Walmart, eBay, AliExpress, Google Search, Instagram, and LinkedIn data collection."
 template = "section.html"
 sort_by = "title"
 +++

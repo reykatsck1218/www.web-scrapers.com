@@ -2,6 +2,7 @@
 title = "How to Solve CAPTCHAs When Web Scraping: A Practical Guide"
 description = "Learn how to handle reCAPTCHA, hCaptcha, Cloudflare Turnstile, and more while scraping — why they trigger, how to avoid them, and how automatic solvers work."
 template = "page.html"
+date = 2026-06-12
 +++
 
 CAPTCHAs are the single most common wall between a scraper and the data it needs. The moment a site suspects automation, it serves a challenge — and your pipeline stalls. This guide covers the CAPTCHA types you'll hit, why they trigger, and the three practical ways to get past them, from prevention to fully automated solving.
