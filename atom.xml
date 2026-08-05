@@ -90,6 +90,258 @@
         
     </entry>
     <entry xml:lang="en">
+        <title>How to Scrape Alibaba: B2B Product and Supplier Data</title>
+        <published>2026-08-04T00:00:00+00:00</published>
+        <updated>2026-08-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/solutions/alibaba-scraping/"/>
+        <id>https://www.web-scrapers.com/solutions/alibaba-scraping/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/solutions/alibaba-scraping/">&lt;p&gt;Alibaba is the world&#x27;s largest B2B marketplace — a primary source for procurement research, competitive benchmarking, supplier discovery, and price range intelligence. Product listing pages expose structured data in two machine-readable layers: a &lt;strong&gt;JSON-LD&lt;&#x2F;strong&gt; &lt;code&gt;Product&lt;&#x2F;code&gt; block for core metadata (name, price range, supplier) and an &lt;strong&gt;embedded JavaScript state object&lt;&#x2F;strong&gt; for B2B-specific fields like minimum order quantity, certifications, and trade capacity. Both are publicly accessible without authentication.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide covers how to extract both layers and provides working code that routes through a rendering-capable proxy layer.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-alibaba-product-pages-expose-publicly&quot;&gt;What Alibaba product pages expose publicly&lt;&#x2F;h2&gt;
+&lt;p&gt;Every public Alibaba product listing at &lt;code&gt;https:&#x2F;&#x2F;www.alibaba.com&#x2F;product-detail&#x2F;{slug}_{id}.html&lt;&#x2F;code&gt; ships two structured data sources visible to any browser:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Source&lt;&#x2F;th&gt;&lt;th&gt;How to find it&lt;&#x2F;th&gt;&lt;th&gt;What it contains&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;JSON-LD (&lt;code&gt;application&#x2F;ld+json&lt;&#x2F;code&gt;)&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; tags&lt;&#x2F;td&gt;&lt;td&gt;Product schema — name, description, price range, supplier, aggregate rating&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Embedded page state&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; containing &lt;code&gt;window.pageData&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;MOQ, certifications, trade capacity, company info, specification tables&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;The JSON-LD block is more structurally stable and is the reliable extraction target for core fields. The embedded state holds richer B2B detail but its key paths change across Alibaba&#x27;s A&#x2F;B tests and layout updates.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-naive-scrapers-fail-on-alibaba&quot;&gt;Why naive scrapers fail on Alibaba&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Datacenter IP blocking.&lt;&#x2F;strong&gt; Alibaba&#x27;s CDN filters cloud and server IP ranges aggressively. Plain cURL from a VPS commonly returns a CAPTCHA page or an empty response before any product content loads.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;JavaScript rendering required for full state.&lt;&#x2F;strong&gt; While JSON-LD is present in the initial HTML, many secondary data fields (MOQ tables, certification badges, supplier capacity figures) are injected after React hydration.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;TLS and browser fingerprinting.&lt;&#x2F;strong&gt; Alibaba scores the TLS handshake and HTTP&#x2F;2 settings alongside standard headers. Realistic browser fingerprint emulation is necessary to receive complete, unredacted product content.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;See &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;proxy types explained&lt;&#x2F;a&gt; for deeper background.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;unblocker_zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The samples below route requests through the &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker&lt;&#x2F;a&gt;, which handles residential IP rotation, browser fingerprint emulation, and CAPTCHA solving. Supply your zone credentials in &lt;code&gt;PROXY_URL&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;No Bright Data account yet?&lt;&#x2F;strong&gt; &lt;a href=&quot;&#x2F;goto&#x2F;bd-alibaba&#x2F;&quot;&gt;Explore the Alibaba data collector →&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Product URLs follow the pattern &lt;code&gt;https:&#x2F;&#x2F;www.alibaba.com&#x2F;product-detail&#x2F;{slug}_{numeric-id}.html&lt;&#x2F;code&gt;. The numeric ID is the stable identifier; the slug can vary.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;php&quot;&gt;PHP&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+&#x2F;&#x2F; Run: php alibaba.php 60123456789
+$proxy     = getenv(&amp;#39;PROXY_URL&amp;#39;);
+$productId = $argv[1] ?? &amp;#39;60123456789&amp;#39;;
+
+$ch = curl_init(&amp;quot;https:&#x2F;&#x2F;www.alibaba.com&#x2F;product-detail&#x2F;product_$productId.html&amp;quot;);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER =&amp;gt; true,
+    CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+    CURLOPT_PROXY          =&amp;gt; $proxy,
+    CURLOPT_SSL_VERIFYPEER =&amp;gt; false,
+    CURLOPT_TIMEOUT        =&amp;gt; 60,
+    CURLOPT_HTTPHEADER     =&amp;gt; [
+        &amp;#39;Accept-Language: en-US,en;q=0.9&amp;#39;,
+        &amp;#39;Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+    ],
+]);
+$html = curl_exec($ch);
+curl_close($ch);
+
+$doc = new DOMDocument();
+@$doc-&amp;gt;loadHTML($html);
+$xp = new DOMXPath($doc);
+
+&#x2F;&#x2F; 1. JSON-LD — Alibaba ships a Product block on every listing page.
+$product = null;
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;script[@type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;) as $node) {
+    $ld = json_decode($node-&amp;gt;textContent, true);
+    if (($ld[&amp;#39;@type&amp;#39;] ?? &amp;#39;&amp;#39;) === &amp;#39;Product&amp;#39;) { $product = $ld; break; }
+}
+
+&#x2F;&#x2F; 2. Embedded page state — locate the window.pageData assignment for B2B fields.
+$pageData = null;
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;script[not(@src)]&amp;#39;) as $node) {
+    $text = $node-&amp;gt;textContent;
+    if (strpos($text, &amp;#39;window.pageData&amp;#39;) !== false) {
+        &#x2F;&#x2F; Extract the JSON object assigned to window.pageData
+        if (preg_match(&amp;#39;&#x2F;window\.pageData\s*=\s*(\{.+\})\s*;&#x2F;s&amp;#39;, $text, $m)) {
+            $pageData = json_decode($m[1], true);
+        }
+        break;
+    }
+}
+
+$offers = $product[&amp;#39;offers&amp;#39;] ?? [];
+echo json_encode([
+    &amp;#39;id&amp;#39;          =&amp;gt; $productId,
+    &amp;#39;name&amp;#39;        =&amp;gt; $product[&amp;#39;name&amp;#39;] ?? null,
+    &amp;#39;lowPrice&amp;#39;    =&amp;gt; $offers[&amp;#39;lowPrice&amp;#39;] ?? null,
+    &amp;#39;highPrice&amp;#39;   =&amp;gt; $offers[&amp;#39;highPrice&amp;#39;] ?? null,
+    &amp;#39;currency&amp;#39;    =&amp;gt; $offers[&amp;#39;priceCurrency&amp;#39;] ?? null,
+    &amp;#39;supplier&amp;#39;    =&amp;gt; $product[&amp;#39;brand&amp;#39;][&amp;#39;name&amp;#39;] ?? null,
+    &amp;#39;rating&amp;#39;      =&amp;gt; $product[&amp;#39;aggregateRating&amp;#39;][&amp;#39;ratingValue&amp;#39;] ?? null,
+    &amp;#39;reviewCount&amp;#39; =&amp;gt; $product[&amp;#39;aggregateRating&amp;#39;][&amp;#39;reviewCount&amp;#39;] ?? null,
+    &amp;#39;moq&amp;#39;         =&amp;gt; $pageData[&amp;#39;tradeInfo&amp;#39;][&amp;#39;minOrderQuantity&amp;#39;] ?? null,
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;node-js&quot;&gt;Node.js&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;javascript&quot;&gt;&#x2F;&#x2F; alibaba.mjs — node alibaba.mjs 60123456789
+&#x2F;&#x2F; Install: npm i axios https-proxy-agent cheerio
+import axios from &amp;#39;axios&amp;#39;;
+import { HttpsProxyAgent } from &amp;#39;https-proxy-agent&amp;#39;;
+import * as cheerio from &amp;#39;cheerio&amp;#39;;
+
+const proxyAgent = new HttpsProxyAgent(process.env.PROXY_URL);
+const productId  = process.argv[2] ?? &amp;#39;60123456789&amp;#39;;
+
+const { data: html } = await axios.get(
+  `https:&#x2F;&#x2F;www.alibaba.com&#x2F;product-detail&#x2F;product_${productId}.html`,
+  {
+    httpsAgent: proxyAgent, proxy: false, timeout: 60_000,
+    headers: {
+      &amp;#39;Accept-Language&amp;#39;: &amp;#39;en-US,en;q=0.9&amp;#39;,
+      &amp;#39;Accept&amp;#39;: &amp;#39;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+    },
+  }
+);
+
+const $ = cheerio.load(html);
+
+&#x2F;&#x2F; 1. JSON-LD — find the Product block.
+let product = null;
+$(&amp;#39;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;).each((_, el) =&amp;gt; {
+  try {
+    const ld = JSON.parse($(el).text());
+    if (ld[&amp;#39;@type&amp;#39;] === &amp;#39;Product&amp;#39;) product = ld;
+  } catch { &#x2F;* skip malformed blocks *&#x2F; }
+});
+
+&#x2F;&#x2F; 2. Embedded page state — window.pageData assignment.
+let pageData = null;
+$(&amp;#39;script:not([src])&amp;#39;).each((_, el) =&amp;gt; {
+  const text = $(el).text();
+  if (!text.includes(&amp;#39;window.pageData&amp;#39;)) return;
+  const m = text.match(&#x2F;window\.pageData\s*=\s*(\{[\s\S]+?\})\s*;&#x2F;);
+  if (m) {
+    try { pageData = JSON.parse(m[1]); } catch { &#x2F;* malformed *&#x2F; }
+  }
+});
+
+const offers = product?.offers ?? {};
+console.log(JSON.stringify({
+  id:          productId,
+  name:        product?.name ?? null,
+  lowPrice:    offers.lowPrice ?? null,
+  highPrice:   offers.highPrice ?? null,
+  currency:    offers.priceCurrency ?? null,
+  supplier:    product?.brand?.name ?? null,
+  rating:      product?.aggregateRating?.ratingValue ?? null,
+  reviewCount: product?.aggregateRating?.reviewCount ?? null,
+  moq:         pageData?.tradeInfo?.minOrderQuantity ?? null,
+}, null, 2));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;&#x2F;&#x2F; Cargo.toml:
+&#x2F;&#x2F;   reqwest = { version = &amp;quot;0.12&amp;quot;, features = [&amp;quot;blocking&amp;quot;] }
+&#x2F;&#x2F;   scraper = &amp;quot;0.20&amp;quot;
+&#x2F;&#x2F;   serde_json = &amp;quot;1&amp;quot;
+&#x2F;&#x2F;   regex = &amp;quot;1&amp;quot;
+use regex::Regex;
+use scraper::{Html, Selector};
+use serde_json::Value;
+
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let product_id = std::env::args().nth(1).unwrap_or_else(|| &amp;quot;60123456789&amp;quot;.into());
+
+    let client = reqwest::blocking::Client::builder()
+        .proxy(reqwest::Proxy::all(std::env::var(&amp;quot;PROXY_URL&amp;quot;)?)?)
+        .danger_accept_invalid_certs(true)
+        .build()?;
+
+    let html = client
+        .get(format!(
+            &amp;quot;https:&#x2F;&#x2F;www.alibaba.com&#x2F;product-detail&#x2F;product_{product_id}.html&amp;quot;
+        ))
+        .header(&amp;quot;Accept-Language&amp;quot;, &amp;quot;en-US,en;q=0.9&amp;quot;)
+        .header(&amp;quot;Accept&amp;quot;, &amp;quot;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;quot;)
+        .send()?
+        .text()?;
+
+    let doc = Html::parse_document(&amp;amp;html);
+
+    &#x2F;&#x2F; 1. JSON-LD — Product block.
+    let ld_sel = Selector::parse(r#&amp;quot;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;quot;#).unwrap();
+    let product = doc
+        .select(&amp;amp;ld_sel)
+        .filter_map(|el| {
+            let raw = el.text().collect::&amp;lt;String&amp;gt;();
+            serde_json::from_str::&amp;lt;Value&amp;gt;(&amp;amp;raw).ok()
+        })
+        .find(|v| v[&amp;quot;@type&amp;quot;] == &amp;quot;Product&amp;quot;)
+        .unwrap_or(Value::Null);
+
+    &#x2F;&#x2F; 2. Embedded page state — window.pageData assignment.
+    let script_sel = Selector::parse(&amp;quot;script:not([src])&amp;quot;).unwrap();
+    let page_data_re = Regex::new(r&amp;quot;window\.pageData\s*=\s*(\{[\s\S]+?\})\s*;&amp;quot;)?;
+    let page_data: Value = doc
+        .select(&amp;amp;script_sel)
+        .find_map(|el| {
+            let text = el.text().collect::&amp;lt;String&amp;gt;();
+            if !text.contains(&amp;quot;window.pageData&amp;quot;) {
+                return None;
+            }
+            page_data_re
+                .captures(&amp;amp;text)
+                .and_then(|caps| serde_json::from_str::&amp;lt;Value&amp;gt;(&amp;amp;caps[1]).ok())
+        })
+        .unwrap_or(Value::Null);
+
+    let offers = &amp;amp;product[&amp;quot;offers&amp;quot;];
+    println!(
+        &amp;quot;{}&amp;quot;,
+        serde_json::to_string_pretty(&amp;amp;serde_json::json!({
+            &amp;quot;id&amp;quot;:          product_id,
+            &amp;quot;name&amp;quot;:        product[&amp;quot;name&amp;quot;],
+            &amp;quot;lowPrice&amp;quot;:    offers[&amp;quot;lowPrice&amp;quot;],
+            &amp;quot;highPrice&amp;quot;:   offers[&amp;quot;highPrice&amp;quot;],
+            &amp;quot;currency&amp;quot;:    offers[&amp;quot;priceCurrency&amp;quot;],
+            &amp;quot;supplier&amp;quot;:    product[&amp;quot;brand&amp;quot;][&amp;quot;name&amp;quot;],
+            &amp;quot;rating&amp;quot;:      product[&amp;quot;aggregateRating&amp;quot;][&amp;quot;ratingValue&amp;quot;],
+            &amp;quot;reviewCount&amp;quot;: product[&amp;quot;aggregateRating&amp;quot;][&amp;quot;reviewCount&amp;quot;],
+            &amp;quot;moq&amp;quot;:         page_data[&amp;quot;tradeInfo&amp;quot;][&amp;quot;minOrderQuantity&amp;quot;],
+        }))?
+    );
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;working-with-supplier-profile-pages&quot;&gt;Working with supplier profile pages&lt;&#x2F;h2&gt;
+&lt;p&gt;Beyond product listings, Alibaba exposes company profile pages at &lt;code&gt;https:&#x2F;&#x2F;www.alibaba.com&#x2F;{company-slug}.html&lt;&#x2F;code&gt;. These pages carry their own JSON-LD block with &lt;code&gt;@type: &quot;Organization&quot;&lt;&#x2F;code&gt; containing:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Company name and headquarters country&lt;&#x2F;li&gt;
+&lt;li&gt;Trade Show attendance records&lt;&#x2F;li&gt;
+&lt;li&gt;Certification badges (ISO, CE, SGS) as text in the page body&lt;&#x2F;li&gt;
+&lt;li&gt;Year established and response time statistics&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Use the same proxy-routed fetch and JSON-LD extraction pattern above, substituting the organization URL. The &lt;code&gt;@type&lt;&#x2F;code&gt; check changes from &lt;code&gt;&quot;Product&quot;&lt;&#x2F;code&gt; to &lt;code&gt;&quot;Organization&quot;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;notes&quot;&gt;Notes&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Alibaba&#x27;s JSON-LD uses &lt;code&gt;AggregateOffer&lt;&#x2F;code&gt; for price ranges (not a single &lt;code&gt;Offer&lt;&#x2F;code&gt;). The &lt;code&gt;lowPrice&lt;&#x2F;code&gt; and &lt;code&gt;highPrice&lt;&#x2F;code&gt; fields reflect the quantity-tier range displayed on the page — typically in USD.&lt;&#x2F;li&gt;
+&lt;li&gt;MOQ data is B2B-specific and not always present in JSON-LD; the embedded &lt;code&gt;window.pageData.tradeInfo&lt;&#x2F;code&gt; subtree carries it when available. If that path is absent, check the raw HTML for a &lt;code&gt;&amp;lt;span&amp;gt;&lt;&#x2F;code&gt; with class patterns matching &lt;code&gt;min-order&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Certification data (ISO, RoHS, CE) appears in the supplier panel as plain HTML, not structured data — use CSS selectors on the rendered page for those fields.&lt;&#x2F;li&gt;
+&lt;li&gt;Alibaba&#x27;s Terms of Service restrict automated data collection. This guide is technical documentation — assess your use case against the current ToS and seek legal advice before deploying commercially.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;scaling-for-procurement-intelligence-and-market-research&quot;&gt;Scaling for procurement intelligence and market research&lt;&#x2F;h2&gt;
+&lt;p&gt;Single-product scraping is straightforward, but meaningful B2B intelligence typically requires tracking hundreds of suppliers across product categories, monitoring price range shifts over time, and cross-referencing certification status. That means managing IP rotation, handling frequent layout changes in the &lt;code&gt;window.pageData&lt;&#x2F;code&gt; structure, and scaling request throughput without triggering progressive blocks.&lt;&#x2F;p&gt;
+&lt;p&gt;Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-alibaba&#x2F;&quot;&gt;Alibaba data collector&lt;&#x2F;a&gt; abstracts that infrastructure layer, delivering structured product and supplier data without the maintenance overhead of a hand-rolled scraper.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Related: &lt;a href=&quot;&#x2F;solutions&#x2F;aliexpress-product-tracking&#x2F;&quot;&gt;AliExpress product tracking&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;ecommerce&#x2F;&quot;&gt;e-commerce scraping overview&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;amazon-product-tracking&#x2F;&quot;&gt;Amazon product tracking&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;ebay-product-tracking&#x2F;&quot;&gt;eBay product tracking&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt;, and &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked&lt;&#x2F;a&gt;.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-alibaba&#x2F;&quot;&gt;Collect Alibaba data at scale with Bright Data →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
         <title>Datasets vs Web Scraping: When to Buy Data Instead</title>
         <published>2026-06-12T00:00:00+00:00</published>
         <updated>2026-06-12T00:00:00+00:00</updated>
