@@ -3,6 +3,9 @@ title = "How to Scrape Alibaba: B2B Product and Supplier Data"
 description = "Scrape Alibaba B2B product listings and supplier pages by parsing JSON-LD and embedded product state, with ready-to-run code in PHP, Node.js, and Rust."
 template = "page.html"
 date = 2026-08-04
+updated = 2026-08-05
+[extra]
+og_image = "assets/og/solutions-alibaba-scraping.png"
 +++
 
 Alibaba is the world's largest B2B marketplace — a primary source for procurement research, competitive benchmarking, supplier discovery, and price range intelligence. Product listing pages expose structured data in two machine-readable layers: a **JSON-LD** `Product` block for core metadata (name, price range, supplier) and an **embedded JavaScript state object** for B2B-specific fields like minimum order quantity, certifications, and trade capacity. Both are publicly accessible without authentication.
@@ -36,7 +39,7 @@ export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.
 
 The samples below route requests through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/), which handles residential IP rotation, browser fingerprint emulation, and CAPTCHA solving. Supply your zone credentials in `PROXY_URL`.
 
-> **No Bright Data account yet?** [Explore the Alibaba data collector →](/goto/bd-alibaba/)
+> **No Bright Data account yet?** <a href="/goto/bd-alibaba/" rel="sponsored noopener">Explore the Alibaba data collector →</a>
 
 Product URLs follow the pattern `https://www.alibaba.com/product-detail/{slug}_{numeric-id}.html`. The numeric ID is the stable identifier; the slug can vary.
 
@@ -259,8 +262,8 @@ Use the same proxy-routed fetch and JSON-LD extraction pattern above, substituti
 
 Single-product scraping is straightforward, but meaningful B2B intelligence typically requires tracking hundreds of suppliers across product categories, monitoring price range shifts over time, and cross-referencing certification status. That means managing IP rotation, handling frequent layout changes in the `window.pageData` structure, and scaling request throughput without triggering progressive blocks.
 
-Bright Data's [Alibaba data collector](/goto/bd-alibaba/) abstracts that infrastructure layer, delivering structured product and supplier data without the maintenance overhead of a hand-rolled scraper.
+Bright Data's <a href="/goto/bd-alibaba/" rel="sponsored noopener">Alibaba data collector</a> abstracts that infrastructure layer, delivering structured product and supplier data without the maintenance overhead of a hand-rolled scraper.
 
 *Related: [AliExpress product tracking](/solutions/aliexpress-product-tracking/), [e-commerce scraping overview](/solutions/ecommerce/), [Amazon product tracking](/solutions/amazon-product-tracking/), [eBay product tracking](/solutions/ebay-product-tracking/), [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
-**[Collect Alibaba data at scale with Bright Data →](/goto/bd-alibaba/)**
+**<a href="/goto/bd-alibaba/" rel="sponsored noopener">Collect Alibaba data at scale with Bright Data →</a>**

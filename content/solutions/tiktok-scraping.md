@@ -1,7 +1,10 @@
 +++
-title = "How to Scrape Public TikTok Data: Videos, Profiles, and Trend Sentiment"
+title = "How to Scrape Public TikTok Data: Videos and Profiles"
 description = "Scrape public TikTok video pages and creator profiles by parsing embedded JSON-LD, with ready-to-run code samples in PHP, Node.js, and Rust."
 template = "page.html"
+date = 2026-06-22
+[extra]
+og_image = "assets/og/solutions-tiktok-scraping.png"
 +++
 
 TikTok has become one of the most significant sources of real-time consumer sentiment on the web. Brand mentions travel at viral speed, trending sounds signal cultural shifts days before mainstream media, and creator commentary surfaces product reception in a way that structured review data rarely captures. This guide covers what you can realistically extract from TikTok **without authentication**, why naive scrapers fail almost instantly, and working code that parses structured video and profile data from public pages.
@@ -32,7 +35,7 @@ JSON-LD is the most stable parsing target across these pages — CSS selectors b
 
 TikTok is one of the most defended scraping targets outside of the major social platforms:
 
-- **Datacenter IPs are blocked on first contact.** TikTok's edge infrastructure rejects cloud provider ranges immediately. You need [residential proxies](/goto/bd-residential/) that present as genuine consumer traffic from real ISPs.
+- **Datacenter IPs are blocked on first contact.** TikTok's edge infrastructure rejects cloud provider ranges immediately. You need <a href="/goto/bd-residential/" rel="sponsored noopener">residential proxies</a> that present as genuine consumer traffic from real ISPs.
 - **Heavy JavaScript gating.** Unrecognized requests receive a minimal shell or a redirect to the app store. The full structured content — including the JSON-LD blocks — appears only after JavaScript hydration, requiring a rendering-capable proxy layer rather than a plain HTTP client.
 - **TLS and browser fingerprinting.** TikTok runs concurrent fingerprint checks against request headers, TLS parameters, and behavioral signals. Bare proxy rotation fails quickly at any meaningful request volume.
 - **Geo-restrictions and localization.** Content availability varies by region. An IP in the wrong geography may receive empty pages, age-gate prompts, or region-restricted content blocks — none of which surface as explicit errors.
@@ -47,7 +50,7 @@ export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.
 
 The samples below route all requests through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/), which handles JavaScript rendering, fingerprint evasion, CAPTCHA solving, and IP rotation automatically. Supply your zone credentials in `PROXY_URL`.
 
-> **No account yet?** [Explore the TikTok data collector →](/goto/bd-tiktok/)
+> **No account yet?** <a href="/goto/bd-tiktok/" rel="sponsored noopener">Explore the TikTok data collector →</a>
 
 Videos are identified by their numeric ID from the URL: `https://www.tiktok.com/@<username>/video/<videoId>`.
 
@@ -236,8 +239,8 @@ The structured output from the scrapers above feeds directly into step 1 without
 
 ## Scaling for trend monitoring
 
-Tracking hashtag volume, monitoring brand mentions, or building a cross-creator sentiment dashboard at any meaningful scale means managing residential IP rotation, JavaScript rendering infrastructure, TikTok's aggressive fingerprint checks, and the frequent structural changes TikTok ships to its frontend. Bright Data's [TikTok data collector](/goto/bd-tiktok/) abstracts all of that — specify target usernames, video IDs, or hashtags and receive clean structured JSON without managing any scraping infrastructure. For large historical pulls, pre-built [datasets](/goto/bd-datasets/) are often faster to acquire than running a scraper from scratch.
+Tracking hashtag volume, monitoring brand mentions, or building a cross-creator sentiment dashboard at any meaningful scale means managing residential IP rotation, JavaScript rendering infrastructure, TikTok's aggressive fingerprint checks, and the frequent structural changes TikTok ships to its frontend. Bright Data's <a href="/goto/bd-tiktok/" rel="sponsored noopener">TikTok data collector</a> abstracts all of that — specify target usernames, video IDs, or hashtags and receive clean structured JSON without managing any scraping infrastructure. For large historical pulls, pre-built <a href="/goto/bd-datasets/" rel="sponsored noopener">datasets</a> are often faster to acquire than running a scraper from scratch.
 
 *Related: [Instagram scraping guide](/solutions/instagram-scraping/), [Facebook scraping guide](/solutions/facebook-scraping/), [LinkedIn scraping guide](/solutions/linkedin-scraping/), [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/), and [proxy types explained](/learn/proxy-types-explained/).*
 
-**[Collect public TikTok data at scale →](/goto/bd-tiktok/)**
+**<a href="/goto/bd-tiktok/" rel="sponsored noopener">Collect public TikTok data at scale →</a>**

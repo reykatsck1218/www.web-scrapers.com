@@ -4,6 +4,8 @@ description = "Learn to scrape JavaScript-rendered websites with Playwright and 
 template = "page.html"
 date = 2026-06-08
 updated = 2026-06-12
+[extra]
+og_image = "assets/og/learn-playwright-python-scraping.png"
 +++
 
 Plain HTTP requests fail on the modern web. A growing share of sites — e-commerce storefronts, travel search engines, social platforms — render their content entirely in JavaScript. Send a `requests.get()` to one of those URLs and you'll get an empty shell. That's where Playwright comes in.
@@ -188,7 +190,7 @@ page = context.new_page()
 
 For serious scraping, residential proxies are far less likely to be blocked than datacenter IPs — they route through real consumer devices and look indistinguishable from normal traffic. See our [proxy types guide](/learn/proxy-types-explained/) for a full breakdown of your options.
 
-> **Recommended proxies for Playwright:** [Bright Data](/goto/bd-residential/) offers a 400M+ residential IP pool with automatic rotation. Budget-friendly alternatives include [IPRoyal](/goto/iproyal/), [DataImpulse](/goto/dataimpulse/), and [HydraProxy](/goto/hydraproxy/). Browse all head-to-head comparisons in our [proxy and scraper reviews](/reviews/).
+> **Recommended proxies for Playwright:** <a href="/goto/bd-residential/" rel="sponsored noopener">Bright Data</a> offers a 400M+ residential IP pool with automatic rotation. Budget-friendly alternatives include <a href="/goto/iproyal/" rel="sponsored noopener">IPRoyal</a>, <a href="/goto/dataimpulse/" rel="sponsored noopener">DataImpulse</a>, and <a href="/goto/hydraproxy/" rel="sponsored noopener">HydraProxy</a>. Browse all head-to-head comparisons in our [proxy and scraper reviews](/reviews/).
 
 ## Async Playwright for Parallel Scraping
 
@@ -222,7 +224,7 @@ For production crawls, consider managing a shared browser instance and creating 
 
 Even with stealth settings and good proxies, the most aggressively protected targets (Cloudflare Turnstile, Akamai Bot Manager, PerimeterX) can still block a self-managed browser. At that point, the economics shift in favor of a managed solution.
 
-The [Bright Data Scraping Browser](/learn/bright-data-scraping-browser/) connects your existing Playwright code to a hosted browser that adds built-in CAPTCHA solving and residential IP rotation on every request — your scripts stay almost identical, but Bright Data handles staying unblocked. For simpler HTTP-based needs, [ZenRows](/goto/zenrows/) and [ScraperAPI](/goto/scraperapi/) offer one-endpoint Web Unlocker APIs that handle rendering and unblocking without browser automation.
+The [Bright Data Scraping Browser](/learn/bright-data-scraping-browser/) connects your existing Playwright code to a hosted browser that adds built-in CAPTCHA solving and residential IP rotation on every request — your scripts stay almost identical, but Bright Data handles staying unblocked. For simpler HTTP-based needs, <a href="/goto/zenrows/" rel="sponsored noopener">ZenRows</a> and <a href="/goto/scraperapi/" rel="sponsored noopener">ScraperAPI</a> offer one-endpoint Web Unlocker APIs that handle rendering and unblocking without browser automation.
 
 Compare providers in our [scraping service comparisons](/comparisons/).
 
@@ -242,6 +244,6 @@ Compare providers in our [scraping service comparisons](/comparisons/).
 
 Playwright is the most capable self-hosted option for scraping JavaScript-heavy sites. Its Python API is clean, its waiting primitives are reliable, and it handles everything from simple HTML extraction to authenticated multi-page crawls. Pair it with stealth patches and rotating residential proxies, and you have a scraper that handles the vast majority of real-world targets without a managed service.
 
-**[Get rotating residential proxies for your Playwright scraper →](/goto/bd-residential/)**
+**<a href="/goto/bd-residential/" rel="sponsored noopener">Get rotating residential proxies for your Playwright scraper →</a>**
 
 *New to scraping? Start with our [Web Scraping with Python guide](/learn/web-scraping-with-python/), or read [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/) for the full anti-bot playbook.*

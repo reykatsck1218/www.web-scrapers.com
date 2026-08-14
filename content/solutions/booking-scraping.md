@@ -1,7 +1,10 @@
 +++
-title = "How to Scrape Booking.com: Hotel Rates, Availability, and Reviews"
+title = "How to Scrape Booking.com: Hotel Rates and Reviews"
 description = "Scrape Booking.com hotel prices, ratings, and property details from public pages by parsing JSON-LD and embedded JSON, with code in PHP, Node.js, and Rust."
 template = "page.html"
+date = 2026-07-20
+[extra]
+og_image = "assets/og/solutions-booking-scraping.png"
 +++
 
 Booking.com publishes an enormous volume of hotel and accommodation data — nightly rates, cancellation policies, star ratings, guest reviews, room types, and availability windows — that powers competitive pricing analysis, travel market intelligence, and OTA monitoring. The challenge is that Booking.com defends its listings aggressively: DataDome-backed bot detection rejects datacenter IPs before any useful content loads, and geo-sensitive pricing means the same URL returns different rates depending on where the request originates.
@@ -36,7 +39,7 @@ export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.
 
 The samples below route all requests through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/), which handles JavaScript rendering, DataDome/CAPTCHA mitigation, browser fingerprint emulation, and residential IP rotation automatically. Supply your zone credentials in `PROXY_URL`.
 
-> **No Bright Data account yet?** [Explore the Booking.com data collector →](/goto/bd-booking/)
+> **No Bright Data account yet?** <a href="/goto/bd-booking/" rel="sponsored noopener">Explore the Booking.com data collector →</a>
 
 Property slugs appear in the URL: `https://www.booking.com/hotel/gb/premier-inn-london-city.html` → country `gb`, slug `premier-inn-london-city`.
 
@@ -209,8 +212,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ## Scaling for rate monitoring and market analysis
 
-Tracking nightly rates across hundreds of properties, monitoring availability windows for a market, or powering a price alert system demands more than a single scraper: residential IP rotation, CAPTCHA handling, geo-targeted sessions, and resilience against silent schema changes all compound quickly. Bright Data's [Booking.com data collector](/goto/bd-booking/) abstracts that infrastructure and delivers clean structured property and pricing data on demand.
+Tracking nightly rates across hundreds of properties, monitoring availability windows for a market, or powering a price alert system demands more than a single scraper: residential IP rotation, CAPTCHA handling, geo-targeted sessions, and resilience against silent schema changes all compound quickly. Bright Data's <a href="/goto/bd-booking/" rel="sponsored noopener">Booking.com data collector</a> abstracts that infrastructure and delivers clean structured property and pricing data on demand.
 
 *Related: [Airbnb scraping guide](/solutions/airbnb-scraping/), [e-commerce scraping overview](/solutions/ecommerce/), [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/), and [proxy types explained](/learn/proxy-types-explained/).*
 
-**[Collect Booking.com data at scale →](/goto/bd-booking/)**
+**<a href="/goto/bd-booking/" rel="sponsored noopener">Collect Booking.com data at scale →</a>**

@@ -232,6 +232,15 @@
                 "@type": "Product",
                 "@id": "{{ current_url | safe }}#product",
                 "name": {{ page.extra.review_product | default(value=page.title) | json_encode | safe }},
+                {% if og_image is defined %}
+                "image": "{{ get_url(path=og_image) | safe }}",
+                {% endif %}
+                {% if page.extra.review_brand is defined or page.extra.review_product is defined %}
+                "brand": {
+                    "@type": "Brand",
+                    "name": {{ page.extra.review_brand | default(value=page.extra.review_product) | json_encode | safe }}
+                },
+                {% endif %}
                 {% if page.description is defined and page.description %}
                 "description": {{ page.description | json_encode | safe }},
                 {% endif %}
@@ -241,6 +250,9 @@
                         "@type": "{% if config.extra.author_type is defined %}{{ config.extra.author_type }}{% else %}Person{% endif %}",
                         "name": "{{ config.extra.author }}"
                     },
+                    {% if page.date is defined and page.date %}
+                    "datePublished": "{{ page.date | date(format='%Y-%m-%d') }}",
+                    {% endif %}
                     "reviewRating": {
                         "@type": "Rating",
                         "ratingValue": {{ page.extra.review_rating }},

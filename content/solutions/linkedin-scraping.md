@@ -3,6 +3,9 @@ title = "How to Scrape LinkedIn: Public Profiles, Companies, Jobs"
 description = "A practical guide to scraping public LinkedIn data — what's possible, the legal limits, why DIY breaks, and how to collect profiles, companies, and jobs at scale."
 template = "page.html"
 date = 2026-06-12
+updated = 2026-08-05
+[extra]
+og_image = "assets/og/solutions-linkedin-scraping.png"
 +++
 
 LinkedIn is the richest source of professional data on the web — profiles, companies, job postings, and hiring signals that power recruiting tools, lead generation, and market research. It's also one of the **hardest and most legally sensitive** targets to scrape. This guide covers what you can realistically collect, where the limits are, and the approaches that actually hold up at scale.
@@ -20,7 +23,7 @@ The practical rule: **stick to public, logged-out data, and never automate logge
 
 Even on public pages, LinkedIn is aggressive:
 
-- **Heavy bot detection.** Datacenter IPs are blocked almost immediately; you need [residential proxies](/goto/bd-residential/) that present as real users.
+- **Heavy bot detection.** Datacenter IPs are blocked almost immediately; you need <a href="/goto/bd-residential/" rel="sponsored noopener">residential proxies</a> that present as real users.
 - **Rate limits and challenges.** Volume triggers CAPTCHAs and soft blocks within a handful of requests per IP.
 - **Constant markup churn.** Profile and company DOM structures change often, breaking selector-based scrapers.
 - **JavaScript rendering.** Much of the page hydrates client-side, so plain HTTP requests miss data unless you render or hit the underlying endpoints.
@@ -64,9 +67,9 @@ This works for a few requests. At hundreds or thousands, you'll spend most of yo
 
 ## The scalable approach: managed collection
 
-For production LinkedIn data, the economics favor a managed collector that handles proxies, rendering, anti-bot, and schema maintenance for you. Bright Data's [LinkedIn data collector](/goto/bd-linkedin/) returns structured public profile, company, and job records via API or scheduled delivery — you specify inputs and receive clean JSON, with the unblocking infrastructure abstracted away.
+For production LinkedIn data, the economics favor a managed collector that handles proxies, rendering, anti-bot, and schema maintenance for you. Bright Data's <a href="/goto/bd-linkedin/" rel="sponsored noopener">LinkedIn data collector</a> returns structured public profile, company, and job records via API or scheduled delivery — you specify inputs and receive clean JSON, with the unblocking infrastructure abstracted away.
 
-For analysis that doesn't need real-time freshness, pre-built [datasets](/goto/bd-datasets/) are often the better buy: large, ready-to-query snapshots of public LinkedIn data without running any scraper at all. See our [datasets vs. web scraping](/learn/datasets-vs-web-scraping/) breakdown for when buying beats building.
+For analysis that doesn't need real-time freshness, pre-built <a href="/goto/bd-datasets/" rel="sponsored noopener">datasets</a> are often the better buy: large, ready-to-query snapshots of public LinkedIn data without running any scraper at all. See our [datasets vs. web scraping](/learn/datasets-vs-web-scraping/) breakdown for when buying beats building.
 
 ## Common use cases
 
@@ -78,10 +81,10 @@ For analysis that doesn't need real-time freshness, pre-built [datasets](/goto/b
 ## Staying compliant and unblocked
 
 - Public data only; never automate authenticated sessions.
-- Respect rate limits — pace requests and rotate [residential IPs](/goto/bd-residential/).
+- Respect rate limits — pace requests and rotate <a href="/goto/bd-residential/" rel="sponsored noopener">residential IPs</a>.
 - Collect only what you need, and review data-protection rules (GDPR/CCPA) for personal data.
 - For the full anti-bot playbook, see [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).
 
 *Related: [Web Scraping with Python](/learn/web-scraping-with-python/), the [Bright Data review](/reviews/bright-data/), and our [proxy types explained](/learn/proxy-types-explained/) guide.*
 
-**[Collect public LinkedIn data at scale with Bright Data →](/goto/bd-linkedin/)**
+**<a href="/goto/bd-linkedin/" rel="sponsored noopener">Collect public LinkedIn data at scale with Bright Data →</a>**

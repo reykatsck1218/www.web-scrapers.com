@@ -100,7 +100,7 @@ Set `PROXY_URL` the same way as in the marketplace guides:
 export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.superproxy.io:22225"
 ```
 
-> **Building on Bright Data?** Their e-commerce scraping stack covers the unlocking layer for you. [Get started →](/goto/bd-ecommerce/)
+> **Building on Bright Data?** Their e-commerce scraping stack covers the unlocking layer for you. <a href="/goto/bd-ecommerce/" rel="sponsored noopener">Get started →</a>
 
 For marketplaces that don't ship JSON-LD, swap the parse step for the marketplace-specific extraction shown in the guides below — the rest of the loop is identical.
 
@@ -127,6 +127,12 @@ A staple for dropshipping research. AliExpress embeds product data in a `window.
 ### Google Search and Shopping
 
 Search visibility is e-commerce data too — rankings, competitors' shopping placements, and "people also ask" coverage. The [Google Search Scraping](/solutions/google-search-scraping/) guide shows how to collect SERP data reliably.
+
+### Alibaba (B2B)
+
+Sourcing and supplier intelligence live upstream of retail. The [Alibaba scraping guide](/solutions/alibaba-scraping/) covers extracting B2B product listings and supplier data — useful for cost benchmarking against the retail prices you track elsewhere.
+
+Beyond retail, the same tracker architecture applies to dynamic-pricing verticals like travel: see our guides for [Airbnb](/solutions/airbnb-scraping/), [Booking.com](/solutions/booking-scraping/), and [Kayak flight prices](/solutions/kayak-flight-scraping/).
 
 ## Data Storage and Change Detection
 
@@ -155,4 +161,4 @@ If you're starting from zero, pick the marketplace guide closest to your target 
 2. Choose the right proxy type for your target with [Residential vs. Datacenter vs. Mobile Proxies](/learn/proxy-types-explained/).
 3. Add the storage and change-detection layer above, schedule it with cron, and let the history accumulate.
 
-When maintaining the unblocking layer yourself stops being worth your time, a managed stack takes it over. **[Get started with Bright Data →](/goto/bd-ecommerce/)**
+When maintaining the unblocking layer yourself stops being worth your time, a managed stack takes it over. **<a href="/goto/bd-ecommerce/" rel="sponsored noopener">Get started with Bright Data →</a>**

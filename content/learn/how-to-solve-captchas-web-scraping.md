@@ -3,6 +3,9 @@ title = "How to Solve CAPTCHAs When Web Scraping: A Practical Guide"
 description = "Learn how to handle reCAPTCHA, hCaptcha, Cloudflare Turnstile, and more while scraping — why they trigger, how to avoid them, and how automatic solvers work."
 template = "page.html"
 date = 2026-06-12
+updated = 2026-08-05
+[extra]
+og_image = "assets/og/learn-how-to-solve-captchas-web-scraping.png"
 +++
 
 CAPTCHAs are the single most common wall between a scraper and the data it needs. The moment a site suspects automation, it serves a challenge — and your pipeline stalls. This guide covers the CAPTCHA types you'll hit, why they trigger, and the three practical ways to get past them, from prevention to fully automated solving.
@@ -36,7 +39,7 @@ Knowing which one you face matters: a Turnstile pass is cheap and fast; a reCAPT
 
 Stop the challenge before it appears:
 
-- Route through **[residential proxies](/goto/bd-residential/)** so traffic looks like a real consumer ISP.
+- Route through **<a href="/goto/bd-residential/" rel="sponsored noopener">residential proxies</a>** so traffic looks like a real consumer ISP.
 - Send **complete, consistent headers** and a realistic User-Agent.
 - **Throttle and randomize** request timing.
 - **Render JavaScript** with a real browser engine when the site expects it (see [Playwright scraping](/learn/playwright-python-scraping/)).
@@ -51,7 +54,7 @@ Standalone solving APIs accept a CAPTCHA's site-key and return a solution token 
 
 The lowest-maintenance path bundles detection, solving, proxies, and rendering behind one endpoint. You send a URL; you get back unblocked HTML — CAPTCHA handled transparently.
 
-Bright Data's [CAPTCHA solver](/goto/bd-captcha/), part of its Web Unlocker, **automatically detects and solves CAPTCHAs by default** — no site-keys, no token injection. It covers the full range above (reCAPTCHA, hCaptcha, Turnstile, PerimeterX, FunCaptcha, GeeTest, AWS WAF, KeyCAPTCHA, Yandex, and image/text/click variants), submits any associated forms after solving, and returns the result as HTML, JSON, Markdown, or a screenshot. Auto-solving can be toggled off per request or per CAPTCHA type when you want manual control.
+Bright Data's <a href="/goto/bd-captcha/" rel="sponsored noopener">CAPTCHA solver</a>, part of its Web Unlocker, **automatically detects and solves CAPTCHAs by default** — no site-keys, no token injection. It covers the full range above (reCAPTCHA, hCaptcha, Turnstile, PerimeterX, FunCaptcha, GeeTest, AWS WAF, KeyCAPTCHA, Yandex, and image/text/click variants), submits any associated forms after solving, and returns the result as HTML, JSON, Markdown, or a screenshot. Auto-solving can be toggled off per request or per CAPTCHA type when you want manual control.
 
 A request goes through a single endpoint — no per-CAPTCHA plumbing:
 
@@ -107,4 +110,4 @@ Handle CAPTCHAs in this order: **avoid triggering them** (proxies, fingerprints,
 
 *Related: [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/), [Bright Data Scraping Browser](/learn/bright-data-scraping-browser/), and [proxy types explained](/learn/proxy-types-explained/).*
 
-**[Solve CAPTCHAs automatically with Bright Data →](/goto/bd-captcha/)**
+**<a href="/goto/bd-captcha/" rel="sponsored noopener">Solve CAPTCHAs automatically with Bright Data →</a>**

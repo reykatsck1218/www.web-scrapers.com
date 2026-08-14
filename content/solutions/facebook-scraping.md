@@ -1,7 +1,10 @@
 +++
-title = "How to Scrape Public Facebook Data: Pages and Marketplace Listings"
+title = "How to Scrape Public Facebook Data: Pages & Marketplace"
 description = "Scrape public Facebook Pages and Marketplace listings by parsing embedded JSON-LD, with ready-to-run code samples in PHP, Node.js, and Rust."
 template = "page.html"
+date = 2026-06-15
+[extra]
+og_image = "assets/og/solutions-facebook-scraping.png"
 +++
 
 Public Facebook data — brand page details, business contact information, Marketplace prices, and public post activity — is valuable for competitive intelligence, lead generation, local-business research, and e-commerce pricing. This guide covers what you can realistically extract from Facebook **without authentication**, why naive scrapers fail almost immediately, and working code that parses structured entity data from public Facebook Pages.
@@ -35,7 +38,7 @@ Marketplace item pages (`/marketplace/item/<id>/`) sometimes carry a `Product` b
 
 Facebook is among the most aggressively defended scraping targets on the web:
 
-- **Datacenter IPs are blocked immediately.** Nearly all cloud provider ranges are flagged on first contact. You need [residential proxies](/goto/bd-residential/) that present as genuine consumer traffic from real ISPs.
+- **Datacenter IPs are blocked immediately.** Nearly all cloud provider ranges are flagged on first contact. You need <a href="/goto/bd-residential/" rel="sponsored noopener">residential proxies</a> that present as genuine consumer traffic from real ISPs.
 - **Heavy client-side rendering.** The public Page shell often arrives with minimal content; the full JSON-LD block only appears after JavaScript hydration. A plain HTTP request typically returns a cookie-consent redirect or an empty skeleton.
 - **Aggressive fingerprinting.** Facebook runs concurrent TLS fingerprint checks, browser-header validation, and behavioral analysis. Rotating bare proxies fails quickly at any meaningful volume.
 - **Frequent markup changes.** Even when you reach a rendered page, hard-coded CSS selectors break on every redesign. Targeting JSON-LD insulates you from most of those changes.
@@ -50,7 +53,7 @@ export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.
 
 The samples below route all requests through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/), which handles JavaScript rendering, fingerprint evasion, CAPTCHA solving, and IP rotation automatically. Supply your zone credentials in `PROXY_URL`.
 
-> **No account yet?** [Explore the Facebook data collector →](/goto/bd-facebook/)
+> **No account yet?** <a href="/goto/bd-facebook/" rel="sponsored noopener">Explore the Facebook data collector →</a>
 
 Pages are identified by their slug — the short name after `facebook.com/`. For well-known brands this is typically the brand name; for local businesses it may include a numeric ID suffix.
 
@@ -230,8 +233,8 @@ In practice, Marketplace redirects unrecognized sessions to a login prompt with 
 
 ## Scaling beyond a few pages
 
-Monitoring hundreds of brand pages, tracking Marketplace pricing across categories, or collecting public post activity at scale means managing rotating IPs, JavaScript rendering infrastructure, session handling, and schema drift as Facebook updates its pages. Bright Data's [Facebook data collector](/goto/bd-facebook/) handles all of that — specify target pages or search queries and receive clean structured JSON on a schedule or via API. Pre-built [datasets](/goto/bd-datasets/) cover bulk historical snapshots without running a scraper from scratch.
+Monitoring hundreds of brand pages, tracking Marketplace pricing across categories, or collecting public post activity at scale means managing rotating IPs, JavaScript rendering infrastructure, session handling, and schema drift as Facebook updates its pages. Bright Data's <a href="/goto/bd-facebook/" rel="sponsored noopener">Facebook data collector</a> handles all of that — specify target pages or search queries and receive clean structured JSON on a schedule or via API. Pre-built <a href="/goto/bd-datasets/" rel="sponsored noopener">datasets</a> cover bulk historical snapshots without running a scraper from scratch.
 
 *Related: [Instagram scraping guide](/solutions/instagram-scraping/), [LinkedIn scraping guide](/solutions/linkedin-scraping/), [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/), and [proxy types explained](/learn/proxy-types-explained/).*
 
-**[Collect public Facebook data at scale →](/goto/bd-facebook/)**
+**<a href="/goto/bd-facebook/" rel="sponsored noopener">Collect public Facebook data at scale →</a>**

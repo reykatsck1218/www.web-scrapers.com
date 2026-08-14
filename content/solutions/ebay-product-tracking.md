@@ -3,6 +3,9 @@ title = "eBay Product Tracking: Scraper Code Samples"
 description = "Scrape eBay item prices and availability by parsing JSON-LD product data, with ready-to-run scraper code samples in PHP, Node.js, and Rust."
 template = "page.html"
 date = 2026-06-12
+updated = 2026-08-05
+[extra]
+og_image = "assets/og/solutions-ebay-product-tracking.png"
 +++
 
 eBay is a prime target for price tracking, competitor monitoring, and deal sourcing — but its listing pages are heavily A/B-tested, so scraping rendered HTML with CSS selectors breaks constantly. The reliable source is the **JSON-LD** block eBay embeds in every item page: a `<script type="application/ld+json">` tag containing a clean `Product` object with name, price, currency, and availability. The samples below fetch the page through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/) and read straight from that structured data.
@@ -13,7 +16,7 @@ eBay is a prime target for price tracking, competitor monitoring, and deal sourc
 export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.superproxy.io:22225"
 ```
 
-> **No Bright Data account yet?** [Get started with the eBay collector →](/goto/bd-ebay/)
+> **No Bright Data account yet?** <a href="/goto/bd-ebay/" rel="sponsored noopener">Get started with the eBay collector →</a>
 
 Items are identified by their numeric **item ID** from the URL: `https://www.ebay.com/itm/<id>`.
 
@@ -152,8 +155,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ## Scaling beyond a few items
 
-Hitting thousands of eBay listings on a schedule means rotating IPs, handling blocks, and absorbing layout changes — maintenance that adds up fast. Bright Data's [eBay data collector](/goto/bd-ebay/) returns structured listing data without you managing any of that infrastructure, and pre-built [datasets](/goto/bd-datasets/) cover bulk historical pulls.
+Hitting thousands of eBay listings on a schedule means rotating IPs, handling blocks, and absorbing layout changes — maintenance that adds up fast. Bright Data's <a href="/goto/bd-ebay/" rel="sponsored noopener">eBay data collector</a> returns structured listing data without you managing any of that infrastructure, and pre-built <a href="/goto/bd-datasets/" rel="sponsored noopener">datasets</a> cover bulk historical pulls.
 
 *See our [E-commerce Web Scraping Solutions](/solutions/ecommerce/) overview, the [eBay Product Search Scraping](/solutions/ebay-product-search-scraping/) guide for market-level pricing, the [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
-**[Scrape eBay at scale with Bright Data →](/goto/bd-ebay/)**
+**<a href="/goto/bd-ebay/" rel="sponsored noopener">Scrape eBay at scale with Bright Data →</a>**

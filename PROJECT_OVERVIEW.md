@@ -125,21 +125,29 @@ A **scheduled remote agent** (claude.ai routine) drafts one article per week:
 - Routine ID: `trig_01RLMU9A2LBKudPtCQnmAQkc`
 - Dashboard: https://claude.ai/code/routines/trig_01RLMU9A2LBKudPtCQnmAQkc
 - Schedule: Mondays `0 1 * * 1` UTC = **9am Asia/Manila**
-- Behavior: alternates `content/learn/` ↔ `content/solutions/`, picks a fresh
-  topic, writes in house style, builds, and **opens a PR** (never deploys/merges).
+- Behavior: consumes a fixed topic queue (then alternates `content/learn/` ↔
+  `content/solutions/`), writes in house style, builds, and **opens a PR**
+  (never deploys/merges).
 - Guardrail: must NOT invent promo/pricing/trial claims or unverifiable numbers
   about providers (general capability descriptions only).
 - Flow: routine opens PR → human reviews & merges → CI auto-deploys.
+- **SEO frontmatter contract** (added to the routine prompt 2026-08-14; keep the
+  prompt and this list in sync): every article must ship with
+  `title` ≤ 60 chars, `description` 130–155 chars, `date = <today>`,
+  `[extra]` `faq = [{q, a} × 3-4]` matching a closing `## FAQ` section,
+  affiliate links as `<a href="/goto/<slug>/" rel="sponsored noopener">` (never
+  bare markdown `/goto/` links), ≥ 2 internal links, and one backlink added to
+  the section's `_index.md` so the article is never an orphan (the only other
+  file the routine may edit).
 
 ## Open / pending items
 
 - **AdSense site review pending** — ad requests fire but return `unfilled` until
   Google approves the site. Nothing to fix on our side; check AdSense → Sites.
 - **A-ADS is live** (unit 2441049) and already serving.
-- **Unverified claim to check:** the live Playwright article
-  (`/learn/playwright-python-scraping/`) contains "7-day free trial, no credit
-  card required" about Bright Data — written before the no-fabricated-claims
-  guardrail. Verify it matches the real offer or edit it out.
+- ~~Unverified claim to check~~ — resolved: the "7-day free trial" claim in
+  `/learn/playwright-python-scraping/` was removed by the site-wide scrub
+  (commit `3213a8e`); verified absent 2026-08-14.
 - **Auto-merge-on-approval** workflow was discussed but NOT added (merge is the
   manual human gate before publish).
 

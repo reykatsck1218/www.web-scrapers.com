@@ -3,6 +3,9 @@ title = "Scrape Public Instagram Data: Profiles, Posts, Hashtags"
 description = "Scrape public Instagram profiles, posts, and hashtag feeds by parsing embedded JSON-LD, with ready-to-run code samples in PHP, Node.js, and Rust."
 template = "page.html"
 date = 2026-06-12
+updated = 2026-08-05
+[extra]
+og_image = "assets/og/solutions-instagram-scraping.png"
 +++
 
 Instagram is among the richest sources of public social data on the web — brand sentiment, influencer reach, competitor engagement, and trending content all surface through its public-facing pages. This guide covers what you can realistically collect from Instagram **without authentication**, why naive scrapers fail within minutes, and working code that extracts structured profile data from public pages.
@@ -26,7 +29,7 @@ JSON-LD is the most stable parsing target across all these pages — far more du
 
 Instagram is one of the most aggressively defended scraping targets on the web:
 
-- **Datacenter IPs are blocked immediately.** You need [residential proxies](/goto/bd-residential/) that present as genuine browser sessions from real consumer ISPs.
+- **Datacenter IPs are blocked immediately.** You need <a href="/goto/bd-residential/" rel="sponsored noopener">residential proxies</a> that present as genuine browser sessions from real consumer ISPs.
 - **Heavy JavaScript rendering.** Public pages ship minimal HTML to unrecognized clients. The full content only appears after client-side hydration, so a plain HTTP request often returns a login wall or empty shell.
 - **Fingerprinting and rate limits.** Browser fingerprint checks, TLS fingerprinting, and per-IP rate limits combine to make rotating bare proxies insufficient at any meaningful volume.
 - **Frequent markup changes.** Even when you reach the page, CSS-selector-based parsers break on every redesign — JSON-LD stays stable through them.
@@ -39,7 +42,7 @@ export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.
 
 The samples below route all requests through the [Bright Data Web Unlocker](/reviews/bright-data-web-unlocker/), which handles JavaScript rendering, browser fingerprinting, CAPTCHA solving, and IP rotation automatically. Supply your zone credentials in `PROXY_URL`.
 
-> **No account yet?** [Explore the Instagram data collector →](/goto/bd-instagram/)
+> **No account yet?** <a href="/goto/bd-instagram/" rel="sponsored noopener">Explore the Instagram data collector →</a>
 
 Profiles are identified by username (`natgeo`, `nasa`, etc.).
 
@@ -210,8 +213,8 @@ Hashtag pages and post grids require full browser rendering. The Web Unlocker ha
 
 ## Scaling beyond individual profiles
 
-Monitoring hundreds of accounts or tracking hashtag volume requires IP rotation, rate-limit awareness, rendering infrastructure, and ongoing schema maintenance as Instagram updates its pages. Bright Data's [Instagram data collector](/goto/bd-instagram/) abstracts all of that — specify a list of usernames, hashtags, or post URLs and receive clean structured JSON on a schedule. For bulk historical analysis, pre-built [datasets](/goto/bd-datasets/) are often faster to acquire than running a scraper from scratch.
+Monitoring hundreds of accounts or tracking hashtag volume requires IP rotation, rate-limit awareness, rendering infrastructure, and ongoing schema maintenance as Instagram updates its pages. Bright Data's <a href="/goto/bd-instagram/" rel="sponsored noopener">Instagram data collector</a> abstracts all of that — specify a list of usernames, hashtags, or post URLs and receive clean structured JSON on a schedule. For bulk historical analysis, pre-built <a href="/goto/bd-datasets/" rel="sponsored noopener">datasets</a> are often faster to acquire than running a scraper from scratch.
 
 *Related: [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/), [proxy types explained](/learn/proxy-types-explained/), and the [LinkedIn scraping guide](/solutions/linkedin-scraping/).*
 
-**[Collect public Instagram data at scale →](/goto/bd-instagram/)**
+**<a href="/goto/bd-instagram/" rel="sponsored noopener">Collect public Instagram data at scale →</a>**

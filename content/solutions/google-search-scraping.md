@@ -20,7 +20,7 @@ Set a `PROXY_URL` environment variable pointing at your SERP API zone:
 export PROXY_URL="http://brd-customer-<id>-zone-<serp_zone>:<password>@brd.superproxy.io:33335"
 ```
 
-> **No account yet?** [Get started →](/goto/bd-web-unlocker/)
+> **No account yet?** <a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Get started →</a>
 
 ## PHP
 
@@ -136,4 +136,4 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 *Struggling with blocks on your own setup? Read [How to Avoid Getting Blocked While Web Scraping](/learn/how-to-avoid-getting-blocked/) and our [Bright Data SERP API review](/reviews/bright-data-serp-api/).*
 
-**[Get started with Bright Data →](/goto/bd-web-unlocker/)**
+**<a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Get started with Bright Data →</a>**

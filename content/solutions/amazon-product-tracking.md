@@ -18,7 +18,7 @@ Set a `PROXY_URL` pointing at your Web Unlocker zone:
 export PROXY_URL="http://brd-customer-<id>-zone-<unblocker_zone>:<password>@brd.superproxy.io:22225"
 ```
 
-> **New to Bright Data?** [Get started →](/goto/bd-amazon/)
+> **New to Bright Data?** <a href="/goto/bd-amazon/" rel="sponsored noopener">Get started →</a>
 
 We identify products by their **ASIN** (the 10-character ID in every Amazon URL, e.g. `B08N5WRWNW`).
 
@@ -149,4 +149,4 @@ To turn this into a price tracker:
 
 *See our [E-commerce Web Scraping Solutions](/solutions/ecommerce/) overview, the [Bright Data Web Unlocker review](/reviews/bright-data-web-unlocker/), and [How to Avoid Getting Blocked](/learn/how-to-avoid-getting-blocked/).*
 
-**[Get started with Bright Data →](/goto/bd-amazon/)**
+**<a href="/goto/bd-amazon/" rel="sponsored noopener">Get started with Bright Data →</a>**

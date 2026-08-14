@@ -235,7 +235,7 @@ proxies = {
 response = requests.get(url, proxies=proxies, timeout=10)
 ```
 
-Not all proxies are equal: datacenter IPs are cheap but easily detected, while residential IPs route through real consumer connections and blend in with normal traffic. Our [proxy types guide](/learn/proxy-types-explained/) breaks down when each makes sense. For serious crawls, a rotating residential network like [Bright Data](/goto/bd-residential/) handles IP rotation automatically so your code just points at one endpoint.
+Not all proxies are equal: datacenter IPs are cheap but easily detected, while residential IPs route through real consumer connections and blend in with normal traffic. Our [proxy types guide](/learn/proxy-types-explained/) breaks down when each makes sense. For serious crawls, a rotating residential network like <a href="/goto/bd-residential/" rel="sponsored noopener">Bright Data</a> handles IP rotation automatically so your code just points at one endpoint.
 
 Blocking is a whole discipline of its own — fingerprinting, header order, TLS signatures, behavioral analysis. Before you scale any scraper up, read [How to Avoid Getting Blocked While Web Scraping](/learn/how-to-avoid-getting-blocked/), and if your target throws CAPTCHAs at you, see [how to solve CAPTCHAs when scraping](/learn/how-to-solve-captchas-web-scraping/).
 
