@@ -10,8 +10,11 @@ description = "Independent web scraping reviews, proxy benchmarks, and hands-on 
 # The theme to use
 theme = "tanuki"
 
+# Compile sass/style.scss (shadows the theme's stylesheet entirely)
+compile_sass = true
+
 # Whether to build a search index
-build_search_index = true
+build_search_index = false
 
 # Generate RSS/Atom feeds
 generate_feeds = true

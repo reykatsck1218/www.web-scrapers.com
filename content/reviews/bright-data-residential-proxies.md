@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "Bright Data Residential Proxies"
+cta_url = "/goto/bd-residential/"
+cta_label = "Visit Bright Data"
 review_brand = "Bright Data"
 review_rating = 4.7
 og_image = "assets/og/reviews-bright-data-residential-proxies.png"

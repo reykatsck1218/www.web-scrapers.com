@@ -6,6 +6,8 @@ date = 2026-01-27
 updated = 2026-08-05
 [extra]
 review_product = "Bright Data"
+cta_url = "/goto/brightdata/"
+cta_label = "Visit Bright Data"
 review_brand = "Bright Data"
 review_rating = 4.7
 og_image = "assets/og/reviews-bright-data.png"

@@ -1,123 +1,27 @@
 {# ===== Newsletter signup popup ===== #}
 {# Modal version of the signup form. Opens from any element matching
-   a[href$="#newsletter"] or [data-newsletter] (footer button, landing header
-   button), and auto-shows once per visitor after 15s (localStorage-guarded).
+   a[href$="#newsletter"] or [data-newsletter] (footer button, header button),
+   and auto-shows once per visitor after 15s (localStorage-guarded).
    Submissions are beaconed to extra.goto_log_url (Apps Script -> Subscribers
-   tab); the form is then swapped for a thank-you message. #}
+   tab); the form is then swapped for a thank-you message.
+   Styles live in sass/_site.scss (nl-*). #}
 {% if config.extra.goto_log_url %}
 <div id="newsletter-modal" class="nl-overlay" hidden>
     <div class="nl-card" role="dialog" aria-modal="true" aria-labelledby="nl-title">
         <button type="button" class="nl-close" aria-label="Close">&times;</button>
-        <div class="nl-emoji" aria-hidden="true">📬</div>
-        <h3 id="nl-title">Join 5k+ Developers</h3>
-        <p class="nl-blurb">Get the latest web scraping news and tutorials, straight to your inbox.</p>
-        <form id="newsletter-form">
+        <h3 id="nl-title">Join the newsletter</h3>
+        <p class="nl-blurb">Web scraping test results, provider changes, and new guides — straight to your inbox.</p>
+        <form id="newsletter-form" class="nl-form">
             <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit" class="nl-submit">Subscribe</button>
+            <button type="submit" class="btn btn--primary">Subscribe</button>
         </form>
         <p class="nl-privacy">No spam, ever. Unsubscribe anytime.</p>
         <div id="newsletter-thanks" hidden>
-            <div class="nl-emoji" aria-hidden="true">🎉</div>
-            <p class="nl-thanks-title">You're in!</p>
+            <p class="nl-thanks-title">You're in</p>
             <p class="nl-blurb">Thanks for subscribing — the next issue is headed your way.</p>
         </div>
     </div>
 </div>
-
-<style>
-.nl-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background: rgba(5, 8, 16, 0.65);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-}
-.nl-overlay[hidden] { display: none; }
-.nl-card {
-    position: relative;
-    width: 100%;
-    max-width: 430px;
-    padding: 2.25rem 2rem 1.75rem;
-    text-align: center;
-    background: var(--color-bg-elevated, #1e2030);
-    border: 1px solid var(--color-border, #363a4f);
-    border-radius: 16px;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
-    animation: nl-pop 0.25s ease-out;
-}
-@keyframes nl-pop {
-    from { opacity: 0; transform: translateY(12px) scale(0.97); }
-    to   { opacity: 1; transform: none; }
-}
-.nl-card h3 { margin: 0 0 0.5rem; }
-.nl-emoji { font-size: 2.25rem; line-height: 1; margin-bottom: 0.75rem; }
-.nl-blurb { margin: 0; color: var(--color-text-secondary, #b8c0e0); }
-.nl-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.75rem;
-    padding: 0.25rem;
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    line-height: 1;
-    color: inherit;
-    opacity: 0.55;
-    cursor: pointer;
-}
-.nl-close:hover { opacity: 1; }
-#newsletter-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-}
-#newsletter-form[hidden], .nl-privacy[hidden] { display: none; }
-#newsletter-form input[type="email"] {
-    flex: 1;
-    min-width: 0;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    color: var(--color-text, #cad3f5);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--color-border, #363a4f);
-    border-radius: 10px;
-    outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-}
-#newsletter-form input[type="email"]::placeholder { color: var(--color-text-muted, #8087a2); }
-#newsletter-form input[type="email"]:focus {
-    border-color: var(--color-accent, #c6a0f6);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent, #c6a0f6) 25%, transparent);
-}
-.nl-submit {
-    padding: 0.75rem 1.4rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--ctp-base, #181926);
-    background: var(--color-accent, #c6a0f6);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
-}
-.nl-submit:hover { background: var(--color-accent-hover, #f5bde6); }
-.nl-submit:active { transform: scale(0.97); }
-.nl-privacy {
-    margin: 0.85rem 0 0;
-    font-size: 0.8rem;
-    color: var(--color-text-muted, #8087a2);
-}
-#newsletter-thanks { margin-top: 1.25rem; }
-.nl-thanks-title { margin: 0 0 0.35rem; font-size: 1.2rem; font-weight: 700; }
-@media (max-width: 480px) {
-    #newsletter-form { flex-direction: column; }
-}
-</style>
 
 <script>
 (function () {

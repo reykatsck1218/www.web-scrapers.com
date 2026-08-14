@@ -6,6 +6,8 @@ date = 2026-06-03
 updated = 2026-08-14
 [extra]
 review_product = "ZenRows"
+cta_url = "/goto/zenrows/"
+cta_label = "Visit ZenRows"
 review_brand = "ZenRows"
 review_rating = 4.3
 og_image = "assets/og/reviews-zenrows.png"

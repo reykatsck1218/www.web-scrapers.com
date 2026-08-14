@@ -1,9 +1,10 @@
-{# ===== A-ADS (a-ads.com) adaptive ad unit ===== #}
+{# ===== A-ADS (a-ads.com) adaptive ad unit (footer slot, design-system .ad) ===== #}
 {# Renders only when extra.aads_unit (the numeric ad unit id) is set in config.toml #}
 {% if config.extra.aads_unit %}
-<div class="aads-unit" style="width: 100%; margin: 0 auto 2rem; position: relative; z-index: 99998;">
+<div class="ad ad--footer" style="margin:var(--sp-8) 0 0">
+    <span class="ad__label">Advertisement</span>
     <iframe data-aa="{{ config.extra.aads_unit }}" src="//acceptable.a-ads.com/{{ config.extra.aads_unit }}/?size=Adaptive"
-            style="border:0; padding:0; width:70%; height:auto; overflow:hidden; display:block; margin:auto"
+            style="border:0; padding:0; width:100%; max-width:728px; height:auto; overflow:hidden; display:block; margin:auto"
             title="Advertisement" loading="lazy"></iframe>
 </div>
 {% endif %}

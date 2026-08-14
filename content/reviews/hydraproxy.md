@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "HydraProxy"
+cta_url = "/goto/hydraproxy/"
+cta_label = "Visit HydraProxy"
 review_brand = "HydraProxy"
 review_rating = 3.9
 og_image = "assets/og/reviews-hydraproxy.png"

@@ -1,137 +1,140 @@
 {% extends "base.html" %}
 
 {% block content %}
-{# This block re-implements the content from themes/tanuki/templates/page.html #}
-{# but removes the GitHub edit link in the docs mode header #}
+{% set is_review = page.extra.review_rating is defined %}
+<div class="shell">
+    <div class="layout-article" style="padding-top:var(--sp-10)">
+        <div class="layout-article__rail" aria-hidden="true"></div>
 
-{% set mode = config.extra.mode | default(value="site") %}
+        <article itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
+            <header class="article-head">
+                {% if page.ancestors | length > 0 %}
+                <nav class="crumbs" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    {% for ancestor in page.ancestors %}
+                    {% if ancestor != "_index.md" %}
+                    {% set ancestor_section = get_section(path=ancestor) %}
+                    {% if ancestor_section.title %}
+                    <span class="crumbs__sep" aria-hidden="true">/</span>
+                    <a href="{{ ancestor_section.permalink | safe }}">{{ ancestor_section.title }}</a>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                    <span class="crumbs__sep" aria-hidden="true">/</span>
+                    <span aria-current="page">{{ page.title }}</span>
+                </nav>
+                {% endif %}
 
-{% if mode == "site" or mode == "blog" %}
-{# raskell.io style article page #}
-<div class="container">
-    <article>
-        <header class="article-header">
-            <div class="thumb">
-                <div>
-                    <h1>{{ page.title }}</h1>
-                    <div class="post-meta">
-                        <div class="meta-line">
-                            {% if config.extra.author or page.extra.author %}
-                            <span class="author">{{ config.extra.author | default(value=config.extra.author) }}</span>
-                            {% endif %}
-                            {% if page.date %}
-                            {% if config.extra.author or page.extra.author %}<span class="separator">·</span>{% endif %}
-                            <time>{{ page.date | date(format="%B %d, %Y") }}</time>
-                            {% endif %}
-                            {% if page.reading_time %}
-                            {% if page.date or config.extra.author or page.extra.author %}<span class="separator">·</span>{% endif %}
-                            <span class="reading-time">{{ page.reading_time }} min read</span>
-                            {% endif %}
-                        </div>
-                        {% if page.taxonomies.tags or page.taxonomies.series %}
-                        <div class="article-taxonomies">
-                            {% if page.taxonomies.tags %}
-                            <div class="tags">
-                                {% for tag in page.taxonomies.tags %}
-                                <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="tag">{{ tag }}</a>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                            {% if page.taxonomies.series %}
-                            <div class="series-badge">
-                                Series: <a href="{{ get_taxonomy_url(kind='series', name=page.taxonomies.series[0]) }}">{{ page.taxonomies.series[0] }}</a>
-                            </div>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                    </div>
+                <h1 id="article-title" itemprop="headline">{{ page.title }}</h1>
+
+                {% if page.description %}
+                <p class="u-lead" itemprop="description">{{ page.description }}</p>
+                {% endif %}
+
+                {% if page.date or is_review %}
+                <div class="freshness">
+                    {% if page.updated %}
+                    <span class="freshness__item">Updated <time itemprop="dateModified" datetime="{{ page.updated }}">{{ page.updated | date(format="%-d %B %Y") }}</time></span>
+                    {% elif page.date %}
+                    <span class="freshness__item">Published <time itemprop="datePublished" datetime="{{ page.date }}">{{ page.date | date(format="%-d %B %Y") }}</time></span>
+                    {% endif %}
+                    {% if page.reading_time %}
+                    <span class="freshness__dot" aria-hidden="true"></span>
+                    <span class="freshness__item">{{ page.reading_time }} min read</span>
+                    {% endif %}
                 </div>
+                {% endif %}
+
+                {% if is_review %}
+                {% set rating = page.extra.review_rating %}
+                <div class="scorecard">
+                    <div class="scorecard__head">
+                        <div class="scorecard__score">
+                            <b>{{ rating }}</b>
+                            <span>/ 5</span>
+                        </div>
+                        <div class="scorecard__title">
+                            <h3>{{ page.extra.review_product | default(value=page.title) }}</h3>
+                            <span class="stars stars--md" aria-label="Rated {{ rating }} out of 5">
+                                <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:{{ rating * 20 }}%">★★★★★</span></span>
+                            </span>
+                            <span class="scorecard__verdict">Scored by our editorial team. Ratings are recorded before affiliate links are added.</span>
+                        </div>
+                    </div>
+                    {% if page.extra.cta_url %}
+                    <div class="scorecard__foot">
+                        <a class="btn btn--cta" href="{{ page.extra.cta_url }}" rel="sponsored noopener">{{ page.extra.cta_label | default(value="Visit " ~ page.extra.review_product) }} <span class="btn__arrow" aria-hidden="true">→</span></a>
+                        <p class="disclosure"><span class="disclosure__dot" aria-hidden="true"></span>Sponsored link. Ratings are independent.</p>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </header>
+
+            <div class="prose" itemprop="articleBody">
+                {{ page.content | safe }}
             </div>
-            {% if page.extra.image %}
-            <img src="/{{ page.extra.image }}" alt="{{ page.title }}" class="post-thumbnail" loading="lazy" decoding="async">
+
+            {% include "partials/adsense.html" %}
+
+            {# Hidden metadata for structured data #}
+            {% if config.extra.author is defined and config.extra.author %}
+            <meta itemprop="author" content="{{ config.extra.author }}">
             {% endif %}
-        </header>
-    </article>
 
-    <div class="article-post">
-        {{ page.content | safe }}
+            <nav class="page-nav" aria-label="Page navigation">
+                {% if page.earlier %}
+                <a href="{{ page.earlier.permalink | safe }}" class="page-nav__link page-nav__link--prev" rel="prev">
+                    <span class="page-nav__label">Previous</span>
+                    <span class="page-nav__title">{{ page.earlier.title }}</span>
+                </a>
+                {% endif %}
+                {% if page.later %}
+                <a href="{{ page.later.permalink | safe }}" class="page-nav__link page-nav__link--next" rel="next">
+                    <span class="page-nav__label">Next</span>
+                    <span class="page-nav__title">{{ page.later.title }}</span>
+                </a>
+                {% endif %}
+            </nav>
+        </article>
+
+        <aside class="layout-article__rail">
+            {% if page.toc and page.toc | length > 0 %}
+            <nav class="toc" aria-label="On this page">
+                <div class="toc__title">On this page</div>
+                <ol>
+                    {% for h in page.toc %}
+                    <li>
+                        <a href="#{{ h.id }}">{{ h.title }}</a>
+                        {% if h.children %}
+                        <ol>
+                            {% for h2 in h.children %}
+                            <li><a href="#{{ h2.id }}">{{ h2.title }}</a></li>
+                            {% endfor %}
+                        </ol>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </nav>
+            {% endif %}
+        </aside>
     </div>
-
-    {% include "partials/adsense.html" %}
 </div>
 
-<div class="container">
-    <nav class="flex container suggested">
-        {% if page.lower %}
-        <a rel="prev" href="{{ page.lower.permalink }}" title="Previous post (older)">
-            <span>← Previous</span>
-            <strong>{{ page.lower.title }}</strong>
-        </a>
-        {% endif %}
-
-        {% if page.higher %}
-        <a rel="next" href="{{ page.higher.permalink }}" title="Next post (newer)">
-            <span>Next →</span>
-            <strong>{{ page.higher.title }}</strong>
-        </a>
-        {% endif %}
-    </nav>
-
-    {% include "partials/aads.html" %}
-</div>
-
-{% else %}
-{# Original tanuki page layout for docs/book/product modes #}
-<article class="article" itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
-    {# For docs/book mode, show title as visible heading #}
-    <header class="article__header article__header--docs">
-        <h1 id="article-title" itemprop="headline">{{ page.title }}</h1>
-        {% if page.description %}
-        <p class="article__description" itemprop="description">{{ page.description }}</p>
-        {% endif %}
-        {% if page.date or page.extra.review_rating is defined %}
-        <p class="article__meta">
-            {% if page.updated %}Updated <time itemprop="dateModified" datetime="{{ page.updated }}">{{ page.updated | date(format="%B %d, %Y") }}</time>{% elif page.date %}Published <time itemprop="datePublished" datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>{% endif %}
-            {% if page.extra.review_rating is defined %}{% if page.date %} · {% endif %}<span class="article__rating">Our rating: {{ page.extra.review_rating }}/5 ★</span>{% endif %}
-        </p>
-        {% endif %}
-        {# The GitHub edit link was here, but we're intentionally omitting it #}
-    </header>
-
-    <div class="article__content" itemprop="articleBody">
-        {{ page.content | safe }}
+{% if is_review and page.extra.cta_url %}
+<div class="stickybar">
+    <div class="stickybar__meta">
+        <span class="stickybar__name">{{ page.extra.review_product | default(value=page.title) }}</span>
+        <span class="stars stars--sm" aria-label="Rated {{ page.extra.review_rating }} out of 5">
+            <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:{{ page.extra.review_rating * 20 }}%">★★★★★</span></span>
+            <span class="stars__value">{{ page.extra.review_rating }}<span class="stars__max">/5</span></span>
+        </span>
     </div>
-
-    {% include "partials/adsense.html" %}
-
-    {# Hidden metadata for structured data #}
-    {% if config.extra.author is defined and config.extra.author %}
-    <meta itemprop="author" content="{{ config.extra.author }}">
-    {% endif %}
-    {% if page.updated is defined and page.updated %}
-    <meta itemprop="dateModified" content="{{ page.updated | date(format='%Y-%m-%d') }}">
-    {% endif %}
-</article>
-
-{# Bottom navigation for docs/book #}
-{% if mode == "docs" or mode == "book" %}
-<nav class="page-nav" aria-label="Page navigation">
-    {% if page.earlier %}
-    <a href="{{ page.earlier.permalink | safe }}" class="page-nav__link page-nav__link--prev" rel="prev" aria-label="Previous page: {{ page.earlier.title }}">
-        <span class="page-nav__label" aria-hidden="true">Previous</span>
-        <span class="page-nav__title">{{ page.earlier.title }}</span>
-    </a>
-    {% endif %}
-
-    {% if page.later %}
-    <a href="{{ page.later.permalink | safe }}" class="page-nav__link page-nav__link--next" rel="next" aria-label="Next page: {{ page.later.title }}">
-        <span class="page-nav__label" aria-hidden="true">Next</span>
-        <span class="page-nav__title">{{ page.later.title }}</span>
-    </a>
-    {% endif %}
-</nav>
-{% endif %}
-
-{% include "partials/aads.html" %}
+    <div class="stickybar__actions">
+        <p class="disclosure"><span class="disclosure__dot" aria-hidden="true"></span>Sponsored link.<br>Ratings are independent.</p>
+        <a class="btn btn--cta" href="{{ page.extra.cta_url }}" rel="sponsored noopener">{{ page.extra.cta_label | default(value="Visit " ~ page.extra.review_product) }} <span class="btn__arrow" aria-hidden="true">→</span></a>
+    </div>
+</div>
 {% endif %}
 {% endblock %}

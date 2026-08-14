@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "IPRoyal"
+cta_url = "/goto/iproyal/"
+cta_label = "Visit IPRoyal"
 review_brand = "IPRoyal"
 review_rating = 4.2
 og_image = "assets/og/reviews-iproyal.png"

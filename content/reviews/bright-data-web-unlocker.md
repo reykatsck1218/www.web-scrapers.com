@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "Bright Data Web Unlocker"
+cta_url = "/goto/bd-web-unlocker/"
+cta_label = "Visit Bright Data"
 review_brand = "Bright Data"
 review_rating = 4.6
 og_image = "assets/og/reviews-bright-data-web-unlocker.png"

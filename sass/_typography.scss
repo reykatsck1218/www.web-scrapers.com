@@ -1,0 +1,57 @@
+:root{
+  /* families in _site.scss (self-hosted Geist) */
+
+  /* ---- size scale (1.22 ratio, tuned for editorial reading) ---- */
+  --fs-11:11px;   /* eyebrow / disclosure microcopy */
+  --fs-12:12px;   /* table meta, badges */
+  --fs-13:13px;   /* captions, breadcrumbs, code inline */
+  --fs-14:14px;   /* UI default, table cells */
+  --fs-15:15px;   /* dense body / sidebars */
+  --fs-17:17px;   /* article body */
+  --fs-19:19px;   /* lead paragraph */
+  --fs-22:22px;   /* h4 / card title lg */
+  --fs-26:26px;   /* h3 */
+  --fs-32:32px;   /* h2 */
+  --fs-40:40px;   /* h1 (article) */
+  --fs-52:52px;   /* hero */
+  --fs-64:64px;   /* hero xl / OG headline */
+
+  /* ---- weights: Geist is used 400/500/600/700 only ---- */
+  --fw-regular:400;
+  --fw-medium:500;
+  --fw-semibold:600;
+  --fw-bold:700;
+
+  /* ---- line heights ---- */
+  --lh-tight:1.05;
+  --lh-snug:1.2;
+  --lh-heading:1.28;
+  --lh-body:1.65;
+  --lh-code:1.6;
+
+  /* ---- tracking: negative on display, positive on all-caps ---- */
+  --ls-display:-0.028em;
+  --ls-heading:-0.018em;
+  --ls-body:-0.005em;
+  --ls-caps:0.08em;
+  --ls-mono:-0.01em;
+
+  /* ---- semantic roles ---- */
+  --type-hero:var(--fw-bold) var(--fs-52)/var(--lh-tight) var(--font-sans);
+  --type-h1:var(--fw-bold) var(--fs-40)/var(--lh-snug) var(--font-sans);
+  --type-h2:var(--fw-semibold) var(--fs-32)/var(--lh-heading) var(--font-sans);
+  --type-h3:var(--fw-semibold) var(--fs-26)/var(--lh-heading) var(--font-sans);
+  --type-h4:var(--fw-semibold) var(--fs-22)/var(--lh-heading) var(--font-sans);
+  --type-lead:var(--fw-regular) var(--fs-19)/var(--lh-body) var(--font-sans);
+  --type-body:var(--fw-regular) var(--fs-17)/var(--lh-body) var(--font-sans);
+  --type-ui:var(--fw-medium) var(--fs-14)/1.45 var(--font-sans);
+  --type-caption:var(--fw-regular) var(--fs-13)/1.5 var(--font-sans);
+  --type-eyebrow:var(--fw-semibold) var(--fs-11)/1.2 var(--font-sans);
+  --type-code:var(--fw-regular) var(--fs-14)/var(--lh-code) var(--font-mono);
+  --type-code-inline:var(--fw-regular) var(--fs-13)/1.4 var(--font-mono);
+  --type-score:var(--fw-bold) var(--fs-40)/1 var(--font-mono);
+
+  /* ---- measure ---- */
+  --measure-article:68ch;
+  --measure-lead:60ch;
+}

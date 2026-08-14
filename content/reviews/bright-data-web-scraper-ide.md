@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "Bright Data Web Scraper IDE"
+cta_url = "/goto/bd-collector/"
+cta_label = "Visit Bright Data"
 review_brand = "Bright Data"
 review_rating = 4.2
 og_image = "assets/og/reviews-bright-data-web-scraper-ide.png"

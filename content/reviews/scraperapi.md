@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "ScraperAPI"
+cta_url = "/goto/scraperapi/"
+cta_label = "Visit ScraperAPI"
 review_brand = "ScraperAPI"
 review_rating = 4.2
 og_image = "assets/og/reviews-scraperapi.png"

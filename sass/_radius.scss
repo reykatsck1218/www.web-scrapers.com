@@ -1,0 +1,17 @@
+:root{
+  --r-xs:3px;    /* chips, inline code */
+  --r-sm:5px;    /* inputs, small buttons */
+  --r-md:7px;    /* buttons, badges */
+  --r-lg:10px;   /* cards, code blocks */
+  --r-xl:14px;   /* scorecards, modals, ad slots */
+  --r-2xl:20px;  /* hero panels */
+  --r-pill:999px;
+
+  --bw-hairline:1px;
+  --bw-emphasis:2px;
+  --bw-marker:3px; /* left marker on blockquotes / pro-con column heads */
+
+  --border-hairline:var(--bw-hairline) solid var(--border-default);
+  --border-card:var(--bw-hairline) solid var(--border-default);
+  --border-subtle-rule:var(--bw-hairline) solid var(--border-subtle);
+}

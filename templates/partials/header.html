@@ -1,0 +1,31 @@
+{# ===== Site header (design-system chrome; overrides the theme partial) ===== #}
+<header class="header" id="site-header">
+    <div class="shell">
+        <div class="header__inner">
+            <a href="/" class="logo" aria-label="web-scrapers.com home">
+                <span class="logo__dot" aria-hidden="true"></span>
+                <span>web-scrapers<span class="logo__tld">.com</span></span>
+            </a>
+
+            <nav class="header__nav" id="site-nav" aria-label="Main navigation">
+                {% if config.extra.nav %}
+                {% for item in config.extra.nav %}
+                <a href="{{ item.url }}" class="header__link"{% if current_path is defined and current_path == item.url %} aria-current="page"{% endif %}>{{ item.name }}</a>
+                {% endfor %}
+                {% endif %}
+            </nav>
+
+            <div class="header__tools">
+                <div class="themetoggle" role="group" aria-label="Color theme">
+                    <button type="button" data-theme-set="light" aria-label="Light theme" title="Light">L</button>
+                    <button type="button" data-theme-set="auto" aria-label="Match system theme" title="Auto">A</button>
+                    <button type="button" data-theme-set="dark" aria-label="Dark theme" title="Dark">D</button>
+                </div>
+                <a href="#newsletter" class="btn btn--secondary btn--sm header__newsletter">Join the newsletter</a>
+                <button type="button" class="navtoggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

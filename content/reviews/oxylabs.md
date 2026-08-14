@@ -6,6 +6,8 @@ date = 2026-01-27
 updated = 2026-08-05
 [extra]
 review_product = "Oxylabs"
+cta_url = "/goto/oxylabs/"
+cta_label = "Visit Oxylabs"
 review_brand = "Oxylabs"
 review_rating = 4.5
 og_image = "assets/og/reviews-oxylabs.png"

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="shell" style="padding-top:var(--sp-10)">
+    <nav class="crumbs" aria-label="Breadcrumb" style="margin-bottom:var(--sp-4)">
+        <a href="/">Home</a>
+        <span class="crumbs__sep" aria-hidden="true">/</span>
+        <span aria-current="page">{{ section.title }}</span>
+    </nav>
+
+    <header class="section__head">
+        <div>
+            <h1>{{ section.title }}</h1>
+            {% if section.description %}
+            <p>{{ section.description }}</p>
+            {% endif %}
+        </div>
+    </header>
+
+    {% if section.content %}
+    <div class="hub-intro prose">
+        {{ section.content | safe }}
+    </div>
+    {% endif %}
+
+    <div class="grid-cards" style="margin-bottom:var(--space-section)">
+        {% for page in section.pages %}
+        <a href="{{ page.permalink | safe }}" class="tile">
+            <span class="tile__title">{{ page.title }} <span class="tile__arrow" aria-hidden="true">→</span></span>
+            {% if page.description %}
+            <span class="tile__desc">{{ page.description }}</span>
+            {% endif %}
+            <span class="tile__meta">
+                {% if page.extra.review_rating is defined %}★ {{ page.extra.review_rating }}/5{% endif %}
+                {% if page.updated %}{% if page.extra.review_rating is defined %} · {% endif %}Updated {{ page.updated | date(format="%-d %b %Y") }}{% elif page.date %}{% if page.extra.review_rating is defined %} · {% endif %}{{ page.date | date(format="%-d %b %Y") }}{% endif %}
+            </span>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "Bright Data Datacenter Proxies"
+cta_url = "/goto/bd-datacenter/"
+cta_label = "Visit Bright Data"
 review_brand = "Bright Data"
 review_rating = 4.5
 og_image = "assets/og/reviews-bright-data-datacenter-proxies.png"

@@ -1,43 +1,50 @@
-{# Original tanuki footer for docs/book/product modes #}
-<footer class="footer" role="contentinfo">
-    <div class="container">
-        {% if config.extra.goto_log_url %}
-        <div id="newsletter" class="newsletter-signup">
-            <h3>Join 5k+ Developers</h3>
-            <p>Get the latest web scraping news and tutorials, straight to your inbox.</p>
-            <button type="button" class="btn btn--primary" data-newsletter>Subscribe</button>
-        </div>
-        {% endif %}
-        <div class="footer__content">
-            <p class="footer__copyright">
-                &copy; {{ now() | date(format="%Y") }} {{ config.extra.author | default(value=config.title) }}.
-                Built with <a href="https://www.getzola.org" target="_blank" rel="noopener noreferrer" aria-label="Zola static site generator (opens in new tab)">Zola</a>
-                and the <a href="https://github.com/raskell-io/tanuki" target="_blank" rel="noopener noreferrer" aria-label="Tanuki theme on GitHub (opens in new tab)">Tanuki</a> theme.
-            </p>
-
-            {% if config.extra.social_links %}
-            <nav class="footer__links" aria-label="Social links">
-                {% for link in config.extra.social_links %}
-                <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ link.name }} (opens in new tab)">
-                    {{ link.name }}
+{# ===== Site footer (design-system chrome) ===== #}
+<footer class="footer">
+    <div class="shell">
+        <div class="footer__cols">
+            <div class="footer__col">
+                <a href="/" class="logo" aria-label="web-scrapers.com home">
+                    <span class="logo__dot" aria-hidden="true"></span>
+                    <span>web-scrapers<span class="logo__tld">.com</span></span>
                 </a>
-                {% endfor %}
-            </nav>
-            {% endif %}
+                <p style="margin-top:var(--sp-3);font-size:var(--fs-13);color:var(--text-muted);max-width:36ch">
+                    Independent reviews, benchmarks and guides for web scraping
+                    infrastructure. We may earn a commission on some sign-ups;
+                    it never affects our test results or ratings.
+                </p>
+            </div>
+            <div class="footer__col">
+                <h4>Reviews</h4>
+                <ul>
+                    <li><a href="/reviews/bright-data/">Bright Data</a></li>
+                    <li><a href="/reviews/oxylabs/">Oxylabs</a></li>
+                    <li><a href="/reviews/zenrows/">ZenRows</a></li>
+                    <li><a href="/reviews/">All reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Compare</h4>
+                <ul>
+                    <li><a href="/comparisons/bright-data-vs-oxylabs/">Bright Data vs Oxylabs</a></li>
+                    <li><a href="/comparisons/zenrows-alternatives/">ZenRows alternatives</a></li>
+                    <li><a href="/proxy-providers/">Provider directory</a></li>
+                    <li><a href="/comparisons/">All comparisons</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="/learn/web-scraping-with-python/">Web scraping with Python</a></li>
+                    <li><a href="/learn/proxy-types-explained/">Proxy types explained</a></li>
+                    <li><a href="/solutions/">Industry solutions</a></li>
+                    <li><a href="/learn/">Learning center</a></li>
+                </ul>
+            </div>
+        </div>
+        {% include "partials/aads.html" %}
+        <div class="footer__legal">
+            <span>&copy; {{ now() | date(format="%Y") }} web-scrapers.com</span>
+            <span><a href="#newsletter">Newsletter</a> · <a href="{{ get_url(path="atom.xml") | safe }}">Feed</a></span>
         </div>
     </div>
 </footer>
-<style>
-.newsletter-signup {
-    text-align: center;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
-}
-.newsletter-signup form {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-</style>

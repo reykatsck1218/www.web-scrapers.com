@@ -1,0 +1,28 @@
+:root{
+  /* Dark theme separates planes with borders, not shadows. Shadows appear only on
+     things that float: dropdowns, modals, sticky CTA bars. */
+  --shadow-none:none;
+  --shadow-sm:0 1px 2px rgba(3,7,18,.40);
+  --shadow-md:0 6px 16px -4px rgba(3,7,18,.55);
+  --shadow-lg:0 18px 40px -12px rgba(3,7,18,.70);
+  --shadow-sticky:0 -8px 24px -12px rgba(3,7,18,.80);
+
+  /* focus + emphasis rings */
+  --ring-focus:0 0 0 2px var(--surface-page),0 0 0 4px var(--focus-ring);
+  --ring-accent:0 0 0 1px var(--accent-ring);
+  --ring-cta:0 0 0 3px var(--cta-ring);
+
+  /* inner highlight used on the top edge of raised dark panels */
+  --inset-top:inset 0 1px 0 rgba(255,255,255,.04);
+
+  --blur-overlay:blur(6px);
+  --blur-glass:blur(14px);
+}
+
+[data-theme="light"]{
+  --shadow-sm:0 1px 2px rgba(20,28,45,.06);
+  --shadow-md:0 4px 14px -4px rgba(20,28,45,.12);
+  --shadow-lg:0 20px 44px -16px rgba(20,28,45,.20);
+  --shadow-sticky:0 -8px 24px -14px rgba(20,28,45,.18);
+  --inset-top:inset 0 1px 0 rgba(255,255,255,.6);
+}

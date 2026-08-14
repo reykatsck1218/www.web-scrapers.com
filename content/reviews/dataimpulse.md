@@ -6,6 +6,8 @@ date = 2026-06-02
 updated = 2026-08-14
 [extra]
 review_product = "DataImpulse"
+cta_url = "/goto/dataimpulse/"
+cta_label = "Visit DataImpulse"
 review_brand = "DataImpulse"
 review_rating = 4.0
 og_image = "assets/og/reviews-dataimpulse.png"

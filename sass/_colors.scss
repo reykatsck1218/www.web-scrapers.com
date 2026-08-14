@@ -1,0 +1,148 @@
+:root{
+  /* ---- base palette: navy ---- */
+  --navy-975:#060a14;
+  --navy-950:#0b1120;
+  --navy-900:#0f1729;
+  --navy-850:#131c31;
+  --navy-800:#18223a;
+  --navy-700:#1e2b47;
+  --navy-600:#26365a;
+
+  /* ---- base palette: accent blue ---- */
+  --blue-050:#eaf1ff;
+  --blue-100:#cfe0ff;
+  --blue-300:#8ab4ff;
+  --blue-400:#5c9dff;
+  --blue-500:#3884ff;
+  --blue-600:#1f6ae0;
+  --blue-700:#1552b8;
+  --blue-900:#0d3273;
+
+  /* ---- base palette: neutrals (light theme surfaces + type) ---- */
+  --slate-000:#ffffff;
+  --slate-025:#f7f9fc;
+  --slate-050:#eef2f8;
+  --slate-100:#e2e8f1;
+  --slate-200:#cbd4e2;
+  --slate-400:#8b97ad;
+  --slate-500:#6f7d96;
+  --slate-600:#55617a;
+  --slate-800:#2b3448;
+
+  /* ---- base palette: signal ---- */
+  --cta-400:#ff8a63;
+  --cta-500:#ff6a3d;
+  --cta-600:#ef5324;
+  --cta-700:#c93f16;
+  --green-500:#23c483;
+  --green-600:#12a06a;
+  --red-500:#f2545b;
+  --red-600:#d93842;
+  --amber-500:#f5a524;
+  --amber-400:#ffc255;
+
+  /* ---- semantic: surfaces (dark is the default theme) ---- */
+  --surface-page:var(--navy-950);
+  --surface-sunken:var(--navy-975);
+  --surface-card:var(--navy-900);
+  --surface-card-hover:var(--navy-850);
+  --surface-raised:var(--navy-850);
+  --surface-inset:var(--navy-975);
+  --surface-code:#080d18;
+  --surface-overlay:rgba(6,10,20,.72);
+
+  /* ---- semantic: borders ---- */
+  --border-subtle:#1a2540;
+  --border-default:#22304d;
+  --border-strong:#2d3f64;
+  --border-accent:var(--blue-600);
+
+  /* ---- semantic: text ---- */
+  --text-strong:#f7f9fc;
+  --text-body:#c3ccdb;
+  --text-muted:#8b97ad;
+  --text-faint:#66738b;
+  --text-accent:var(--blue-400);
+  --text-on-accent:#ffffff;
+  --text-on-cta:#20100a;
+  --text-code:#d7e2f5;
+
+  /* ---- semantic: interactive ---- */
+  --accent:var(--blue-500);
+  --accent-hover:var(--blue-400);
+  --accent-press:var(--blue-600);
+  --accent-soft:rgba(56,132,255,.14);
+  --accent-ring:rgba(56,132,255,.35);
+  --cta:var(--cta-500);
+  --cta-hover:var(--cta-400);
+  --cta-press:var(--cta-600);
+  --cta-soft:rgba(255,106,61,.14);
+  --cta-ring:rgba(255,106,61,.34);
+  --focus-ring:var(--blue-400);
+
+  /* ---- semantic: editorial signals ---- */
+  --pro:var(--green-500);
+  --pro-soft:rgba(35,196,131,.12);
+  --con:var(--red-500);
+  --con-soft:rgba(242,84,91,.12);
+  --star:var(--amber-500);
+  --star-track:#2a3552;
+  --winner:var(--green-500);
+  --winner-soft:rgba(35,196,131,.10);
+  --disclosure:var(--amber-400);
+  --disclosure-soft:rgba(245,165,36,.10);
+
+  /* ---- semantic: language chips for code tabs ---- */
+  --lang-python:#4b8bbe;
+  --lang-node:#5fa04e;
+  --lang-php:#8892bf;
+  --lang-rust:#dea584;
+
+  /* ---- brand gradient (OG images, hero wash) ---- */
+  --brand-wash:radial-gradient(120% 90% at 12% 0%,#16224a 0%,rgba(11,17,32,0) 62%),radial-gradient(80% 70% at 92% 8%,#122a5e 0%,rgba(11,17,32,0) 55%);
+  --grid-line:rgba(56,132,255,.07);
+}
+
+[data-theme="light"]{
+  --surface-page:var(--slate-025);
+  --surface-sunken:var(--slate-050);
+  --surface-card:var(--slate-000);
+  --surface-card-hover:var(--slate-025);
+  --surface-raised:var(--slate-000);
+  --surface-inset:var(--slate-050);
+  --surface-code:#0b1120;
+  --surface-overlay:rgba(20,28,45,.44);
+
+  --border-subtle:var(--slate-050);
+  --border-default:var(--slate-100);
+  --border-strong:var(--slate-200);
+
+  --text-strong:#0b1120;
+  --text-body:var(--slate-600);
+  --text-muted:var(--slate-500);
+  --text-faint:var(--slate-400);
+  --text-accent:var(--blue-600);
+  --text-code:#d7e2f5;
+
+  --accent:var(--blue-600);
+  --accent-hover:var(--blue-500);
+  --accent-press:var(--blue-700);
+  --accent-soft:rgba(31,106,224,.08);
+  --cta:var(--cta-600);
+  --cta-hover:var(--cta-500);
+  --cta-press:var(--cta-700);
+  --text-on-cta:#ffffff;
+
+  --pro:var(--green-600);
+  --pro-soft:rgba(18,160,106,.10);
+  --con:var(--red-600);
+  --con-soft:rgba(217,56,66,.09);
+  --star-track:var(--slate-200);
+  --winner:var(--green-600);
+  --winner-soft:rgba(18,160,106,.08);
+  --disclosure:#9a6a10;
+  --disclosure-soft:rgba(245,165,36,.14);
+
+  --brand-wash:radial-gradient(120% 90% at 10% 0%,#e6eeff 0%,rgba(247,249,252,0) 60%);
+  --grid-line:rgba(31,106,224,.06);
+}

@@ -1,0 +1,36 @@
+:root{
+  /* 4px base grid */
+  --sp-0:0;
+  --sp-1:4px;
+  --sp-2:8px;
+  --sp-3:12px;
+  --sp-4:16px;
+  --sp-5:20px;
+  --sp-6:24px;
+  --sp-8:32px;
+  --sp-10:40px;
+  --sp-12:48px;
+  --sp-16:64px;
+  --sp-20:80px;
+  --sp-24:96px;
+  --sp-32:128px;
+
+  /* semantic spacing */
+  --gap-inline:var(--sp-2);      /* icon ↔ label */
+  --gap-stack:var(--sp-3);       /* label ↔ control */
+  --pad-card:var(--sp-5);
+  --pad-card-lg:var(--sp-6);
+  --pad-cell:var(--sp-3) var(--sp-4);
+  --gap-grid:var(--sp-4);
+  --space-block:var(--sp-6);     /* between article blocks */
+  --space-section:var(--sp-16);  /* between page sections */
+  --space-section-lg:var(--sp-24);
+
+  /* layout widths */
+  --w-page:1200px;
+  --w-wide:1360px;
+  --w-article:720px;
+  --w-rail:280px;
+  --header-h:60px;
+  --sticky-offset:76px;
+}
