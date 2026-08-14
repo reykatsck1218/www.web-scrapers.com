@@ -48,9 +48,9 @@ const targetBlurb = {
 };
 
 const budgetPitch = {
-    "$":   "Start on pay-as-you-go from just $5/GB — no monthly minimums, plus a 7-day free trial (no credit card).",
-    "$$":  "Scale affordably with growth plans and up to 37% off on annual billing.",
-    "$$$": "Enterprise-grade reliability with 99.9%+ success rates and dedicated 24/7 support."
+    "$":   "Start on pay-as-you-go with no monthly minimums — pay only for what you use.",
+    "$$":  "Growth plans lower the effective rate as your volume scales; check current pricing on the provider's site.",
+    "$$$": "Enterprise-grade reliability with dedicated support and SLA options."
 };
 
 /* ---- Alternatives pool (non-Bright Data) --------------------------------- */
@@ -179,7 +179,7 @@ function render() {
     html += '<p class="rec-top__blurb">' + escapeHtml(top.blurb) + '</p>';
     html += '<p class="rec-top__pitch">' + escapeHtml(top.pitch) + '</p>';
     html += '<div class="rec-top__actions">';
-    html += '<a class="btn btn--primary" href="' + AFFILIATE_URL + '" target="_blank" rel="sponsored noopener noreferrer">Start Free Trial →</a>';
+    html += '<a class="btn btn--cta" href="' + AFFILIATE_URL + '" target="_blank" rel="sponsored noopener noreferrer">Visit Bright Data <span class="btn__arrow">→</span></a>';
     html += '<a class="btn btn--secondary" href="' + top.learnLink + '">' +
         (top.isScrapingBrowser ? "Read the Guide" : "Read Review") + '</a>';
     html += '</div></div>';

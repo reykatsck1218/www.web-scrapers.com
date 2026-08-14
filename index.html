@@ -157,9 +157,7 @@
 
     
     <link rel="stylesheet" href="https://www.web-scrapers.com/style.css">
-    
-<link rel="stylesheet" href="https://www.web-scrapers.com/css/scraper-selector.css">
- 
+     
 
     
     
@@ -206,468 +204,392 @@
 
     
 </head>
-<body class="">
+<body class="page ">
     
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     
     
+<header class="header" id="site-header">
+    <div class="shell">
+        <div class="header__inner">
+            <a href="/" class="logo" aria-label="web-scrapers.com home">
+                <span class="logo__dot" aria-hidden="true"></span>
+                <span>web-scrapers<span class="logo__tld">.com</span></span>
+            </a>
 
-    
-    
-        
-    
-
-    
-    <div class="layout layout--docs layout--fixed-header" data-mode="docs">
-        
-
-        <div class="layout__main">
-            
-
-<header class="header" role="banner">
-    <div class="header__left">
-        
-        
-        
-
-        
-        
-
-        
-        <a href="https://www.web-scrapers.com" class="header__logo" aria-label="Web-Scrapers.com - Go to homepage">
-            
-            
-            
+            <nav class="header__nav" id="site-nav" aria-label="Main navigation">
                 
-            
-            <img src="https://www.web-scrapers.com/assets/logo.svg" alt="" aria-hidden="true">
-            
-            <span>Web-Scrapers.com</span>
-        </a>
-    </div>
+                
+                <a href="&#x2F;proxy-providers&#x2F;" class="header__link">Proxy Providers</a>
+                
+                <a href="&#x2F;reviews&#x2F;" class="header__link">Top Scrapers</a>
+                
+                <a href="&#x2F;comparisons&#x2F;" class="header__link">Proxy Directory</a>
+                
+                <a href="&#x2F;solutions&#x2F;" class="header__link">Industry Solutions</a>
+                
+                <a href="&#x2F;learn&#x2F;" class="header__link">Learning Center</a>
+                
+                
+            </nav>
 
-    
-    <nav class="header__nav" role="navigation" aria-label="Main navigation">
-        
-            
-            <a href="/proxy-providers/" class="header__link ">
-                Proxy Providers
-            </a>
-            
-            <a href="/reviews/" class="header__link ">
-                Top Scrapers
-            </a>
-            
-            <a href="/comparisons/" class="header__link ">
-                Proxy Directory
-            </a>
-            
-            <a href="/solutions/" class="header__link ">
-                Industry Solutions
-            </a>
-            
-            <a href="/learn/" class="header__link ">
-                Learning Center
-            </a>
-            
-        
-        <a href="#newsletter" class="btn btn--secondary">Join 5k+ Developers</a> 
-    </nav>
-
-    
-    <div class="header__actions" role="group" aria-label="Site actions">
-        
-        
-        <button class="search-toggle" type="button" aria-label="Open search dialog" aria-keyshortcuts="/" aria-haspopup="dialog" title="Search (press /)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.3-4.3"/>
-            </svg>
-        </button>
-        
-
-        
-        <div class="header__actions-desktop">
-            
-            
-
-            
-            
-            
-<button class="theme-toggle" type="button" aria-label="Toggle color theme: cycles through light, dark, and auto modes" aria-live="polite" title="Toggle theme">
-    <span class="theme-toggle__icons">
-        
-        <span class="theme-toggle__sun" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="4"/>
-                <path d="M12 2v2"/>
-                <path d="M12 20v2"/>
-                <path d="m4.93 4.93 1.41 1.41"/>
-                <path d="m17.66 17.66 1.41 1.41"/>
-                <path d="M2 12h2"/>
-                <path d="M20 12h2"/>
-                <path d="m6.34 17.66-1.41 1.41"/>
-                <path d="m19.07 4.93-1.41 1.41"/>
-            </svg>
-        </span>
-
-        
-        <span class="theme-toggle__moon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-            </svg>
-        </span>
-
-        
-        <span class="theme-toggle__auto" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a7 7 0 1 0 7 7"/>
-            </svg>
-        </span>
-    </span>
-    <span class="sr-only theme-toggle__status">Current theme: auto</span>
-</button>
-
-            
+            <div class="header__tools">
+                <div class="themetoggle" role="group" aria-label="Color theme">
+                    <button type="button" data-theme-set="light" aria-label="Light theme" title="Light">L</button>
+                    <button type="button" data-theme-set="auto" aria-label="Match system theme" title="Auto">A</button>
+                    <button type="button" data-theme-set="dark" aria-label="Dark theme" title="Dark">D</button>
+                </div>
+                <a href="#newsletter" class="btn btn--secondary btn--sm header__newsletter">Join the newsletter</a>
+                <button type="button" class="navtoggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
     </div>
 </header>
 
+    
 
-            
-            
-            <div class="scroll-progress" aria-hidden="true">
-                <div class="scroll-progress__bar"></div>
-                <span class="scroll-progress__percent">0%</span>
-            </div>
-            
+    <main id="main-content" role="main" aria-label="Main content">
+        
+<section class="hero u-grid-bg">
+    <div class="shell">
+        <div class="hero__inner">
+            <p class="u-eyebrow">Independent web scraping reviews &amp; benchmarks</p>
+            <h1>Find the Right Web Scraping Infrastructure for Your Scale.</h1>
+            <p class="hero__sub">Hands-on reviews of proxy networks, unblocking tools and scraping APIs — with working code in Python, PHP, Node.js and Rust.</p>
 
-            
+            <div class="scraper-selector-widget">
+                <div class="scraper-selector-widget__head">
+                    <h3>The scraper selector</h3>
+                    <p>Answer three quick questions — your matches update instantly.</p>
+                </div>
 
-            <div class="layout__content-area">
-                <main id="main-content" class="main-content" role="main" aria-label="Main content">
-                    
-<section class="hero hero--landing">
-    <div class="hero__content">
-        <h1 class="hero__title">Find the Right Web Scraping Infrastructure for Your Scale.</h1>
-        <p class="hero__subtitle">Independent benchmarks, technical guides, and proxy performance data for 2026.</p>
-
-        <div class="scraper-selector-widget">
-            <div class="scraper-selector-widget__head">
-                <h3>The Scraper Selector</h3>
-                <p>Answer three quick questions — your matches update instantly.</p>
-            </div>
-
-            <div class="scraper-selector-widget__form">
-                <div class="scraper-selector-widget__group">
-                    <span class="selector-label">I need to scrape</span>
-                    <div class="selector-group" data-field="target" role="radiogroup" aria-label="Target to scrape">
-                        <button type="button" class="selector-option is-active" data-value="Amazon" role="radio" aria-checked="true">Amazon</button>
-                        <button type="button" class="selector-option" data-value="Google" role="radio" aria-checked="false">Google</button>
-                        <button type="button" class="selector-option" data-value="Social" role="radio" aria-checked="false">Social</button>
-                        <button type="button" class="selector-option" data-value="Other" role="radio" aria-checked="false">Other</button>
+                <div class="scraper-selector-widget__form">
+                    <div class="scraper-selector-widget__group">
+                        <span class="selector-label">I need to scrape</span>
+                        <div class="selector-group" data-field="target" role="radiogroup" aria-label="Target to scrape">
+                            <button type="button" class="selector-option is-active" data-value="Amazon" role="radio" aria-checked="true">Amazon</button>
+                            <button type="button" class="selector-option" data-value="Google" role="radio" aria-checked="false">Google</button>
+                            <button type="button" class="selector-option" data-value="Social" role="radio" aria-checked="false">Social</button>
+                            <button type="button" class="selector-option" data-value="Other" role="radio" aria-checked="false">Other</button>
+                        </div>
                     </div>
-                </div>
-                <div class="scraper-selector-widget__group">
-                    <span class="selector-label">I prefer to work in</span>
-                    <div class="selector-group" data-field="stack" role="radiogroup" aria-label="Preferred stack">
-                        <button type="button" class="selector-option is-active" data-value="No-Code" role="radio" aria-checked="true">No-Code</button>
-                        <button type="button" class="selector-option" data-value="Python" role="radio" aria-checked="false">Python</button>
-                        <button type="button" class="selector-option" data-value="Node.js" role="radio" aria-checked="false">Node.js</button>
+                    <div class="scraper-selector-widget__group">
+                        <span class="selector-label">I prefer to work in</span>
+                        <div class="selector-group" data-field="stack" role="radiogroup" aria-label="Preferred stack">
+                            <button type="button" class="selector-option is-active" data-value="No-Code" role="radio" aria-checked="true">No-code</button>
+                            <button type="button" class="selector-option" data-value="Python" role="radio" aria-checked="false">Python</button>
+                            <button type="button" class="selector-option" data-value="Node.js" role="radio" aria-checked="false">Node.js</button>
+                        </div>
                     </div>
-                </div>
-                <div class="scraper-selector-widget__group">
-                    <span class="selector-label">My monthly budget</span>
-                    <div class="selector-group" data-field="budget" role="radiogroup" aria-label="Monthly budget">
-                        <button type="button" class="selector-option" data-value="$" role="radio" aria-checked="false" title="Starter / hobby">$</button>
-                        <button type="button" class="selector-option is-active" data-value="$$" role="radio" aria-checked="true" title="Growth">$$</button>
-                        <button type="button" class="selector-option" data-value="$$$" role="radio" aria-checked="false" title="Enterprise">$$$</button>
+                    <div class="scraper-selector-widget__group">
+                        <span class="selector-label">My monthly budget</span>
+                        <div class="selector-group" data-field="budget" role="radiogroup" aria-label="Monthly budget">
+                            <button type="button" class="selector-option" data-value="$" role="radio" aria-checked="false" title="Starter / hobby">$</button>
+                            <button type="button" class="selector-option is-active" data-value="$$" role="radio" aria-checked="true" title="Growth">$$</button>
+                            <button type="button" class="selector-option" data-value="$$$" role="radio" aria-checked="false" title="Enterprise">$$$</button>
+                        </div>
                     </div>
+                    <button class="btn btn--primary scraper-selector-widget__cta" id="view-matches-button">View my matches</button>
                 </div>
-                <button class="btn btn--primary scraper-selector-widget__cta" id="view-matches-button">View My Matches</button>
-            </div>
 
-            <div id="recommendations-output" class="recommendations-output" aria-live="polite"></div>
-        </div>
-    </div>
-</section>
-
-<section class="bd-spotlight">
-    <div class="container">
-        <div class="bd-spotlight__card">
-            <div class="bd-spotlight__body">
-                <span class="bd-spotlight__eyebrow">Editor's Choice · 2026</span>
-                <h2 class="bd-spotlight__title">Bright Data Scraping Browser</h2>
-                <p class="bd-spotlight__lead">
-                    Run Playwright, Puppeteer, or Selenium on a fully hosted browser with
-                    built-in CAPTCHA solving, automatic IP rotation, and unlimited concurrent
-                    sessions — connect in a single line of code.
-                </p>
-                <ul class="bd-spotlight__features">
-                    <li>400M+ residential IPs across 195 countries</li>
-                    <li>Automatic CAPTCHA solving &amp; fingerprint management</li>
-                    <li>Flexible pay-as-you-go pricing</li>
-                </ul>
-                <div class="bd-spotlight__actions">
-                    
-                    <a href="/goto/bd-products/" class="btn btn--primary" target="_blank" rel="sponsored noopener noreferrer">Get Started →</a>
-                    <a href="/learn/bright-data-scraping-browser/" class="btn btn--secondary">Read the Full Guide</a>
-                </div>
-            </div>
-            <div class="bd-spotlight__stats">
-                <div class="bd-stat"><span class="bd-stat__num">99.8%</span><span class="bd-stat__label">Success rate</span></div>
-                <div class="bd-stat"><span class="bd-stat__num">195</span><span class="bd-stat__label">Countries</span></div>
-                <div class="bd-stat"><span class="bd-stat__num">$5</span><span class="bd-stat__label">Per GB</span></div>
-                <div class="bd-stat"><span class="bd-stat__num">4.8/5</span><span class="bd-stat__label">Our rating</span></div>
+                <div id="recommendations-output" class="recommendations-output" aria-live="polite"></div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="top-3-compare">
-    <div class="container">
-        <h2 class="section__title">Provider Quick-Compare</h2>
-        <div class="compare-grid">
-            <div class="compare-card compare-card--featured">
-                <span class="compare-card__badge">★ Top Pick</span>
-                <h3 class="compare-card__title">Bright Data</h3>
-                <p><strong>Success Rate:</strong> 99.8%</p>
-                <p><strong>Best For:</strong> Large-Scale Enterprise</p>
-                <p><strong>Rating:</strong> 4.8/5</p>
-                <a href="/reviews/bright-data/" class="btn btn--secondary">View Review</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">Oxylabs</h3>
-                <p><strong>Success Rate:</strong> 99.5%</p>
-                <p><strong>Best For:</strong> AI & ML Data Collection</p>
-                <p><strong>Rating:</strong> 4.7/5</p>
-                <a href="/reviews/oxylabs/" class="btn btn--secondary">View Review</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">DataImpulse</h3>
-                <p><strong>Success Rate:</strong> 99.2%</p>
-                <p><strong>Best For:</strong> Budget-Friendly Scraping</p>
-                <p><strong>Rating:</strong> 4.5/5</p>
-                <a href="/reviews/dataimpulse/" class="btn btn--secondary">View Review</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">IPRoyal</h3>
-                <p><strong>Success Rate:</strong> 99.1%</p>
-                <p><strong>Best For:</strong> Flexible Pay-As-You-Go</p>
-                <p><strong>Rating:</strong> 4.5/5</p>
-                <a href="/reviews/iproyal/" class="btn btn--secondary">View Review</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">HydraProxy</h3>
-                <p><strong>Success Rate:</strong> 98.9%</p>
-                <p><strong>Best For:</strong> Micro-Budget & Mobile</p>
-                <p><strong>Rating:</strong> 4.4/5</p>
-                <a href="/reviews/hydraproxy/" class="btn btn--secondary">View Review</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="hands-on-guides">
-    <div class="container">
-        <h2 class="section__title">Hands-On Scraping Guides</h2>
-        <p class="section__subtitle" style="text-align: center; margin-bottom: 2rem;">
-            Ready-to-run code samples in PHP, Node.js &amp; Rust.
-        </p>
-        <div class="compare-grid">
-            <div class="compare-card compare-card--featured">
-                <span class="compare-card__badge">★ Most Popular</span>
-                <h3 class="compare-card__title">Amazon Product Tracking</h3>
-                <p>Track price, availability &amp; rating by ASIN.</p>
-                <p><strong>Code:</strong> PHP · Node.js · Rust</p>
-                <a href="/solutions/amazon-product-tracking/" class="btn btn--secondary">Read Guide</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">Google Search Scraping</h3>
-                <p>Parse SERP results into structured JSON.</p>
-                <p><strong>Code:</strong> PHP · Node.js · Rust</p>
-                <a href="/solutions/google-search-scraping/" class="btn btn--secondary">Read Guide</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">Walmart Product Tracking</h3>
-                <p>Read clean data from <code>__NEXT_DATA__</code>.</p>
-                <p><strong>Code:</strong> PHP · Node.js · Rust</p>
-                <a href="/solutions/walmart-product-tracking/" class="btn btn--secondary">Read Guide</a>
-            </div>
-            <div class="compare-card">
-                <h3 class="compare-card__title">AliExpress Product Tracking</h3>
-                <p>Extract product JSON for dropshipping research.</p>
-                <p><strong>Code:</strong> PHP · Node.js · Rust</p>
-                <a href="/solutions/aliexpress-product-tracking/" class="btn btn--secondary">Read Guide</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="live-data">
-    <div class="container">
-        <h2 class="section__title">Live Data Pulse</h2>
-        <p class="section__subtitle" style="text-align: center; margin-bottom: 2rem;">
-            *Representative success rates and response times based on recent industry benchmarks.
-        </p>
-        <div class="data-table">
-            <div class="data-table__header">
-                <div class="data-table__cell">Provider</div>
-                <div class="data-table__cell">Target</div>
-                <div class="data-table__cell">Success Rate</div>
-                <div class="data-table__cell">Avg. Response</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">Bright Data</div>
-                <div class="data-table__cell">Amazon</div>
-                <div class="data-table__cell status--up">98.5%</div>
-                <div class="data-table__cell">1.1s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">Oxylabs</div>
-                <div class="data-table__cell">Amazon</div>
-                <div class="data-table__cell status--up">99.2%</div>
-                <div class="data-table__cell">0.9s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">DataImpulse</div>
-                <div class="data-table__cell">Amazon</div>
-                <div class="data-table__cell status--up">98.8%</div>
-                <div class="data-table__cell">1.3s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">IPRoyal</div>
-                <div class="data-table__cell">Amazon</div>
-                <div class="data-table__cell status--up">98.6%</div>
-                <div class="data-table__cell">1.4s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">HydraProxy</div>
-                <div class="data-table__cell">Amazon</div>
-                <div class="data-table__cell status--up">98.3%</div>
-                <div class="data-table__cell">1.6s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">Bright Data</div>
-                <div class="data-table__cell">Google</div>
-                <div class="data-table__cell status--up">99.0%</div>
-                <div class="data-table__cell">1.8s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">Oxylabs</div>
-                <div class="data-table__cell">Google</div>
-                <div class="data-table__cell status--up">99.1%</div>
-                <div class="data-table__cell">1.6s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">DataImpulse</div>
-                <div class="data-table__cell">Google</div>
-                <div class="data-table__cell status--up">99.0%</div>
-                <div class="data-table__cell">2.0s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">IPRoyal</div>
-                <div class="data-table__cell">Google</div>
-                <div class="data-table__cell status--up">98.9%</div>
-                <div class="data-table__cell">2.1s</div>
-            </div>
-            <div class="data-table__row">
-                <div class="data-table__cell">HydraProxy</div>
-                <div class="data-table__cell">Google</div>
-                <div class="data-table__cell status--up">98.7%</div>
-                <div class="data-table__cell">2.3s</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-                </main>
-
-                
-                
-                
-
-
-    
-
-
-
-
-                
-            </div>
-
-            
-            
-            
-        </div>
-    </div>
-
-    
-    <div class="sidebar-overlay" aria-hidden="true"></div>
-
-    
-    
-    
-<div class="search-overlay" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-describedby="search-description">
-    <div class="search">
-        <h2 id="search-title" class="sr-only">Search documentation</h2>
-        <p id="search-description" class="sr-only">Type to search. Use arrow keys to navigate results, Enter to select, Escape to close.</p>
-
-        <div class="search__input-wrapper">
-            <span class="search__icon" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.3-4.3"/>
-                </svg>
-            </span>
-            <input
-                type="search"
-                class="search__input"
-                placeholder="Search documentation..."
-                autocomplete="off"
-                autofocus
-                aria-label="Search query"
-                aria-controls="search-results"
-                aria-autocomplete="list"
-            >
-            <span class="search__shortcut" aria-hidden="true">/</span>
-            <button class="search__close" type="button" aria-label="Close search dialog" title="Close (Esc)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M18 6 6 18"/>
-                    <path d="m6 6 12 12"/>
-                </svg>
-            </button>
-        </div>
-
-        <div id="search-results" class="search__results" role="listbox" aria-label="Search results">
-            
-        </div>
-
-        <footer class="search__footer">
-            <nav class="search__hints" aria-label="Keyboard shortcuts">
-                <span class="search__hint">
-                    <kbd aria-label="Up and down arrows">↑</kbd><kbd aria-hidden="true">↓</kbd> <span>Navigate</span>
-                </span>
-                <span class="search__hint">
-                    <kbd aria-label="Enter">↵</kbd> <span>Select</span>
-                </span>
-                <span class="search__hint">
-                    <kbd aria-label="Escape">esc</kbd> <span>Close</span>
-                </span>
-            </nav>
-            <span class="search__powered-by">Powered by <a href="https://github.com/weixsong/elasticlunr.js" target="_blank" rel="noopener noreferrer" aria-label="elasticlunr.js on GitHub (opens in new tab)">elasticlunr</a></span>
-        </footer>
+<div class="shell">
+    <div class="trust">
+        <div class="trust__item"><span class="trust__num">15</span><span class="trust__label">Providers &amp; tools reviewed hands-on</span></div>
+        <div class="trust__item"><span class="trust__num">48</span><span class="trust__label">Reviews, comparisons &amp; guides</span></div>
+        <div class="trust__item"><span class="trust__num">4</span><span class="trust__label">Languages of runnable code samples</span></div>
+        <div class="trust__item"><span class="trust__num">100%</span><span class="trust__label">Ratings recorded before affiliate links are added</span></div>
     </div>
 </div>
 
-    
+<section class="section">
+    <div class="shell">
+        <div class="section__head">
+            <div>
+                <p class="u-eyebrow">Editor's choice · 2026</p>
+                <h2>Bright Data Scraping Browser</h2>
+                <p>Run Playwright, Puppeteer or Selenium on a fully hosted browser with built-in CAPTCHA solving, automatic IP rotation and unlimited concurrent sessions — connect in a single line of code.</p>
+            </div>
+        </div>
+        <div class="verdict verdict--neutral">
+            <div aria-hidden="true"></div>
+            <div>
+                <div class="verdict__label">Why it leads our rankings</div>
+                <div class="verdict__winner">400M+ residential IPs · 195 countries · 99.5%+ tested success rate · our rating <span class="u-mono">4.7/5</span></div>
+                <p class="verdict__body">The strongest all-round platform we've tested for protected targets. Pay-as-you-go pricing; premium rates apply.</p>
+                <div class="hero__actions">
+                    <a href="/goto/bd-products/" class="btn btn--cta" rel="sponsored noopener">Visit Bright Data <span class="btn__arrow" aria-hidden="true">→</span></a>
+                    <a href="/learn/bright-data-scraping-browser/" class="btn btn--secondary">Read the full guide</a>
+                </div>
+                <p class="disclosure" style="margin-top:var(--sp-3)"><span class="disclosure__dot" aria-hidden="true"></span>Sponsored link. Ratings are independent.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="padding-top:0">
+    <div class="shell">
+        <div class="section__head">
+            <div>
+                <h2>Provider quick-compare</h2>
+                <p>Our current top-rated providers. Every score comes from our own testing — read the full review before you commit.</p>
+            </div>
+            <a href="/proxy-providers/" class="btn btn--secondary btn--sm">See the ranked directory</a>
+        </div>
+        <div class="grid-cards">
+            
+            
+            
+            <div class="provider">
+                <div class="provider__top">
+                    <div class="provider__logo" aria-hidden="true">Br</div>
+                    <div>
+                        <div class="provider__name">Bright Data</div>
+                        <div class="provider__meta">
+                            <span class="badge badge--winner">Top pick</span>
+                            <span class="stars stars--sm" aria-label="Rated 4.7 out of 5">
+                                <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:94%">★★★★★</span></span>
+                                <span class="stars__value">4.7<span class="stars__max">/5</span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="provider__blurb">Bright Data review: the gold standard for web scraping with 400M+ IPs, a powerful Web Unlocker, Scraping Browser, and 99.5%+ success rates.</p>
+                <div class="provider__actions">
+                    <a href="https://www.web-scrapers.com/reviews/bright-data/" class="btn btn--secondary btn--sm">Read the review</a>
+                </div>
+            </div>
+            
+            
+            
+            <div class="provider">
+                <div class="provider__top">
+                    <div class="provider__logo" aria-hidden="true">Ox</div>
+                    <div>
+                        <div class="provider__name">Oxylabs</div>
+                        <div class="provider__meta">
+                            
+                            <span class="stars stars--sm" aria-label="Rated 4.5 out of 5">
+                                <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:90%">★★★★★</span></span>
+                                <span class="stars__value">4.5<span class="stars__max">/5</span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="provider__blurb">Oxylabs review: AI-powered scraper APIs and a 100M+ proxy network built for large-scale, enterprise web scraping and data collection.</p>
+                <div class="provider__actions">
+                    <a href="https://www.web-scrapers.com/reviews/oxylabs/" class="btn btn--secondary btn--sm">Read the review</a>
+                </div>
+            </div>
+            
+            
+            
+            <div class="provider">
+                <div class="provider__top">
+                    <div class="provider__logo" aria-hidden="true">Ze</div>
+                    <div>
+                        <div class="provider__name">ZenRows</div>
+                        <div class="provider__meta">
+                            
+                            <span class="stars stars--sm" aria-label="Rated 4.3 out of 5">
+                                <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:86%">★★★★★</span></span>
+                                <span class="stars__value">4.3<span class="stars__max">/5</span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="provider__blurb">ZenRows review: a web scraping API and scraping browser with powerful anti-bot bypass, JS rendering, and residential proxies behind a single endpoint.</p>
+                <div class="provider__actions">
+                    <a href="https://www.web-scrapers.com/reviews/zenrows/" class="btn btn--secondary btn--sm">Read the review</a>
+                </div>
+            </div>
+            
+            
+            
+            <div class="provider">
+                <div class="provider__top">
+                    <div class="provider__logo" aria-hidden="true">IP</div>
+                    <div>
+                        <div class="provider__name">IPRoyal</div>
+                        <div class="provider__meta">
+                            
+                            <span class="stars stars--sm" aria-label="Rated 4.2 out of 5">
+                                <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:84%">★★★★★</span></span>
+                                <span class="stars__value">4.2<span class="stars__max">/5</span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="provider__blurb">IPRoyal review: flexible, affordable proxies with non-expiring residential traffic, plus ISP, datacenter, mobile, and sneaker proxy options.</p>
+                <div class="provider__actions">
+                    <a href="https://www.web-scrapers.com/reviews/iproyal/" class="btn btn--secondary btn--sm">Read the review</a>
+                </div>
+            </div>
+            
+            
+            
+            <div class="provider">
+                <div class="provider__top">
+                    <div class="provider__logo" aria-hidden="true">Da</div>
+                    <div>
+                        <div class="provider__name">DataImpulse</div>
+                        <div class="provider__meta">
+                            
+                            <span class="stars stars--sm" aria-label="Rated 4 out of 5">
+                                <span class="stars__glyphs" aria-hidden="true">★★★★★<span class="stars__fill" style="width:80%">★★★★★</span></span>
+                                <span class="stars__value">4<span class="stars__max">/5</span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="provider__blurb">DataImpulse review: affordable, pay-as-you-go residential and mobile proxies with no monthly commitment, great value for indie developers and startups.</p>
+                <div class="provider__actions">
+                    <a href="https://www.web-scrapers.com/reviews/dataimpulse/" class="btn btn--secondary btn--sm">Read the review</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="section" style="padding-top:0">
+    <div class="shell">
+        <div class="section__head">
+            <div>
+                <h2>Explore the site</h2>
+            </div>
+        </div>
+        <div class="grid-cards">
+            <a href="/reviews/" class="tile">
+                <span class="tile__title">Reviews <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Hands-on reviews of proxy networks, unblocking tools and scraping APIs, with pricing breakdowns and honest verdicts.</span>
+            </a>
+            <a href="/comparisons/" class="tile">
+                <span class="tile__title">Comparisons <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Head-to-head breakdowns — features, pricing models and who should pick which tool.</span>
+            </a>
+            <a href="/proxy-providers/" class="tile">
+                <span class="tile__title">Provider directory <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Every provider we've tested, ranked, on one page.</span>
+            </a>
+            <a href="/learn/" class="tile">
+                <span class="tile__title">Learning center <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Python and Playwright tutorials, proxy types, CAPTCHA handling and staying unblocked.</span>
+            </a>
+            <a href="/solutions/" class="tile">
+                <span class="tile__title">Industry solutions <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Per-marketplace scraping guides with runnable code in PHP, Node.js and Rust.</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="padding-top:0">
+    <div class="shell">
+        <div class="section__head">
+            <div>
+                <h2>Hands-on scraping guides</h2>
+                <p>Ready-to-run code samples in PHP, Node.js and Rust.</p>
+            </div>
+            <a href="/solutions/" class="btn btn--secondary btn--sm">All solutions</a>
+        </div>
+        <div class="grid-cards">
+            <a href="/solutions/amazon-product-tracking/" class="tile">
+                <span class="tile__title">Amazon product tracking <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Track price, availability and rating by ASIN.</span>
+                <span class="tile__meta">PHP · Node.js · Rust</span>
+            </a>
+            <a href="/solutions/google-search-scraping/" class="tile">
+                <span class="tile__title">Google search scraping <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Parse SERP results into structured JSON.</span>
+                <span class="tile__meta">PHP · Node.js · Rust</span>
+            </a>
+            <a href="/solutions/walmart-product-tracking/" class="tile">
+                <span class="tile__title">Walmart product tracking <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Read clean data from <code>__NEXT_DATA__</code>.</span>
+                <span class="tile__meta">PHP · Node.js · Rust</span>
+            </a>
+            <a href="/solutions/aliexpress-product-tracking/" class="tile">
+                <span class="tile__title">AliExpress product tracking <span class="tile__arrow" aria-hidden="true">→</span></span>
+                <span class="tile__desc">Extract product JSON for dropshipping research.</span>
+                <span class="tile__meta">PHP · Node.js · Rust</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+    </main>
 
     
     
+<footer class="footer">
+    <div class="shell">
+        <div class="footer__cols">
+            <div class="footer__col">
+                <a href="/" class="logo" aria-label="web-scrapers.com home">
+                    <span class="logo__dot" aria-hidden="true"></span>
+                    <span>web-scrapers<span class="logo__tld">.com</span></span>
+                </a>
+                <p style="margin-top:var(--sp-3);font-size:var(--fs-13);color:var(--text-muted);max-width:36ch">
+                    Independent reviews, benchmarks and guides for web scraping
+                    infrastructure. We may earn a commission on some sign-ups;
+                    it never affects our test results or ratings.
+                </p>
+            </div>
+            <div class="footer__col">
+                <h4>Reviews</h4>
+                <ul>
+                    <li><a href="/reviews/bright-data/">Bright Data</a></li>
+                    <li><a href="/reviews/oxylabs/">Oxylabs</a></li>
+                    <li><a href="/reviews/zenrows/">ZenRows</a></li>
+                    <li><a href="/reviews/">All reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Compare</h4>
+                <ul>
+                    <li><a href="/comparisons/bright-data-vs-oxylabs/">Bright Data vs Oxylabs</a></li>
+                    <li><a href="/comparisons/zenrows-alternatives/">ZenRows alternatives</a></li>
+                    <li><a href="/proxy-providers/">Provider directory</a></li>
+                    <li><a href="/comparisons/">All comparisons</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="/learn/web-scraping-with-python/">Web scraping with Python</a></li>
+                    <li><a href="/learn/proxy-types-explained/">Proxy types explained</a></li>
+                    <li><a href="/solutions/">Industry solutions</a></li>
+                    <li><a href="/learn/">Learning center</a></li>
+                </ul>
+            </div>
+        </div>
+        
 
-    
+
+<div class="ad ad--footer" style="margin:var(--sp-8) 0 0">
+    <span class="ad__label">Advertisement</span>
+    <iframe data-aa="2441049" src="//acceptable.a-ads.com/2441049/?size=Adaptive"
+            style="border:0; padding:0; width:100%; max-width:728px; height:auto; overflow:hidden; display:block; margin:auto"
+            title="Advertisement" loading="lazy"></iframe>
+</div>
+
+
+        <div class="footer__legal">
+            <span>&copy; 2026 web-scrapers.com</span>
+            <span><a href="#newsletter">Newsletter</a> · <a href="https://www.web-scrapers.com/atom.xml">Feed</a></span>
+        </div>
+    </div>
+</footer>
+
     
 
     
@@ -676,125 +598,24 @@
 
     
     
-    
-
-    
-    
 
 
 <div id="newsletter-modal" class="nl-overlay" hidden>
     <div class="nl-card" role="dialog" aria-modal="true" aria-labelledby="nl-title">
         <button type="button" class="nl-close" aria-label="Close">&times;</button>
-        <div class="nl-emoji" aria-hidden="true">📬</div>
-        <h3 id="nl-title">Join 5k+ Developers</h3>
-        <p class="nl-blurb">Get the latest web scraping news and tutorials, straight to your inbox.</p>
-        <form id="newsletter-form">
+        <h3 id="nl-title">Join the newsletter</h3>
+        <p class="nl-blurb">Web scraping test results, provider changes, and new guides — straight to your inbox.</p>
+        <form id="newsletter-form" class="nl-form">
             <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit" class="nl-submit">Subscribe</button>
+            <button type="submit" class="btn btn--primary">Subscribe</button>
         </form>
         <p class="nl-privacy">No spam, ever. Unsubscribe anytime.</p>
         <div id="newsletter-thanks" hidden>
-            <div class="nl-emoji" aria-hidden="true">🎉</div>
-            <p class="nl-thanks-title">You're in!</p>
+            <p class="nl-thanks-title">You're in</p>
             <p class="nl-blurb">Thanks for subscribing — the next issue is headed your way.</p>
         </div>
     </div>
 </div>
-
-<style>
-.nl-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background: rgba(5, 8, 16, 0.65);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-}
-.nl-overlay[hidden] { display: none; }
-.nl-card {
-    position: relative;
-    width: 100%;
-    max-width: 430px;
-    padding: 2.25rem 2rem 1.75rem;
-    text-align: center;
-    background: var(--color-bg-elevated, #1e2030);
-    border: 1px solid var(--color-border, #363a4f);
-    border-radius: 16px;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
-    animation: nl-pop 0.25s ease-out;
-}
-@keyframes nl-pop {
-    from { opacity: 0; transform: translateY(12px) scale(0.97); }
-    to   { opacity: 1; transform: none; }
-}
-.nl-card h3 { margin: 0 0 0.5rem; }
-.nl-emoji { font-size: 2.25rem; line-height: 1; margin-bottom: 0.75rem; }
-.nl-blurb { margin: 0; color: var(--color-text-secondary, #b8c0e0); }
-.nl-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.75rem;
-    padding: 0.25rem;
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    line-height: 1;
-    color: inherit;
-    opacity: 0.55;
-    cursor: pointer;
-}
-.nl-close:hover { opacity: 1; }
-#newsletter-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-}
-#newsletter-form[hidden], .nl-privacy[hidden] { display: none; }
-#newsletter-form input[type="email"] {
-    flex: 1;
-    min-width: 0;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    color: var(--color-text, #cad3f5);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--color-border, #363a4f);
-    border-radius: 10px;
-    outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-}
-#newsletter-form input[type="email"]::placeholder { color: var(--color-text-muted, #8087a2); }
-#newsletter-form input[type="email"]:focus {
-    border-color: var(--color-accent, #c6a0f6);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent, #c6a0f6) 25%, transparent);
-}
-.nl-submit {
-    padding: 0.75rem 1.4rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--ctp-base, #181926);
-    background: var(--color-accent, #c6a0f6);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
-}
-.nl-submit:hover { background: var(--color-accent-hover, #f5bde6); }
-.nl-submit:active { transform: scale(0.97); }
-.nl-privacy {
-    margin: 0.85rem 0 0;
-    font-size: 0.8rem;
-    color: var(--color-text-muted, #8087a2);
-}
-#newsletter-thanks { margin-top: 1.25rem; }
-.nl-thanks-title { margin: 0 0 0.35rem; font-size: 1.2rem; font-weight: 700; }
-@media (max-width: 480px) {
-    #newsletter-form { flex-direction: column; }
-}
-</style>
 
 <script>
 (function () {
@@ -860,14 +681,6 @@
 
 
 
-    
-    
-    <button class="fab scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="m18 15-6-6-6 6"/>
-        </svg>
-    </button>
-    
-
+    <script src="https://www.web-scrapers.com/js/site.js" defer></script>
 </body>
 </html>
