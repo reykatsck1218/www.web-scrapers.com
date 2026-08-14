@@ -324,7 +324,7 @@
     {% endif %}
 
     {# ===== Stylesheets ===== #}
-    <link rel="stylesheet" href="{{ get_url(path='style.css') | safe }}">
+    <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) | safe }}">
     {% block extra_styles %}{% endblock %} {# Placeholder for extra styles #}
 
     {# Syntax highlighting #}
