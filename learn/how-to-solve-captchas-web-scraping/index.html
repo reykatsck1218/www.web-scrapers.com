@@ -83,7 +83,7 @@
     <meta property="og:description" content="Learn how to handle reCAPTCHA, hCaptcha, Cloudflare Turnstile, and more while scraping — why they trigger, how to avoid them, and how automatic solvers work.">
     
     
-    <meta property="og:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="og:image" content="https://www.web-scrapers.com/assets/og/learn-how-to-solve-captchas-web-scraping.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="How to Solve CAPTCHAs When Web Scraping: A Practical Guide">
@@ -96,6 +96,8 @@
     
     <meta property="article:published_time" content="2026-06-12T00:00:00">
     
+    
+    <meta property="article:modified_time" content="2026-08-05T00:00:00">
     
     
     
@@ -112,7 +114,7 @@
     <meta name="twitter:description" content="Learn how to handle reCAPTCHA, hCaptcha, Cloudflare Turnstile, and more while scraping — why they trigger, how to avoid them, and how automatic solvers work.">
     
     
-    <meta name="twitter:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta name="twitter:image" content="https://www.web-scrapers.com/assets/og/learn-how-to-solve-captchas-web-scraping.png">
     <meta property="twitter:image:alt" content="How to Solve CAPTCHAs When Web Scraping: A Practical Guide">
     
     
@@ -149,6 +151,8 @@
                 ,
                 "datePublished": "2026-06-12"
                 
+                ,
+                "dateModified": "2026-08-05"
                 
             }
             
@@ -166,6 +170,8 @@
                 "datePublished": "2026-06-12T00:00:00",
                 
                 
+                "dateModified": "2026-08-05T00:00:00",
+                
                 
                 "author": {
                     "@type": "Organization",
@@ -174,7 +180,7 @@
                 
                 
                 
-                "word_count": 723,
+                "word_count": 741,
                 
                 "inLanguage": "en"
             }
@@ -483,7 +489,7 @@
         
         
         <p class="article__meta">
-            Published <time itemprop="datePublished" datetime="2026-06-12">June 12, 2026</time>
+            Updated <time itemprop="dateModified" datetime="2026-08-05">August 05, 2026</time>
             
         </p>
         
@@ -516,7 +522,7 @@
 <h2 id="approach-1-prevent-them-cheapest">Approach 1: Prevent them (cheapest)</h2>
 <p>Stop the challenge before it appears:</p>
 <ul>
-<li>Route through <strong><a href="/goto/bd-residential/">residential proxies</a></strong> so traffic looks like a real consumer ISP.</li>
+<li>Route through <strong><a href="/goto/bd-residential/" rel="sponsored noopener">residential proxies</a></strong> so traffic looks like a real consumer ISP.</li>
 <li>Send <strong>complete, consistent headers</strong> and a realistic User-Agent.</li>
 <li><strong>Throttle and randomize</strong> request timing.</li>
 <li><strong>Render JavaScript</strong> with a real browser engine when the site expects it (see <a href="/learn/playwright-python-scraping/">Playwright scraping</a>).</li>
@@ -526,7 +532,7 @@
 <p>Standalone solving APIs accept a CAPTCHA's site-key and return a solution token you submit with your request. They work, but you own the integration: detecting the challenge, extracting parameters, calling the solver, injecting the token, and retrying. Per-site engineering, and it breaks when the challenge changes.</p>
 <h2 id="approach-3-automatic-solving-via-a-web-unlocker-least-effort">Approach 3: Automatic solving via a Web Unlocker (least effort)</h2>
 <p>The lowest-maintenance path bundles detection, solving, proxies, and rendering behind one endpoint. You send a URL; you get back unblocked HTML — CAPTCHA handled transparently.</p>
-<p>Bright Data's <a href="/goto/bd-captcha/">CAPTCHA solver</a>, part of its Web Unlocker, <strong>automatically detects and solves CAPTCHAs by default</strong> — no site-keys, no token injection. It covers the full range above (reCAPTCHA, hCaptcha, Turnstile, PerimeterX, FunCaptcha, GeeTest, AWS WAF, KeyCAPTCHA, Yandex, and image/text/click variants), submits any associated forms after solving, and returns the result as HTML, JSON, Markdown, or a screenshot. Auto-solving can be toggled off per request or per CAPTCHA type when you want manual control.</p>
+<p>Bright Data's <a href="/goto/bd-captcha/" rel="sponsored noopener">CAPTCHA solver</a>, part of its Web Unlocker, <strong>automatically detects and solves CAPTCHAs by default</strong> — no site-keys, no token injection. It covers the full range above (reCAPTCHA, hCaptcha, Turnstile, PerimeterX, FunCaptcha, GeeTest, AWS WAF, KeyCAPTCHA, Yandex, and image/text/click variants), submits any associated forms after solving, and returns the result as HTML, JSON, Markdown, or a screenshot. Auto-solving can be toggled off per request or per CAPTCHA type when you want manual control.</p>
 <p>A request goes through a single endpoint — no per-CAPTCHA plumbing:</p>
 <pre><code data-lang="bash">curl -X POST &quot;https://api.brightdata.com/request&quot; \
   -H &quot;Authorization: Bearer $BRIGHTDATA_TOKEN&quot; \
@@ -567,7 +573,7 @@ console.log(await resp.text());
 <h2 id="the-bottom-line">The bottom line</h2>
 <p>Handle CAPTCHAs in this order: <strong>avoid triggering them</strong> (proxies, fingerprints, pacing), then <strong>solve what's left</strong>. For a handful of easy targets, prevention plus a solving service works. For protected sites at scale, an automatic solver that bundles unblocking infrastructure removes the maintenance entirely.</p>
 <p><em>Related: <a href="/reviews/bright-data-web-unlocker/">Bright Data Web Unlocker review</a>, <a href="/learn/how-to-avoid-getting-blocked/">How to Avoid Getting Blocked</a>, <a href="/learn/bright-data-scraping-browser/">Bright Data Scraping Browser</a>, and <a href="/learn/proxy-types-explained/">proxy types explained</a>.</em></p>
-<p><strong><a href="/goto/bd-captcha/">Solve CAPTCHAs automatically with Bright Data →</a></strong></p>
+<p><strong><a href="/goto/bd-captcha/" rel="sponsored noopener">Solve CAPTCHAs automatically with Bright Data →</a></strong></p>
 
     </div>
 
@@ -590,6 +596,8 @@ console.log(await resp.text());
     
     <meta itemprop="author" content="Web-Scrapers.com">
     
+    
+    <meta itemprop="dateModified" content="2026-08-05">
     
 </article>
 

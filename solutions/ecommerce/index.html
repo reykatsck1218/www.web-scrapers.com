@@ -180,7 +180,7 @@
                 
                 
                 
-                "word_count": 1652,
+                "word_count": 1733,
                 
                 "inLanguage": "en"
             }
@@ -565,7 +565,7 @@ console.log(JSON.stringify({
 <pre><code data-lang="bash">export PROXY_URL=&quot;http://brd-customer-&lt;id&gt;-zone-&lt;unblocker_zone&gt;:&lt;password&gt;@brd.superproxy.io:22225&quot;
 </code></pre>
 <blockquote>
-<p><strong>Building on Bright Data?</strong> Their e-commerce scraping stack covers the unlocking layer for you. <a href="/goto/bd-ecommerce/">Get started →</a></p>
+<p><strong>Building on Bright Data?</strong> Their e-commerce scraping stack covers the unlocking layer for you. <a href="/goto/bd-ecommerce/" rel="sponsored noopener">Get started →</a></p>
 </blockquote>
 <p>For marketplaces that don't ship JSON-LD, swap the parse step for the marketplace-specific extraction shown in the guides below — the rest of the loop is identical.</p>
 <h2 id="per-marketplace-guides">Per-Marketplace Guides</h2>
@@ -580,6 +580,9 @@ console.log(JSON.stringify({
 <p>A staple for dropshipping research. AliExpress embeds product data in a <code>window.runParams</code> JSON object; the <a href="/solutions/aliexpress-product-tracking/">AliExpress Product Tracking</a> guide extracts it with a balanced-brace parser that's more robust than regex against deeply nested JSON.</p>
 <h3 id="google-search-and-shopping">Google Search and Shopping</h3>
 <p>Search visibility is e-commerce data too — rankings, competitors' shopping placements, and "people also ask" coverage. The <a href="/solutions/google-search-scraping/">Google Search Scraping</a> guide shows how to collect SERP data reliably.</p>
+<h3 id="alibaba-b2b">Alibaba (B2B)</h3>
+<p>Sourcing and supplier intelligence live upstream of retail. The <a href="/solutions/alibaba-scraping/">Alibaba scraping guide</a> covers extracting B2B product listings and supplier data — useful for cost benchmarking against the retail prices you track elsewhere.</p>
+<p>Beyond retail, the same tracker architecture applies to dynamic-pricing verticals like travel: see our guides for <a href="/solutions/airbnb-scraping/">Airbnb</a>, <a href="/solutions/booking-scraping/">Booking.com</a>, and <a href="/solutions/kayak-flight-scraping/">Kayak flight prices</a>.</p>
 <h2 id="data-storage-and-change-detection">Data Storage and Change Detection</h2>
 <p>A tracker is only as useful as its history. Keep it simple:</p>
 <ul>
@@ -604,7 +607,7 @@ console.log(JSON.stringify({
 <li>Choose the right proxy type for your target with <a href="/learn/proxy-types-explained/">Residential vs. Datacenter vs. Mobile Proxies</a>.</li>
 <li>Add the storage and change-detection layer above, schedule it with cron, and let the history accumulate.</li>
 </ol>
-<p>When maintaining the unblocking layer yourself stops being worth your time, a managed stack takes it over. <strong><a href="/goto/bd-ecommerce/">Get started with Bright Data →</a></strong></p>
+<p>When maintaining the unblocking layer yourself stops being worth your time, a managed stack takes it over. <strong><a href="/goto/bd-ecommerce/" rel="sponsored noopener">Get started with Bright Data →</a></strong></p>
 
     </div>
 
@@ -781,6 +784,12 @@ console.log(JSON.stringify({
                         <li class="page-toc-panel__item">
                             <a href="#google-search-and-shopping" class="page-toc-panel__link">
                                 Google Search and Shopping
+                            </a>
+                        </li>
+                        
+                        <li class="page-toc-panel__item">
+                            <a href="#alibaba-b2b" class="page-toc-panel__link">
+                                Alibaba (B2B)
                             </a>
                         </li>
                         

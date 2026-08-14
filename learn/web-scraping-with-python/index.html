@@ -180,7 +180,7 @@
                 
                 
                 
-                "word_count": 1849,
+                "word_count": 1855,
                 
                 "inLanguage": "en"
             }
@@ -666,7 +666,7 @@ print(allowed)
 }
 response = requests.get(url, proxies=proxies, timeout=10)
 </code></pre>
-<p>Not all proxies are equal: datacenter IPs are cheap but easily detected, while residential IPs route through real consumer connections and blend in with normal traffic. Our <a href="/learn/proxy-types-explained/">proxy types guide</a> breaks down when each makes sense. For serious crawls, a rotating residential network like <a href="/goto/bd-residential/">Bright Data</a> handles IP rotation automatically so your code just points at one endpoint.</p>
+<p>Not all proxies are equal: datacenter IPs are cheap but easily detected, while residential IPs route through real consumer connections and blend in with normal traffic. Our <a href="/learn/proxy-types-explained/">proxy types guide</a> breaks down when each makes sense. For serious crawls, a rotating residential network like <a href="/goto/bd-residential/" rel="sponsored noopener">Bright Data</a> handles IP rotation automatically so your code just points at one endpoint.</p>
 <p>Blocking is a whole discipline of its own — fingerprinting, header order, TLS signatures, behavioral analysis. Before you scale any scraper up, read <a href="/learn/how-to-avoid-getting-blocked/">How to Avoid Getting Blocked While Web Scraping</a>, and if your target throws CAPTCHAs at you, see <a href="/learn/how-to-solve-captchas-web-scraping/">how to solve CAPTCHAs when scraping</a>.</p>
 <h2 id="storing-your-data-csv-and-json">Storing Your Data: CSV and JSON</h2>
 <p>A list of Python dictionaries is no use once the script exits. The two simplest persistent formats are CSV (opens directly in Excel and Google Sheets) and JSON (preserves nesting, ideal for further processing). Both are in the standard library:</p>
