@@ -5,7 +5,6 @@
 {% set wide = page.extra.wide | default(value=false) %}
 <div class="shell">
     <div class="{% if wide %}layout-wide{% else %}layout-article{% endif %}" style="padding-top:var(--sp-10)">
-        {% if not wide %}<div class="layout-article__rail" aria-hidden="true"></div>{% endif %}
 
         <article itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
             <header class="article-head">
