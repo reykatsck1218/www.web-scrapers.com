@@ -1,8 +1,17 @@
 +++
-title = "US Residential & ISP Proxies: City-Level Geo-Targeting for Web Scraping"
+title = "US Proxies for Web Scraping: City-Level Geo-Targeting"
 description = "Use US residential and ISP proxies with city-level geo-targeting to scrape location-specific prices, ads, listings, and content reliably at scale."
 template = "page.html"
 date = 2026-08-10
+updated = 2026-08-14
+[extra]
+og_image = "assets/og/learn-us-proxies.png"
+faq = [
+  { q = "What is the best proxy type for scraping US websites?", a = "Rotating US residential proxies are the standard starting point — they carry ISP-assigned consumer trust and handle the vast majority of protected US targets. Switch to ISP (static residential) proxies when you need a consistent IP for long sessions, and datacenter proxies only for unprotected, high-volume targets." },
+  { q = "What is city-level geo-targeting?", a = "Instead of just choosing the US as your exit country, you select a specific metropolitan area — New York, Los Angeles, Chicago — and your exit IP is drawn from consumer devices in that city. This matters for zip-code-based retail pricing, local real-estate inventory, DMA-targeted ads, and travel fares." },
+  { q = "Why not just use datacenter proxies for US data?", a = "Datacenter IP ranges are well-catalogued by anti-bot vendors, so protected sites block them immediately. They also fail the geographic trust check that residential IPs pass by design. They remain cost-effective only for lightly protected targets." },
+  { q = "When do I need an unblocking layer on top of US proxies?", a = "When targets use advanced anti-bot systems that fingerprint TLS, JavaScript execution, and browser APIs in addition to IP reputation. A managed unlocker such as a Web Unlocker or Scraping Browser sits on top of the same residential networks and adds fingerprinting, CAPTCHA solving, and retries automatically." },
+]
 +++
 
 A huge slice of the world's commercially valuable web data is US-specific: retail prices that vary by zip code, real-estate listings filtered by city, search-ad creatives geo-targeted at particular DMAs, travel fares priced differently for domestic versus international visitors. Accessing that data from abroad — or from a datacenter IP that instantly reads as non-residential — means getting the wrong results, getting blocked, or both. US residential and ISP proxies solve both problems at once: they make your requests look like they originate from a real American consumer device, and with city-level targeting you can pinpoint exactly which market you want to see.
@@ -43,7 +52,7 @@ Read the [Bright Data ISP Proxies review](/reviews/bright-data-isp-proxies/) for
 
 Datacenter proxies are fast and inexpensive, but their IP ranges are well-catalogued by anti-bot vendors. For targets with serious protection they'll get blocked immediately; for unprotected or lightly protected US sites they remain a cost-effective option.
 
-> **[Explore US proxy options from Bright Data →](/goto/bd-proxies-us/)**
+> **<a href="/goto/bd-proxies-us/" rel="sponsored noopener">Explore US proxy options from Bright Data →</a>**
 
 ### Mobile Proxies
 
@@ -98,6 +107,6 @@ Choose rotating for scale, sticky for continuity.
 
 US residential and ISP proxies are the standard choice for any project that needs to collect US-specific data reliably. Residential proxies provide the highest compatibility with anti-bot systems; ISP proxies add speed and stability for sustained sessions; and city-level targeting ensures you see the data that actual local users see — not a generic national default.
 
-> **[Get started with US residential proxies from Bright Data →](/goto/bd-proxies-us/)**
+> **<a href="/goto/bd-proxies-us/" rel="sponsored noopener">Get started with US residential proxies from Bright Data →</a>**
 
 *For a provider-by-provider comparison, see our [proxy and scraper reviews](/reviews/) or the [Bright Data vs. Oxylabs comparison](/comparisons/bright-data-vs-oxylabs/). For a full explanation of proxy types, see [Residential vs. Datacenter vs. Mobile Proxies](/learn/proxy-types-explained/).*
