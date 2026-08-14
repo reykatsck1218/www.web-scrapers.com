@@ -2,9 +2,10 @@
 
 {% block content %}
 {% set is_review = page.extra.review_rating is defined %}
+{% set wide = page.extra.wide | default(value=false) %}
 <div class="shell">
-    <div class="layout-article" style="padding-top:var(--sp-10)">
-        <div class="layout-article__rail" aria-hidden="true"></div>
+    <div class="{% if wide %}layout-wide{% else %}layout-article{% endif %}" style="padding-top:var(--sp-10)">
+        {% if not wide %}<div class="layout-article__rail" aria-hidden="true"></div>{% endif %}
 
         <article itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
             <header class="article-head">
@@ -71,7 +72,7 @@
                 {% endif %}
             </header>
 
-            <div class="prose" itemprop="articleBody">
+            <div class="prose{% if wide %} prose--wide{% endif %}" itemprop="articleBody">
                 {{ page.content | safe }}
             </div>
 
@@ -98,8 +99,8 @@
             </nav>
         </article>
 
-        <aside class="layout-article__rail">
-            {% if page.toc and page.toc | length > 0 %}
+        <aside class="layout-article__rail"{% if wide %} hidden{% endif %}>
+            {% if not wide and page.toc and page.toc | length > 0 %}
             <nav class="toc" aria-label="On this page">
                 <div class="toc__title">On this page</div>
                 <ol>

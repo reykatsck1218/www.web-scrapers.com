@@ -74,8 +74,8 @@
 .prose pre code{background:none;border:0;padding:0;font:inherit;color:inherit}
 
 /* sponsored in-body links: quiet coral accent, not a button */
-.prose a[rel~="sponsored"]{color:var(--cta);font-weight:var(--fw-medium)}
-.prose a[rel~="sponsored"]:hover{color:var(--cta-hover)}
+.prose a[rel~="sponsored"]:not(.btn){color:var(--cta);font-weight:var(--fw-medium)}
+.prose a[rel~="sponsored"]:not(.btn):hover{color:var(--cta-hover)}
 /* CTA blockquotes (existing content pattern: > **Get started:** <a …>) */
 .prose blockquote:has(a[rel~="sponsored"]){border-left-color:var(--cta);background:var(--cta-soft);padding:var(--sp-4);border-radius:0 var(--r-lg) var(--r-lg) 0}
 
@@ -143,3 +143,8 @@
 
 /* ---- section hub listing ---- */
 .hub-intro{max-width:var(--measure-article);display:grid;gap:var(--sp-4);margin-bottom:var(--sp-8)}
+
+/* ---- wide single-column pages (directory etc.) ---- */
+.layout-wide{display:grid;grid-template-columns:minmax(0,1fr)}
+.prose--wide{max-width:none}
+.prose--wide>p:first-child{max-width:var(--measure-article)}

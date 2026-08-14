@@ -6,6 +6,7 @@ template = "page.html"
 date = 2026-06-02
 updated = 2026-08-14
 [extra]
+wide = true
 og_image = "assets/og/proxy-providers.png"
 +++
 
