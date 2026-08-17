@@ -5,8 +5,106 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-08-14T00:00:00+00:00</updated>
+    <updated>2026-08-17T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>China Proxies: Scrape Taobao, JD &amp; Weibo at Scale</title>
+        <published>2026-08-17T00:00:00+00:00</published>
+        <updated>2026-08-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/learn/china-proxies/"/>
+        <id>https://www.web-scrapers.com/learn/china-proxies/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/learn/china-proxies/">&lt;p&gt;Scraping Chinese websites isn&#x27;t just a geographic routing problem — it&#x27;s a multi-layer challenge that combines network-level filtering by the Great Firewall, sophisticated platform bot detection, language and locale signals, and Chinese-specific CDN architectures. Treating it like any other regional scraping target means getting blocked, receiving incomplete data, or quietly getting served a stripped-down version of the page with no indication anything is wrong.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide explains how the GFW affects scraping, what China proxy types exist, how Taobao, JD.com, and Weibo specifically defend themselves, and how to structure a reliable scraping stack for Chinese targets.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-great-firewall-and-scraping-direction&quot;&gt;The Great Firewall and Scraping Direction&lt;&#x2F;h2&gt;
+&lt;p&gt;The Great Firewall (GFW) is commonly framed as a censorship tool that prevents Chinese users from reaching foreign sites. For scraping purposes, the more important behavior is the inverse: many Chinese platforms and CDNs apply aggressive IP filtering that treats large swaths of foreign IP ranges — especially datacenter ranges from major cloud providers — as suspect or blocked outright.&lt;&#x2F;p&gt;
+&lt;p&gt;This creates two distinct problems for a scraper running outside mainland China:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Network-level filtering.&lt;&#x2F;strong&gt; Your request may be dropped or throttled before it reaches the target server because the GFW or upstream routing identifies your IP as foreign or datacenter-originated.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Application-level geo-restrictions.&lt;&#x2F;strong&gt; Even if the packet arrives, the target platform may return a CAPTCHA, a login wall, a redirect to an international version of the site (which carries far less data), or an outright 403. Taobao, for example, shows significantly different — and much less complete — product data to foreign IPs compared to Chinese residential ones.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;A China residential proxy puts your egress node inside the mainland Chinese IP space, which passes both checks by design.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;key-chinese-platforms-and-their-defenses&quot;&gt;Key Chinese Platforms and Their Defenses&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;taobao-and-tmall&quot;&gt;Taobao and Tmall&lt;&#x2F;h3&gt;
+&lt;p&gt;Both platforms sit inside Alibaba&#x27;s ecosystem and share the same risk-control infrastructure. Alibaba runs one of the more sophisticated bot-detection stacks in the world: it combines IP reputation scoring, device fingerprinting, behavioral analysis (mouse movement, scroll patterns), and CAPTCHA challenges. The platform also heavily uses JavaScript rendering, so scraping raw HTML is often insufficient — you need a headless browser or a managed unblocking layer.&lt;&#x2F;p&gt;
+&lt;p&gt;Publicly accessible data — product names, prices, seller ratings, review counts — is reachable without login, but the experience degrades sharply from foreign or datacenter IPs. China residential proxies combined with a &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Web Unlocker&lt;&#x2F;a&gt; that handles JavaScript execution are the standard approach for reliable Taobao data at scale.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;jd-com&quot;&gt;JD.com&lt;&#x2F;h3&gt;
+&lt;p&gt;JD.com applies rate limiting aggressively and fingerprints TLS client hellos in addition to standard IP checks. Product listing pages and search results are accessible without authentication for most categories, but bulk requests from the same IP or IP block trigger delays or blocks quickly. Rotating residential IPs help; mobile proxies offer the highest tolerance for high-cadence requests because Chinese mobile carrier IPs are treated as high-trust by default.&lt;&#x2F;p&gt;
+&lt;p&gt;For a practical code starting point, the &lt;a href=&quot;&#x2F;solutions&#x2F;alibaba-scraping&#x2F;&quot;&gt;Alibaba scraping guide&lt;&#x2F;a&gt; covers proxy setup patterns that apply directly to JD.com as well.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;weibo&quot;&gt;Weibo&lt;&#x2F;h3&gt;
+&lt;p&gt;Weibo&#x27;s public profile and post pages are nominally accessible without login, but the platform enforces strict rate limits on search and trending endpoints and serves different content depth depending on whether the visitor appears to be a Chinese domestic user. Scraping at meaningful scale requires rotating Chinese residential IPs and careful session management. The platform&#x27;s mobile web endpoint is often less protected than the desktop version and worth testing first.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-proxies-cn&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Get China residential proxies from Bright Data →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;china-proxy-types&quot;&gt;China Proxy Types&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;china-residential-proxies&quot;&gt;China Residential Proxies&lt;&#x2F;h3&gt;
+&lt;p&gt;Residential proxies route your traffic through real consumer devices inside mainland China — mobile phones, home routers, and other end-user devices with IPs assigned by Chinese ISPs like China Telecom, China Unicom, and China Mobile. These IPs carry the highest level of trust with Chinese anti-bot systems because they are indistinguishable from genuine Chinese consumer traffic.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Detection risk:&lt;&#x2F;strong&gt; Low for domestic platform checks; passes the GFW geo-filter.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Speed:&lt;&#x2F;strong&gt; Variable — depends on the exit device&#x27;s connection quality.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Best for:&lt;&#x2F;strong&gt; Taobao product data, JD pricing, Weibo public posts, and any target that geo-restricts or downgrades responses for foreign IPs.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Rotating sessions provide IP diversity at scale; sticky sessions hold the same IP for the duration of a multi-step workflow (useful when a site ties session state to an IP).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;china-datacenter-proxies&quot;&gt;China Datacenter Proxies&lt;&#x2F;h3&gt;
+&lt;p&gt;Datacenter proxies hosted in Chinese data centers (Alibaba Cloud, Tencent Cloud, and domestic colocation facilities) provide fast, stable IPs that pass the basic geo-check because they resolve as mainland China addresses. However, their IP ranges are recognizable as datacenter infrastructure, and Chinese platforms — especially Taobao and JD — actively block known datacenter CIDR blocks. They work for lightly protected targets like news sites, public government data portals, and smaller e-commerce platforms that don&#x27;t run sophisticated bot detection.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Detection risk:&lt;&#x2F;strong&gt; Medium to high for major platforms.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Speed:&lt;&#x2F;strong&gt; Fast — datacenter infrastructure.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Best for:&lt;&#x2F;strong&gt; Unprotected Chinese sites, high-volume scraping of targets that don&#x27;t fingerprint IP class.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;mobile-proxies&quot;&gt;Mobile Proxies&lt;&#x2F;h3&gt;
+&lt;p&gt;Mobile proxies route through 4G&#x2F;5G SIM cards in Chinese carrier networks. Because mobile carrier IPs use CGNAT (Carrier-Grade NAT), a single mobile IP is shared among potentially thousands of real users — making it extremely costly for platforms to block. This makes Chinese mobile proxies the most resilient option for the most aggressively protected targets.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Detection risk:&lt;&#x2F;strong&gt; Very low — highest trust level with Chinese platforms.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Speed:&lt;&#x2F;strong&gt; Moderate — cellular bandwidth limitations apply.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Best for:&lt;&#x2F;strong&gt; The most protected Taobao&#x2F;JD endpoints, Weibo rate-limited search, and any target that blocks residential pools quickly.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For a full comparison of proxy types including cost and detection risk, see &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;Residential vs. Datacenter vs. Mobile Proxies&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;structuring-your-china-scraping-stack&quot;&gt;Structuring Your China Scraping Stack&lt;&#x2F;h2&gt;
+&lt;p&gt;A reliable stack for Chinese targets typically has two or three layers:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Layer 1 — Proxy routing.&lt;&#x2F;strong&gt; A rotating China residential proxy pool provides the mainland IP identity. Configure your client to route all requests through the proxy and, where needed, select sticky sessions for multi-step workflows.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Layer 2 — Request localization.&lt;&#x2F;strong&gt; Chinese platforms inspect &lt;code&gt;Accept-Language&lt;&#x2F;code&gt;, &lt;code&gt;Accept&lt;&#x2F;code&gt; headers, and sometimes cookies for locale signals. Set &lt;code&gt;Accept-Language: zh-CN,zh;q=0.9&lt;&#x2F;code&gt; and use a Chinese user-agent to avoid triggering the &quot;foreign visitor&quot; code path that delivers reduced data.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Layer 3 — Unblocking.&lt;&#x2F;strong&gt; For JavaScript-heavy pages on Taobao, Tmall, and JD, you need either a headless browser or a managed unblocking layer that handles rendering, fingerprinting, and CAPTCHA solving. A managed Web Unlocker combines the proxy layer with fingerprint normalization so you don&#x27;t need to maintain a separate browser fleet. The &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt; covers what&#x27;s handled automatically versus what you still need to manage yourself.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;practical-tips-for-chinese-platform-scraping&quot;&gt;Practical Tips for Chinese Platform Scraping&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Start with mobile web endpoints.&lt;&#x2F;strong&gt; &lt;code&gt;m.taobao.com&lt;&#x2F;code&gt; and &lt;code&gt;m.jd.com&lt;&#x2F;code&gt; often carry the same product and pricing data as the desktop versions but with less aggressive bot detection and simpler HTML structure — less JavaScript to execute, faster response times, easier to parse.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Honor rate limits explicitly.&lt;&#x2F;strong&gt; Chinese platforms escalate from rate limits to IP bans quickly. Build deliberate per-IP request spacing into your scheduler rather than relying on proxy rotation alone to absorb velocity.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Validate data completeness.&lt;&#x2F;strong&gt; Geo-restricted responses sometimes look successful (HTTP 200) but return a stripped page with less data than a domestic Chinese user would see. Add a completeness check — a field count or a key field presence check — to detect quiet degradation early.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Scrape only public data.&lt;&#x2F;strong&gt; Taobao, JD.com, and Weibo all prohibit unauthorized scraping of non-public data in their terms of service. Limit collection to publicly accessible product listings, published post content, and public profiles. Do not attempt to bypass login walls or access data that is not publicly visible without authentication.&lt;&#x2F;p&gt;
+&lt;p&gt;For a broader treatment of anti-detection best practices, see &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked While Web Scraping&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;choosing-a-china-proxy-network&quot;&gt;Choosing a China Proxy Network&lt;&#x2F;h2&gt;
+&lt;p&gt;Not all proxy providers have genuine mainland China residential coverage. When evaluating a network, check three things: the specific Chinese ISPs represented in the pool (China Telecom, China Unicom, China Mobile are the three major carriers), whether city-level targeting is available (useful for platforms that serve regional pricing), and whether sticky session lengths are long enough for multi-step workflows.&lt;&#x2F;p&gt;
+&lt;p&gt;For a provider comparison, see the &lt;a href=&quot;&#x2F;comparisons&#x2F;bright-data-vs-oxylabs&#x2F;&quot;&gt;Bright Data vs. Oxylabs comparison&lt;&#x2F;a&gt; and the full &lt;a href=&quot;&#x2F;reviews&#x2F;&quot;&gt;proxy and scraper reviews&lt;&#x2F;a&gt; directory. Bright Data&#x27;s China residential pool covers all three major carriers with city-level targeting available.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-bottom-line&quot;&gt;The Bottom Line&lt;&#x2F;h2&gt;
+&lt;p&gt;Scraping Chinese websites at scale requires thinking in layers: a mainland China residential IP clears the geo-filter, correct locale headers pass the application-level domestic-user check, and a managed unblocking layer handles JavaScript rendering and fingerprinting for the most protected targets. Skipping any layer means inconsistent data, silent degradation, or outright blocks.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-proxies-cn&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Explore China residential proxies from Bright Data →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;&lt;em&gt;For a full proxy type breakdown, see &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;Residential vs. Datacenter vs. Mobile Proxies&lt;&#x2F;a&gt;. For Alibaba-specific scraping patterns, see the &lt;a href=&quot;&#x2F;solutions&#x2F;alibaba-scraping&#x2F;&quot;&gt;Alibaba scraping guide&lt;&#x2F;a&gt;. For provider comparisons, visit the &lt;a href=&quot;&#x2F;reviews&#x2F;&quot;&gt;proxy and scraper reviews&lt;&#x2F;a&gt; section.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;why-is-scraping-chinese-websites-harder-than-western-ones&quot;&gt;Why is scraping Chinese websites harder than Western ones?&lt;&#x2F;h3&gt;
+&lt;p&gt;Chinese platforms operate behind two overlapping defenses: the Great Firewall, which geo-blocks many foreign IP ranges at the network level, and sophisticated platform-level anti-bot systems (Alibaba&#x27;s risk engine, JD&#x27;s rate limiters, Weibo&#x27;s API gates) that flag non-residential IPs, unusual request cadences, and missing locale signals. Passing both layers simultaneously requires China-based residential IPs combined with correct language and browser fingerprinting.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;do-i-need-a-china-based-proxy-to-scrape-taobao-or-jd-com&quot;&gt;Do I need a China-based proxy to scrape Taobao or JD.com?&lt;&#x2F;h3&gt;
+&lt;p&gt;For most product, price, and listing data on Taobao and JD.com, a China residential IP is strongly recommended. Foreign datacenter IPs are frequently geo-restricted or served degraded responses. Mobile proxies (Chinese carrier SIMs) are the most reliable but most expensive option for the most aggressively protected endpoints.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-is-the-great-firewall-s-practical-effect-on-scraping&quot;&gt;What is the Great Firewall&#x27;s practical effect on scraping?&lt;&#x2F;h3&gt;
+&lt;p&gt;The GFW enforces bidirectional restrictions. Requests originating from foreign IP ranges to Chinese sites can be throttled or blocked by the firewall before they reach the target server. Simultaneously, Chinese platforms may themselves serve different content — or no content — to IPs that resolve outside mainland China. A China residential proxy puts your exit node inside mainland China, bypassing both restrictions at once.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;which-proxy-type-works-best-for-weibo-and-chinese-social-platforms&quot;&gt;Which proxy type works best for Weibo and Chinese social platforms?&lt;&#x2F;h3&gt;
+&lt;p&gt;Rotating China residential proxies handle the majority of public Weibo profile and post scraping. For endpoints that enforce strict rate limits or session continuity — such as Weibo&#x27;s search or trending API — sticky residential sessions or mobile proxies reduce the risk of mid-session blocks. An unblocking layer that handles TLS fingerprinting adds resilience on the most aggressive endpoints.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>US Proxies for Web Scraping: City-Level Geo-Targeting</title>
         <published>2026-08-10T00:00:00+00:00</published>
