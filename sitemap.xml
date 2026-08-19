@@ -4,6 +4,10 @@
         <loc>https://www.web-scrapers.com/</loc>
     </url>
     <url>
+        <loc>https://www.web-scrapers.com/about/</loc>
+        <lastmod>2026-08-19</lastmod>
+    </url>
+    <url>
         <loc>https://www.web-scrapers.com/comparisons/</loc>
     </url>
     <url>
@@ -37,6 +41,14 @@
     <url>
         <loc>https://www.web-scrapers.com/comparisons/zenrows-vs-scraperapi/</loc>
         <lastmod>2026-08-14</lastmod>
+    </url>
+    <url>
+        <loc>https://www.web-scrapers.com/editorial-policy/</loc>
+        <lastmod>2026-08-19</lastmod>
+    </url>
+    <url>
+        <loc>https://www.web-scrapers.com/how-we-test/</loc>
+        <lastmod>2026-08-19</lastmod>
     </url>
     <url>
         <loc>https://www.web-scrapers.com/learn/</loc>
