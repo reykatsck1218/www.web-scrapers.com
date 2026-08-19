@@ -27,3 +27,7 @@
 
 # Add theme if it's a git submodule
 # /themes/your_theme_name
+
+# Benchmark credentials
+scripts/benchmark/providers.json
+scripts/benchmark/results/
