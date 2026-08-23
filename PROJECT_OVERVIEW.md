@@ -124,7 +124,7 @@ A **scheduled remote agent** (claude.ai routine) drafts one article per week:
 
 - Routine ID: `trig_01RLMU9A2LBKudPtCQnmAQkc`
 - Dashboard: https://claude.ai/code/routines/trig_01RLMU9A2LBKudPtCQnmAQkc
-- Schedule: Mondays `0 1 * * 1` UTC = **9am Asia/Manila**
+- Schedule: Mondays + Thursdays `0 1 * * 1,4` UTC = **9am Asia/Manila** (bumped from weekly 2026-08-23)
 - Behavior: consumes a fixed topic queue (then alternates `content/learn/` ↔
   `content/solutions/`), writes in house style, builds, and **opens a PR**
   (never deploys/merges).
