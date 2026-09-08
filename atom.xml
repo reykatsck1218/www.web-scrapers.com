@@ -5,8 +5,241 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-03T00:00:00+00:00</updated>
+    <updated>2026-09-07T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Web Scraping Use Cases: Industry Playbook</title>
+        <published>2026-09-07T00:00:00+00:00</published>
+        <updated>2026-09-07T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/solutions/web-scraping-use-cases/"/>
+        <id>https://www.web-scrapers.com/solutions/web-scraping-use-cases/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/solutions/web-scraping-use-cases/">&lt;p&gt;The web is the world&#x27;s largest database of structured information — product prices updated daily, travel rates revised by the hour, social engagement counted in real time, supplier catalogues and company filings refreshed continuously. Web scraping is the discipline that turns that raw public data into queryable datasets. This guide maps the major use cases by industry, explains what each requires technically, and links to the deep-dive guides with ready-to-run code for each target.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;e-commerce-price-intelligence-and-competitive-monitoring&quot;&gt;E-commerce: Price Intelligence and Competitive Monitoring&lt;&#x2F;h2&gt;
+&lt;p&gt;Price intelligence is the canonical web scraping use case and the one with the clearest ROI story: a retailer who knows that a competitor repriced a product four hours ago can respond immediately rather than discovering it at the weekly pricing review.&lt;&#x2F;p&gt;
+&lt;p&gt;The data available on a public e-commerce listing page is richer than it looks. Most major platforms embed a schema.org &lt;code&gt;Product&lt;&#x2F;code&gt; JSON-LD block in every item page — name, price, currency, stock status, seller, aggregate review score — that is far more stable than CSS selectors against the surrounding markup. Amazon&#x27;s Sponsored Display data, Walmart&#x27;s pick-up-in-store availability, and eBay&#x27;s auction status all layer on top of that core structured data.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Common use cases in this vertical:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Competitor price monitoring (daily or intraday sweeps of SKU lists)&lt;&#x2F;li&gt;
+&lt;li&gt;Stock availability alerts for high-demand products&lt;&#x2F;li&gt;
+&lt;li&gt;Review sentiment aggregation for product improvement&lt;&#x2F;li&gt;
+&lt;li&gt;Marketplace seller landscape mapping (who is selling what, at what price)&lt;&#x2F;li&gt;
+&lt;li&gt;Search rank tracking (where does a product appear in organic and sponsored results)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;See our &lt;a href=&quot;&#x2F;solutions&#x2F;ecommerce&#x2F;&quot;&gt;E-commerce Scraping overview&lt;&#x2F;a&gt; for architecture guidance, and the per-platform guides for &lt;a href=&quot;&#x2F;solutions&#x2F;amazon-product-tracking&#x2F;&quot;&gt;Amazon&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;walmart-product-tracking&#x2F;&quot;&gt;Walmart&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;ebay-product-tracking&#x2F;&quot;&gt;eBay&lt;&#x2F;a&gt;, and &lt;a href=&quot;&#x2F;solutions&#x2F;alibaba-scraping&#x2F;&quot;&gt;Alibaba&lt;&#x2F;a&gt; for working code in PHP, Node.js, and Rust.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;travel-rate-monitoring-and-price-aggregation&quot;&gt;Travel: Rate Monitoring and Price Aggregation&lt;&#x2F;h2&gt;
+&lt;p&gt;Travel pricing is uniquely volatile: hotel nightly rates shift in response to demand signals and local event calendars; airfares can move by the minute around a flight booking event. That volatility is exactly what makes travel data commercially valuable — to OTAs benchmarking their own inventory, to revenue managers at independent hotels, to airlines tracking competitor fare strategies, and to analysts modelling city-level supply and occupancy.&lt;&#x2F;p&gt;
+&lt;p&gt;The technical challenge in travel scraping is that the most valuable data — nightly rates, room-type breakdowns, per-itinerary fare detail — lives inside JavaScript-rendered page state rather than server-rendered HTML. A plain HTTP client retrieves an empty shell; the pricing data appears only after full client-side hydration. Airbnb, Booking.com, and Kayak also all operate bot-management layers that reject datacenter IP ranges at the CDN edge.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Common use cases in this vertical:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hotel rate parity monitoring (are OTAs undercutting direct-booking rates?)&lt;&#x2F;li&gt;
+&lt;li&gt;Vacation rental market analysis (average nightly price by neighbourhood, seasonality)&lt;&#x2F;li&gt;
+&lt;li&gt;Flight price alerting (track a route and alert when fares drop below a threshold)&lt;&#x2F;li&gt;
+&lt;li&gt;Availability-based demand inference (sold-out inventory reveals high-demand dates)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;See &lt;a href=&quot;&#x2F;solutions&#x2F;travel-data-scraping&#x2F;&quot;&gt;Travel Data Scraping: Hotels, Flights &amp;amp; Rentals&lt;&#x2F;a&gt; for the full landscape, then &lt;a href=&quot;&#x2F;solutions&#x2F;airbnb-scraping&#x2F;&quot;&gt;Airbnb&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;booking-scraping&#x2F;&quot;&gt;Booking.com&lt;&#x2F;a&gt;, and &lt;a href=&quot;&#x2F;solutions&#x2F;kayak-flight-scraping&#x2F;&quot;&gt;Kayak&lt;&#x2F;a&gt; for the platform-specific parsing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;social-media-sentiment-and-brand-monitoring&quot;&gt;Social Media: Sentiment and Brand Monitoring&lt;&#x2F;h2&gt;
+&lt;p&gt;Social scraping of public data — profiles, posts, hashtags, engagement counts — powers brand safety auditing, influencer discovery, trend monitoring, and political research. The signal value is in the trajectory: a brand-mention post gaining 50,000 likes in two hours reads very differently from one gaining 50,000 over a month.&lt;&#x2F;p&gt;
+&lt;p&gt;Public social profile pages are intentionally indexable: they emit Open Graph meta tags (&lt;code&gt;og:title&lt;&#x2F;code&gt;, &lt;code&gt;og:description&lt;&#x2F;code&gt;, &lt;code&gt;og:image&lt;&#x2F;code&gt;) and, on some platforms, JSON-LD &lt;code&gt;ProfilePage&lt;&#x2F;code&gt; objects that are designed to survive layout changes. Post text and engagement counts require more fragile parsing — and on TikTok and Facebook, they require full JavaScript rendering before they appear.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Common use cases in this vertical:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Brand mention tracking (volume and sentiment of posts naming your brand)&lt;&#x2F;li&gt;
+&lt;li&gt;Influencer discovery (follower counts, engagement rate, niche by hashtag)&lt;&#x2F;li&gt;
+&lt;li&gt;Competitor content performance benchmarking&lt;&#x2F;li&gt;
+&lt;li&gt;Trend detection (which hashtags are accelerating; which are declining)&lt;&#x2F;li&gt;
+&lt;li&gt;Crisis monitoring (sudden spike in negative brand mentions)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;See &lt;a href=&quot;&#x2F;solutions&#x2F;social-media-scraping&#x2F;&quot;&gt;Social Media Scraping: Profiles, Posts &amp;amp; Sentiment&lt;&#x2F;a&gt; for the overview, then &lt;a href=&quot;&#x2F;solutions&#x2F;instagram-scraping&#x2F;&quot;&gt;Instagram&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;tiktok-scraping&#x2F;&quot;&gt;TikTok&lt;&#x2F;a&gt;, and &lt;a href=&quot;&#x2F;solutions&#x2F;facebook-scraping&#x2F;&quot;&gt;Facebook&lt;&#x2F;a&gt; for working code samples.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;b2b-research-lead-generation-and-supplier-discovery&quot;&gt;B2B Research: Lead Generation and Supplier Discovery&lt;&#x2F;h2&gt;
+&lt;p&gt;B2B scraping covers a wide range of targets: company directories (LinkedIn company pages, Crunchbase, local business listings), supplier catalogues on Alibaba or Global Sources, job postings as a proxy for hiring intent, and public company filings as a source of executive contact information and financial data.&lt;&#x2F;p&gt;
+&lt;p&gt;The data formats here are more varied than in e-commerce. Some targets expose clean JSON-LD &lt;code&gt;Organization&lt;&#x2F;code&gt; or &lt;code&gt;LocalBusiness&lt;&#x2F;code&gt; blocks; others require CSS-selector-based extraction against rendered HTML; still others structure their data inside embedded JavaScript objects. Unlike social media, many B2B research targets are less aggressively protected — but the most valuable ones (LinkedIn, Glassdoor, Crunchbase) run the same residential-IP-required bot management as the top consumer platforms.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Common use cases in this vertical:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lead list building (company name, size, industry, decision-maker contact)&lt;&#x2F;li&gt;
+&lt;li&gt;Supplier price and MOQ comparison across B2B marketplaces&lt;&#x2F;li&gt;
+&lt;li&gt;Job posting analysis (competitor hiring signals, salary benchmarking)&lt;&#x2F;li&gt;
+&lt;li&gt;Company funding and growth trajectory monitoring&lt;&#x2F;li&gt;
+&lt;li&gt;Review aggregation across G2, Capterra, and similar platforms&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;See &lt;a href=&quot;&#x2F;solutions&#x2F;alibaba-scraping&#x2F;&quot;&gt;How to Scrape Alibaba&lt;&#x2F;a&gt; for a worked example, and &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked&lt;&#x2F;a&gt; for the anti-bot patterns that apply across this vertical.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;market-research-search-engines-news-and-public-records&quot;&gt;Market Research: Search Engines, News, and Public Records&lt;&#x2F;h2&gt;
+&lt;p&gt;Search engine result pages (SERPs), news archives, patent databases, and public regulatory filings form a distinct scraping category. The use cases are more analytical than operational — you are not building a live price feed but reconstructing a landscape over time.&lt;&#x2F;p&gt;
+&lt;p&gt;SERP scraping tracks organic keyword rankings, identifies featured snippets and SERP features, and monitors paid ad copy for competitor intelligence. News scraping fuels financial NLP models (identifying company mentions in earnings reports or regulatory filings), tracks brand coverage, and populates content intelligence databases. Public records scraping extracts court filings, property records, and corporate registration data for due-diligence workflows.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Common use cases in this vertical:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Organic rank tracking across target keywords&lt;&#x2F;li&gt;
+&lt;li&gt;Competitor ad copy and landing page surveillance&lt;&#x2F;li&gt;
+&lt;li&gt;News sentiment analysis for financial modelling&lt;&#x2F;li&gt;
+&lt;li&gt;Patent landscape mapping for R&amp;amp;D teams&lt;&#x2F;li&gt;
+&lt;li&gt;Public company filing extraction for ESG and due-diligence workflows&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;See our &lt;a href=&quot;&#x2F;solutions&#x2F;google-search-scraping&#x2F;&quot;&gt;Google Search Scraping&lt;&#x2F;a&gt; guide for SERP-specific code and the &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;Web Scraping Without Getting Blocked&lt;&#x2F;a&gt; guide for the defences common to high-value research targets.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;technical-prerequisites-across-use-cases&quot;&gt;Technical Prerequisites Across Use Cases&lt;&#x2F;h2&gt;
+&lt;p&gt;Despite the diversity of targets, the same technical foundation underpins all production scraping:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Proxy infrastructure.&lt;&#x2F;strong&gt; Any target with meaningful anti-bot investment blocks datacenter IPs at the CDN layer. Residential or ISP proxies with realistic TLS fingerprints are the entry requirement for e-commerce, travel, and social targets. For simpler targets — news sites, public records, SERP datasets — rotating datacenter proxies are often sufficient. See &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;Proxy Types Explained&lt;&#x2F;a&gt; for a decision framework.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;JavaScript rendering.&lt;&#x2F;strong&gt; React and Next.js SPAs serve empty shells on initial load. Unless the proxy layer handles rendering for you, your scraper needs a headless browser or will return empty content on the most valuable targets.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Structured data parsing.&lt;&#x2F;strong&gt; JSON-LD schema.org blocks and Open Graph meta tags are the most reliable parsing targets across use cases — they are designed to be machine-readable and survive markup experiments better than CSS selectors. When they are present, always prefer them over fragile DOM selectors.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Rate control and retry logic.&lt;&#x2F;strong&gt; All anti-bot systems operate on request rate as one of their primary signals. Scrape at a cadence that is invisible in aggregate traffic; implement exponential back-off on 429 and 503 responses.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-generic-structured-data-extractor&quot;&gt;A Generic Structured-Data Extractor&lt;&#x2F;h2&gt;
+&lt;p&gt;This pattern — fetch via proxy, extract JSON-LD and Open Graph, return structured output — applies as a starting point to any web scraping use case. The per-platform guides linked throughout this article layer on the site-specific parsing needed for richer fields.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;unblocker_zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Need proxy infrastructure?&lt;&#x2F;strong&gt; &lt;a href=&quot;&#x2F;goto&#x2F;bd-use-cases&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Explore Bright Data&#x27;s data collection tools →&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;php&quot;&gt;PHP&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+&#x2F;&#x2F; Run: php extract.php &amp;quot;https:&#x2F;&#x2F;example.com&#x2F;any-page&amp;quot;
+$proxy = getenv(&amp;#39;PROXY_URL&amp;#39;);
+$url   = $argv[1] ?? &amp;#39;https:&#x2F;&#x2F;example.com&#x2F;&amp;#39;;
+
+$ch = curl_init($url);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER =&amp;gt; true,
+    CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+    CURLOPT_PROXY          =&amp;gt; $proxy,
+    CURLOPT_SSL_VERIFYPEER =&amp;gt; false,
+    CURLOPT_TIMEOUT        =&amp;gt; 60,
+    CURLOPT_HTTPHEADER     =&amp;gt; [
+        &amp;#39;Accept-Language: en-US,en;q=0.9&amp;#39;,
+        &amp;#39;Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+    ],
+]);
+$html = curl_exec($ch);
+curl_close($ch);
+
+$doc = new DOMDocument();
+@$doc-&amp;gt;loadHTML($html);
+$xp = new DOMXPath($doc);
+
+&#x2F;&#x2F; Extract all JSON-LD blocks
+$jsonld = [];
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;script[@type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;) as $node) {
+    $decoded = json_decode($node-&amp;gt;textContent, true);
+    if ($decoded) $jsonld[] = $decoded;
+}
+
+&#x2F;&#x2F; Extract Open Graph metadata
+$og = [];
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;meta[starts-with(@property,&amp;quot;og:&amp;quot;)]&amp;#39;) as $node) {
+    $key = str_replace(&amp;#39;og:&amp;#39;, &amp;#39;&amp;#39;, $node-&amp;gt;getAttribute(&amp;#39;property&amp;#39;));
+    $og[$key] = $node-&amp;gt;getAttribute(&amp;#39;content&amp;#39;);
+}
+
+echo json_encode([&amp;#39;url&amp;#39; =&amp;gt; $url, &amp;#39;jsonld&amp;#39; =&amp;gt; $jsonld, &amp;#39;og&amp;#39; =&amp;gt; $og],
+    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;node-js&quot;&gt;Node.js&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;javascript&quot;&gt;&#x2F;&#x2F; extract.mjs — node extract.mjs &amp;quot;https:&#x2F;&#x2F;example.com&#x2F;any-page&amp;quot;
+&#x2F;&#x2F; Install: npm i axios https-proxy-agent cheerio
+import axios from &amp;#39;axios&amp;#39;;
+import { HttpsProxyAgent } from &amp;#39;https-proxy-agent&amp;#39;;
+import * as cheerio from &amp;#39;cheerio&amp;#39;;
+
+const agent = new HttpsProxyAgent(process.env.PROXY_URL);
+const url   = process.argv[2] ?? &amp;#39;https:&#x2F;&#x2F;example.com&#x2F;&amp;#39;;
+
+const { data: html } = await axios.get(url, {
+  httpsAgent: agent, proxy: false, timeout: 60_000,
+  headers: {
+    &amp;#39;Accept-Language&amp;#39;: &amp;#39;en-US,en;q=0.9&amp;#39;,
+    &amp;#39;Accept&amp;#39;: &amp;#39;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+  },
+});
+
+const $ = cheerio.load(html);
+
+&#x2F;&#x2F; Collect all JSON-LD blocks
+const jsonld = [];
+$(&amp;#39;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;).each((_, el) =&amp;gt; {
+  try { jsonld.push(JSON.parse($(el).text())); } catch { &#x2F;* skip malformed *&#x2F; }
+});
+
+&#x2F;&#x2F; Collect Open Graph metadata
+const og = {};
+$(&amp;#39;meta[property^=&amp;quot;og:&amp;quot;]&amp;#39;).each((_, el) =&amp;gt; {
+  const key = $(el).attr(&amp;#39;property&amp;#39;).replace(&amp;#39;og:&amp;#39;, &amp;#39;&amp;#39;);
+  og[key]   = $(el).attr(&amp;#39;content&amp;#39;);
+});
+
+console.log(JSON.stringify({ url, jsonld, og }, null, 2));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;&#x2F;&#x2F; Cargo.toml:
+&#x2F;&#x2F;   reqwest = { version = &amp;quot;0.12&amp;quot;, features = [&amp;quot;blocking&amp;quot;] }
+&#x2F;&#x2F;   scraper = &amp;quot;0.20&amp;quot;
+&#x2F;&#x2F;   serde_json = &amp;quot;1&amp;quot;
+use scraper::{Html, Selector};
+use serde_json::{json, Map, Value};
+
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let url = std::env::args().nth(1)
+        .unwrap_or_else(|| &amp;quot;https:&#x2F;&#x2F;example.com&#x2F;&amp;quot;.into());
+
+    let client = reqwest::blocking::Client::builder()
+        .proxy(reqwest::Proxy::all(std::env::var(&amp;quot;PROXY_URL&amp;quot;)?)?)
+        .danger_accept_invalid_certs(true)
+        .build()?;
+
+    let html = client
+        .get(&amp;amp;url)
+        .header(&amp;quot;Accept-Language&amp;quot;, &amp;quot;en-US,en;q=0.9&amp;quot;)
+        .header(&amp;quot;Accept&amp;quot;, &amp;quot;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;quot;)
+        .send()?
+        .text()?;
+
+    let doc      = Html::parse_document(&amp;amp;html);
+    let ld_sel   = Selector::parse(r#&amp;quot;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;quot;#).unwrap();
+    let og_sel   = Selector::parse(r#&amp;quot;meta[property]&amp;quot;#).unwrap();
+
+    let jsonld: Vec&amp;lt;Value&amp;gt; = doc.select(&amp;amp;ld_sel)
+        .filter_map(|el| serde_json::from_str(&amp;amp;el.text().collect::&amp;lt;String&amp;gt;()).ok())
+        .collect();
+
+    let mut og = Map::new();
+    for el in doc.select(&amp;amp;og_sel) {
+        let prop = el.value().attr(&amp;quot;property&amp;quot;).unwrap_or(&amp;quot;&amp;quot;);
+        if prop.starts_with(&amp;quot;og:&amp;quot;) {
+            let key = prop.trim_start_matches(&amp;quot;og:&amp;quot;);
+            let val = el.value().attr(&amp;quot;content&amp;quot;).unwrap_or(&amp;quot;&amp;quot;);
+            og.insert(key.to_string(), Value::String(val.to_string()));
+        }
+    }
+
+    println!(&amp;quot;{}&amp;quot;, serde_json::to_string_pretty(&amp;amp;json!({
+        &amp;quot;url&amp;quot;:    url,
+        &amp;quot;jsonld&amp;quot;: jsonld,
+        &amp;quot;og&amp;quot;:     og,
+    }))?);
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;choosing-the-right-infrastructure&quot;&gt;Choosing the Right Infrastructure&lt;&#x2F;h2&gt;
+&lt;p&gt;Matching your proxy layer to the target is the single most consequential infrastructure decision in any scraping project. Our &lt;a href=&quot;&#x2F;comparisons&#x2F;&quot;&gt;proxy provider comparison guides&lt;&#x2F;a&gt; cover the leading options side by side. For most high-value targets — major e-commerce platforms, travel sites, and social networks — you need a provider that combines residential IP rotation with JavaScript rendering, since both are required simultaneously.&lt;&#x2F;p&gt;
+&lt;p&gt;Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-use-cases&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker and data collection tools&lt;&#x2F;a&gt; handle residential IP rotation, JavaScript rendering, TLS fingerprint normalisation, and CAPTCHA solving behind a single proxy endpoint — the same infrastructure reflected in every code sample across this guide. For large historical datasets, pre-built &lt;a href=&quot;&#x2F;goto&#x2F;bd-datasets&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;datasets&lt;&#x2F;a&gt; are often faster to acquire than bootstrapping a full scraper from scratch.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Related: &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;Proxy Types Explained&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;ecommerce&#x2F;&quot;&gt;E-commerce Scraping&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;solutions&#x2F;travel-data-scraping&#x2F;&quot;&gt;Travel Data Scraping&lt;&#x2F;a&gt;, and &lt;a href=&quot;&#x2F;solutions&#x2F;social-media-scraping&#x2F;&quot;&gt;Social Media Scraping&lt;&#x2F;a&gt;.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-use-cases&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Start collecting structured web data at scale →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;what-are-the-most-common-web-scraping-use-cases&quot;&gt;What are the most common web scraping use cases?&lt;&#x2F;h3&gt;
+&lt;p&gt;Price intelligence and competitor monitoring in e-commerce, hotel and flight rate tracking in travel, brand sentiment and influencer discovery in social media, and lead generation or supplier research in B2B are the dominant production use cases. Each has its own target sites, data formats, and anti-bot environment.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;do-i-need-residential-proxies-for-all-scraping-use-cases&quot;&gt;Do I need residential proxies for all scraping use cases?&lt;&#x2F;h3&gt;
+&lt;p&gt;Not always. Many simpler targets — news sites, academic databases, public company filings — serve content reliably through datacenter proxies. Residential or ISP proxies become necessary when the target runs bot-management middleware (Cloudflare, DataDome, Akamai) or blocks known cloud IP ranges wholesale, as most major e-commerce, travel, and social platforms do.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-do-i-handle-sites-that-require-javascript-rendering&quot;&gt;How do I handle sites that require JavaScript rendering?&lt;&#x2F;h3&gt;
+&lt;p&gt;Sites built as React or Next.js SPAs serve an empty HTML shell on the initial request; useful data appears only after client-side hydration. You need either a headless browser (Playwright, Puppeteer) or a proxy service that handles rendering for you. The latter is usually more efficient at scale because it offloads browser fleet management.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;is-it-legal-to-scrape-public-web-data&quot;&gt;Is it legal to scrape public web data?&lt;&#x2F;h3&gt;
+&lt;p&gt;Whether scraping publicly visible data is lawful depends on jurisdiction, the nature of the data, and how it is used. Many courts have treated scraping of publicly accessible data as permissible, but platform Terms of Service and data-protection laws (GDPR, CCPA) add separate layers of constraint. Get jurisdiction-specific legal advice before deploying a production scraper.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>No-Code Web Scraping for Non-Developers</title>
         <published>2026-09-03T00:00:00+00:00</published>
