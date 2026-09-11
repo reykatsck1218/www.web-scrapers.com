@@ -5,8 +5,249 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-07T00:00:00+00:00</updated>
+    <updated>2026-09-10T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer</title>
+        <published>2026-09-10T00:00:00+00:00</published>
+        <updated>2026-09-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/learn/web-scraping-with-nodejs/"/>
+        <id>https://www.web-scrapers.com/learn/web-scraping-with-nodejs/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/learn/web-scraping-with-nodejs/">&lt;p&gt;Node.js is the quiet workhorse of the web scraping world. JavaScript runs natively in every browser, which means the same language you use to inspect a site in DevTools is the one you can use to scrape it — no mental context switch between languages. Combine that with Node&#x27;s non-blocking I&#x2F;O model and you have a runtime that handles hundreds of concurrent HTTP requests without breaking a sweat.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide walks you from zero to a working, pagination-aware scraper in Node.js. You&#x27;ll learn to fetch static pages with Axios, parse HTML with Cheerio, automate a real browser with Puppeteer for JavaScript-heavy sites, rotate proxies to stay unblocked, and save your data. Every code sample is runnable against a public practice site.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-node-js-for-web-scraping&quot;&gt;Why Node.js for Web Scraping?&lt;&#x2F;h2&gt;
+&lt;p&gt;Node.js isn&#x27;t the only option — Python is arguably more popular, and our &lt;a href=&quot;&#x2F;learn&#x2F;web-scraping-with-python&#x2F;&quot;&gt;Python web scraping guide&lt;&#x2F;a&gt; covers that path thoroughly. Node earns its place when:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Your team already writes JavaScript.&lt;&#x2F;strong&gt; No second language to maintain.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;You need concurrency without complexity.&lt;&#x2F;strong&gt; A single async function with &lt;code&gt;Promise.all&lt;&#x2F;code&gt; fires dozens of requests in parallel. The equivalent in Python requires threading or &lt;code&gt;asyncio&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;You&#x27;re scraping SPAs.&lt;&#x2F;strong&gt; Puppeteer and Playwright are built on the Chrome DevTools Protocol — the same engine that powers the browser. They feel at home in a Node environment in a way that Python wrappers do not.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For pure data science pipelines or projects where pandas is already involved, Python wins. For everything else, Node is a serious contender.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-your-project&quot;&gt;Setting Up Your Project&lt;&#x2F;h2&gt;
+&lt;p&gt;You need Node.js 18 or newer (LTS). Verify with &lt;code&gt;node --version&lt;&#x2F;code&gt;, then create a project:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;mkdir node-scraper &amp;amp;&amp;amp; cd node-scraper
+npm init -y
+npm install axios cheerio
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;axios&lt;&#x2F;code&gt; is the most ergonomic HTTP client in the Node ecosystem. &lt;code&gt;cheerio&lt;&#x2F;code&gt; parses HTML using a jQuery-like API and runs entirely server-side — no browser overhead.&lt;&#x2F;p&gt;
+&lt;p&gt;For JavaScript-heavy sites, add Puppeteer later:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;npm install puppeteer
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Throughout this guide we&#x27;ll scrape &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&quot;&gt;books.toscrape.com&lt;&#x2F;a&gt; — a sandboxed bookstore designed for scraping practice.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fetching-pages-with-axios&quot;&gt;Fetching Pages with Axios&lt;&#x2F;h2&gt;
+&lt;p&gt;The minimum viable fetch:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;import axios from &amp;#39;axios&amp;#39;;
+
+const { data } = await axios.get(&amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;#39;, {
+  headers: {
+    &amp;#39;User-Agent&amp;#39;:
+      &amp;#39;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) &amp;#39; +
+      &amp;#39;AppleWebKit&#x2F;537.36 (KHTML, like Gecko) &amp;#39; +
+      &amp;#39;Chrome&#x2F;124.0.0.0 Safari&#x2F;537.36&amp;#39;,
+  },
+  timeout: 10_000,
+});
+
+console.log(data.length); &#x2F;&#x2F; bytes of HTML
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Three habits worth keeping from the start:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Always set a timeout.&lt;&#x2F;strong&gt; Without it, a slow or dropped connection hangs your script indefinitely.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Send a real User-Agent.&lt;&#x2F;strong&gt; The default &lt;code&gt;axios&#x2F;1.x&lt;&#x2F;code&gt; string is the most obvious bot fingerprint you can broadcast.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Destructure &lt;code&gt;{ data }&lt;&#x2F;code&gt; from the response.&lt;&#x2F;strong&gt; Axios puts the body in &lt;code&gt;response.data&lt;&#x2F;code&gt;; the top-level object also carries headers, status codes, and config you usually don&#x27;t need right away.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Add &lt;code&gt;&quot;type&quot;: &quot;module&quot;&lt;&#x2F;code&gt; to your &lt;code&gt;package.json&lt;&#x2F;code&gt; to enable ES module &lt;code&gt;import&lt;&#x2F;code&gt; syntax, or use &lt;code&gt;const axios = require(&#x27;axios&#x27;).default&lt;&#x2F;code&gt; with CommonJS.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;parsing-html-with-cheerio&quot;&gt;Parsing HTML with Cheerio&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;code&gt;cheerio&lt;&#x2F;code&gt; loads an HTML string and exposes the same CSS selectors and traversal methods you&#x27;d use in a browser&#x27;s &lt;code&gt;document.querySelector&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;import axios from &amp;#39;axios&amp;#39;;
+import * as cheerio from &amp;#39;cheerio&amp;#39;;
+
+const { data } = await axios.get(&amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;#39;, {
+  headers: { &amp;#39;User-Agent&amp;#39;: &amp;#39;Mozilla&#x2F;5.0 (compatible; MyScraper&#x2F;1.0)&amp;#39; },
+  timeout: 10_000,
+});
+
+const $ = cheerio.load(data);
+const books = [];
+
+$(&amp;#39;article.product_pod&amp;#39;).each((_, el) =&amp;gt; {
+  const title = $(el).find(&amp;#39;h3 a&amp;#39;).attr(&amp;#39;title&amp;#39;);
+  const price = $(el).find(&amp;#39;p.price_color&amp;#39;).text().trim();
+  const rating = $(el).find(&amp;#39;p.star-rating&amp;#39;).attr(&amp;#39;class&amp;#39;).split(&amp;#39; &amp;#39;)[1];
+  books.push({ title, price, rating });
+});
+
+console.log(books);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;$&lt;&#x2F;code&gt; convention mirrors jQuery and keeps the syntax familiar. A few points worth noting:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data hides in attributes.&lt;&#x2F;strong&gt; The full book title is in the &lt;code&gt;title&lt;&#x2F;code&gt; attribute of the link, because the visible text is truncated to save layout space. Always inspect the actual HTML rather than assuming the visible text is complete.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;CSS class names carry data.&lt;&#x2F;strong&gt; The star rating is encoded as a class name: &lt;code&gt;&amp;lt;p class=&quot;star-rating Three&quot;&amp;gt;&lt;&#x2F;code&gt;. Splitting the class string is cheaper than a regex.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;text().trim()&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt; collapses whitespace and removes the newlines that HTML is full of.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;defensive-selectors&quot;&gt;Defensive Selectors&lt;&#x2F;h3&gt;
+&lt;p&gt;Real websites drift. Wrap every extraction so a missing element degrades to an empty string rather than throwing:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;const safe = (el, selector, attr = null) =&amp;gt; {
+  const found = $(el).find(selector);
+  if (!found.length) return &amp;#39;&amp;#39;;
+  return attr ? found.attr(attr) : found.text().trim();
+};
+
+const price = safe(el, &amp;#39;p.price_color&amp;#39;);
+const img   = safe(el, &amp;#39;img&amp;#39;, &amp;#39;src&amp;#39;);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Log a warning when an expected element returns empty. A layout change surfaces as a message instead of silent missing data.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;handling-pagination&quot;&gt;Handling Pagination&lt;&#x2F;h2&gt;
+&lt;p&gt;One page is a demo. All fifty pages is a dataset. Books.toscrape.com uses a &quot;next&quot; link (&lt;code&gt;&amp;lt;li class=&quot;next&quot;&amp;gt;&amp;lt;a href=&quot;catalogue&#x2F;page-2.html&quot;&amp;gt;&lt;&#x2F;code&gt;):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;import axios from &amp;#39;axios&amp;#39;;
+import * as cheerio from &amp;#39;cheerio&amp;#39;;
+
+const BASE = &amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;#39;;
+const HEADERS = { &amp;#39;User-Agent&amp;#39;: &amp;#39;Mozilla&#x2F;5.0 (compatible; MyScraper&#x2F;1.0)&amp;#39; };
+const DELAY_MS = 1500;
+
+async function sleep(ms) {
+  return new Promise(resolve =&amp;gt; setTimeout(resolve, ms));
+}
+
+async function scrapeAll() {
+  let url = BASE;
+  const books = [];
+
+  while (url) {
+    const { data } = await axios.get(url, { headers: HEADERS, timeout: 10_000 });
+    const $ = cheerio.load(data);
+
+    $(&amp;#39;article.product_pod&amp;#39;).each((_, el) =&amp;gt; {
+      books.push({
+        title: $(el).find(&amp;#39;h3 a&amp;#39;).attr(&amp;#39;title&amp;#39;) ?? &amp;#39;&amp;#39;,
+        price: $(el).find(&amp;#39;p.price_color&amp;#39;).text().trim(),
+        rating: $(el).find(&amp;#39;p.star-rating&amp;#39;).attr(&amp;#39;class&amp;#39;)?.split(&amp;#39; &amp;#39;)[1] ?? &amp;#39;&amp;#39;,
+        href: new URL($(el).find(&amp;#39;h3 a&amp;#39;).attr(&amp;#39;href&amp;#39;), url).href,
+      });
+    });
+
+    const nextHref = $(&amp;#39;li.next a&amp;#39;).attr(&amp;#39;href&amp;#39;);
+    url = nextHref ? new URL(nextHref, url).href : null;
+
+    if (url) await sleep(DELAY_MS + Math.random() * 500);
+  }
+
+  return books;
+}
+
+scrapeAll().then(books =&amp;gt; console.log(`Scraped ${books.length} books`));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Two details make this loop robust. &lt;code&gt;new URL(href, base).href&lt;&#x2F;code&gt; resolves relative paths correctly regardless of how deep in the catalogue the &quot;next&quot; link points. And the loop terminates cleanly: when the next link is absent &lt;code&gt;url&lt;&#x2F;code&gt; becomes &lt;code&gt;null&lt;&#x2F;code&gt; and &lt;code&gt;while (url)&lt;&#x2F;code&gt; exits.&lt;&#x2F;p&gt;
+&lt;p&gt;For sites that use &lt;code&gt;?page=N&lt;&#x2F;code&gt; query strings, offset parameters, or infinite scroll backed by a hidden JSON API, see our &lt;a href=&quot;&#x2F;learn&#x2F;handling-pagination&#x2F;&quot;&gt;pagination guide&lt;&#x2F;a&gt; for patterns tailored to each type.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;scraping-dynamic-sites-with-puppeteer&quot;&gt;Scraping Dynamic Sites with Puppeteer&lt;&#x2F;h2&gt;
+&lt;p&gt;Everything so far requires the data to be present in the HTML the server sends. Modern single-page apps render content client-side, so Axios receives a JavaScript shell instead of products.&lt;&#x2F;p&gt;
+&lt;p&gt;The quick check: view source (&lt;code&gt;Ctrl+U&lt;&#x2F;code&gt;) and search for a data point visible in the browser. If it&#x27;s not there, you need a real browser engine.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;import puppeteer from &amp;#39;puppeteer&amp;#39;;
+
+const browser = await puppeteer.launch({ headless: true });
+const page = await browser.newPage();
+
+await page.setUserAgent(
+  &amp;#39;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) &amp;#39; +
+  &amp;#39;AppleWebKit&#x2F;537.36 (KHTML, like Gecko) &amp;#39; +
+  &amp;#39;Chrome&#x2F;124.0.0.0 Safari&#x2F;537.36&amp;#39;
+);
+
+await page.goto(&amp;#39;https:&#x2F;&#x2F;quotes.toscrape.com&#x2F;js&#x2F;&amp;#39;, { waitUntil: &amp;#39;networkidle0&amp;#39; });
+
+const quotes = await page.$$eval(&amp;#39;.quote&amp;#39;, els =&amp;gt;
+  els.map(el =&amp;gt; ({
+    text: el.querySelector(&amp;#39;.text&amp;#39;)?.textContent ?? &amp;#39;&amp;#39;,
+    author: el.querySelector(&amp;#39;.author&amp;#39;)?.textContent ?? &amp;#39;&amp;#39;,
+  }))
+);
+
+console.log(quotes);
+await browser.close();
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;waitUntil: &#x27;networkidle0&#x27;&lt;&#x2F;code&gt; pauses until the page has made no network requests for 500ms — a reliable signal that the JavaScript has finished its initial render. For sites that load data lazily on scroll, use &lt;code&gt;page.evaluate(() =&amp;gt; window.scrollBy(0, document.body.scrollHeight))&lt;&#x2F;code&gt; to trigger those fetches.&lt;&#x2F;p&gt;
+&lt;p&gt;You can also get the rendered HTML after waiting and hand it to Cheerio, keeping your parsing code consistent across static and dynamic targets:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;const html = await page.content();
+const $ = cheerio.load(html);
+&#x2F;&#x2F; ... same selectors as before
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;routing-through-a-proxy-to-stay-unblocked&quot;&gt;Routing Through a Proxy to Stay Unblocked&lt;&#x2F;h2&gt;
+&lt;p&gt;Scale any scraper past a few hundred requests and IP-based blocking becomes your primary obstacle. Anti-bot systems track request volume per IP, and a single address sending thousands of requests looks nothing like a human browser.&lt;&#x2F;p&gt;
+&lt;p&gt;The fix is proxy rotation — distributing requests across a large pool of IP addresses so no single one accumulates a suspicious count. For Axios:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;import axios from &amp;#39;axios&amp;#39;;
+import { HttpsProxyAgent } from &amp;#39;https-proxy-agent&amp;#39;;
+
+const agent = new HttpsProxyAgent(process.env.PROXY_URL);
+
+const { data } = await axios.get(&amp;#39;https:&#x2F;&#x2F;example.com&#x2F;&amp;#39;, {
+  httpAgent: agent,
+  httpsAgent: agent,
+  timeout: 10_000,
+});
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set &lt;code&gt;PROXY_URL&lt;&#x2F;code&gt; in your environment to point at your provider&#x27;s endpoint. Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker&lt;&#x2F;a&gt; goes further than a raw proxy pool: it manages IP rotation, browser fingerprinting, header normalisation, and CAPTCHA resolution automatically, so your code hits one endpoint and the service handles the rest. Read our full &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt; for a detailed look at what it does under the hood.&lt;&#x2F;p&gt;
+&lt;p&gt;For Puppeteer, pass the proxy when launching the browser:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;const browser = await puppeteer.launch({
+  headless: true,
+  args: [`--proxy-server=${process.env.PROXY_URL}`],
+});
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Not sure which proxy tier fits your project? Our &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;proxy types guide&lt;&#x2F;a&gt; covers the tradeoffs between datacenter, residential, and ISP proxies so you can match the product to the target.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;saving-your-data&quot;&gt;Saving Your Data&lt;&#x2F;h2&gt;
+&lt;p&gt;A scraped array in memory disappears when the process exits. Write to disk before finishing:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;js&quot;&gt;import fs from &amp;#39;fs&#x2F;promises&amp;#39;;
+
+&#x2F;&#x2F; JSON — keeps nested structure, easy to import elsewhere
+await fs.writeFile(&amp;#39;books.json&amp;#39;, JSON.stringify(books, null, 2), &amp;#39;utf8&amp;#39;);
+
+&#x2F;&#x2F; CSV — opens directly in Excel &#x2F; Google Sheets
+const header = &amp;#39;title,price,rating\n&amp;#39;;
+const rows = books.map(b =&amp;gt;
+  [b.title, b.price, b.rating].map(v =&amp;gt; `&amp;quot;${v.replace(&#x2F;&amp;quot;&#x2F;g, &amp;#39;&amp;quot;&amp;quot;&amp;#39;)}&amp;quot;`).join(&amp;#39;,&amp;#39;)
+);
+await fs.writeFile(&amp;#39;books.csv&amp;#39;, header + rows.join(&amp;#39;\n&amp;#39;), &amp;#39;utf8&amp;#39;);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Quote every CSV field and escape inner double-quotes — the one-liner above is sufficient for clean data. For anything that runs on a schedule or that you query after the fact, graduate to SQLite via the &lt;code&gt;better-sqlite3&lt;&#x2F;code&gt; package: its upsert support prevents duplicates across runs and queries stay readable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;debugging-your-scraper&quot;&gt;Debugging Your Scraper&lt;&#x2F;h2&gt;
+&lt;p&gt;When results come back empty or wrong, check in this order:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Confirm the response.&lt;&#x2F;strong&gt; Log &lt;code&gt;data.slice(0, 500)&lt;&#x2F;code&gt; before parsing. A 200 response can still be a CAPTCHA page, a consent wall, or a login redirect — all of which produce valid HTML with zero products.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Test your selectors in DevTools.&lt;&#x2F;strong&gt; Open the browser console and run &lt;code&gt;document.querySelectorAll(&#x27;article.product_pod&#x27;)&lt;&#x2F;code&gt;. Cheerio uses the same CSS selectors, but DevTools shows the &lt;em&gt;rendered&lt;&#x2F;em&gt; DOM while Cheerio parses the raw HTML. If they differ, the page is JavaScript-rendered and you need Puppeteer.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Check for layout changes.&lt;&#x2F;strong&gt; Sites update their HTML periodically. Log a warning whenever an expected field comes back empty so a design change surfaces as a message rather than silent missing rows.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Saving the raw HTML of failed requests costs almost nothing and turns &quot;it broke on Tuesday&quot; into a problem you can actually reproduce.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;&#x2F;h2&gt;
+&lt;p&gt;You now have the full Node.js scraping toolkit: Axios for HTTP, Cheerio for HTML parsing, a pagination loop, Puppeteer for dynamic rendering, and proxy rotation for scale.&lt;&#x2F;p&gt;
+&lt;p&gt;Where to go from here:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Add real-world targets.&lt;&#x2F;strong&gt; The same patterns power high-value use cases like &lt;a href=&quot;&#x2F;solutions&#x2F;amazon-product-tracking&#x2F;&quot;&gt;tracking Amazon product prices&lt;&#x2F;a&gt; or &lt;a href=&quot;&#x2F;solutions&#x2F;google-search-scraping&#x2F;&quot;&gt;scraping Google search results&lt;&#x2F;a&gt; — both of which show how the difficulty jumps once a major platform is actively defending itself.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Harden against blocking.&lt;&#x2F;strong&gt; The &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;anti-blocking playbook&lt;&#x2F;a&gt; covers fingerprinting, TLS signatures, and the full spectrum of defences modern sites deploy.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Manage IP rotation at scale.&lt;&#x2F;strong&gt; When a rotating residential proxy pool becomes necessary, &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Bright Data&#x27;s Web Unlocker&lt;&#x2F;a&gt; is the service most teams reach for — one endpoint, global residential coverage, and built-in unblocking logic.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Start with the static Axios + Cheerio flow, add Puppeteer only when the site demands it, and layer in proxies when you hit scale. Each step is a clear upgrade, not a rewrite.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;is-node-js-good-for-web-scraping&quot;&gt;Is Node.js good for web scraping?&lt;&#x2F;h3&gt;
+&lt;p&gt;Yes. Node.js&#x27;s non-blocking I&#x2F;O model makes it efficient for concurrent HTTP requests, and libraries like Axios, Cheerio, and Puppeteer cover the full scraping stack from simple HTTP fetches to full browser automation.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;when-should-i-use-puppeteer-instead-of-cheerio&quot;&gt;When should I use Puppeteer instead of Cheerio?&lt;&#x2F;h3&gt;
+&lt;p&gt;Use Cheerio when the data you want is present in the raw HTML the server sends. Switch to Puppeteer when the site renders content with client-side JavaScript — check by viewing source (Ctrl+U) and searching for a visible data point.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-do-i-avoid-getting-blocked-with-node-js-scrapers&quot;&gt;How do I avoid getting blocked with Node.js scrapers?&lt;&#x2F;h3&gt;
+&lt;p&gt;Set a realistic User-Agent header, add randomised delays between requests, and route your traffic through a proxy service that rotates residential IPs. Bright Data&#x27;s Web Unlocker handles fingerprint and header challenges automatically.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;can-i-run-node-js-scrapers-at-scale&quot;&gt;Can I run Node.js scrapers at scale?&lt;&#x2F;h3&gt;
+&lt;p&gt;Yes. Use Promise.allSettled or a concurrency library like p-limit to fan out requests without overwhelming the target, and pair that with IP rotation so your request pool doesn&#x27;t share a single address across hundreds of pages.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Web Scraping Use Cases: Industry Playbook</title>
         <published>2026-09-07T00:00:00+00:00</published>

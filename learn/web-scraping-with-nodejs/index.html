@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2340JEW0BT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2340JEW0BT');
+    </script>
+    
+    
+
+    
+    
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:3142858,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    
+    
+
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2119108362521032" crossorigin="anonymous"></script>
+    
+    
+
+    
+    <title>Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer | Web-Scrapers.com</title>
+
+    
+    
+    <meta name="description" content="Build web scrapers in Node.js with Axios and Cheerio for static HTML, Puppeteer for JavaScript-heavy sites, and proxy rotation to stay unblocked.">
+    
+
+    
+    
+
+    
+    
+    <meta name="author" content="Web-Scrapers.com">
+    
+
+    
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    
+    
+    <link rel="canonical" href="https://www.web-scrapers.com/learn/web-scraping-with-nodejs/">
+    
+
+    
+    
+        
+    
+    
+        
+    
+
+    
+    <meta property="og:type" content="article">
+    
+    <meta property="og:url" content="https://www.web-scrapers.com/learn/web-scraping-with-nodejs/">
+    
+    
+    <meta property="og:title" content="Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer">
+    
+    
+    <meta property="og:description" content="Build web scrapers in Node.js with Axios and Cheerio for static HTML, Puppeteer for JavaScript-heavy sites, and proxy rotation to stay unblocked.">
+    
+    
+    <meta property="og:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer">
+    
+    <meta property="og:site_name" content="Web-Scrapers.com">
+    <meta property="og:locale" content="en">
+
+    
+    
+    
+    <meta property="article:published_time" content="2026-09-10T00:00:00">
+    
+    
+    
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <meta name="twitter:url" content="https://www.web-scrapers.com/learn/web-scraping-with-nodejs/">
+    
+    
+    <meta name="twitter:title" content="Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer">
+    
+    
+    <meta name="twitter:description" content="Build web scrapers in Node.js with Axios and Cheerio for static HTML, Puppeteer for JavaScript-heavy sites, and proxy rotation to stay unblocked.">
+    
+    
+    <meta name="twitter:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="twitter:image:alt" content="Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer">
+    
+    
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://www.web-scrapers.com#website",
+                "url": "https://www.web-scrapers.com",
+                "name": "Web-Scrapers.com",
+                "description": "Independent web scraping reviews, proxy benchmarks, and hands-on scraping guides with code samples in Python, PHP, Node.js, and Rust.",
+                
+                "author": {
+                    "@type": "Organization",
+                    "name": "Web-Scrapers.com"
+                },
+                
+                "inLanguage": "en"
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://www.web-scrapers.com/learn/web-scraping-with-nodejs/#webpage",
+                "url": "https://www.web-scrapers.com/learn/web-scraping-with-nodejs/",
+                "name": "Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer",
+                "isPartOf": {
+                    "@id": "https://www.web-scrapers.com#website"
+                },
+                "description": "Build web scrapers in Node.js with Axios and Cheerio for static HTML, Puppeteer for JavaScript-heavy sites, and proxy rotation to stay unblocked.",
+                "inLanguage": "en"
+                ,
+                "datePublished": "2026-09-10"
+                
+                
+            }
+            
+            ,{
+                "@type": "Article",
+                "@id": "https://www.web-scrapers.com/learn/web-scraping-with-nodejs/#article",
+                "isPartOf": {
+                    "@id": "https://www.web-scrapers.com/learn/web-scraping-with-nodejs/#webpage"
+                },
+                "headline": "Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer",
+                
+                "description": "Build web scrapers in Node.js with Axios and Cheerio for static HTML, Puppeteer for JavaScript-heavy sites, and proxy rotation to stay unblocked.",
+                
+                
+                "datePublished": "2026-09-10T00:00:00",
+                
+                
+                
+                "author": {
+                    "@type": "Organization",
+                    "name": "Web-Scrapers.com"
+                },
+                
+                
+                
+                "word_count": 1581,
+                
+                "inLanguage": "en"
+            }
+            
+            
+        ]
+    }
+    </script>
+
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            
+            {
+                "@type": "Question",
+                "name": "Is Node.js good for web scraping?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Node.js's non-blocking I/O model makes it efficient for concurrent HTTP requests, and libraries like Axios, Cheerio, and Puppeteer cover the full scraping stack from simple HTTP fetches to full browser automation."
+                }
+            },
+            
+            {
+                "@type": "Question",
+                "name": "When should I use Puppeteer instead of Cheerio?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use Cheerio when the data you want is present in the raw HTML the server sends. Switch to Puppeteer when the site renders content with client-side JavaScript — check by viewing source (Ctrl+U) and searching for a visible data point."
+                }
+            },
+            
+            {
+                "@type": "Question",
+                "name": "How do I avoid getting blocked with Node.js scrapers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Set a realistic User-Agent header, add randomised delays between requests, and route your traffic through a proxy service that rotates residential IPs. Bright Data's Web Unlocker handles fingerprint and header challenges automatically."
+                }
+            },
+            
+            {
+                "@type": "Question",
+                "name": "Can I run Node.js scrapers at scale?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Use Promise.allSettled or a concurrency library like p-limit to fan out requests without overwhelming the target, and pair that with IP rotation so your request pool doesn't share a single address across hundreds of pages."
+                }
+            }
+            
+        ]
+    }
+    </script>
+    
+
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Web-Scrapers.com",
+                "item": "https://www.web-scrapers.com"
+            }
+            
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Find the Right Web Scraping Infrastructure for Your Scale.",
+                "item": "https://www.web-scrapers.com/"
+            }
+            
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learning Center",
+                "item": "https://www.web-scrapers.com/learn/"
+            }
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer",
+                "item": "https://www.web-scrapers.com/learn/web-scraping-with-nodejs/"
+            }
+        ]
+    }
+    </script>
+    
+
+    
+    <link rel="stylesheet" href="https://www.web-scrapers.com/style.css?h=f614f608e1adaca021ad">
+     
+
+    
+    
+
+    
+    <link rel="preload" href="https://www.web-scrapers.com/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://www.web-scrapers.com/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+
+    
+    
+    <link rel="icon" type="image/svg+xml" href="https://www.web-scrapers.com/assets/logo.svg">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.web-scrapers.com/assets/favicon.png">
+    
+    
+    <link rel="apple-touch-icon" href="https://www.web-scrapers.com/assets/apple-touch-icon.png">
+    
+    <link rel="manifest" href="https://www.web-scrapers.com/site.webmanifest">
+    <meta name="theme-color" content="#3884ff">
+
+    
+    
+    <link rel="alternate" type="application/atom+xml" title="Web-Scrapers.com" href="https://www.web-scrapers.com/atom.xml">
+    
+
+    
+    
+    
+    
+    <script>
+        (function() {
+            try {
+                var stored = localStorage.getItem('tanuki-theme') || 'auto';
+                var theme = stored === 'auto'
+                    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                    : stored;
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme-setting', stored);
+            } catch(e) {}
+        })();
+    </script>
+    
+
+    
+</head>
+<body class="page ">
+    
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    
+    
+<header class="header" id="site-header">
+    <div class="shell">
+        <div class="header__inner">
+            <a href="/" class="logo" aria-label="web-scrapers.com home">
+                <span class="logo__dot" aria-hidden="true"></span>
+                <span>web-scrapers<span class="logo__tld">.com</span></span>
+            </a>
+
+            <nav class="header__nav" id="site-nav" aria-label="Main navigation">
+                
+                
+                <a href="&#x2F;proxy-providers&#x2F;" class="header__link">Proxy Providers</a>
+                
+                <a href="&#x2F;reviews&#x2F;" class="header__link">Top Scrapers</a>
+                
+                <a href="&#x2F;comparisons&#x2F;" class="header__link">Proxy Directory</a>
+                
+                <a href="&#x2F;solutions&#x2F;" class="header__link">Industry Solutions</a>
+                
+                <a href="&#x2F;learn&#x2F;" class="header__link">Learning Center</a>
+                
+                
+            </nav>
+
+            <div class="header__tools">
+                <div class="themetoggle" role="group" aria-label="Color theme">
+                    <button type="button" data-theme-set="light" aria-label="Light theme" title="Light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </button>
+                    <button type="button" data-theme-set="auto" aria-label="Match system theme" title="Auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                    </button>
+                    <button type="button" data-theme-set="dark" aria-label="Dark theme" title="Dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    </button>
+                </div>
+                <a href="#newsletter" class="btn btn--secondary btn--sm header__newsletter">Join the newsletter</a>
+                <button type="button" class="navtoggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+    
+
+    <main id="main-content" role="main" aria-label="Main content">
+        
+
+
+<div class="shell">
+    <div class="layout-article" style="padding-top:var(--sp-10)">
+
+        <article itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
+            <header class="article-head">
+                
+                <nav class="crumbs" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span class="crumbs__sep" aria-hidden="true">/</span>
+                    <a href="https://www.web-scrapers.com/learn/">Learning Center</a>
+                    
+                    
+                    
+                    <span class="crumbs__sep" aria-hidden="true">/</span>
+                    <span aria-current="page">Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer</span>
+                </nav>
+                
+
+                <h1 id="article-title" itemprop="headline">Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer</h1>
+
+                
+                <p class="u-lead" itemprop="description">Build web scrapers in Node.js with Axios and Cheerio for static HTML, Puppeteer for JavaScript-heavy sites, and proxy rotation to stay unblocked.</p>
+                
+
+                
+                <div class="freshness">
+                    
+                    <span class="freshness__item">Published <time itemprop="datePublished" datetime="2026-09-10">10 September 2026</time></span>
+                    
+                    
+                    <span class="freshness__dot" aria-hidden="true"></span>
+                    <span class="freshness__item">8 min read</span>
+                    
+                </div>
+                
+
+                
+            </header>
+
+            <div class="prose" itemprop="articleBody">
+                <p>Node.js is the quiet workhorse of the web scraping world. JavaScript runs natively in every browser, which means the same language you use to inspect a site in DevTools is the one you can use to scrape it — no mental context switch between languages. Combine that with Node's non-blocking I/O model and you have a runtime that handles hundreds of concurrent HTTP requests without breaking a sweat.</p>
+<p>This guide walks you from zero to a working, pagination-aware scraper in Node.js. You'll learn to fetch static pages with Axios, parse HTML with Cheerio, automate a real browser with Puppeteer for JavaScript-heavy sites, rotate proxies to stay unblocked, and save your data. Every code sample is runnable against a public practice site.</p>
+<h2 id="why-node-js-for-web-scraping">Why Node.js for Web Scraping?</h2>
+<p>Node.js isn't the only option — Python is arguably more popular, and our <a href="/learn/web-scraping-with-python/">Python web scraping guide</a> covers that path thoroughly. Node earns its place when:</p>
+<ul>
+<li><strong>Your team already writes JavaScript.</strong> No second language to maintain.</li>
+<li><strong>You need concurrency without complexity.</strong> A single async function with <code>Promise.all</code> fires dozens of requests in parallel. The equivalent in Python requires threading or <code>asyncio</code>.</li>
+<li><strong>You're scraping SPAs.</strong> Puppeteer and Playwright are built on the Chrome DevTools Protocol — the same engine that powers the browser. They feel at home in a Node environment in a way that Python wrappers do not.</li>
+</ul>
+<p>For pure data science pipelines or projects where pandas is already involved, Python wins. For everything else, Node is a serious contender.</p>
+<h2 id="setting-up-your-project">Setting Up Your Project</h2>
+<p>You need Node.js 18 or newer (LTS). Verify with <code>node --version</code>, then create a project:</p>
+<pre><code data-lang="bash">mkdir node-scraper &amp;&amp; cd node-scraper
+npm init -y
+npm install axios cheerio
+</code></pre>
+<p><code>axios</code> is the most ergonomic HTTP client in the Node ecosystem. <code>cheerio</code> parses HTML using a jQuery-like API and runs entirely server-side — no browser overhead.</p>
+<p>For JavaScript-heavy sites, add Puppeteer later:</p>
+<pre><code data-lang="bash">npm install puppeteer
+</code></pre>
+<p>Throughout this guide we'll scrape <a rel="external" href="https://books.toscrape.com/">books.toscrape.com</a> — a sandboxed bookstore designed for scraping practice.</p>
+<h2 id="fetching-pages-with-axios">Fetching Pages with Axios</h2>
+<p>The minimum viable fetch:</p>
+<pre><code data-lang="js">import axios from &#39;axios&#39;;
+
+const { data } = await axios.get(&#39;https://books.toscrape.com/&#39;, {
+  headers: {
+    &#39;User-Agent&#39;:
+      &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) &#39; +
+      &#39;AppleWebKit/537.36 (KHTML, like Gecko) &#39; +
+      &#39;Chrome/124.0.0.0 Safari/537.36&#39;,
+  },
+  timeout: 10_000,
+});
+
+console.log(data.length); // bytes of HTML
+</code></pre>
+<p>Three habits worth keeping from the start:</p>
+<ul>
+<li><strong>Always set a timeout.</strong> Without it, a slow or dropped connection hangs your script indefinitely.</li>
+<li><strong>Send a real User-Agent.</strong> The default <code>axios/1.x</code> string is the most obvious bot fingerprint you can broadcast.</li>
+<li><strong>Destructure <code>{ data }</code> from the response.</strong> Axios puts the body in <code>response.data</code>; the top-level object also carries headers, status codes, and config you usually don't need right away.</li>
+</ul>
+<p>Add <code>"type": "module"</code> to your <code>package.json</code> to enable ES module <code>import</code> syntax, or use <code>const axios = require('axios').default</code> with CommonJS.</p>
+<h2 id="parsing-html-with-cheerio">Parsing HTML with Cheerio</h2>
+<p><code>cheerio</code> loads an HTML string and exposes the same CSS selectors and traversal methods you'd use in a browser's <code>document.querySelector</code>.</p>
+<pre><code data-lang="js">import axios from &#39;axios&#39;;
+import * as cheerio from &#39;cheerio&#39;;
+
+const { data } = await axios.get(&#39;https://books.toscrape.com/&#39;, {
+  headers: { &#39;User-Agent&#39;: &#39;Mozilla/5.0 (compatible; MyScraper/1.0)&#39; },
+  timeout: 10_000,
+});
+
+const $ = cheerio.load(data);
+const books = [];
+
+$(&#39;article.product_pod&#39;).each((_, el) =&gt; {
+  const title = $(el).find(&#39;h3 a&#39;).attr(&#39;title&#39;);
+  const price = $(el).find(&#39;p.price_color&#39;).text().trim();
+  const rating = $(el).find(&#39;p.star-rating&#39;).attr(&#39;class&#39;).split(&#39; &#39;)[1];
+  books.push({ title, price, rating });
+});
+
+console.log(books);
+</code></pre>
+<p>The <code>$</code> convention mirrors jQuery and keeps the syntax familiar. A few points worth noting:</p>
+<ul>
+<li><strong>Data hides in attributes.</strong> The full book title is in the <code>title</code> attribute of the link, because the visible text is truncated to save layout space. Always inspect the actual HTML rather than assuming the visible text is complete.</li>
+<li><strong>CSS class names carry data.</strong> The star rating is encoded as a class name: <code>&lt;p class="star-rating Three"&gt;</code>. Splitting the class string is cheaper than a regex.</li>
+<li><strong><code>text().trim()</code></strong> collapses whitespace and removes the newlines that HTML is full of.</li>
+</ul>
+<h3 id="defensive-selectors">Defensive Selectors</h3>
+<p>Real websites drift. Wrap every extraction so a missing element degrades to an empty string rather than throwing:</p>
+<pre><code data-lang="js">const safe = (el, selector, attr = null) =&gt; {
+  const found = $(el).find(selector);
+  if (!found.length) return &#39;&#39;;
+  return attr ? found.attr(attr) : found.text().trim();
+};
+
+const price = safe(el, &#39;p.price_color&#39;);
+const img   = safe(el, &#39;img&#39;, &#39;src&#39;);
+</code></pre>
+<p>Log a warning when an expected element returns empty. A layout change surfaces as a message instead of silent missing data.</p>
+<h2 id="handling-pagination">Handling Pagination</h2>
+<p>One page is a demo. All fifty pages is a dataset. Books.toscrape.com uses a "next" link (<code>&lt;li class="next"&gt;&lt;a href="catalogue/page-2.html"&gt;</code>):</p>
+<pre><code data-lang="js">import axios from &#39;axios&#39;;
+import * as cheerio from &#39;cheerio&#39;;
+
+const BASE = &#39;https://books.toscrape.com/&#39;;
+const HEADERS = { &#39;User-Agent&#39;: &#39;Mozilla/5.0 (compatible; MyScraper/1.0)&#39; };
+const DELAY_MS = 1500;
+
+async function sleep(ms) {
+  return new Promise(resolve =&gt; setTimeout(resolve, ms));
+}
+
+async function scrapeAll() {
+  let url = BASE;
+  const books = [];
+
+  while (url) {
+    const { data } = await axios.get(url, { headers: HEADERS, timeout: 10_000 });
+    const $ = cheerio.load(data);
+
+    $(&#39;article.product_pod&#39;).each((_, el) =&gt; {
+      books.push({
+        title: $(el).find(&#39;h3 a&#39;).attr(&#39;title&#39;) ?? &#39;&#39;,
+        price: $(el).find(&#39;p.price_color&#39;).text().trim(),
+        rating: $(el).find(&#39;p.star-rating&#39;).attr(&#39;class&#39;)?.split(&#39; &#39;)[1] ?? &#39;&#39;,
+        href: new URL($(el).find(&#39;h3 a&#39;).attr(&#39;href&#39;), url).href,
+      });
+    });
+
+    const nextHref = $(&#39;li.next a&#39;).attr(&#39;href&#39;);
+    url = nextHref ? new URL(nextHref, url).href : null;
+
+    if (url) await sleep(DELAY_MS + Math.random() * 500);
+  }
+
+  return books;
+}
+
+scrapeAll().then(books =&gt; console.log(`Scraped ${books.length} books`));
+</code></pre>
+<p>Two details make this loop robust. <code>new URL(href, base).href</code> resolves relative paths correctly regardless of how deep in the catalogue the "next" link points. And the loop terminates cleanly: when the next link is absent <code>url</code> becomes <code>null</code> and <code>while (url)</code> exits.</p>
+<p>For sites that use <code>?page=N</code> query strings, offset parameters, or infinite scroll backed by a hidden JSON API, see our <a href="/learn/handling-pagination/">pagination guide</a> for patterns tailored to each type.</p>
+<h2 id="scraping-dynamic-sites-with-puppeteer">Scraping Dynamic Sites with Puppeteer</h2>
+<p>Everything so far requires the data to be present in the HTML the server sends. Modern single-page apps render content client-side, so Axios receives a JavaScript shell instead of products.</p>
+<p>The quick check: view source (<code>Ctrl+U</code>) and search for a data point visible in the browser. If it's not there, you need a real browser engine.</p>
+<pre><code data-lang="js">import puppeteer from &#39;puppeteer&#39;;
+
+const browser = await puppeteer.launch({ headless: true });
+const page = await browser.newPage();
+
+await page.setUserAgent(
+  &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) &#39; +
+  &#39;AppleWebKit/537.36 (KHTML, like Gecko) &#39; +
+  &#39;Chrome/124.0.0.0 Safari/537.36&#39;
+);
+
+await page.goto(&#39;https://quotes.toscrape.com/js/&#39;, { waitUntil: &#39;networkidle0&#39; });
+
+const quotes = await page.$$eval(&#39;.quote&#39;, els =&gt;
+  els.map(el =&gt; ({
+    text: el.querySelector(&#39;.text&#39;)?.textContent ?? &#39;&#39;,
+    author: el.querySelector(&#39;.author&#39;)?.textContent ?? &#39;&#39;,
+  }))
+);
+
+console.log(quotes);
+await browser.close();
+</code></pre>
+<p><code>waitUntil: 'networkidle0'</code> pauses until the page has made no network requests for 500ms — a reliable signal that the JavaScript has finished its initial render. For sites that load data lazily on scroll, use <code>page.evaluate(() =&gt; window.scrollBy(0, document.body.scrollHeight))</code> to trigger those fetches.</p>
+<p>You can also get the rendered HTML after waiting and hand it to Cheerio, keeping your parsing code consistent across static and dynamic targets:</p>
+<pre><code data-lang="js">const html = await page.content();
+const $ = cheerio.load(html);
+// ... same selectors as before
+</code></pre>
+<h2 id="routing-through-a-proxy-to-stay-unblocked">Routing Through a Proxy to Stay Unblocked</h2>
+<p>Scale any scraper past a few hundred requests and IP-based blocking becomes your primary obstacle. Anti-bot systems track request volume per IP, and a single address sending thousands of requests looks nothing like a human browser.</p>
+<p>The fix is proxy rotation — distributing requests across a large pool of IP addresses so no single one accumulates a suspicious count. For Axios:</p>
+<pre><code data-lang="js">import axios from &#39;axios&#39;;
+import { HttpsProxyAgent } from &#39;https-proxy-agent&#39;;
+
+const agent = new HttpsProxyAgent(process.env.PROXY_URL);
+
+const { data } = await axios.get(&#39;https://example.com/&#39;, {
+  httpAgent: agent,
+  httpsAgent: agent,
+  timeout: 10_000,
+});
+</code></pre>
+<p>Set <code>PROXY_URL</code> in your environment to point at your provider's endpoint. Bright Data's <a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Web Unlocker</a> goes further than a raw proxy pool: it manages IP rotation, browser fingerprinting, header normalisation, and CAPTCHA resolution automatically, so your code hits one endpoint and the service handles the rest. Read our full <a href="/reviews/bright-data-web-unlocker/">Bright Data Web Unlocker review</a> for a detailed look at what it does under the hood.</p>
+<p>For Puppeteer, pass the proxy when launching the browser:</p>
+<pre><code data-lang="js">const browser = await puppeteer.launch({
+  headless: true,
+  args: [`--proxy-server=${process.env.PROXY_URL}`],
+});
+</code></pre>
+<p>Not sure which proxy tier fits your project? Our <a href="/learn/proxy-types-explained/">proxy types guide</a> covers the tradeoffs between datacenter, residential, and ISP proxies so you can match the product to the target.</p>
+<h2 id="saving-your-data">Saving Your Data</h2>
+<p>A scraped array in memory disappears when the process exits. Write to disk before finishing:</p>
+<pre><code data-lang="js">import fs from &#39;fs/promises&#39;;
+
+// JSON — keeps nested structure, easy to import elsewhere
+await fs.writeFile(&#39;books.json&#39;, JSON.stringify(books, null, 2), &#39;utf8&#39;);
+
+// CSV — opens directly in Excel / Google Sheets
+const header = &#39;title,price,rating\n&#39;;
+const rows = books.map(b =&gt;
+  [b.title, b.price, b.rating].map(v =&gt; `&quot;${v.replace(/&quot;/g, &#39;&quot;&quot;&#39;)}&quot;`).join(&#39;,&#39;)
+);
+await fs.writeFile(&#39;books.csv&#39;, header + rows.join(&#39;\n&#39;), &#39;utf8&#39;);
+</code></pre>
+<p>Quote every CSV field and escape inner double-quotes — the one-liner above is sufficient for clean data. For anything that runs on a schedule or that you query after the fact, graduate to SQLite via the <code>better-sqlite3</code> package: its upsert support prevents duplicates across runs and queries stay readable.</p>
+<h2 id="debugging-your-scraper">Debugging Your Scraper</h2>
+<p>When results come back empty or wrong, check in this order:</p>
+<ol>
+<li><strong>Confirm the response.</strong> Log <code>data.slice(0, 500)</code> before parsing. A 200 response can still be a CAPTCHA page, a consent wall, or a login redirect — all of which produce valid HTML with zero products.</li>
+<li><strong>Test your selectors in DevTools.</strong> Open the browser console and run <code>document.querySelectorAll('article.product_pod')</code>. Cheerio uses the same CSS selectors, but DevTools shows the <em>rendered</em> DOM while Cheerio parses the raw HTML. If they differ, the page is JavaScript-rendered and you need Puppeteer.</li>
+<li><strong>Check for layout changes.</strong> Sites update their HTML periodically. Log a warning whenever an expected field comes back empty so a design change surfaces as a message rather than silent missing rows.</li>
+</ol>
+<p>Saving the raw HTML of failed requests costs almost nothing and turns "it broke on Tuesday" into a problem you can actually reproduce.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>You now have the full Node.js scraping toolkit: Axios for HTTP, Cheerio for HTML parsing, a pagination loop, Puppeteer for dynamic rendering, and proxy rotation for scale.</p>
+<p>Where to go from here:</p>
+<ul>
+<li><strong>Add real-world targets.</strong> The same patterns power high-value use cases like <a href="/solutions/amazon-product-tracking/">tracking Amazon product prices</a> or <a href="/solutions/google-search-scraping/">scraping Google search results</a> — both of which show how the difficulty jumps once a major platform is actively defending itself.</li>
+<li><strong>Harden against blocking.</strong> The <a href="/learn/how-to-avoid-getting-blocked/">anti-blocking playbook</a> covers fingerprinting, TLS signatures, and the full spectrum of defences modern sites deploy.</li>
+<li><strong>Manage IP rotation at scale.</strong> When a rotating residential proxy pool becomes necessary, <a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Bright Data's Web Unlocker</a> is the service most teams reach for — one endpoint, global residential coverage, and built-in unblocking logic.</li>
+</ul>
+<p>Start with the static Axios + Cheerio flow, add Puppeteer only when the site demands it, and layer in proxies when you hit scale. Each step is a clear upgrade, not a rewrite.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="is-node-js-good-for-web-scraping">Is Node.js good for web scraping?</h3>
+<p>Yes. Node.js's non-blocking I/O model makes it efficient for concurrent HTTP requests, and libraries like Axios, Cheerio, and Puppeteer cover the full scraping stack from simple HTTP fetches to full browser automation.</p>
+<h3 id="when-should-i-use-puppeteer-instead-of-cheerio">When should I use Puppeteer instead of Cheerio?</h3>
+<p>Use Cheerio when the data you want is present in the raw HTML the server sends. Switch to Puppeteer when the site renders content with client-side JavaScript — check by viewing source (Ctrl+U) and searching for a visible data point.</p>
+<h3 id="how-do-i-avoid-getting-blocked-with-node-js-scrapers">How do I avoid getting blocked with Node.js scrapers?</h3>
+<p>Set a realistic User-Agent header, add randomised delays between requests, and route your traffic through a proxy service that rotates residential IPs. Bright Data's Web Unlocker handles fingerprint and header challenges automatically.</p>
+<h3 id="can-i-run-node-js-scrapers-at-scale">Can I run Node.js scrapers at scale?</h3>
+<p>Yes. Use Promise.allSettled or a concurrency library like p-limit to fan out requests without overwhelming the target, and pair that with IP rotation so your request pool doesn't share a single address across hundreds of pages.</p>
+
+            </div>
+
+            
+
+<div class="ad ad--article" style="margin-top:var(--space-block)">
+    <span class="ad__label">Advertisement</span>
+    <ins class="adsbygoogle"
+         style="display:block;width:100%"
+         data-ad-client="ca-pub-2119108362521032"
+         data-ad-slot="2937189529"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+
+
+            
+            
+            <meta itemprop="author" content="Web-Scrapers.com">
+            
+
+            <nav class="page-nav" aria-label="Page navigation">
+                
+                
+            </nav>
+        </article>
+
+        <aside class="layout-article__rail">
+            
+            <nav class="toc" aria-label="On this page">
+                <div class="toc__title">On this page</div>
+                <ol>
+                    
+                    <li>
+                        <a href="#why-node-js-for-web-scraping">Why Node.js for Web Scraping?</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#setting-up-your-project">Setting Up Your Project</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#fetching-pages-with-axios">Fetching Pages with Axios</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#parsing-html-with-cheerio">Parsing HTML with Cheerio</a>
+                        
+                        <ol>
+                            
+                            <li><a href="#defensive-selectors">Defensive Selectors</a></li>
+                            
+                        </ol>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#handling-pagination">Handling Pagination</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#scraping-dynamic-sites-with-puppeteer">Scraping Dynamic Sites with Puppeteer</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#routing-through-a-proxy-to-stay-unblocked">Routing Through a Proxy to Stay Unblocked</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#saving-your-data">Saving Your Data</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#debugging-your-scraper">Debugging Your Scraper</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#next-steps">Next Steps</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#faq">FAQ</a>
+                        
+                        <ol>
+                            
+                            <li><a href="#is-node-js-good-for-web-scraping">Is Node.js good for web scraping?</a></li>
+                            
+                            <li><a href="#when-should-i-use-puppeteer-instead-of-cheerio">When should I use Puppeteer instead of Cheerio?</a></li>
+                            
+                            <li><a href="#how-do-i-avoid-getting-blocked-with-node-js-scrapers">How do I avoid getting blocked with Node.js scrapers?</a></li>
+                            
+                            <li><a href="#can-i-run-node-js-scrapers-at-scale">Can I run Node.js scrapers at scale?</a></li>
+                            
+                        </ol>
+                        
+                    </li>
+                    
+                </ol>
+            </nav>
+            
+        </aside>
+    </div>
+</div>
+
+
+
+    </main>
+
+    
+    
+<footer class="footer">
+    <div class="shell">
+        <div class="footer__cols">
+            <div class="footer__col">
+                <a href="/" class="logo" aria-label="web-scrapers.com home">
+                    <span class="logo__dot" aria-hidden="true"></span>
+                    <span>web-scrapers<span class="logo__tld">.com</span></span>
+                </a>
+                <p style="margin-top:var(--sp-3);font-size:var(--fs-13);color:var(--text-muted);max-width:36ch">
+                    Independent reviews, benchmarks and guides for web scraping
+                    infrastructure. We may earn a commission on some sign-ups;
+                    it never affects our test results or ratings.
+                </p>
+            </div>
+            <div class="footer__col">
+                <h4>Reviews</h4>
+                <ul>
+                    <li><a href="/reviews/bright-data/">Bright Data</a></li>
+                    <li><a href="/reviews/oxylabs/">Oxylabs</a></li>
+                    <li><a href="/reviews/zenrows/">ZenRows</a></li>
+                    <li><a href="/reviews/">All reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Compare</h4>
+                <ul>
+                    <li><a href="/comparisons/bright-data-vs-oxylabs/">Bright Data vs Oxylabs</a></li>
+                    <li><a href="/comparisons/zenrows-alternatives/">ZenRows alternatives</a></li>
+                    <li><a href="/proxy-providers/">Provider directory</a></li>
+                    <li><a href="/comparisons/">All comparisons</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="/learn/web-scraping-with-python/">Web scraping with Python</a></li>
+                    <li><a href="/learn/proxy-types-explained/">Proxy types explained</a></li>
+                    <li><a href="/solutions/">Industry solutions</a></li>
+                    <li><a href="/learn/">Learning center</a></li>
+                </ul>
+            </div>
+        </div>
+        
+
+
+<div class="ad ad--footer" style="margin:var(--sp-8) 0 0">
+    <span class="ad__label">Advertisement</span>
+    <iframe data-aa="2441049" src="//acceptable.a-ads.com/2441049/?size=Adaptive"
+            style="border:0; padding:0; width:100%; max-width:728px; height:auto; overflow:hidden; display:block; margin:auto"
+            title="Advertisement" loading="lazy"></iframe>
+</div>
+
+
+        <div class="footer__legal">
+            <span>&copy; 2026 web-scrapers.com</span>
+            <span><a href="/about/">About</a> · <a href="/how-we-test/">How we test</a> · <a href="/editorial-policy/">Editorial policy</a> · <a href="#newsletter">Newsletter</a> · <a href="https://www.web-scrapers.com/atom.xml">Feed</a></span>
+        </div>
+    </div>
+</footer>
+
+    
+
+     
+
+    
+    
+
+
+<div id="newsletter-modal" class="nl-overlay" hidden>
+    <div class="nl-card" role="dialog" aria-modal="true" aria-labelledby="nl-title">
+        <button type="button" class="nl-close" aria-label="Close">&times;</button>
+        <h3 id="nl-title">Join the newsletter</h3>
+        <p class="nl-blurb">Web scraping test results, provider changes, and new guides — straight to your inbox.</p>
+        <form id="newsletter-form" class="nl-form">
+            <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+        <p class="nl-privacy">No spam, ever. Unsubscribe anytime.</p>
+        <div id="newsletter-thanks" hidden>
+            <p class="nl-thanks-title">You're in</p>
+            <p class="nl-blurb">Thanks for subscribing — the next issue is headed your way.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var overlay = document.getElementById('newsletter-modal');
+    if (!overlay) return;
+    var form = document.getElementById('newsletter-form');
+    var thanks = document.getElementById('newsletter-thanks');
+    var privacy = overlay.querySelector('.nl-privacy');
+    var KEY = 'nl-dismissed';
+
+    function seen() {
+        try { return !!localStorage.getItem(KEY); } catch (e) { return true; }
+    }
+    function markSeen() {
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    function open() {
+        overlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(function () { if (!form.hidden) form.email.focus(); }, 60);
+    }
+    function close() {
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+        markSeen(); // don't auto-nag a visitor who already closed it
+    }
+
+    overlay.querySelector('.nl-close').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !overlay.hidden) close();
+    });
+
+    // Any "#newsletter" link or [data-newsletter] element opens the popup
+    document.addEventListener('click', function (e) {
+        var t = e.target.closest('a[href$="#newsletter"], [data-newsletter]');
+        if (t) { e.preventDefault(); open(); }
+    });
+
+    // Auto-show once per visitor, 15s into their first visit
+    if (!seen()) setTimeout(function () { if (overlay.hidden) open(); }, 15000);
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (!email) return;
+        try {
+            navigator.sendBeacon("https://script.google.com/macros/s/AKfycbxk_gwmKSz4nmbo-HWW3IHrq1cCnjcVIyeEUg_2YagGq6G1YyrgDc2IyzBS4CtC2_oG/exec", JSON.stringify({
+                type: 'subscribe',
+                email: email,
+                page: location.pathname,
+                ua: navigator.userAgent
+            }));
+        } catch (err) {}
+        form.hidden = true;
+        privacy.hidden = true;
+        thanks.hidden = false;
+        markSeen();
+        setTimeout(close, 3500);
+    });
+})();
+</script>
+
+
+
+    <script src="https://www.web-scrapers.com/js/site.js" defer></script>
+</body>
+</html>
