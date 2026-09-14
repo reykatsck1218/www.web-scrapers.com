@@ -5,8 +5,222 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-10T00:00:00+00:00</updated>
+    <updated>2026-09-14T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Scrape Public Reddit Posts, Subreddits &amp; Comments</title>
+        <published>2026-09-14T00:00:00+00:00</published>
+        <updated>2026-09-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/solutions/reddit-scraping/"/>
+        <id>https://www.web-scrapers.com/solutions/reddit-scraping/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/solutions/reddit-scraping/">&lt;p&gt;Reddit hosts some of the richest publicly available community data on the internet — upvoted sentiment, niche expert discussions, real-time trend signals, and structured Q&amp;amp;A threads that span virtually every industry. Unlike most social platforms, Reddit has long exposed its data in a machine-readable format by design, making it unusually accessible to structured collection — if you know how to approach it correctly.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide covers how to extract public Reddit posts, subreddit listings, and comment threads using Reddit&#x27;s built-in JSON endpoints, why naive scrapers still fail at scale, and working code samples in PHP, Node.js, and Rust that route through the &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker&lt;&#x2F;a&gt; to handle IP blocks reliably.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;public-data-vs-authenticated-data&quot;&gt;Public data vs. authenticated data&lt;&#x2F;h2&gt;
+&lt;p&gt;The boundary matters both technically and legally:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Public data&lt;&#x2F;strong&gt; — subreddit listings, post titles and bodies, comment threads, and vote scores visible to a logged-out visitor. This is the realistic target for automated collection.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Authenticated data&lt;&#x2F;strong&gt; — saved posts, notification feeds, moderation queues, or anything that requires an account session. Reddit&#x27;s Terms of Service prohibit automated access to the logged-in experience.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Everything below targets &lt;strong&gt;public, anonymous endpoints only&lt;&#x2F;strong&gt;. Reddit&#x27;s Terms restrict automated access even to public pages for certain commercial uses — review the relevant terms for your use case before deploying at scale. This guide is technical documentation, not legal advice.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-json-trick-reddit-s-built-in-api&quot;&gt;The .json trick — Reddit&#x27;s built-in API&lt;&#x2F;h2&gt;
+&lt;p&gt;Reddit&#x27;s most scraper-friendly feature is that every public URL has a corresponding JSON representation: just append &lt;code&gt;.json&lt;&#x2F;code&gt; to any &lt;code&gt;reddit.com&lt;&#x2F;code&gt; URL.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;URL&lt;&#x2F;th&gt;&lt;th&gt;JSON equivalent&lt;&#x2F;th&gt;&lt;th&gt;Returns&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;reddit.com&#x2F;r&#x2F;python&#x2F;&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;reddit.com&#x2F;r&#x2F;python.json&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Top hot posts listing&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;reddit.com&#x2F;r&#x2F;python&#x2F;top.json?t=week&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;(already JSON)&lt;&#x2F;td&gt;&lt;td&gt;Top posts, past week&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;reddit.com&#x2F;r&#x2F;python&#x2F;comments&#x2F;&amp;lt;id&amp;gt;.json&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;(already JSON)&lt;&#x2F;td&gt;&lt;td&gt;Post + comment tree&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;reddit.com&#x2F;search.json?q=web+scraping&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;(already JSON)&lt;&#x2F;td&gt;&lt;td&gt;Site-wide search results&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;The response is a standard Reddit &lt;code&gt;Listing&lt;&#x2F;code&gt; object: a &lt;code&gt;data.children&lt;&#x2F;code&gt; array where each element has a &lt;code&gt;kind&lt;&#x2F;code&gt; (&lt;code&gt;t3&lt;&#x2F;code&gt; for posts, &lt;code&gt;t1&lt;&#x2F;code&gt; for comments) and a &lt;code&gt;data&lt;&#x2F;code&gt; object carrying the actual fields.&lt;&#x2F;p&gt;
+&lt;p&gt;This structured JSON output is far more reliable than CSS-selector-based HTML parsing, which breaks on every redesign. The &lt;code&gt;.json&lt;&#x2F;code&gt; endpoint has been stable for years and is the approach recommended throughout this guide.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-scrapers-still-fail&quot;&gt;Why scrapers still fail&lt;&#x2F;h2&gt;
+&lt;p&gt;Even with the &lt;code&gt;.json&lt;&#x2F;code&gt; endpoint, naive scrapers run into trouble quickly:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IP rate limits.&lt;&#x2F;strong&gt; Reddit enforces per-IP request limits and returns HTTP 429 when you exceed them. Datacenter IPs hit limits faster and are often pre-blocked.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;User-Agent requirements.&lt;&#x2F;strong&gt; Reddit explicitly requires a descriptive &lt;code&gt;User-Agent&lt;&#x2F;code&gt; header in the format &lt;code&gt;&amp;lt;platform&amp;gt;:&amp;lt;app&amp;gt;&#x2F;&amp;lt;version&amp;gt; (by &#x2F;u&#x2F;&amp;lt;username&amp;gt;)&lt;&#x2F;code&gt;. Requests with default library user-agents (&lt;code&gt;python-requests&#x2F;2.x&lt;&#x2F;code&gt;, &lt;code&gt;curl&#x2F;7.x&lt;&#x2F;code&gt;) are rejected or severely throttled.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic anti-bot layers.&lt;&#x2F;strong&gt; At volume, Reddit adds Cloudflare-style challenges in front of its endpoints. These require a browser fingerprint to pass, not a plain HTTP request.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The samples below handle the User-Agent requirement and route through the Web Unlocker to deal with IP rotation and challenge pages automatically.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;unblocker_zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;No Bright Data account yet?&lt;&#x2F;strong&gt; &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Get started with the Web Unlocker →&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The code below fetches the top posts for a given subreddit. Replace &lt;code&gt;python&lt;&#x2F;code&gt; with any public subreddit name.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;php&quot;&gt;PHP&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+&#x2F;&#x2F; Run: php reddit.php python
+$proxy     = getenv(&amp;#39;PROXY_URL&amp;#39;);
+$subreddit = $argv[1] ?? &amp;#39;python&amp;#39;;
+
+$ch = curl_init(&amp;quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;{$subreddit}&#x2F;top.json?limit=25&amp;amp;t=day&amp;quot;);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER =&amp;gt; true,
+    CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+    CURLOPT_PROXY          =&amp;gt; $proxy,
+    CURLOPT_SSL_VERIFYPEER =&amp;gt; false,
+    CURLOPT_TIMEOUT        =&amp;gt; 60,
+    CURLOPT_HTTPHEADER     =&amp;gt; [
+        &amp;#39;Accept: application&#x2F;json&amp;#39;,
+        &amp;#39;User-Agent: cli:web-scraping-guide&#x2F;1.0 (by &#x2F;u&#x2F;scraping_examples)&amp;#39;,
+    ],
+]);
+$body = curl_exec($ch);
+curl_close($ch);
+
+$listing  = json_decode($body, true);
+$children = $listing[&amp;#39;data&amp;#39;][&amp;#39;children&amp;#39;] ?? [];
+
+$posts = [];
+foreach ($children as $child) {
+    $d = $child[&amp;#39;data&amp;#39;] ?? [];
+    $posts[] = [
+        &amp;#39;id&amp;#39;           =&amp;gt; $d[&amp;#39;id&amp;#39;]            ?? null,
+        &amp;#39;title&amp;#39;        =&amp;gt; $d[&amp;#39;title&amp;#39;]         ?? null,
+        &amp;#39;author&amp;#39;       =&amp;gt; $d[&amp;#39;author&amp;#39;]        ?? null,
+        &amp;#39;score&amp;#39;        =&amp;gt; $d[&amp;#39;score&amp;#39;]         ?? null,
+        &amp;#39;num_comments&amp;#39; =&amp;gt; $d[&amp;#39;num_comments&amp;#39;]  ?? null,
+        &amp;#39;url&amp;#39;          =&amp;gt; $d[&amp;#39;url&amp;#39;]           ?? null,
+        &amp;#39;created_utc&amp;#39;  =&amp;gt; $d[&amp;#39;created_utc&amp;#39;]  ?? null,
+    ];
+}
+
+echo json_encode($posts, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;node-js&quot;&gt;Node.js&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;javascript&quot;&gt;&#x2F;&#x2F; reddit.mjs — node reddit.mjs python
+&#x2F;&#x2F; Install: npm i axios https-proxy-agent
+import axios from &amp;#39;axios&amp;#39;;
+import { HttpsProxyAgent } from &amp;#39;https-proxy-agent&amp;#39;;
+
+const agent     = new HttpsProxyAgent(process.env.PROXY_URL);
+const subreddit = process.argv[2] ?? &amp;#39;python&amp;#39;;
+
+const { data: listing } = await axios.get(
+  `https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;${subreddit}&#x2F;top.json?limit=25&amp;amp;t=day`,
+  {
+    httpsAgent: agent,
+    proxy: false,
+    timeout: 60_000,
+    headers: {
+      &amp;#39;Accept&amp;#39;: &amp;#39;application&#x2F;json&amp;#39;,
+      &amp;#39;User-Agent&amp;#39;: &amp;#39;cli:web-scraping-guide&#x2F;1.0 (by &#x2F;u&#x2F;scraping_examples)&amp;#39;,
+    },
+  }
+);
+
+const posts = (listing.data.children ?? []).map(({ data: d }) =&amp;gt; ({
+  id:           d.id           ?? null,
+  title:        d.title        ?? null,
+  author:       d.author       ?? null,
+  score:        d.score        ?? null,
+  num_comments: d.num_comments ?? null,
+  url:          d.url          ?? null,
+  created_utc:  d.created_utc  ?? null,
+}));
+
+console.log(JSON.stringify(posts, null, 2));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;&#x2F;&#x2F; Cargo.toml:
+&#x2F;&#x2F;   reqwest = { version = &amp;quot;0.12&amp;quot;, features = [&amp;quot;blocking&amp;quot;] }
+&#x2F;&#x2F;   serde_json = &amp;quot;1&amp;quot;
+use serde_json::Value;
+
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let subreddit = std::env::args().nth(1).unwrap_or_else(|| &amp;quot;python&amp;quot;.into());
+
+    let client = reqwest::blocking::Client::builder()
+        .proxy(reqwest::Proxy::all(std::env::var(&amp;quot;PROXY_URL&amp;quot;)?)?)
+        .danger_accept_invalid_certs(true)
+        .build()?;
+
+    let body: Value = client
+        .get(format!(
+            &amp;quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;{subreddit}&#x2F;top.json?limit=25&amp;amp;t=day&amp;quot;
+        ))
+        .header(&amp;quot;Accept&amp;quot;, &amp;quot;application&#x2F;json&amp;quot;)
+        .header(
+            &amp;quot;User-Agent&amp;quot;,
+            &amp;quot;cli:web-scraping-guide&#x2F;1.0 (by &#x2F;u&#x2F;scraping_examples)&amp;quot;,
+        )
+        .send()?
+        .json()?;
+
+    let children = body[&amp;quot;data&amp;quot;][&amp;quot;children&amp;quot;]
+        .as_array()
+        .cloned()
+        .unwrap_or_default();
+
+    let posts: Vec&amp;lt;Value&amp;gt; = children
+        .iter()
+        .map(|child| {
+            let d = &amp;amp;child[&amp;quot;data&amp;quot;];
+            serde_json::json!({
+                &amp;quot;id&amp;quot;:           d[&amp;quot;id&amp;quot;],
+                &amp;quot;title&amp;quot;:        d[&amp;quot;title&amp;quot;],
+                &amp;quot;author&amp;quot;:       d[&amp;quot;author&amp;quot;],
+                &amp;quot;score&amp;quot;:        d[&amp;quot;score&amp;quot;],
+                &amp;quot;num_comments&amp;quot;: d[&amp;quot;num_comments&amp;quot;],
+                &amp;quot;url&amp;quot;:          d[&amp;quot;url&amp;quot;],
+                &amp;quot;created_utc&amp;quot;:  d[&amp;quot;created_utc&amp;quot;],
+            })
+        })
+        .collect();
+
+    println!(&amp;quot;{}&amp;quot;, serde_json::to_string_pretty(&amp;amp;posts)?);
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;fetching-post-comments&quot;&gt;Fetching post comments&lt;&#x2F;h2&gt;
+&lt;p&gt;Swap the URL template to pull the comment tree for a specific post. Append &lt;code&gt;.json&lt;&#x2F;code&gt; to the post&#x27;s permalink and Reddit returns a two-element array: &lt;code&gt;[0]&lt;&#x2F;code&gt; is the post itself, &lt;code&gt;[1]&lt;&#x2F;code&gt; is the comment listing.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;{subreddit}&#x2F;comments&#x2F;{post_id}.json?limit=50&amp;amp;depth=3
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Each comment element has &lt;code&gt;kind = &quot;t1&quot;&lt;&#x2F;code&gt; and the same &lt;code&gt;data&lt;&#x2F;code&gt; structure with &lt;code&gt;body&lt;&#x2F;code&gt;, &lt;code&gt;author&lt;&#x2F;code&gt;, &lt;code&gt;score&lt;&#x2F;code&gt;, and &lt;code&gt;replies&lt;&#x2F;code&gt; (a nested &lt;code&gt;Listing&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;adapting-for-search-and-cross-subreddit-queries&quot;&gt;Adapting for search and cross-subreddit queries&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Goal&lt;&#x2F;th&gt;&lt;th&gt;URL pattern&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Search one subreddit&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;r&#x2F;&amp;lt;sub&amp;gt;&#x2F;search.json?q=&amp;lt;query&amp;gt;&amp;amp;restrict_sr=1&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Site-wide search&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;search.json?q=&amp;lt;query&amp;gt;&amp;amp;sort=relevance&amp;amp;t=month&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;New posts (firehose)&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;r&#x2F;&amp;lt;sub&amp;gt;&#x2F;new.json?limit=100&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Hot posts&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;r&#x2F;&amp;lt;sub&amp;gt;&#x2F;hot.json&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Rising posts&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;r&#x2F;&amp;lt;sub&amp;gt;&#x2F;rising.json&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;All accept the same proxy and User-Agent setup above. Pagination uses the &lt;code&gt;after&lt;&#x2F;code&gt; cursor from &lt;code&gt;data.after&lt;&#x2F;code&gt; in the response — pass it as &lt;code&gt;&amp;amp;after=&amp;lt;value&amp;gt;&lt;&#x2F;code&gt; in the next request to walk through all pages.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;notes&quot;&gt;Notes&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;score&lt;&#x2F;code&gt; field represents net upvotes. Reddit fuzzes scores on new posts to deter vote-manipulation bots, so early scores are approximate.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;author&lt;&#x2F;code&gt; is a string username; deleted or suspended accounts return &lt;code&gt;[deleted]&lt;&#x2F;code&gt; or &lt;code&gt;[removed]&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;selftext&lt;&#x2F;code&gt; contains the post body for text posts. It is empty for link posts and &lt;code&gt;[removed]&lt;&#x2F;code&gt; for moderator-deleted content.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;created_utc&lt;&#x2F;code&gt; is a Unix timestamp in UTC. Multiply by 1000 for JavaScript &lt;code&gt;Date&lt;&#x2F;code&gt; compatibility.&lt;&#x2F;li&gt;
+&lt;li&gt;Reddit&#x27;s anonymous rate limit sits around 100 requests per minute per IP — stay well below that. For production crawls, a rotating residential proxy pool is essential (see &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;proxy types explained&lt;&#x2F;a&gt;).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;subreddit_type&lt;&#x2F;code&gt; in the post object reveals whether the subreddit is &lt;code&gt;public&lt;&#x2F;code&gt;, &lt;code&gt;restricted&lt;&#x2F;code&gt;, or &lt;code&gt;private&lt;&#x2F;code&gt;. Only &lt;code&gt;public&lt;&#x2F;code&gt; subreddits are accessible without authentication.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;scaling-to-multiple-subreddits&quot;&gt;Scaling to multiple subreddits&lt;&#x2F;h2&gt;
+&lt;p&gt;Monitoring dozens of subreddits for brand mentions, trend signals, or competitor intelligence requires rotating IPs, respecting rate limits across parallel workers, and handling temporary bans gracefully. The &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker&lt;&#x2F;a&gt; handles IP rotation and Cloudflare challenge pages transparently, so your code only needs to parse the JSON it receives. For avoiding blocks at higher request rates, the &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked&lt;&#x2F;a&gt; guide covers the broader strategy.&lt;&#x2F;p&gt;
+&lt;p&gt;Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker&lt;&#x2F;a&gt; is well-suited for Reddit at scale — it presents genuine residential IPs with correct browser signals, eliminating the most common failure modes. For sentiment analysis workflows that span Reddit alongside other platforms, our &lt;a href=&quot;&#x2F;solutions&#x2F;social-media-scraping&#x2F;&quot;&gt;Social Media Scraping&lt;&#x2F;a&gt; overview maps out the full landscape.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Scrape Reddit at scale with Bright Data →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;does-reddit-allow-web-scraping&quot;&gt;Does Reddit allow web scraping?&lt;&#x2F;h3&gt;
+&lt;p&gt;Reddit permits scraping public pages at low rates under its robots.txt, but restricts commercial use of user-generated content. Always review Reddit&#x27;s Terms of Service, Privacy Policy, and Developer Terms before large-scale collection, and respect rate limits.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-is-the-json-trick-for-reddit-scraping&quot;&gt;What is the .json trick for Reddit scraping?&lt;&#x2F;h3&gt;
+&lt;p&gt;Appending .json to any reddit.com URL — for example &#x2F;r&#x2F;python.json or a post URL with .json — returns the page&#x27;s structured data as machine-readable JSON, making Reddit one of the most straightforward targets for structured extraction.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-do-reddit-scrapers-get-blocked&quot;&gt;Why do Reddit scrapers get blocked?&lt;&#x2F;h3&gt;
+&lt;p&gt;Reddit rate-limits by IP and blocks datacenter ranges outright. It also enforces a User-Agent policy and returns HTTP 429 when requests arrive too fast. Residential proxies that rotate IPs and send a descriptive User-Agent header reduce blocks significantly.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-public-reddit-data-can-i-collect-without-a-login&quot;&gt;What public Reddit data can I collect without a login?&lt;&#x2F;h3&gt;
+&lt;p&gt;Public subreddit listings, post titles, vote scores, comment counts, author names, selftext bodies, and post metadata are all available to anonymous requests. Private subreddits, user DMs, and suspended accounts require authentication and are off-limits for scraping.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Web Scraping with Node.js: Axios, Cheerio &amp; Puppeteer</title>
         <published>2026-09-10T00:00:00+00:00</published>
