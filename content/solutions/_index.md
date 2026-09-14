@@ -11,4 +11,6 @@ Start with our [E-commerce overview](/solutions/ecommerce/), then jump into a ha
 
 Working with travel or social data? Our [Travel Data Scraping](/solutions/travel-data-scraping/) pillar covers the full landscape — with deep dives into [Airbnb](/solutions/airbnb-scraping/), [Booking.com](/solutions/booking-scraping/), and [Kayak flight prices](/solutions/kayak-flight-scraping/). On the social side, our [Social Media Scraping](/solutions/social-media-scraping/) pillar ties together public data collection from [TikTok](/solutions/tiktok-scraping/), [Instagram](/solutions/instagram-scraping/), [Facebook](/solutions/facebook-scraping/), and [LinkedIn](/solutions/linkedin-scraping/).
 
+Want to tap into community sentiment and trend signals? The [Reddit Scraping](/solutions/reddit-scraping/) guide shows how to extract public subreddits, posts, and comments using Reddit's built-in JSON endpoints.
+
 Not sure where to start? The [Web Scraping Use Cases](/solutions/web-scraping-use-cases/) overview maps every major vertical — e-commerce, travel, social, B2B, and market research — to the right tools and guides.
