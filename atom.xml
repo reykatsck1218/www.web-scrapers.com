@@ -5,8 +5,252 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-14T00:00:00+00:00</updated>
+    <updated>2026-09-17T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Web Scraping with PHP: cURL, DOMDocument &amp; Proxies</title>
+        <published>2026-09-17T00:00:00+00:00</published>
+        <updated>2026-09-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/learn/web-scraping-with-php/"/>
+        <id>https://www.web-scrapers.com/learn/web-scraping-with-php/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/learn/web-scraping-with-php/">&lt;p&gt;PHP is the original web language — powering roughly 77% of all websites with a server-side language — yet it&#x27;s rarely the first name mentioned when scraping comes up. That&#x27;s a missed opportunity. PHP ships with a battle-tested HTTP client (cURL) and an HTML parser (DOMDocument) directly in its standard library. There is nothing to install, no virtual environment to activate, and no dependency conflicts to debug. If your pipeline already runs in PHP — a Laravel worker, a WordPress plugin, a legacy data job — you can add scraping in the same codebase without a language jump.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide walks from a minimal cURL fetch to a pagination-aware scraper that routes through a proxy, extracts embedded JSON-LD structured data, and saves results to disk.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites-and-setup&quot;&gt;Prerequisites and Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;You need PHP 8.1 or newer with the &lt;code&gt;curl&lt;&#x2F;code&gt; and &lt;code&gt;dom&lt;&#x2F;code&gt; extensions enabled (both are on by default in most distributions). Verify:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;php -m | grep -E &amp;#39;curl|dom&amp;#39;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;All examples in this guide use core PHP only. For an optional HTML-parsing shortcut, you can install &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;symfony.com&#x2F;doc&#x2F;current&#x2F;components&#x2F;css_selector.html&quot;&gt;symfony&#x2F;css-selector&lt;&#x2F;a&gt; or &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;voku&#x2F;simple_html_dom&quot;&gt;voku&#x2F;simple_html_dom&lt;&#x2F;a&gt; via Composer — but neither is required here.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fetching-a-page-with-curl&quot;&gt;Fetching a Page with cURL&lt;&#x2F;h2&gt;
+&lt;p&gt;PHP&#x27;s cURL extension wraps the &lt;code&gt;libcurl&lt;&#x2F;code&gt; library. At its simplest:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+function fetch(string $url, string $proxy = &amp;#39;&amp;#39;): string {
+    $ch = curl_init($url);
+    $opts = [
+        CURLOPT_RETURNTRANSFER =&amp;gt; true,
+        CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+        CURLOPT_TIMEOUT        =&amp;gt; 30,
+        CURLOPT_HTTPHEADER     =&amp;gt; [
+            &amp;#39;User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) &amp;#39;
+                . &amp;#39;AppleWebKit&#x2F;537.36 (KHTML, like Gecko) &amp;#39;
+                . &amp;#39;Chrome&#x2F;124.0.0.0 Safari&#x2F;537.36&amp;#39;,
+            &amp;#39;Accept-Language: en-US,en;q=0.9&amp;#39;,
+            &amp;#39;Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+        ],
+    ];
+    if ($proxy) {
+        $opts[CURLOPT_PROXY]          = $proxy;
+        $opts[CURLOPT_SSL_VERIFYPEER] = false;
+    }
+    curl_setopt_array($ch, $opts);
+    $body = curl_exec($ch);
+    $err  = curl_error($ch);
+    curl_close($ch);
+    if ($err) throw new RuntimeException(&amp;quot;cURL error: $err&amp;quot;);
+    return $body;
+}
+
+$html = fetch(&amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;#39;);
+echo strlen($html) . &amp;quot; bytes fetched\n&amp;quot;;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Three habits from the start:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Always set &lt;code&gt;CURLOPT_TIMEOUT&lt;&#x2F;code&gt;.&lt;&#x2F;strong&gt; Without it, a slow or dropped connection hangs your script forever.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Send a realistic &lt;code&gt;User-Agent&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt; — the default &lt;code&gt;curl&#x2F;8.x&lt;&#x2F;code&gt; string is an instant bot signal.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Wrap proxy configuration in a flag.&lt;&#x2F;strong&gt; The same function works locally (no proxy) and in production (with proxy) by toggling one parameter.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;parsing-html-with-domdocument-and-domxpath&quot;&gt;Parsing HTML with DOMDocument and DOMXPath&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;code&gt;DOMDocument&lt;&#x2F;code&gt; loads HTML into a traversable tree; &lt;code&gt;DOMXPath&lt;&#x2F;code&gt; queries it with XPath expressions that work similarly to CSS selectors:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+$html = fetch(&amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;#39;);
+
+$doc = new DOMDocument();
+@$doc-&amp;gt;loadHTML($html); &#x2F;&#x2F; @ suppresses malformed-HTML warnings
+$xp = new DOMXPath($doc);
+
+$books = [];
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;article[contains(@class,&amp;quot;product_pod&amp;quot;)]&amp;#39;) as $node) {
+    $titleNode = $xp-&amp;gt;query(&amp;#39;.&#x2F;&#x2F;h3&#x2F;a&amp;#39;, $node)-&amp;gt;item(0);
+    $priceNode = $xp-&amp;gt;query(&amp;#39;.&#x2F;&#x2F;p[contains(@class,&amp;quot;price_color&amp;quot;)]&amp;#39;, $node)-&amp;gt;item(0);
+    $books[] = [
+        &amp;#39;title&amp;#39; =&amp;gt; $titleNode?-&amp;gt;getAttribute(&amp;#39;title&amp;#39;) ?? &amp;#39;&amp;#39;,
+        &amp;#39;price&amp;#39; =&amp;gt; trim($priceNode?-&amp;gt;textContent ?? &amp;#39;&amp;#39;),
+    ];
+}
+
+echo json_encode($books, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Key points:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;@&lt;&#x2F;code&gt; suppressor before &lt;code&gt;loadHTML&lt;&#x2F;code&gt; prevents HTML5 tags from flooding your error log. It is safe here because you handle the return value separately.&lt;&#x2F;li&gt;
+&lt;li&gt;XPath axes (&lt;code&gt;.&#x2F;&#x2F;&lt;&#x2F;code&gt; = descendant of context node) let you scope queries to a subtree, avoiding global matches that break when the page layout shifts.&lt;&#x2F;li&gt;
+&lt;li&gt;Nullsafe operators (&lt;code&gt;?-&amp;gt;&lt;&#x2F;code&gt;) short-circuit cleanly when an expected element is missing, giving you an empty string rather than a fatal error.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;extracting-embedded-json-ld-structured-data&quot;&gt;Extracting Embedded JSON-LD Structured Data&lt;&#x2F;h2&gt;
+&lt;p&gt;Many e-commerce and content sites embed a &lt;code&gt;&amp;lt;script type=&quot;application&#x2F;ld+json&quot;&amp;gt;&lt;&#x2F;code&gt; block containing a clean &lt;code&gt;Product&lt;&#x2F;code&gt;, &lt;code&gt;Article&lt;&#x2F;code&gt;, or &lt;code&gt;BreadcrumbList&lt;&#x2F;code&gt; object. This structured data survives layout changes better than CSS selectors tied to class names:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+function extractJsonLd(DOMXPath $xp, string $type): ?array {
+    foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;script[@type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;) as $node) {
+        $ld = json_decode($node-&amp;gt;textContent, true);
+        if (($ld[&amp;#39;@type&amp;#39;] ?? &amp;#39;&amp;#39;) === $type) return $ld;
+    }
+    return null;
+}
+
+&#x2F;&#x2F; On a product detail page:
+$html    = fetch(&amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;catalogue&#x2F;a-light-in-the-attic_1000&#x2F;index.html&amp;#39;);
+$doc     = new DOMDocument();
+@$doc-&amp;gt;loadHTML($html);
+$xp      = new DOMXPath($doc);
+
+$product = extractJsonLd($xp, &amp;#39;Book&amp;#39;) ?? extractJsonLd($xp, &amp;#39;Product&amp;#39;);
+echo json_encode([
+    &amp;#39;name&amp;#39;   =&amp;gt; $product[&amp;#39;name&amp;#39;]             ?? null,
+    &amp;#39;price&amp;#39;  =&amp;gt; $product[&amp;#39;offers&amp;#39;][&amp;#39;price&amp;#39;]  ?? null,
+    &amp;#39;sku&amp;#39;    =&amp;gt; $product[&amp;#39;sku&amp;#39;]              ?? null,
+], JSON_PRETTY_PRINT), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This pattern is the same one used in our &lt;a href=&quot;&#x2F;solutions&#x2F;ebay-product-tracking&#x2F;&quot;&gt;eBay Product Tracking&lt;&#x2F;a&gt; guide — the structured data block is the most stable extraction target on any page that provides it. Check for it first before writing fragile CSS or XPath selectors against the layout.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;routing-through-a-proxy&quot;&gt;Routing Through a Proxy&lt;&#x2F;h2&gt;
+&lt;p&gt;Scale any scraper past a few hundred requests and IP-based blocking becomes the main obstacle. Anti-bot systems flag addresses that send requests far faster than a human browser would. The fix is routing through a rotating proxy pool so each request appears to originate from a different IP.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+$proxyUrl = getenv(&amp;#39;PROXY_URL&amp;#39;); &#x2F;&#x2F; e.g. http:&#x2F;&#x2F;user:pass@brd.superproxy.io:22225
+
+$html = fetch(&amp;#39;https:&#x2F;&#x2F;www.example.com&#x2F;products&amp;#39;, $proxyUrl);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set &lt;code&gt;PROXY_URL&lt;&#x2F;code&gt; in your environment before running:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+php scraper.php
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For targets that require JavaScript rendering or solve CAPTCHAs, a raw proxy pool isn&#x27;t enough — you also need fingerprint management and challenge resolution. Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker&lt;&#x2F;a&gt; wraps all of that behind a single proxy-compatible endpoint: your cURL code stays identical, while the service handles IP rotation, browser fingerprinting, and CAPTCHA solving transparently. See our &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt; for a detailed look at what it does under the hood.&lt;&#x2F;p&gt;
+&lt;p&gt;Not sure which proxy tier matches your target? &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;Proxy types explained&lt;&#x2F;a&gt; compares datacenter, residential, ISP, and mobile proxies so you can match the product to the level of protection the site deploys.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-complete-pagination-aware-scraper&quot;&gt;A Complete Pagination-Aware Scraper&lt;&#x2F;h2&gt;
+&lt;p&gt;Putting the pieces together: fetch, parse, follow the &quot;next&quot; link, add a polite delay, and write results to JSON:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+&#x2F;&#x2F; Run: PROXY_URL=&amp;quot;http:&#x2F;&#x2F;...&amp;quot; php books_scraper.php
+
+function fetch(string $url, string $proxy = &amp;#39;&amp;#39;): string {
+    $ch = curl_init($url);
+    $opts = [
+        CURLOPT_RETURNTRANSFER =&amp;gt; true,
+        CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+        CURLOPT_TIMEOUT        =&amp;gt; 30,
+        CURLOPT_HTTPHEADER     =&amp;gt; [
+            &amp;#39;User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) &amp;#39;
+                . &amp;#39;AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;124.0.0.0 Safari&#x2F;537.36&amp;#39;,
+            &amp;#39;Accept-Language: en-US,en;q=0.9&amp;#39;,
+        ],
+    ];
+    if ($proxy) {
+        $opts[CURLOPT_PROXY]          = $proxy;
+        $opts[CURLOPT_SSL_VERIFYPEER] = false;
+    }
+    curl_setopt_array($ch, $opts);
+    $body = curl_exec($ch);
+    $err  = curl_error($ch);
+    curl_close($ch);
+    if ($err) throw new RuntimeException(&amp;quot;cURL error: $err&amp;quot;);
+    return $body;
+}
+
+$proxy = getenv(&amp;#39;PROXY_URL&amp;#39;) ?: &amp;#39;&amp;#39;;
+$base  = &amp;#39;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;#39;;
+$url   = $base;
+$books = [];
+
+while ($url) {
+    echo &amp;quot;Fetching $url\n&amp;quot;;
+    $html = fetch($url, $proxy);
+
+    $doc = new DOMDocument();
+    @$doc-&amp;gt;loadHTML($html);
+    $xp = new DOMXPath($doc);
+
+    foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;article[contains(@class,&amp;quot;product_pod&amp;quot;)]&amp;#39;) as $node) {
+        $a     = $xp-&amp;gt;query(&amp;#39;.&#x2F;&#x2F;h3&#x2F;a&amp;#39;, $node)-&amp;gt;item(0);
+        $price = $xp-&amp;gt;query(&amp;#39;.&#x2F;&#x2F;p[contains(@class,&amp;quot;price_color&amp;quot;)]&amp;#39;, $node)-&amp;gt;item(0);
+        $books[] = [
+            &amp;#39;title&amp;#39; =&amp;gt; $a?-&amp;gt;getAttribute(&amp;#39;title&amp;#39;) ?? &amp;#39;&amp;#39;,
+            &amp;#39;price&amp;#39; =&amp;gt; trim($price?-&amp;gt;textContent ?? &amp;#39;&amp;#39;),
+            &amp;#39;href&amp;#39;  =&amp;gt; $a ? rtrim($base, &amp;#39;&#x2F;&amp;#39;) . &amp;#39;&#x2F;catalogue&#x2F;&amp;#39; . basename($a-&amp;gt;getAttribute(&amp;#39;href&amp;#39;)) : &amp;#39;&amp;#39;,
+        ];
+    }
+
+    &#x2F;&#x2F; Follow &amp;quot;next&amp;quot; pagination link
+    $nextNode = $xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;li[contains(@class,&amp;quot;next&amp;quot;)]&#x2F;a&amp;#39;)-&amp;gt;item(0);
+    if ($nextNode) {
+        $rel = $nextNode-&amp;gt;getAttribute(&amp;#39;href&amp;#39;);
+        &#x2F;&#x2F; Resolve relative path against the current URL&amp;#39;s directory
+        $url = rtrim(dirname($url), &amp;#39;&#x2F;&amp;#39;) . &amp;#39;&#x2F;&amp;#39; . $rel;
+    } else {
+        $url = null;
+    }
+
+    if ($url) usleep(mt_rand(800_000, 1_500_000)); &#x2F;&#x2F; 0.8–1.5 s polite delay
+}
+
+file_put_contents(&amp;#39;books.json&amp;#39;, json_encode($books, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+echo &amp;quot;Saved &amp;quot; . count($books) . &amp;quot; books to books.json\n&amp;quot;;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The random delay (&lt;code&gt;usleep&lt;&#x2F;code&gt;) is deliberate — uniform timing is itself a bot signal. Jitter in the 0.8–1.5 s range mimics the irregular pace of a human reading and clicking. For more on pagination strategies (offset parameters, cursor tokens, infinite scroll), see our &lt;a href=&quot;&#x2F;learn&#x2F;handling-pagination&#x2F;&quot;&gt;pagination guide&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;handling-javascript-rendered-pages&quot;&gt;Handling JavaScript-Rendered Pages&lt;&#x2F;h2&gt;
+&lt;p&gt;cURL fetches exactly what the server sends before any JavaScript runs. If you view-source a page and the data you want isn&#x27;t there, the site renders it client-side.&lt;&#x2F;p&gt;
+&lt;p&gt;Your options in PHP:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Find the underlying API.&lt;&#x2F;strong&gt; Open DevTools → Network → XHR and reload the page. Most SPAs fetch data from a JSON API that you can call directly — cleaner and faster than rendering.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Use a managed rendering endpoint.&lt;&#x2F;strong&gt; Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker&lt;&#x2F;a&gt; renders the page in a real browser server-side and returns the fully rendered HTML. Your cURL code stays the same; you just point it at the unlocker endpoint instead of the target URL directly.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Pair PHP with a headless browser sidecar.&lt;&#x2F;strong&gt; Run Chromium via Puppeteer (Node.js) or Playwright as a subprocess, call it from PHP via &lt;code&gt;proc_open&lt;&#x2F;code&gt;, and receive the rendered HTML back on stdout — effective but complex to deploy.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;For most protected targets, option 2 is the pragmatic path. It keeps your codebase pure PHP and offloads rendering, fingerprinting, and CAPTCHA solving to infrastructure built for the task.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;debugging-your-scraper&quot;&gt;Debugging Your Scraper&lt;&#x2F;h2&gt;
+&lt;p&gt;When results come back empty:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Inspect the raw response first.&lt;&#x2F;strong&gt; Log &lt;code&gt;substr($html, 0, 1000)&lt;&#x2F;code&gt;. A 200 status can still be a CAPTCHA page, a consent wall, or a login redirect — all valid HTML, zero data.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Check the HTTP status code.&lt;&#x2F;strong&gt; Add &lt;code&gt;curl_getinfo($ch, CURLINFO_HTTP_CODE)&lt;&#x2F;code&gt; before &lt;code&gt;curl_close&lt;&#x2F;code&gt;. A 403 or 429 means you&#x27;ve been blocked, not that the selector is wrong.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Test XPath in the browser.&lt;&#x2F;strong&gt; Open DevTools console and run &lt;code&gt;$x(&#x27;&#x2F;&#x2F;article[contains(@class,&quot;product_pod&quot;)]&#x27;)&lt;&#x2F;code&gt; — Chrome supports XPath natively. This confirms your expression before you debug PHP.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Diff the view-source against what cURL received.&lt;&#x2F;strong&gt; If they differ, the page likely has a bot-detection layer serving different content to non-browser clients.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;saving-data&quot;&gt;Saving Data&lt;&#x2F;h2&gt;
+&lt;p&gt;JSON is the easiest format to pass to other systems:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;file_put_contents(&amp;#39;output.json&amp;#39;, json_encode($records, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For CSV that opens cleanly in Excel:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;$fp = fopen(&amp;#39;output.csv&amp;#39;, &amp;#39;w&amp;#39;);
+fputcsv($fp, array_keys($records[0])); &#x2F;&#x2F; header row
+foreach ($records as $row) fputcsv($fp, $row);
+fclose($fp);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;PHP&#x27;s &lt;code&gt;fputcsv()&lt;&#x2F;code&gt; handles quoting and escaping automatically — no regex required.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;scaling-up&quot;&gt;Scaling Up&lt;&#x2F;h2&gt;
+&lt;p&gt;Running hundreds of pages per minute from a single IP is a fast path to a ban. Beyond proxy rotation, consider:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Parallel requests with cURL multi.&lt;&#x2F;strong&gt; PHP&#x27;s &lt;code&gt;curl_multi_init&lt;&#x2F;code&gt; handles concurrent requests in a single PHP process without threads — effective up to ~20 parallel requests before connection overhead becomes the bottleneck.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Queue-based architecture.&lt;&#x2F;strong&gt; Push URLs into Redis or a database queue and run multiple PHP worker processes in parallel, each with its own IP.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Managed data collection.&lt;&#x2F;strong&gt; When the target is a major platform (Amazon, social media, travel sites), building and maintaining a scraper often costs more than using a provider&#x27;s ready-made data product. See &lt;a href=&quot;&#x2F;learn&#x2F;datasets-vs-web-scraping&#x2F;&quot;&gt;Datasets vs. Web Scraping&lt;&#x2F;a&gt; to weigh that decision.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For a broader view of when to build a scraper vs. buy structured data, see our &lt;a href=&quot;&#x2F;solutions&#x2F;web-scraping-use-cases&#x2F;&quot;&gt;web scraping use cases overview&lt;&#x2F;a&gt; and compare proxy providers in our &lt;a href=&quot;&#x2F;reviews&#x2F;&quot;&gt;reviews section&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Start scraping at scale with Bright Data&#x27;s Web Unlocker →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;is-php-good-for-web-scraping&quot;&gt;Is PHP good for web scraping?&lt;&#x2F;h3&gt;
+&lt;p&gt;Yes. PHP ships with cURL and DOMDocument&#x2F;DOMXPath in its standard library, so you can fetch pages and parse HTML without installing any third-party package. It&#x27;s a practical choice when your data pipeline already lives in a PHP backend.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-do-i-parse-html-in-php-without-a-library&quot;&gt;How do I parse HTML in PHP without a library?&lt;&#x2F;h3&gt;
+&lt;p&gt;Use the built-in DOMDocument class: load the fetched HTML string with &lt;code&gt;loadHTML()&lt;&#x2F;code&gt;, then use &lt;code&gt;DOMXPath&lt;&#x2F;code&gt; to query elements with CSS-like XPath expressions. Suppress markup-warning noise with the &lt;code&gt;@&lt;&#x2F;code&gt; error-suppression operator before &lt;code&gt;loadHTML()&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-do-i-route-php-curl-requests-through-a-proxy&quot;&gt;How do I route PHP cURL requests through a proxy?&lt;&#x2F;h3&gt;
+&lt;p&gt;Pass the proxy URL to &lt;code&gt;curl_setopt()&lt;&#x2F;code&gt; using the &lt;code&gt;CURLOPT_PROXY&lt;&#x2F;code&gt; constant. For authenticated proxies (&lt;code&gt;user:pass@host:port&lt;&#x2F;code&gt; format), use &lt;code&gt;CURLOPT_PROXYUSERPWD&lt;&#x2F;code&gt;. Set &lt;code&gt;CURLOPT_SSL_VERIFYPEER&lt;&#x2F;code&gt; to &lt;code&gt;false&lt;&#x2F;code&gt; only when the proxy uses a self-signed certificate you trust.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;can-php-scrape-javascript-rendered-pages&quot;&gt;Can PHP scrape JavaScript-rendered pages?&lt;&#x2F;h3&gt;
+&lt;p&gt;Not with cURL alone — cURL fetches the raw HTML the server sends before any client-side JavaScript runs. For JavaScript-heavy sites, use a managed unblocking service that renders pages server-side, such as Bright Data&#x27;s Web Unlocker, which returns fully rendered HTML without you running a headless browser.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Scrape Public Reddit Posts, Subreddits &amp; Comments</title>
         <published>2026-09-14T00:00:00+00:00</published>
