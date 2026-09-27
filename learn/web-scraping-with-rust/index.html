@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2340JEW0BT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2340JEW0BT');
+    </script>
+    
+    
+
+    
+    
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:3142858,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    
+    
+
+    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2119108362521032" crossorigin="anonymous"></script>
+    
+    
+
+    
+    <title>Web Scraping with Rust: reqwest, scraper &amp; Proxies | Web-Scrapers.com</title>
+
+    
+    
+    <meta name="description" content="Scrape the web with Rust using reqwest and the scraper crate, extract JSON-LD structured data, route through a proxy, and scale to production.">
+    
+
+    
+    
+
+    
+    
+    <meta name="author" content="Web-Scrapers.com">
+    
+
+    
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    
+    
+    <link rel="canonical" href="https://www.web-scrapers.com/learn/web-scraping-with-rust/">
+    
+
+    
+    
+        
+    
+    
+        
+    
+
+    
+    <meta property="og:type" content="article">
+    
+    <meta property="og:url" content="https://www.web-scrapers.com/learn/web-scraping-with-rust/">
+    
+    
+    <meta property="og:title" content="Web Scraping with Rust: reqwest, scraper &amp; Proxies">
+    
+    
+    <meta property="og:description" content="Scrape the web with Rust using reqwest and the scraper crate, extract JSON-LD structured data, route through a proxy, and scale to production.">
+    
+    
+    <meta property="og:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Web Scraping with Rust: reqwest, scraper &amp; Proxies">
+    
+    <meta property="og:site_name" content="Web-Scrapers.com">
+    <meta property="og:locale" content="en">
+
+    
+    
+    
+    <meta property="article:published_time" content="2026-09-24T00:00:00">
+    
+    
+    
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <meta name="twitter:url" content="https://www.web-scrapers.com/learn/web-scraping-with-rust/">
+    
+    
+    <meta name="twitter:title" content="Web Scraping with Rust: reqwest, scraper &amp; Proxies">
+    
+    
+    <meta name="twitter:description" content="Scrape the web with Rust using reqwest and the scraper crate, extract JSON-LD structured data, route through a proxy, and scale to production.">
+    
+    
+    <meta name="twitter:image" content="https://www.web-scrapers.com/assets/og-image.png">
+    <meta property="twitter:image:alt" content="Web Scraping with Rust: reqwest, scraper &amp; Proxies">
+    
+    
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://www.web-scrapers.com#website",
+                "url": "https://www.web-scrapers.com",
+                "name": "Web-Scrapers.com",
+                "description": "Independent web scraping reviews, proxy benchmarks, and hands-on scraping guides with code samples in Python, PHP, Node.js, and Rust.",
+                
+                "author": {
+                    "@type": "Organization",
+                    "name": "Web-Scrapers.com"
+                },
+                
+                "inLanguage": "en"
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://www.web-scrapers.com/learn/web-scraping-with-rust/#webpage",
+                "url": "https://www.web-scrapers.com/learn/web-scraping-with-rust/",
+                "name": "Web Scraping with Rust: reqwest, scraper &amp; Proxies",
+                "isPartOf": {
+                    "@id": "https://www.web-scrapers.com#website"
+                },
+                "description": "Scrape the web with Rust using reqwest and the scraper crate, extract JSON-LD structured data, route through a proxy, and scale to production.",
+                "inLanguage": "en"
+                ,
+                "datePublished": "2026-09-24"
+                
+                
+            }
+            
+            ,{
+                "@type": "Article",
+                "@id": "https://www.web-scrapers.com/learn/web-scraping-with-rust/#article",
+                "isPartOf": {
+                    "@id": "https://www.web-scrapers.com/learn/web-scraping-with-rust/#webpage"
+                },
+                "headline": "Web Scraping with Rust: reqwest, scraper &amp; Proxies",
+                
+                "description": "Scrape the web with Rust using reqwest and the scraper crate, extract JSON-LD structured data, route through a proxy, and scale to production.",
+                
+                
+                "datePublished": "2026-09-24T00:00:00",
+                
+                
+                
+                "author": {
+                    "@type": "Organization",
+                    "name": "Web-Scrapers.com"
+                },
+                
+                
+                
+                "word_count": 1196,
+                
+                "inLanguage": "en"
+            }
+            
+            
+        ]
+    }
+    </script>
+
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            
+            {
+                "@type": "Question",
+                "name": "Is Rust a good language for web scraping?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Rust's async I/O (via Tokio) makes it excellent for high-throughput, concurrent scraping. The reqwest crate handles HTTP with proxy support built in, and the scraper crate parses HTML with CSS selectors. The main trade-off is a steeper learning curve than Python or Node.js, but the result is a fast, memory-safe scraper with no runtime overhead."
+                }
+            },
+            
+            {
+                "@type": "Question",
+                "name": "Which crates do I need to scrape the web in Rust?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The minimal stack is reqwest (HTTP client with TLS and proxy support), scraper (CSS-selector HTML parsing built on html5ever), and serde_json (for JSON-LD and API responses). Add tokio for the async runtime and tokio-retry or backoff for retry logic. Everything installs via Cargo with no system-level dependencies beyond a C linker."
+                }
+            },
+            
+            {
+                "@type": "Question",
+                "name": "How do I route Rust reqwest requests through a proxy?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Build the Client with reqwest::Client::builder().proxy(reqwest::Proxy::all(proxy_url)?).build()?. For a self-signed proxy certificate (common with managed unlockers), chain .danger_accept_invalid_certs(true). Store the proxy URL in a PROXY_URL environment variable so credentials never appear in source code."
+                }
+            },
+            
+            {
+                "@type": "Question",
+                "name": "Can Rust scrape JavaScript-rendered pages?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Not with reqwest alone — it fetches the raw HTML the server sends before any client-side JavaScript runs. For JavaScript-heavy targets, point reqwest at a managed rendering endpoint such as Bright Data's Web Unlocker, which returns fully rendered HTML through a proxy-compatible interface without you operating a headless browser."
+                }
+            }
+            
+        ]
+    }
+    </script>
+    
+
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Web-Scrapers.com",
+                "item": "https://www.web-scrapers.com"
+            }
+            
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Find the Right Web Scraping Infrastructure for Your Scale.",
+                "item": "https://www.web-scrapers.com/"
+            }
+            
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learning Center",
+                "item": "https://www.web-scrapers.com/learn/"
+            }
+            
+            
+            ,{
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Web Scraping with Rust: reqwest, scraper &amp; Proxies",
+                "item": "https://www.web-scrapers.com/learn/web-scraping-with-rust/"
+            }
+        ]
+    }
+    </script>
+    
+
+    
+    <link rel="stylesheet" href="https://www.web-scrapers.com/style.css?h=f614f608e1adaca021ad">
+     
+
+    
+    
+
+    
+    <link rel="preload" href="https://www.web-scrapers.com/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://www.web-scrapers.com/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+
+    
+    
+    <link rel="icon" type="image/svg+xml" href="https://www.web-scrapers.com/assets/logo.svg">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.web-scrapers.com/assets/favicon.png">
+    
+    
+    <link rel="apple-touch-icon" href="https://www.web-scrapers.com/assets/apple-touch-icon.png">
+    
+    <link rel="manifest" href="https://www.web-scrapers.com/site.webmanifest">
+    <meta name="theme-color" content="#3884ff">
+
+    
+    
+    <link rel="alternate" type="application/atom+xml" title="Web-Scrapers.com" href="https://www.web-scrapers.com/atom.xml">
+    
+
+    
+    
+    
+    
+    <script>
+        (function() {
+            try {
+                var stored = localStorage.getItem('tanuki-theme') || 'auto';
+                var theme = stored === 'auto'
+                    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                    : stored;
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme-setting', stored);
+            } catch(e) {}
+        })();
+    </script>
+    
+
+    
+</head>
+<body class="page ">
+    
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    
+    
+<header class="header" id="site-header">
+    <div class="shell">
+        <div class="header__inner">
+            <a href="/" class="logo" aria-label="web-scrapers.com home">
+                <span class="logo__dot" aria-hidden="true"></span>
+                <span>web-scrapers<span class="logo__tld">.com</span></span>
+            </a>
+
+            <nav class="header__nav" id="site-nav" aria-label="Main navigation">
+                
+                
+                <a href="&#x2F;proxy-providers&#x2F;" class="header__link">Proxy Providers</a>
+                
+                <a href="&#x2F;reviews&#x2F;" class="header__link">Top Scrapers</a>
+                
+                <a href="&#x2F;comparisons&#x2F;" class="header__link">Proxy Directory</a>
+                
+                <a href="&#x2F;solutions&#x2F;" class="header__link">Industry Solutions</a>
+                
+                <a href="&#x2F;learn&#x2F;" class="header__link">Learning Center</a>
+                
+                
+            </nav>
+
+            <div class="header__tools">
+                <div class="themetoggle" role="group" aria-label="Color theme">
+                    <button type="button" data-theme-set="light" aria-label="Light theme" title="Light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </button>
+                    <button type="button" data-theme-set="auto" aria-label="Match system theme" title="Auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                    </button>
+                    <button type="button" data-theme-set="dark" aria-label="Dark theme" title="Dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    </button>
+                </div>
+                <a href="#newsletter" class="btn btn--secondary btn--sm header__newsletter">Join the newsletter</a>
+                <button type="button" class="navtoggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+    
+
+    <main id="main-content" role="main" aria-label="Main content">
+        
+
+
+<div class="shell">
+    <div class="layout-article" style="padding-top:var(--sp-10)">
+
+        <article itemscope itemtype="https://schema.org/Article" aria-labelledby="article-title">
+            <header class="article-head">
+                
+                <nav class="crumbs" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <span class="crumbs__sep" aria-hidden="true">/</span>
+                    <a href="https://www.web-scrapers.com/learn/">Learning Center</a>
+                    
+                    
+                    
+                    <span class="crumbs__sep" aria-hidden="true">/</span>
+                    <span aria-current="page">Web Scraping with Rust: reqwest, scraper &amp; Proxies</span>
+                </nav>
+                
+
+                <h1 id="article-title" itemprop="headline">Web Scraping with Rust: reqwest, scraper &amp; Proxies</h1>
+
+                
+                <p class="u-lead" itemprop="description">Scrape the web with Rust using reqwest and the scraper crate, extract JSON-LD structured data, route through a proxy, and scale to production.</p>
+                
+
+                
+                <div class="freshness">
+                    
+                    <span class="freshness__item">Published <time itemprop="datePublished" datetime="2026-09-24">24 September 2026</time></span>
+                    
+                    
+                    <span class="freshness__dot" aria-hidden="true"></span>
+                    <span class="freshness__item">6 min read</span>
+                    
+                </div>
+                
+
+                
+            </header>
+
+            <div class="prose" itemprop="articleBody">
+                <p>Rust is an unusual choice for web scraping — most people reach for Python or Node.js — but it earns its place when throughput matters. An async Rust scraper running on Tokio can handle thousands of concurrent HTTP connections in a single process with predictable memory usage and no garbage-collection pauses. If you are already writing Rust, or if your scraping job is a bottleneck that Python's GIL and interpreter overhead make worse, Rust is a genuinely strong option.</p>
+<p>This guide covers everything from a minimal page fetch to a production-ready scraper that routes through a proxy, parses HTML and embedded JSON-LD, follows pagination, and saves results to disk.</p>
+<h2 id="prerequisites-and-cargo-setup">Prerequisites and Cargo Setup</h2>
+<p>You need Rust 1.75 or newer (install via <a rel="external" href="https://rustup.rs/">rustup</a>). Create a new binary crate and add the dependencies:</p>
+<pre><code data-lang="bash">cargo new rust-scraper &amp;&amp; cd rust-scraper
+</code></pre>
+<p><code>Cargo.toml</code> dependencies:</p>
+<pre><code data-lang="toml">[dependencies]
+reqwest  = { version = &quot;0.12&quot;, features = [&quot;blocking&quot;, &quot;socks&quot;] }
+scraper  = &quot;0.20&quot;
+serde_json = &quot;1&quot;
+tokio    = { version = &quot;1&quot;, features = [&quot;full&quot;] }
+</code></pre>
+<p>All examples below compile against these versions. The <code>blocking</code> feature on reqwest gives synchronous wrappers when you do not need the async overhead for a small script; the async examples use <code>tokio::main</code>.</p>
+<h2 id="fetching-a-page">Fetching a Page</h2>
+<p>The simplest possible fetch — synchronous, no proxy:</p>
+<pre><code data-lang="rust">// src/main.rs
+fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    let client = reqwest::blocking::Client::builder()
+        .user_agent(&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+                     AppleWebKit/537.36 (KHTML, like Gecko) \
+                     Chrome/124.0.0.0 Safari/537.36&quot;)
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?;
+
+    let html = client
+        .get(&quot;https://books.toscrape.com/&quot;)
+        .send()?
+        .text()?;
+
+    println!(&quot;{} bytes fetched&quot;, html.len());
+    Ok(())
+}
+</code></pre>
+<p>Two habits to establish early:</p>
+<ul>
+<li><strong>Always set a <code>user_agent</code>.</strong> The default <code>reqwest/&lt;version&gt;</code> string is an instant bot signal on most protected sites.</li>
+<li><strong>Always set a <code>timeout</code>.</strong> Without one, a stalled connection hangs the thread indefinitely.</li>
+</ul>
+<h2 id="parsing-html-with-the-scraper-crate">Parsing HTML with the scraper Crate</h2>
+<p>The <code>scraper</code> crate builds on Mozilla's <code>html5ever</code> parser (the same engine used in Servo) and exposes a CSS-selector API:</p>
+<pre><code data-lang="rust">use scraper::{Html, Selector};
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    let client = reqwest::blocking::Client::builder()
+        .user_agent(&quot;Mozilla/5.0 (compatible; RustScraper/1.0)&quot;)
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?;
+
+    let html = client.get(&quot;https://books.toscrape.com/&quot;).send()?.text()?;
+    let doc = Html::parse_document(&amp;html);
+
+    let item_sel  = Selector::parse(&quot;article.product_pod&quot;).unwrap();
+    let title_sel = Selector::parse(&quot;h3 &gt; a&quot;).unwrap();
+    let price_sel = Selector::parse(&quot;p.price_color&quot;).unwrap();
+
+    for item in doc.select(&amp;item_sel) {
+        let title = item.select(&amp;title_sel).next()
+            .and_then(|el| el.value().attr(&quot;title&quot;))
+            .unwrap_or(&quot;&quot;);
+        let price = item.select(&amp;price_sel).next()
+            .map(|el| el.text().collect::&lt;String&gt;())
+            .unwrap_or_default();
+        println!(&quot;{} — {}&quot;, title, price.trim());
+    }
+    Ok(())
+}
+</code></pre>
+<p>Key points:</p>
+<ul>
+<li><code>Selector::parse</code> takes standard CSS selectors. Compile them once outside your loop — selector compilation is the expensive part.</li>
+<li><code>.attr("title")</code> fetches an HTML attribute; <code>.text().collect::&lt;String&gt;()</code> concatenates all text nodes inside an element.</li>
+<li>The html5ever parser tolerates malformed markup without panicking, the same way a real browser does.</li>
+</ul>
+<h2 id="extracting-json-ld-structured-data">Extracting JSON-LD Structured Data</h2>
+<p>Many e-commerce and content sites embed a <code>&lt;script type="application/ld+json"&gt;</code> block containing a clean <code>Product</code>, <code>Article</code>, or <code>BreadcrumbList</code> object. Targeting this block is more reliable than CSS selectors tied to layout class names:</p>
+<pre><code data-lang="rust">use scraper::{Html, Selector};
+use serde_json::Value;
+
+fn extract_json_ld(html: &amp;str, schema_type: &amp;str) -&gt; Option&lt;Value&gt; {
+    let doc = Html::parse_document(html);
+    let sel = Selector::parse(r#&quot;script[type=&quot;application/ld+json&quot;]&quot;#).unwrap();
+
+    for el in doc.select(&amp;sel) {
+        let raw = el.text().collect::&lt;String&gt;();
+        if let Ok(v) = serde_json::from_str::&lt;Value&gt;(&amp;raw) {
+            if v[&quot;@type&quot;].as_str() == Some(schema_type) {
+                return Some(v);
+            }
+        }
+    }
+    None
+}
+</code></pre>
+<p>This is the same pattern used across our <a href="/solutions/ebay-product-tracking/">eBay Product Tracking</a> and <a href="/solutions/amazon-product-tracking/">Amazon Product Tracking</a> guides — the JSON-LD block is the most stable extraction target on any page that includes it. Check for it before writing fragile CSS selectors against the layout.</p>
+<h2 id="routing-through-a-proxy">Routing Through a Proxy</h2>
+<p>Scaling past a few hundred requests without a proxy pool is a fast path to IP-based blocking. Route every request through a proxy by configuring the <code>Client</code> at build time:</p>
+<pre><code data-lang="rust">fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    let proxy_url = std::env::var(&quot;PROXY_URL&quot;)?;
+
+    let client = reqwest::blocking::Client::builder()
+        .user_agent(&quot;Mozilla/5.0 (compatible; RustScraper/1.0)&quot;)
+        .proxy(reqwest::Proxy::all(&amp;proxy_url)?)
+        .danger_accept_invalid_certs(true) // required for managed proxy TLS
+        .timeout(std::time::Duration::from_secs(60))
+        .build()?;
+
+    let html = client.get(&quot;https://example.com/&quot;).send()?.text()?;
+    println!(&quot;{} bytes&quot;, html.len());
+    Ok(())
+}
+</code></pre>
+<p>Set <code>PROXY_URL</code> before running:</p>
+<pre><code data-lang="bash">export PROXY_URL=&quot;http://brd-customer-&lt;id&gt;-zone-&lt;zone&gt;:&lt;password&gt;@brd.superproxy.io:22225&quot;
+cargo run
+</code></pre>
+<p>For targets that actively block scrapers, a raw rotating proxy pool often isn't enough — you also need browser fingerprint management, TLS fingerprint matching, and CAPTCHA solving. Bright Data's <a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Web Unlocker</a> wraps all of that behind a single proxy-compatible endpoint: your <code>reqwest</code> code stays identical, while the service handles IP rotation, fingerprinting, and challenge resolution transparently. See our <a href="/reviews/bright-data-web-unlocker/">Bright Data Web Unlocker review</a> for a detailed breakdown of what it does.</p>
+<p>Not sure which proxy tier matches your target? <a href="/learn/proxy-types-explained/">Proxy types explained</a> compares datacenter, residential, ISP, and mobile proxies so you can pick the right product for the protection level your target deploys.</p>
+<h2 id="pagination-following-next-links">Pagination: Following "Next" Links</h2>
+<p>Most listing pages paginate. A simple loop that resolves relative links against the current URL:</p>
+<pre><code data-lang="rust">use scraper::{Html, Selector};
+use url::Url; // add url = &quot;2&quot; to Cargo.toml
+
+fn scrape_all_pages(
+    client: &amp;reqwest::blocking::Client,
+    start: &amp;str,
+) -&gt; Result&lt;Vec&lt;(String, String)&gt;, Box&lt;dyn std::error::Error&gt;&gt; {
+    let item_sel  = Selector::parse(&quot;article.product_pod&quot;).unwrap();
+    let title_sel = Selector::parse(&quot;h3 &gt; a&quot;).unwrap();
+    let price_sel = Selector::parse(&quot;p.price_color&quot;).unwrap();
+    let next_sel  = Selector::parse(&quot;li.next a&quot;).unwrap();
+
+    let mut results = Vec::new();
+    let mut current = Url::parse(start)?;
+
+    loop {
+        println!(&quot;Fetching {current}&quot;);
+        let html = client.get(current.as_str()).send()?.text()?;
+        let doc  = Html::parse_document(&amp;html);
+
+        for item in doc.select(&amp;item_sel) {
+            let title = item.select(&amp;title_sel).next()
+                .and_then(|el| el.value().attr(&quot;title&quot;))
+                .unwrap_or(&quot;&quot;).to_string();
+            let price = item.select(&amp;price_sel).next()
+                .map(|el| el.text().collect::&lt;String&gt;())
+                .unwrap_or_default();
+            results.push((title, price.trim().to_string()));
+        }
+
+        match doc.select(&amp;next_sel).next()
+            .and_then(|el| el.value().attr(&quot;href&quot;))
+        {
+            Some(rel) =&gt; { current = current.join(rel)?; }
+            None      =&gt; break,
+        }
+
+        std::thread::sleep(std::time::Duration::from_millis(
+            900 + rand::random::&lt;u64&gt;() % 600, // 0.9–1.5 s jitter
+        ));
+    }
+    Ok(results)
+}
+</code></pre>
+<p>The random sleep jitter (0.9–1.5 s) matters: uniform timing is itself a bot signal. For pagination strategies beyond simple "next" links — offset parameters, cursor tokens, infinite scroll — see the <a href="/learn/handling-pagination/">pagination guide</a>.</p>
+<h2 id="async-scraping-with-tokio">Async Scraping with Tokio</h2>
+<p>For high-throughput jobs that need to fetch hundreds of pages in parallel, switch to the async reqwest API:</p>
+<pre><code data-lang="rust">use reqwest::Client;
+use scraper::{Html, Selector};
+use tokio::time::{sleep, Duration};
+
+#[tokio::main]
+async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    let proxy_url = std::env::var(&quot;PROXY_URL&quot;)?;
+
+    let client = Client::builder()
+        .user_agent(&quot;Mozilla/5.0 (compatible; RustScraper/1.0)&quot;)
+        .proxy(reqwest::Proxy::all(&amp;proxy_url)?)
+        .danger_accept_invalid_certs(true)
+        .timeout(Duration::from_secs(60))
+        .build()?;
+
+    let urls = vec![
+        &quot;https://books.toscrape.com/catalogue/page-1.html&quot;,
+        &quot;https://books.toscrape.com/catalogue/page-2.html&quot;,
+        &quot;https://books.toscrape.com/catalogue/page-3.html&quot;,
+    ];
+
+    let title_sel = Selector::parse(&quot;h3 &gt; a&quot;).unwrap();
+
+    let fetches: Vec&lt;_&gt; = urls.iter().map(|url| {
+        let client = client.clone();
+        let url = url.to_string();
+        let sel = title_sel.clone();
+        tokio::spawn(async move {
+            let html = client.get(&amp;url).send().await?.text().await?;
+            let doc = Html::parse_document(&amp;html);
+            let titles: Vec&lt;String&gt; = doc.select(&amp;sel)
+                .filter_map(|el| el.value().attr(&quot;title&quot;))
+                .map(str::to_string)
+                .collect();
+            Ok::&lt;_, reqwest::Error&gt;((url, titles))
+        })
+    }).collect();
+
+    for task in fetches {
+        let (url, titles) = task.await??;
+        println!(&quot;{}: {} titles&quot;, url, titles.len());
+    }
+
+    Ok(())
+}
+</code></pre>
+<p>Each spawned task runs concurrently on the Tokio thread pool. Because <code>reqwest::Client</code> is <code>Clone</code> and internally reference-counted, cloning it is cheap — all clones share the same connection pool.</p>
+<h2 id="saving-results-to-json">Saving Results to JSON</h2>
+<p>Write your collected records to a JSON file with <code>serde_json</code>:</p>
+<pre><code data-lang="rust">use serde_json::json;
+use std::fs;
+
+// Inside main, after collecting results:
+let output: Vec&lt;_&gt; = results.iter().map(|(title, price)| {
+    json!({ &quot;title&quot;: title, &quot;price&quot;: price })
+}).collect();
+
+fs::write(&quot;output.json&quot;, serde_json::to_string_pretty(&amp;output)?)?;
+println!(&quot;Saved {} records to output.json&quot;, output.len());
+</code></pre>
+<p>For CSV output, add the <code>csv</code> crate (<code>csv = "1"</code>) and use <code>csv::Writer</code>:</p>
+<pre><code data-lang="rust">let mut wtr = csv::Writer::from_path(&quot;output.csv&quot;)?;
+wtr.write_record([&quot;title&quot;, &quot;price&quot;])?;
+for (title, price) in &amp;results {
+    wtr.write_record([title, price])?;
+}
+wtr.flush()?;
+</code></pre>
+<h2 id="handling-javascript-rendered-pages">Handling JavaScript-Rendered Pages</h2>
+<p><code>reqwest</code> fetches what the server sends before any JavaScript executes. If view-source shows the data but your scraper does not find it, check whether the data is:</p>
+<ol>
+<li><strong>In a hidden JSON blob</strong> — look for <code>window.__INITIAL_STATE__</code>, <code>window.__NEXT_DATA__</code>, or similar in <code>&lt;script&gt;</code> tags. Parse them with <code>serde_json</code> directly.</li>
+<li><strong>Fetched from an API</strong> — open DevTools → Network → XHR and look for JSON endpoints the browser calls. Hitting those directly is faster and more reliable.</li>
+<li><strong>Truly rendered client-side</strong> — for these, point <code>reqwest</code> at Bright Data's <a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Web Unlocker</a>, which renders the page in a real browser server-side and returns the fully rendered HTML through the same proxy-compatible interface your existing code already uses.</li>
+</ol>
+<h2 id="scaling-up">Scaling Up</h2>
+<p>Beyond the techniques above:</p>
+<ul>
+<li><strong>Connection pooling</strong> is free with <code>reqwest</code>: the <code>Client</code> maintains a pool internally. Reuse the same client across all requests rather than constructing a new one per fetch.</li>
+<li><strong>Retry logic</strong> — add the <code>backoff</code> crate (<code>backoff = "0.4"</code>) for exponential back-off on 429 and 5xx responses.</li>
+<li><strong>Managed data collection</strong> — when the target is a major platform (Amazon, LinkedIn, social media), building and maintaining a Rust scraper often costs more than using a provider's ready-made product. See <a href="/learn/datasets-vs-web-scraping/">Datasets vs. Web Scraping</a> to weigh that decision.</li>
+</ul>
+<p>For a broader view of scraping strategies across languages, see our <a href="/solutions/web-scraping-use-cases/">web scraping use cases overview</a> and compare proxy providers in our <a href="/reviews/">reviews section</a>.</p>
+<p><strong><a href="/goto/bd-web-unlocker/" rel="sponsored noopener">Start scraping at scale with Bright Data's Web Unlocker →</a></strong></p>
+<h2 id="faq">FAQ</h2>
+<h3 id="is-rust-a-good-language-for-web-scraping">Is Rust a good language for web scraping?</h3>
+<p>Yes. Rust's async I/O (via Tokio) makes it excellent for high-throughput, concurrent scraping. The <code>reqwest</code> crate handles HTTP with proxy support built in, and the <code>scraper</code> crate parses HTML with CSS selectors. The main trade-off is a steeper learning curve than Python or Node.js, but the result is a fast, memory-safe scraper with no runtime overhead.</p>
+<h3 id="which-crates-do-i-need-to-scrape-the-web-in-rust">Which crates do I need to scrape the web in Rust?</h3>
+<p>The minimal stack is <code>reqwest</code> (HTTP client with TLS and proxy support), <code>scraper</code> (CSS-selector HTML parsing built on html5ever), and <code>serde_json</code> (for JSON-LD and API responses). Add <code>tokio</code> for the async runtime and <code>tokio-retry</code> or <code>backoff</code> for retry logic. Everything installs via Cargo with no system-level dependencies beyond a C linker.</p>
+<h3 id="how-do-i-route-rust-reqwest-requests-through-a-proxy">How do I route Rust reqwest requests through a proxy?</h3>
+<p>Build the <code>Client</code> with <code>reqwest::Client::builder().proxy(reqwest::Proxy::all(proxy_url)?).build()?</code>. For a self-signed proxy certificate (common with managed unlockers), chain <code>.danger_accept_invalid_certs(true)</code>. Store the proxy URL in a <code>PROXY_URL</code> environment variable so credentials never appear in source code.</p>
+<h3 id="can-rust-scrape-javascript-rendered-pages">Can Rust scrape JavaScript-rendered pages?</h3>
+<p>Not with <code>reqwest</code> alone — it fetches the raw HTML the server sends before any client-side JavaScript runs. For JavaScript-heavy targets, point <code>reqwest</code> at a managed rendering endpoint such as Bright Data's Web Unlocker, which returns fully rendered HTML through a proxy-compatible interface without you operating a headless browser.</p>
+
+            </div>
+
+            
+
+<div class="ad ad--article" style="margin-top:var(--space-block)">
+    <span class="ad__label">Advertisement</span>
+    <ins class="adsbygoogle"
+         style="display:block;width:100%"
+         data-ad-client="ca-pub-2119108362521032"
+         data-ad-slot="2937189529"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+
+
+            
+            
+            <meta itemprop="author" content="Web-Scrapers.com">
+            
+
+            <nav class="page-nav" aria-label="Page navigation">
+                
+                
+            </nav>
+        </article>
+
+        <aside class="layout-article__rail">
+            
+            <nav class="toc" aria-label="On this page">
+                <div class="toc__title">On this page</div>
+                <ol>
+                    
+                    <li>
+                        <a href="#prerequisites-and-cargo-setup">Prerequisites and Cargo Setup</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#fetching-a-page">Fetching a Page</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#parsing-html-with-the-scraper-crate">Parsing HTML with the scraper Crate</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#extracting-json-ld-structured-data">Extracting JSON-LD Structured Data</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#routing-through-a-proxy">Routing Through a Proxy</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#pagination-following-next-links">Pagination: Following &quot;Next&quot; Links</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#async-scraping-with-tokio">Async Scraping with Tokio</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#saving-results-to-json">Saving Results to JSON</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#handling-javascript-rendered-pages">Handling JavaScript-Rendered Pages</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#scaling-up">Scaling Up</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#faq">FAQ</a>
+                        
+                        <ol>
+                            
+                            <li><a href="#is-rust-a-good-language-for-web-scraping">Is Rust a good language for web scraping?</a></li>
+                            
+                            <li><a href="#which-crates-do-i-need-to-scrape-the-web-in-rust">Which crates do I need to scrape the web in Rust?</a></li>
+                            
+                            <li><a href="#how-do-i-route-rust-reqwest-requests-through-a-proxy">How do I route Rust reqwest requests through a proxy?</a></li>
+                            
+                            <li><a href="#can-rust-scrape-javascript-rendered-pages">Can Rust scrape JavaScript-rendered pages?</a></li>
+                            
+                        </ol>
+                        
+                    </li>
+                    
+                </ol>
+            </nav>
+            
+        </aside>
+    </div>
+</div>
+
+
+
+    </main>
+
+    
+    
+<footer class="footer">
+    <div class="shell">
+        <div class="footer__cols">
+            <div class="footer__col">
+                <a href="/" class="logo" aria-label="web-scrapers.com home">
+                    <span class="logo__dot" aria-hidden="true"></span>
+                    <span>web-scrapers<span class="logo__tld">.com</span></span>
+                </a>
+                <p style="margin-top:var(--sp-3);font-size:var(--fs-13);color:var(--text-muted);max-width:36ch">
+                    Independent reviews, benchmarks and guides for web scraping
+                    infrastructure. We may earn a commission on some sign-ups;
+                    it never affects our test results or ratings.
+                </p>
+            </div>
+            <div class="footer__col">
+                <h4>Reviews</h4>
+                <ul>
+                    <li><a href="/reviews/bright-data/">Bright Data</a></li>
+                    <li><a href="/reviews/oxylabs/">Oxylabs</a></li>
+                    <li><a href="/reviews/zenrows/">ZenRows</a></li>
+                    <li><a href="/reviews/">All reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Compare</h4>
+                <ul>
+                    <li><a href="/comparisons/bright-data-vs-oxylabs/">Bright Data vs Oxylabs</a></li>
+                    <li><a href="/comparisons/zenrows-alternatives/">ZenRows alternatives</a></li>
+                    <li><a href="/proxy-providers/">Provider directory</a></li>
+                    <li><a href="/comparisons/">All comparisons</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="/learn/web-scraping-with-python/">Web scraping with Python</a></li>
+                    <li><a href="/learn/proxy-types-explained/">Proxy types explained</a></li>
+                    <li><a href="/solutions/">Industry solutions</a></li>
+                    <li><a href="/learn/">Learning center</a></li>
+                </ul>
+            </div>
+        </div>
+        
+
+
+<div class="ad ad--footer" style="margin:var(--sp-8) 0 0">
+    <span class="ad__label">Advertisement</span>
+    <iframe data-aa="2441049" src="//acceptable.a-ads.com/2441049/?size=Adaptive"
+            style="border:0; padding:0; width:100%; max-width:728px; height:auto; overflow:hidden; display:block; margin:auto"
+            title="Advertisement" loading="lazy"></iframe>
+</div>
+
+
+        <div class="footer__legal">
+            <span>&copy; 2026 web-scrapers.com</span>
+            <span><a href="/about/">About</a> · <a href="/how-we-test/">How we test</a> · <a href="/editorial-policy/">Editorial policy</a> · <a href="#newsletter">Newsletter</a> · <a href="https://www.web-scrapers.com/atom.xml">Feed</a></span>
+        </div>
+    </div>
+</footer>
+
+    
+
+     
+
+    
+    
+
+
+<div id="newsletter-modal" class="nl-overlay" hidden>
+    <div class="nl-card" role="dialog" aria-modal="true" aria-labelledby="nl-title">
+        <button type="button" class="nl-close" aria-label="Close">&times;</button>
+        <h3 id="nl-title">Join the newsletter</h3>
+        <p class="nl-blurb">Web scraping test results, provider changes, and new guides — straight to your inbox.</p>
+        <form id="newsletter-form" class="nl-form">
+            <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+        <p class="nl-privacy">No spam, ever. Unsubscribe anytime.</p>
+        <div id="newsletter-thanks" hidden>
+            <p class="nl-thanks-title">You're in</p>
+            <p class="nl-blurb">Thanks for subscribing — the next issue is headed your way.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var overlay = document.getElementById('newsletter-modal');
+    if (!overlay) return;
+    var form = document.getElementById('newsletter-form');
+    var thanks = document.getElementById('newsletter-thanks');
+    var privacy = overlay.querySelector('.nl-privacy');
+    var KEY = 'nl-dismissed';
+
+    function seen() {
+        try { return !!localStorage.getItem(KEY); } catch (e) { return true; }
+    }
+    function markSeen() {
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    function open() {
+        overlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(function () { if (!form.hidden) form.email.focus(); }, 60);
+    }
+    function close() {
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+        markSeen(); // don't auto-nag a visitor who already closed it
+    }
+
+    overlay.querySelector('.nl-close').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !overlay.hidden) close();
+    });
+
+    // Any "#newsletter" link or [data-newsletter] element opens the popup
+    document.addEventListener('click', function (e) {
+        var t = e.target.closest('a[href$="#newsletter"], [data-newsletter]');
+        if (t) { e.preventDefault(); open(); }
+    });
+
+    // Auto-show once per visitor, 15s into their first visit
+    if (!seen()) setTimeout(function () { if (overlay.hidden) open(); }, 15000);
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = form.email.value.trim();
+        if (!email) return;
+        try {
+            navigator.sendBeacon("https://script.google.com/macros/s/AKfycbxk_gwmKSz4nmbo-HWW3IHrq1cCnjcVIyeEUg_2YagGq6G1YyrgDc2IyzBS4CtC2_oG/exec", JSON.stringify({
+                type: 'subscribe',
+                email: email,
+                page: location.pathname,
+                ua: navigator.userAgent
+            }));
+        } catch (err) {}
+        form.hidden = true;
+        privacy.hidden = true;
+        thanks.hidden = false;
+        markSeen();
+        setTimeout(close, 3500);
+    });
+})();
+</script>
+
+
+
+    <script src="https://www.web-scrapers.com/js/site.js" defer></script>
+</body>
+</html>

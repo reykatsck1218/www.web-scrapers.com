@@ -5,8 +5,287 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-21T00:00:00+00:00</updated>
+    <updated>2026-09-24T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Web Scraping with Rust: reqwest, scraper &amp; Proxies</title>
+        <published>2026-09-24T00:00:00+00:00</published>
+        <updated>2026-09-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/learn/web-scraping-with-rust/"/>
+        <id>https://www.web-scrapers.com/learn/web-scraping-with-rust/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/learn/web-scraping-with-rust/">&lt;p&gt;Rust is an unusual choice for web scraping — most people reach for Python or Node.js — but it earns its place when throughput matters. An async Rust scraper running on Tokio can handle thousands of concurrent HTTP connections in a single process with predictable memory usage and no garbage-collection pauses. If you are already writing Rust, or if your scraping job is a bottleneck that Python&#x27;s GIL and interpreter overhead make worse, Rust is a genuinely strong option.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide covers everything from a minimal page fetch to a production-ready scraper that routes through a proxy, parses HTML and embedded JSON-LD, follows pagination, and saves results to disk.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites-and-cargo-setup&quot;&gt;Prerequisites and Cargo Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;You need Rust 1.75 or newer (install via &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;rustup.rs&#x2F;&quot;&gt;rustup&lt;&#x2F;a&gt;). Create a new binary crate and add the dependencies:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;cargo new rust-scraper &amp;amp;&amp;amp; cd rust-scraper
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; dependencies:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;toml&quot;&gt;[dependencies]
+reqwest  = { version = &amp;quot;0.12&amp;quot;, features = [&amp;quot;blocking&amp;quot;, &amp;quot;socks&amp;quot;] }
+scraper  = &amp;quot;0.20&amp;quot;
+serde_json = &amp;quot;1&amp;quot;
+tokio    = { version = &amp;quot;1&amp;quot;, features = [&amp;quot;full&amp;quot;] }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;All examples below compile against these versions. The &lt;code&gt;blocking&lt;&#x2F;code&gt; feature on reqwest gives synchronous wrappers when you do not need the async overhead for a small script; the async examples use &lt;code&gt;tokio::main&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;fetching-a-page&quot;&gt;Fetching a Page&lt;&#x2F;h2&gt;
+&lt;p&gt;The simplest possible fetch — synchronous, no proxy:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;&#x2F;&#x2F; src&#x2F;main.rs
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let client = reqwest::blocking::Client::builder()
+        .user_agent(&amp;quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) \
+                     AppleWebKit&#x2F;537.36 (KHTML, like Gecko) \
+                     Chrome&#x2F;124.0.0.0 Safari&#x2F;537.36&amp;quot;)
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?;
+
+    let html = client
+        .get(&amp;quot;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;quot;)
+        .send()?
+        .text()?;
+
+    println!(&amp;quot;{} bytes fetched&amp;quot;, html.len());
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Two habits to establish early:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Always set a &lt;code&gt;user_agent&lt;&#x2F;code&gt;.&lt;&#x2F;strong&gt; The default &lt;code&gt;reqwest&#x2F;&amp;lt;version&amp;gt;&lt;&#x2F;code&gt; string is an instant bot signal on most protected sites.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Always set a &lt;code&gt;timeout&lt;&#x2F;code&gt;.&lt;&#x2F;strong&gt; Without one, a stalled connection hangs the thread indefinitely.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;parsing-html-with-the-scraper-crate&quot;&gt;Parsing HTML with the scraper Crate&lt;&#x2F;h2&gt;
+&lt;p&gt;The &lt;code&gt;scraper&lt;&#x2F;code&gt; crate builds on Mozilla&#x27;s &lt;code&gt;html5ever&lt;&#x2F;code&gt; parser (the same engine used in Servo) and exposes a CSS-selector API:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;use scraper::{Html, Selector};
+
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let client = reqwest::blocking::Client::builder()
+        .user_agent(&amp;quot;Mozilla&#x2F;5.0 (compatible; RustScraper&#x2F;1.0)&amp;quot;)
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?;
+
+    let html = client.get(&amp;quot;https:&#x2F;&#x2F;books.toscrape.com&#x2F;&amp;quot;).send()?.text()?;
+    let doc = Html::parse_document(&amp;amp;html);
+
+    let item_sel  = Selector::parse(&amp;quot;article.product_pod&amp;quot;).unwrap();
+    let title_sel = Selector::parse(&amp;quot;h3 &amp;gt; a&amp;quot;).unwrap();
+    let price_sel = Selector::parse(&amp;quot;p.price_color&amp;quot;).unwrap();
+
+    for item in doc.select(&amp;amp;item_sel) {
+        let title = item.select(&amp;amp;title_sel).next()
+            .and_then(|el| el.value().attr(&amp;quot;title&amp;quot;))
+            .unwrap_or(&amp;quot;&amp;quot;);
+        let price = item.select(&amp;amp;price_sel).next()
+            .map(|el| el.text().collect::&amp;lt;String&amp;gt;())
+            .unwrap_or_default();
+        println!(&amp;quot;{} — {}&amp;quot;, title, price.trim());
+    }
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Key points:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Selector::parse&lt;&#x2F;code&gt; takes standard CSS selectors. Compile them once outside your loop — selector compilation is the expensive part.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;.attr(&quot;title&quot;)&lt;&#x2F;code&gt; fetches an HTML attribute; &lt;code&gt;.text().collect::&amp;lt;String&amp;gt;()&lt;&#x2F;code&gt; concatenates all text nodes inside an element.&lt;&#x2F;li&gt;
+&lt;li&gt;The html5ever parser tolerates malformed markup without panicking, the same way a real browser does.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;extracting-json-ld-structured-data&quot;&gt;Extracting JSON-LD Structured Data&lt;&#x2F;h2&gt;
+&lt;p&gt;Many e-commerce and content sites embed a &lt;code&gt;&amp;lt;script type=&quot;application&#x2F;ld+json&quot;&amp;gt;&lt;&#x2F;code&gt; block containing a clean &lt;code&gt;Product&lt;&#x2F;code&gt;, &lt;code&gt;Article&lt;&#x2F;code&gt;, or &lt;code&gt;BreadcrumbList&lt;&#x2F;code&gt; object. Targeting this block is more reliable than CSS selectors tied to layout class names:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;use scraper::{Html, Selector};
+use serde_json::Value;
+
+fn extract_json_ld(html: &amp;amp;str, schema_type: &amp;amp;str) -&amp;gt; Option&amp;lt;Value&amp;gt; {
+    let doc = Html::parse_document(html);
+    let sel = Selector::parse(r#&amp;quot;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;quot;#).unwrap();
+
+    for el in doc.select(&amp;amp;sel) {
+        let raw = el.text().collect::&amp;lt;String&amp;gt;();
+        if let Ok(v) = serde_json::from_str::&amp;lt;Value&amp;gt;(&amp;amp;raw) {
+            if v[&amp;quot;@type&amp;quot;].as_str() == Some(schema_type) {
+                return Some(v);
+            }
+        }
+    }
+    None
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is the same pattern used across our &lt;a href=&quot;&#x2F;solutions&#x2F;ebay-product-tracking&#x2F;&quot;&gt;eBay Product Tracking&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;solutions&#x2F;amazon-product-tracking&#x2F;&quot;&gt;Amazon Product Tracking&lt;&#x2F;a&gt; guides — the JSON-LD block is the most stable extraction target on any page that includes it. Check for it before writing fragile CSS selectors against the layout.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;routing-through-a-proxy&quot;&gt;Routing Through a Proxy&lt;&#x2F;h2&gt;
+&lt;p&gt;Scaling past a few hundred requests without a proxy pool is a fast path to IP-based blocking. Route every request through a proxy by configuring the &lt;code&gt;Client&lt;&#x2F;code&gt; at build time:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let proxy_url = std::env::var(&amp;quot;PROXY_URL&amp;quot;)?;
+
+    let client = reqwest::blocking::Client::builder()
+        .user_agent(&amp;quot;Mozilla&#x2F;5.0 (compatible; RustScraper&#x2F;1.0)&amp;quot;)
+        .proxy(reqwest::Proxy::all(&amp;amp;proxy_url)?)
+        .danger_accept_invalid_certs(true) &#x2F;&#x2F; required for managed proxy TLS
+        .timeout(std::time::Duration::from_secs(60))
+        .build()?;
+
+    let html = client.get(&amp;quot;https:&#x2F;&#x2F;example.com&#x2F;&amp;quot;).send()?.text()?;
+    println!(&amp;quot;{} bytes&amp;quot;, html.len());
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set &lt;code&gt;PROXY_URL&lt;&#x2F;code&gt; before running:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+cargo run
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For targets that actively block scrapers, a raw rotating proxy pool often isn&#x27;t enough — you also need browser fingerprint management, TLS fingerprint matching, and CAPTCHA solving. Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker&lt;&#x2F;a&gt; wraps all of that behind a single proxy-compatible endpoint: your &lt;code&gt;reqwest&lt;&#x2F;code&gt; code stays identical, while the service handles IP rotation, fingerprinting, and challenge resolution transparently. See our &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt; for a detailed breakdown of what it does.&lt;&#x2F;p&gt;
+&lt;p&gt;Not sure which proxy tier matches your target? &lt;a href=&quot;&#x2F;learn&#x2F;proxy-types-explained&#x2F;&quot;&gt;Proxy types explained&lt;&#x2F;a&gt; compares datacenter, residential, ISP, and mobile proxies so you can pick the right product for the protection level your target deploys.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pagination-following-next-links&quot;&gt;Pagination: Following &quot;Next&quot; Links&lt;&#x2F;h2&gt;
+&lt;p&gt;Most listing pages paginate. A simple loop that resolves relative links against the current URL:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;use scraper::{Html, Selector};
+use url::Url; &#x2F;&#x2F; add url = &amp;quot;2&amp;quot; to Cargo.toml
+
+fn scrape_all_pages(
+    client: &amp;amp;reqwest::blocking::Client,
+    start: &amp;amp;str,
+) -&amp;gt; Result&amp;lt;Vec&amp;lt;(String, String)&amp;gt;, Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let item_sel  = Selector::parse(&amp;quot;article.product_pod&amp;quot;).unwrap();
+    let title_sel = Selector::parse(&amp;quot;h3 &amp;gt; a&amp;quot;).unwrap();
+    let price_sel = Selector::parse(&amp;quot;p.price_color&amp;quot;).unwrap();
+    let next_sel  = Selector::parse(&amp;quot;li.next a&amp;quot;).unwrap();
+
+    let mut results = Vec::new();
+    let mut current = Url::parse(start)?;
+
+    loop {
+        println!(&amp;quot;Fetching {current}&amp;quot;);
+        let html = client.get(current.as_str()).send()?.text()?;
+        let doc  = Html::parse_document(&amp;amp;html);
+
+        for item in doc.select(&amp;amp;item_sel) {
+            let title = item.select(&amp;amp;title_sel).next()
+                .and_then(|el| el.value().attr(&amp;quot;title&amp;quot;))
+                .unwrap_or(&amp;quot;&amp;quot;).to_string();
+            let price = item.select(&amp;amp;price_sel).next()
+                .map(|el| el.text().collect::&amp;lt;String&amp;gt;())
+                .unwrap_or_default();
+            results.push((title, price.trim().to_string()));
+        }
+
+        match doc.select(&amp;amp;next_sel).next()
+            .and_then(|el| el.value().attr(&amp;quot;href&amp;quot;))
+        {
+            Some(rel) =&amp;gt; { current = current.join(rel)?; }
+            None      =&amp;gt; break,
+        }
+
+        std::thread::sleep(std::time::Duration::from_millis(
+            900 + rand::random::&amp;lt;u64&amp;gt;() % 600, &#x2F;&#x2F; 0.9–1.5 s jitter
+        ));
+    }
+    Ok(results)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The random sleep jitter (0.9–1.5 s) matters: uniform timing is itself a bot signal. For pagination strategies beyond simple &quot;next&quot; links — offset parameters, cursor tokens, infinite scroll — see the &lt;a href=&quot;&#x2F;learn&#x2F;handling-pagination&#x2F;&quot;&gt;pagination guide&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;async-scraping-with-tokio&quot;&gt;Async Scraping with Tokio&lt;&#x2F;h2&gt;
+&lt;p&gt;For high-throughput jobs that need to fetch hundreds of pages in parallel, switch to the async reqwest API:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;use reqwest::Client;
+use scraper::{Html, Selector};
+use tokio::time::{sleep, Duration};
+
+#[tokio::main]
+async fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let proxy_url = std::env::var(&amp;quot;PROXY_URL&amp;quot;)?;
+
+    let client = Client::builder()
+        .user_agent(&amp;quot;Mozilla&#x2F;5.0 (compatible; RustScraper&#x2F;1.0)&amp;quot;)
+        .proxy(reqwest::Proxy::all(&amp;amp;proxy_url)?)
+        .danger_accept_invalid_certs(true)
+        .timeout(Duration::from_secs(60))
+        .build()?;
+
+    let urls = vec![
+        &amp;quot;https:&#x2F;&#x2F;books.toscrape.com&#x2F;catalogue&#x2F;page-1.html&amp;quot;,
+        &amp;quot;https:&#x2F;&#x2F;books.toscrape.com&#x2F;catalogue&#x2F;page-2.html&amp;quot;,
+        &amp;quot;https:&#x2F;&#x2F;books.toscrape.com&#x2F;catalogue&#x2F;page-3.html&amp;quot;,
+    ];
+
+    let title_sel = Selector::parse(&amp;quot;h3 &amp;gt; a&amp;quot;).unwrap();
+
+    let fetches: Vec&amp;lt;_&amp;gt; = urls.iter().map(|url| {
+        let client = client.clone();
+        let url = url.to_string();
+        let sel = title_sel.clone();
+        tokio::spawn(async move {
+            let html = client.get(&amp;amp;url).send().await?.text().await?;
+            let doc = Html::parse_document(&amp;amp;html);
+            let titles: Vec&amp;lt;String&amp;gt; = doc.select(&amp;amp;sel)
+                .filter_map(|el| el.value().attr(&amp;quot;title&amp;quot;))
+                .map(str::to_string)
+                .collect();
+            Ok::&amp;lt;_, reqwest::Error&amp;gt;((url, titles))
+        })
+    }).collect();
+
+    for task in fetches {
+        let (url, titles) = task.await??;
+        println!(&amp;quot;{}: {} titles&amp;quot;, url, titles.len());
+    }
+
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Each spawned task runs concurrently on the Tokio thread pool. Because &lt;code&gt;reqwest::Client&lt;&#x2F;code&gt; is &lt;code&gt;Clone&lt;&#x2F;code&gt; and internally reference-counted, cloning it is cheap — all clones share the same connection pool.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;saving-results-to-json&quot;&gt;Saving Results to JSON&lt;&#x2F;h2&gt;
+&lt;p&gt;Write your collected records to a JSON file with &lt;code&gt;serde_json&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;use serde_json::json;
+use std::fs;
+
+&#x2F;&#x2F; Inside main, after collecting results:
+let output: Vec&amp;lt;_&amp;gt; = results.iter().map(|(title, price)| {
+    json!({ &amp;quot;title&amp;quot;: title, &amp;quot;price&amp;quot;: price })
+}).collect();
+
+fs::write(&amp;quot;output.json&amp;quot;, serde_json::to_string_pretty(&amp;amp;output)?)?;
+println!(&amp;quot;Saved {} records to output.json&amp;quot;, output.len());
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For CSV output, add the &lt;code&gt;csv&lt;&#x2F;code&gt; crate (&lt;code&gt;csv = &quot;1&quot;&lt;&#x2F;code&gt;) and use &lt;code&gt;csv::Writer&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;let mut wtr = csv::Writer::from_path(&amp;quot;output.csv&amp;quot;)?;
+wtr.write_record([&amp;quot;title&amp;quot;, &amp;quot;price&amp;quot;])?;
+for (title, price) in &amp;amp;results {
+    wtr.write_record([title, price])?;
+}
+wtr.flush()?;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;handling-javascript-rendered-pages&quot;&gt;Handling JavaScript-Rendered Pages&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;code&gt;reqwest&lt;&#x2F;code&gt; fetches what the server sends before any JavaScript executes. If view-source shows the data but your scraper does not find it, check whether the data is:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;In a hidden JSON blob&lt;&#x2F;strong&gt; — look for &lt;code&gt;window.__INITIAL_STATE__&lt;&#x2F;code&gt;, &lt;code&gt;window.__NEXT_DATA__&lt;&#x2F;code&gt;, or similar in &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; tags. Parse them with &lt;code&gt;serde_json&lt;&#x2F;code&gt; directly.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Fetched from an API&lt;&#x2F;strong&gt; — open DevTools → Network → XHR and look for JSON endpoints the browser calls. Hitting those directly is faster and more reliable.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Truly rendered client-side&lt;&#x2F;strong&gt; — for these, point &lt;code&gt;reqwest&lt;&#x2F;code&gt; at Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Web Unlocker&lt;&#x2F;a&gt;, which renders the page in a real browser server-side and returns the fully rendered HTML through the same proxy-compatible interface your existing code already uses.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;scaling-up&quot;&gt;Scaling Up&lt;&#x2F;h2&gt;
+&lt;p&gt;Beyond the techniques above:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Connection pooling&lt;&#x2F;strong&gt; is free with &lt;code&gt;reqwest&lt;&#x2F;code&gt;: the &lt;code&gt;Client&lt;&#x2F;code&gt; maintains a pool internally. Reuse the same client across all requests rather than constructing a new one per fetch.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Retry logic&lt;&#x2F;strong&gt; — add the &lt;code&gt;backoff&lt;&#x2F;code&gt; crate (&lt;code&gt;backoff = &quot;0.4&quot;&lt;&#x2F;code&gt;) for exponential back-off on 429 and 5xx responses.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Managed data collection&lt;&#x2F;strong&gt; — when the target is a major platform (Amazon, LinkedIn, social media), building and maintaining a Rust scraper often costs more than using a provider&#x27;s ready-made product. See &lt;a href=&quot;&#x2F;learn&#x2F;datasets-vs-web-scraping&#x2F;&quot;&gt;Datasets vs. Web Scraping&lt;&#x2F;a&gt; to weigh that decision.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For a broader view of scraping strategies across languages, see our &lt;a href=&quot;&#x2F;solutions&#x2F;web-scraping-use-cases&#x2F;&quot;&gt;web scraping use cases overview&lt;&#x2F;a&gt; and compare proxy providers in our &lt;a href=&quot;&#x2F;reviews&#x2F;&quot;&gt;reviews section&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Start scraping at scale with Bright Data&#x27;s Web Unlocker →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;is-rust-a-good-language-for-web-scraping&quot;&gt;Is Rust a good language for web scraping?&lt;&#x2F;h3&gt;
+&lt;p&gt;Yes. Rust&#x27;s async I&#x2F;O (via Tokio) makes it excellent for high-throughput, concurrent scraping. The &lt;code&gt;reqwest&lt;&#x2F;code&gt; crate handles HTTP with proxy support built in, and the &lt;code&gt;scraper&lt;&#x2F;code&gt; crate parses HTML with CSS selectors. The main trade-off is a steeper learning curve than Python or Node.js, but the result is a fast, memory-safe scraper with no runtime overhead.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;which-crates-do-i-need-to-scrape-the-web-in-rust&quot;&gt;Which crates do I need to scrape the web in Rust?&lt;&#x2F;h3&gt;
+&lt;p&gt;The minimal stack is &lt;code&gt;reqwest&lt;&#x2F;code&gt; (HTTP client with TLS and proxy support), &lt;code&gt;scraper&lt;&#x2F;code&gt; (CSS-selector HTML parsing built on html5ever), and &lt;code&gt;serde_json&lt;&#x2F;code&gt; (for JSON-LD and API responses). Add &lt;code&gt;tokio&lt;&#x2F;code&gt; for the async runtime and &lt;code&gt;tokio-retry&lt;&#x2F;code&gt; or &lt;code&gt;backoff&lt;&#x2F;code&gt; for retry logic. Everything installs via Cargo with no system-level dependencies beyond a C linker.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-do-i-route-rust-reqwest-requests-through-a-proxy&quot;&gt;How do I route Rust reqwest requests through a proxy?&lt;&#x2F;h3&gt;
+&lt;p&gt;Build the &lt;code&gt;Client&lt;&#x2F;code&gt; with &lt;code&gt;reqwest::Client::builder().proxy(reqwest::Proxy::all(proxy_url)?).build()?&lt;&#x2F;code&gt;. For a self-signed proxy certificate (common with managed unlockers), chain &lt;code&gt;.danger_accept_invalid_certs(true)&lt;&#x2F;code&gt;. Store the proxy URL in a &lt;code&gt;PROXY_URL&lt;&#x2F;code&gt; environment variable so credentials never appear in source code.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;can-rust-scrape-javascript-rendered-pages&quot;&gt;Can Rust scrape JavaScript-rendered pages?&lt;&#x2F;h3&gt;
+&lt;p&gt;Not with &lt;code&gt;reqwest&lt;&#x2F;code&gt; alone — it fetches the raw HTML the server sends before any client-side JavaScript runs. For JavaScript-heavy targets, point &lt;code&gt;reqwest&lt;&#x2F;code&gt; at a managed rendering endpoint such as Bright Data&#x27;s Web Unlocker, which returns fully rendered HTML through a proxy-compatible interface without you operating a headless browser.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Scrape Zillow Listings: Prices &amp; Property Data</title>
         <published>2026-09-21T00:00:00+00:00</published>
