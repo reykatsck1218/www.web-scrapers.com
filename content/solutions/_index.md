@@ -15,4 +15,6 @@ Want to tap into community sentiment and trend signals? The [Reddit Scraping](/s
 
 Tracking US real estate prices or rental rates? The [Zillow Scraping](/solutions/zillow-scraping/) guide pulls listing prices, bedroom counts, and Zestimates from the embedded Next.js JSON on Zillow property pages.
 
+Looking for another marketplace target? The [Etsy Product Scraping](/solutions/etsy-product-scraping/) guide shows how to extract prices, ratings, and seller details from Etsy listings using the same JSON-LD approach that works on Amazon and eBay.
+
 Not sure where to start? The [Web Scraping Use Cases](/solutions/web-scraping-use-cases/) overview maps every major vertical — e-commerce, travel, social, B2B, and market research — to the right tools and guides.
