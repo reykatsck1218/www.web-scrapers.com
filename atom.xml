@@ -5,8 +5,272 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-28T00:00:00+00:00</updated>
+    <updated>2026-10-01T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Scrape YouTube Video &amp; Channel Data: Code Guide</title>
+        <published>2026-10-01T00:00:00+00:00</published>
+        <updated>2026-10-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/solutions/youtube-scraping/"/>
+        <id>https://www.web-scrapers.com/solutions/youtube-scraping/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/solutions/youtube-scraping/">&lt;p&gt;YouTube is the world&#x27;s largest video platform and a rich source of public data for market researchers, content strategists, and trend analysts. Every public video page exposes its core metadata — title, channel, view count, duration, upload date — in a &lt;code&gt;&amp;lt;script type=&quot;application&#x2F;ld+json&quot;&amp;gt;&lt;&#x2F;code&gt; block that follows the &lt;code&gt;VideoObject&lt;&#x2F;code&gt; schema. That JSON-LD block is far more stable than scraping rendered DOM elements, which break whenever YouTube updates its UI.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide covers what data YouTube embeds, why a plain HTTP client is not enough, and provides working code samples in PHP, Node.js, and Rust that fetch through the &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker&lt;&#x2F;a&gt; and parse the structured metadata.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;public-video-data-vs-account-data&quot;&gt;Public video data vs. account data&lt;&#x2F;h2&gt;
+&lt;p&gt;YouTube does not require a login to watch public videos or read their metadata. The data in scope for scraping without authentication includes:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Public&lt;&#x2F;strong&gt; — video title, description, channel name, upload date, duration, thumbnail URL, and view count (in the JSON-LD), plus subtitles and publicly listed playlists.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Gated&lt;&#x2F;strong&gt; — subscriber counts, like&#x2F;dislike history, private playlists, analytics dashboards, and comment threading all require a login or the YouTube Data API v3.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;YouTube&#x27;s Terms of Service prohibit automated access, so review the relevant terms and seek appropriate legal advice before deploying at scale. The samples below only target what an anonymous visitor can see.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;where-the-data-lives-json-ld-videoobject&quot;&gt;Where the data lives: JSON-LD VideoObject&lt;&#x2F;h2&gt;
+&lt;p&gt;Every public YouTube video page includes a JSON-LD block in its &lt;code&gt;&amp;lt;head&amp;gt;&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;html&quot;&gt;&amp;lt;script type=&amp;quot;application&#x2F;ld+json&amp;quot;&amp;gt;
+{
+  &amp;quot;@context&amp;quot;: &amp;quot;http:&#x2F;&#x2F;schema.org&amp;quot;,
+  &amp;quot;@type&amp;quot;: &amp;quot;VideoObject&amp;quot;,
+  &amp;quot;name&amp;quot;: &amp;quot;Video Title Here&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;Video description...&amp;quot;,
+  &amp;quot;thumbnailUrl&amp;quot;: [&amp;quot;https:&#x2F;&#x2F;i.ytimg.com&#x2F;vi&#x2F;&amp;lt;id&amp;gt;&#x2F;hqdefault.jpg&amp;quot;],
+  &amp;quot;uploadDate&amp;quot;: &amp;quot;2025-03-15T00:00:00+00:00&amp;quot;,
+  &amp;quot;duration&amp;quot;: &amp;quot;PT12M45S&amp;quot;,
+  &amp;quot;author&amp;quot;: {
+    &amp;quot;@type&amp;quot;: &amp;quot;Person&amp;quot;,
+    &amp;quot;name&amp;quot;: &amp;quot;Channel Name&amp;quot;,
+    &amp;quot;url&amp;quot;: &amp;quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@channelname&amp;quot;
+  },
+  &amp;quot;interactionStatistic&amp;quot;: [
+    {
+      &amp;quot;@type&amp;quot;: &amp;quot;InteractionCounter&amp;quot;,
+      &amp;quot;interactionType&amp;quot;: { &amp;quot;@type&amp;quot;: &amp;quot;WatchAction&amp;quot; },
+      &amp;quot;userInteractionCount&amp;quot;: 4820000
+    }
+  ]
+}
+&amp;lt;&#x2F;script&amp;gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;duration&lt;&#x2F;code&gt; follows ISO 8601: &lt;code&gt;PT12M45S&lt;&#x2F;code&gt; means 12 minutes 45 seconds. &lt;code&gt;userInteractionCount&lt;&#x2F;code&gt; under &lt;code&gt;WatchAction&lt;&#x2F;code&gt; is the view count. This structure has been stable for years because it is part of YouTube&#x27;s SEO metadata — Google relies on it to power rich results in search.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-note-on-ytinitialdata&quot;&gt;A note on &lt;code&gt;ytInitialData&lt;&#x2F;code&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;YouTube also embeds a large JavaScript object called &lt;code&gt;ytInitialData&lt;&#x2F;code&gt; in every page:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;html&quot;&gt;&amp;lt;script&amp;gt;var ytInitialData = {...};&amp;lt;&#x2F;script&amp;gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This contains the full client-side rendering tree — related videos, comments, sidebar content, and richer channel data including subscriber counts. The internal key structure changes with YouTube&#x27;s build pipeline, however, making it significantly harder to maintain than JSON-LD. For long-running scrapers, JSON-LD is the right starting point; &lt;code&gt;ytInitialData&lt;&#x2F;code&gt; is worth reaching for only when you need data not covered by JSON-LD.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-plain-http-clients-fail&quot;&gt;Why plain HTTP clients fail&lt;&#x2F;h2&gt;
+&lt;p&gt;YouTube serves different responses based on IP reputation. A bare &lt;code&gt;curl&lt;&#x2F;code&gt; or &lt;code&gt;fetch&lt;&#x2F;code&gt; call from a datacenter IP typically returns one of:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;CAPTCHA&lt;&#x2F;strong&gt; challenge page instead of video HTML.&lt;&#x2F;li&gt;
+&lt;li&gt;A consent or cookie wall that blocks content access in certain regions.&lt;&#x2F;li&gt;
+&lt;li&gt;A stripped response that omits the JSON-LD block entirely.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;YouTube also detects scripted clients through TLS fingerprinting and HTTP&#x2F;2 header ordering. Routing through a residential proxy that presents a genuine household IP resolves these issues and is the most reliable path to consistently receiving the full page HTML.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;No proxy set up yet?&lt;&#x2F;strong&gt; &lt;a href=&quot;&#x2F;goto&#x2F;bd-web-unlocker&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Get started with Bright Data&#x27;s Web Unlocker →&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;unblocker_zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Video URLs follow the pattern &lt;code&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=&amp;lt;video_id&amp;gt;&lt;&#x2F;code&gt;. The eleven-character &lt;code&gt;video_id&lt;&#x2F;code&gt; is the identifier used across YouTube&#x27;s platform — it appears in the URL and in every share link.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;php&quot;&gt;PHP&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+&#x2F;&#x2F; Run: php youtube.php dQw4w9WgXcQ
+$proxy   = getenv(&amp;#39;PROXY_URL&amp;#39;);
+$videoId = $argv[1] ?? &amp;#39;dQw4w9WgXcQ&amp;#39;;
+
+$ch = curl_init(&amp;quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=$videoId&amp;quot;);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER =&amp;gt; true,
+    CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+    CURLOPT_PROXY          =&amp;gt; $proxy,
+    CURLOPT_SSL_VERIFYPEER =&amp;gt; false,
+    CURLOPT_TIMEOUT        =&amp;gt; 60,
+    CURLOPT_HTTPHEADER     =&amp;gt; [
+        &amp;#39;Accept-Language: en-US,en;q=0.9&amp;#39;,
+        &amp;#39;Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+    ],
+]);
+$html = curl_exec($ch);
+curl_close($ch);
+
+$doc = new DOMDocument();
+@$doc-&amp;gt;loadHTML($html);
+$xp = new DOMXPath($doc);
+
+$video = null;
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;script[@type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;) as $node) {
+    $ld = json_decode($node-&amp;gt;textContent, true);
+    if (($ld[&amp;#39;@type&amp;#39;] ?? &amp;#39;&amp;#39;) === &amp;#39;VideoObject&amp;#39;) { $video = $ld; break; }
+}
+
+if (!$video) { fwrite(STDERR, &amp;quot;No VideoObject found — page may be blocked.\n&amp;quot;); exit(1); }
+
+&#x2F;&#x2F; Extract view count from interactionStatistic array.
+$views = null;
+foreach ($video[&amp;#39;interactionStatistic&amp;#39;] ?? [] as $stat) {
+    if (($stat[&amp;#39;interactionType&amp;#39;][&amp;#39;@type&amp;#39;] ?? &amp;#39;&amp;#39;) === &amp;#39;WatchAction&amp;#39;) {
+        $views = $stat[&amp;#39;userInteractionCount&amp;#39;];
+        break;
+    }
+}
+
+echo json_encode([
+    &amp;#39;id&amp;#39;          =&amp;gt; $videoId,
+    &amp;#39;title&amp;#39;       =&amp;gt; $video[&amp;#39;name&amp;#39;]           ?? null,
+    &amp;#39;channel&amp;#39;     =&amp;gt; $video[&amp;#39;author&amp;#39;][&amp;#39;name&amp;#39;] ?? null,
+    &amp;#39;channel_url&amp;#39; =&amp;gt; $video[&amp;#39;author&amp;#39;][&amp;#39;url&amp;#39;]  ?? null,
+    &amp;#39;upload_date&amp;#39; =&amp;gt; $video[&amp;#39;uploadDate&amp;#39;]     ?? null,
+    &amp;#39;duration&amp;#39;    =&amp;gt; $video[&amp;#39;duration&amp;#39;]       ?? null,
+    &amp;#39;views&amp;#39;       =&amp;gt; $views,
+    &amp;#39;description&amp;#39; =&amp;gt; substr($video[&amp;#39;description&amp;#39;] ?? &amp;#39;&amp;#39;, 0, 200),
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;node-js&quot;&gt;Node.js&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;javascript&quot;&gt;&#x2F;&#x2F; youtube.mjs — node youtube.mjs dQw4w9WgXcQ
+&#x2F;&#x2F; Install: npm i axios https-proxy-agent cheerio
+import axios from &amp;#39;axios&amp;#39;;
+import { HttpsProxyAgent } from &amp;#39;https-proxy-agent&amp;#39;;
+import * as cheerio from &amp;#39;cheerio&amp;#39;;
+
+const agent   = new HttpsProxyAgent(process.env.PROXY_URL);
+const videoId = process.argv[2] ?? &amp;#39;dQw4w9WgXcQ&amp;#39;;
+
+const { data: html } = await axios.get(`https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=${videoId}`, {
+  httpsAgent: agent,
+  proxy: false,
+  timeout: 60_000,
+  headers: {
+    &amp;#39;Accept-Language&amp;#39;: &amp;#39;en-US,en;q=0.9&amp;#39;,
+    &amp;#39;Accept&amp;#39;: &amp;#39;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+  },
+});
+
+const $ = cheerio.load(html);
+let video = null;
+$(&amp;#39;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;).each((_, el) =&amp;gt; {
+  try {
+    const ld = JSON.parse($(el).text());
+    if (ld[&amp;#39;@type&amp;#39;] === &amp;#39;VideoObject&amp;#39;) video = ld;
+  } catch { &#x2F;* skip malformed blocks *&#x2F; }
+});
+
+if (!video) throw new Error(&amp;#39;No VideoObject found — page may be blocked&amp;#39;);
+
+const watchStat = video.interactionStatistic?.find(
+  s =&amp;gt; s.interactionType?.[&amp;#39;@type&amp;#39;] === &amp;#39;WatchAction&amp;#39;
+);
+
+console.log(JSON.stringify({
+  id:          videoId,
+  title:       video.name           ?? null,
+  channel:     video.author?.name   ?? null,
+  channel_url: video.author?.url    ?? null,
+  upload_date: video.uploadDate     ?? null,
+  duration:    video.duration       ?? null,
+  views:       watchStat?.userInteractionCount ?? null,
+  description: (video.description ?? &amp;#39;&amp;#39;).slice(0, 200),
+}, null, 2));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;&#x2F;&#x2F; Cargo.toml:
+&#x2F;&#x2F;   reqwest = { version = &amp;quot;0.12&amp;quot;, features = [&amp;quot;blocking&amp;quot;] }
+&#x2F;&#x2F;   scraper = &amp;quot;0.20&amp;quot;
+&#x2F;&#x2F;   serde_json = &amp;quot;1&amp;quot;
+use scraper::{Html, Selector};
+use serde_json::Value;
+
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let video_id = std::env::args().nth(1).unwrap_or_else(|| &amp;quot;dQw4w9WgXcQ&amp;quot;.into());
+    let url = format!(&amp;quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v={video_id}&amp;quot;);
+
+    let client = reqwest::blocking::Client::builder()
+        .proxy(reqwest::Proxy::all(std::env::var(&amp;quot;PROXY_URL&amp;quot;)?)?)
+        .danger_accept_invalid_certs(true)
+        .build()?;
+
+    let html = client
+        .get(&amp;amp;url)
+        .header(&amp;quot;Accept-Language&amp;quot;, &amp;quot;en-US,en;q=0.9&amp;quot;)
+        .header(&amp;quot;Accept&amp;quot;, &amp;quot;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;quot;)
+        .send()?
+        .text()?;
+
+    let doc = Html::parse_document(&amp;amp;html);
+    let sel = Selector::parse(r#&amp;quot;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;quot;#).unwrap();
+
+    let mut video = Value::Null;
+    for el in doc.select(&amp;amp;sel) {
+        let raw = el.text().collect::&amp;lt;String&amp;gt;();
+        if let Ok(ld) = serde_json::from_str::&amp;lt;Value&amp;gt;(&amp;amp;raw) {
+            if ld[&amp;quot;@type&amp;quot;] == &amp;quot;VideoObject&amp;quot; { video = ld; break; }
+        }
+    }
+
+    if video.is_null() {
+        return Err(&amp;quot;No VideoObject found — page may be blocked&amp;quot;.into());
+    }
+
+    let views = video[&amp;quot;interactionStatistic&amp;quot;]
+        .as_array()
+        .and_then(|stats| {
+            stats.iter().find(|s| s[&amp;quot;interactionType&amp;quot;][&amp;quot;@type&amp;quot;] == &amp;quot;WatchAction&amp;quot;)
+        })
+        .and_then(|s| s[&amp;quot;userInteractionCount&amp;quot;].as_u64());
+
+    let description = video[&amp;quot;description&amp;quot;]
+        .as_str()
+        .unwrap_or(&amp;quot;&amp;quot;)
+        .chars()
+        .take(200)
+        .collect::&amp;lt;String&amp;gt;();
+
+    let out = serde_json::json!({
+        &amp;quot;id&amp;quot;:          video_id,
+        &amp;quot;title&amp;quot;:       video[&amp;quot;name&amp;quot;],
+        &amp;quot;channel&amp;quot;:     video[&amp;quot;author&amp;quot;][&amp;quot;name&amp;quot;],
+        &amp;quot;channel_url&amp;quot;: video[&amp;quot;author&amp;quot;][&amp;quot;url&amp;quot;],
+        &amp;quot;upload_date&amp;quot;: video[&amp;quot;uploadDate&amp;quot;],
+        &amp;quot;duration&amp;quot;:    video[&amp;quot;duration&amp;quot;],
+        &amp;quot;views&amp;quot;:       views,
+        &amp;quot;description&amp;quot;: description,
+    });
+
+    println!(&amp;quot;{}&amp;quot;, serde_json::to_string_pretty(&amp;amp;out)?);
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;notes&quot;&gt;Notes&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;duration&lt;&#x2F;code&gt; is ISO 8601 (e.g. &lt;code&gt;PT12M45S&lt;&#x2F;code&gt;). Parse it with a regex or a duration library if you need total seconds.&lt;&#x2F;li&gt;
+&lt;li&gt;YouTube&#x27;s JSON-LD omits like counts — those are buried inside the &lt;code&gt;ytInitialData&lt;&#x2F;code&gt; JavaScript object embedded lower in the page, but that key path changes with builds.&lt;&#x2F;li&gt;
+&lt;li&gt;The JSON-LD block is in the document &lt;code&gt;&amp;lt;head&amp;gt;&lt;&#x2F;code&gt;, so it arrives early in the byte stream. You can abort the HTTP response once you have parsed it to reduce bandwidth.&lt;&#x2F;li&gt;
+&lt;li&gt;Channel subscriber counts are absent from the JSON-LD. For those you would need to parse &lt;code&gt;ytInitialData&lt;&#x2F;code&gt; or use the YouTube Data API v3.&lt;&#x2F;li&gt;
+&lt;li&gt;YouTube personalizes results by viewer location; US-based residential IPs avoid regional content restrictions on public videos and return English-language metadata by default.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;scaling-beyond-a-few-videos&quot;&gt;Scaling beyond a few videos&lt;&#x2F;h2&gt;
+&lt;p&gt;A single-script approach works for ad hoc lookups, but monitoring channels, tracking trending content, or building a research dataset at scale means managing proxy rotation, rate limiting, and scheduled re-scrapes across thousands of video IDs.&lt;&#x2F;p&gt;
+&lt;p&gt;Bright Data maintains &lt;a href=&quot;&#x2F;goto&#x2F;bd-datasets&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;pre-built YouTube datasets&lt;&#x2F;a&gt; covering video metadata, channel statistics, and trending data that can be delivered on a schedule without you building or maintaining scraping infrastructure. For building your own scalable pipeline, the &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt; covers the proxy and unblocking layer in detail. The &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;how to avoid getting blocked&lt;&#x2F;a&gt; guide covers the broader anti-detection considerations that apply to YouTube and other high-traffic platforms.&lt;&#x2F;p&gt;
+&lt;p&gt;For the wider picture of public social data collection, see the &lt;a href=&quot;&#x2F;solutions&#x2F;social-media-scraping&#x2F;&quot;&gt;Social Media Scraping&lt;&#x2F;a&gt; pillar, which ties together YouTube alongside Instagram, TikTok, Facebook, and LinkedIn. Our &lt;a href=&quot;&#x2F;solutions&#x2F;web-scraping-use-cases&#x2F;&quot;&gt;Web Scraping Use Cases&lt;&#x2F;a&gt; overview maps video analytics to the tooling decisions involved.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-datasets&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Get YouTube video data at scale with Bright Data →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;is-scraping-youtube-public-data-legal&quot;&gt;Is scraping YouTube public data legal?&lt;&#x2F;h3&gt;
+&lt;p&gt;YouTube&#x27;s Terms of Service prohibit automated access and systematic downloading of its content. US court decisions have generally held that automated collection of publicly visible, non-login-gated data is not a CFAA violation in itself, but YouTube&#x27;s terms and applicable copyright and database law still apply. Review the ToS and seek legal advice before building a production scraper, especially for commercial use cases.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-data-is-publicly-visible-on-a-youtube-video-page&quot;&gt;What data is publicly visible on a YouTube video page?&lt;&#x2F;h3&gt;
+&lt;p&gt;Title, channel name, description, upload date, duration, view count, and thumbnail URL are all exposed to anonymous visitors without a login and are embedded in the page&#x27;s JSON-LD VideoObject block. Like counts and comment data are visible in the rendered page but are not part of the JSON-LD.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-do-youtube-scrapers-get-blocked&quot;&gt;Why do YouTube scrapers get blocked?&lt;&#x2F;h3&gt;
+&lt;p&gt;YouTube detects datacenter IP ranges and returns CAPTCHAs or stripped-down responses to high-volume requests. TLS fingerprinting and HTTP&#x2F;2 header order checks are also applied. Residential proxies that present real household IPs are the most reliable way to avoid these blocks.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;does-youtube-have-an-official-data-api&quot;&gt;Does YouTube have an official data API?&lt;&#x2F;h3&gt;
+&lt;p&gt;Yes — the YouTube Data API v3 allows fetching video metadata, channel stats, and search results within quota limits. For analytics or moderate-scale use cases the API is the easier path. Scraping is most relevant when you need data unavailable via the API or volume that exceeds API quotas.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Etsy Product Scraping: Prices, Reviews &amp; Listings</title>
         <published>2026-09-28T00:00:00+00:00</published>
