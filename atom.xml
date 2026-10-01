@@ -5,8 +5,234 @@
     <link rel="self" type="application/atom+xml" href="https://www.web-scrapers.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://www.web-scrapers.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-09-24T00:00:00+00:00</updated>
+    <updated>2026-09-28T00:00:00+00:00</updated>
     <id>https://www.web-scrapers.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Etsy Product Scraping: Prices, Reviews &amp; Listings</title>
+        <published>2026-09-28T00:00:00+00:00</published>
+        <updated>2026-09-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.web-scrapers.com/solutions/etsy-product-scraping/"/>
+        <id>https://www.web-scrapers.com/solutions/etsy-product-scraping/</id>
+        
+        <content type="html" xml:base="https://www.web-scrapers.com/solutions/etsy-product-scraping/">&lt;p&gt;Etsy is one of the largest marketplaces for handmade, vintage, and craft goods — which makes it a valuable data source for competitive pricing, product trend analysis, and seller research. Because every public listing page is rendered for anonymous visitors, the structured data Etsy publishes for search engines is also available to any scraper that can fetch the raw HTML.&lt;&#x2F;p&gt;
+&lt;p&gt;The most reliable extraction point is the &lt;strong&gt;JSON-LD Product block&lt;&#x2F;strong&gt; Etsy injects into each listing — a &lt;code&gt;&amp;lt;script type=&quot;application&#x2F;ld+json&quot;&amp;gt;&lt;&#x2F;code&gt; tag whose contents include the listing name, price, currency, availability, and aggregate rating. This structured data is far more stable than CSS selectors tied to Etsy&#x27;s React layout, which changes with A&#x2F;B tests and redesigns.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide explains where that data lives, why standard HTTP clients still fail, and provides working code samples in PHP, Node.js, and Rust that fetch through the &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker&lt;&#x2F;a&gt; and parse the embedded JSON.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;public-listing-data-vs-account-gated-data&quot;&gt;Public listing data vs. account-gated data&lt;&#x2F;h2&gt;
+&lt;p&gt;Etsy does not require a login to browse listings, and everything an anonymous visitor can see counts as public data:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Public&lt;&#x2F;strong&gt; — listing title, description, price, primary and secondary images, seller name, product tags, star rating, and review count.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Gated&lt;&#x2F;strong&gt; — buyer identities in reviews, private shop analytics, order history, and draft listings all require authentication and are off-limits for automated collection.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The code samples below target only the anonymous, public view. Etsy&#x27;s Terms of Use restrict automated scraping even of public data — review the relevant terms and seek appropriate advice before running at production scale.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;where-the-data-lives-json-ld-product-blocks&quot;&gt;Where the data lives: JSON-LD Product blocks&lt;&#x2F;h2&gt;
+&lt;p&gt;Etsy listing pages include a structured-data block aimed at Google&#x27;s product indexer:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;html&quot;&gt;&amp;lt;script type=&amp;quot;application&#x2F;ld+json&amp;quot;&amp;gt;
+{
+  &amp;quot;@context&amp;quot;: &amp;quot;https:&#x2F;&#x2F;schema.org&amp;quot;,
+  &amp;quot;@type&amp;quot;: &amp;quot;Product&amp;quot;,
+  &amp;quot;name&amp;quot;: &amp;quot;Hand-thrown Ceramic Mug&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;…&amp;quot;,
+  &amp;quot;offers&amp;quot;: {
+    &amp;quot;@type&amp;quot;: &amp;quot;Offer&amp;quot;,
+    &amp;quot;price&amp;quot;: &amp;quot;28.00&amp;quot;,
+    &amp;quot;priceCurrency&amp;quot;: &amp;quot;USD&amp;quot;,
+    &amp;quot;availability&amp;quot;: &amp;quot;https:&#x2F;&#x2F;schema.org&#x2F;InStock&amp;quot;
+  },
+  &amp;quot;aggregateRating&amp;quot;: {
+    &amp;quot;@type&amp;quot;: &amp;quot;AggregateRating&amp;quot;,
+    &amp;quot;ratingValue&amp;quot;: &amp;quot;4.9&amp;quot;,
+    &amp;quot;reviewCount&amp;quot;: &amp;quot;312&amp;quot;
+  }
+}
+&amp;lt;&#x2F;script&amp;gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A listing page may contain multiple JSON-LD blocks (for breadcrumbs, seller info, etc.). The scraper needs to find the one whose &lt;code&gt;@type&lt;&#x2F;code&gt; is &lt;code&gt;Product&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-plain-http-clients-fail&quot;&gt;Why plain HTTP clients fail&lt;&#x2F;h2&gt;
+&lt;p&gt;Etsy returns CAPTCHAs or incomplete pages to datacenter IP ranges and to clients that present unusual TLS fingerprints. A &lt;code&gt;curl&lt;&#x2F;code&gt; command or a default &lt;code&gt;axios&lt;&#x2F;code&gt; request from a cloud server is typically blocked within a handful of requests. Residential or ISP proxies — IPs that look like genuine household connections — get through because Etsy&#x27;s anti-bot layer treats them as normal browsers.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker&lt;&#x2F;a&gt; abstracts that entirely: it picks the right proxy type, rotates IPs, and handles CAPTCHA challenges, so your scraper sees a clean HTML response every time. &lt;a href=&quot;&#x2F;goto&#x2F;bd-ecommerce&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Explore Bright Data&#x27;s e-commerce scraping tools →&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;export PROXY_URL=&amp;quot;http:&#x2F;&#x2F;brd-customer-&amp;lt;id&amp;gt;-zone-&amp;lt;unblocker_zone&amp;gt;:&amp;lt;password&amp;gt;@brd.superproxy.io:22225&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Listings are identified by their numeric &lt;strong&gt;listing ID&lt;&#x2F;strong&gt; in the URL:
+&lt;code&gt;https:&#x2F;&#x2F;www.etsy.com&#x2F;listing&#x2F;&amp;lt;listing_id&amp;gt;&#x2F;&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;php&quot;&gt;PHP&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;php&quot;&gt;&amp;lt;?php
+&#x2F;&#x2F; Run: php etsy.php 1234567890
+$proxy     = getenv(&amp;#39;PROXY_URL&amp;#39;);
+$listingId = $argv[1] ?? &amp;#39;1234567890&amp;#39;;
+
+$ch = curl_init(&amp;quot;https:&#x2F;&#x2F;www.etsy.com&#x2F;listing&#x2F;$listingId&#x2F;&amp;quot;);
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER =&amp;gt; true,
+    CURLOPT_FOLLOWLOCATION =&amp;gt; true,
+    CURLOPT_PROXY          =&amp;gt; $proxy,
+    CURLOPT_SSL_VERIFYPEER =&amp;gt; false,
+    CURLOPT_TIMEOUT        =&amp;gt; 60,
+    CURLOPT_HTTPHEADER     =&amp;gt; [
+        &amp;#39;Accept-Language: en-US,en;q=0.9&amp;#39;,
+        &amp;#39;Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+    ],
+]);
+$html = curl_exec($ch);
+curl_close($ch);
+
+$doc = new DOMDocument();
+@$doc-&amp;gt;loadHTML($html);
+$xp = new DOMXPath($doc);
+
+$product = null;
+foreach ($xp-&amp;gt;query(&amp;#39;&#x2F;&#x2F;script[@type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;) as $node) {
+    $ld = json_decode($node-&amp;gt;textContent, true);
+    if (($ld[&amp;#39;@type&amp;#39;] ?? &amp;#39;&amp;#39;) === &amp;#39;Product&amp;#39;) { $product = $ld; break; }
+}
+
+$offer  = $product[&amp;#39;offers&amp;#39;] ?? [];
+$rating = $product[&amp;#39;aggregateRating&amp;#39;] ?? [];
+
+echo json_encode([
+    &amp;#39;id&amp;#39;           =&amp;gt; $listingId,
+    &amp;#39;name&amp;#39;         =&amp;gt; $product[&amp;#39;name&amp;#39;] ?? null,
+    &amp;#39;description&amp;#39;  =&amp;gt; substr($product[&amp;#39;description&amp;#39;] ?? &amp;#39;&amp;#39;, 0, 200),
+    &amp;#39;price&amp;#39;        =&amp;gt; $offer[&amp;#39;price&amp;#39;] ?? null,
+    &amp;#39;currency&amp;#39;     =&amp;gt; $offer[&amp;#39;priceCurrency&amp;#39;] ?? null,
+    &amp;#39;availability&amp;#39; =&amp;gt; $offer[&amp;#39;availability&amp;#39;] ?? null,
+    &amp;#39;rating&amp;#39;       =&amp;gt; $rating[&amp;#39;ratingValue&amp;#39;] ?? null,
+    &amp;#39;review_count&amp;#39; =&amp;gt; $rating[&amp;#39;reviewCount&amp;#39;] ?? null,
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), PHP_EOL;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;node-js&quot;&gt;Node.js&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;javascript&quot;&gt;&#x2F;&#x2F; etsy.mjs — node etsy.mjs 1234567890
+&#x2F;&#x2F; Install: npm i axios https-proxy-agent cheerio
+import axios from &amp;#39;axios&amp;#39;;
+import { HttpsProxyAgent } from &amp;#39;https-proxy-agent&amp;#39;;
+import * as cheerio from &amp;#39;cheerio&amp;#39;;
+
+const agent     = new HttpsProxyAgent(process.env.PROXY_URL);
+const listingId = process.argv[2] ?? &amp;#39;1234567890&amp;#39;;
+
+const { data: html } = await axios.get(
+  `https:&#x2F;&#x2F;www.etsy.com&#x2F;listing&#x2F;${listingId}&#x2F;`,
+  {
+    httpsAgent: agent,
+    proxy: false,
+    timeout: 60_000,
+    headers: {
+      &amp;#39;Accept-Language&amp;#39;: &amp;#39;en-US,en;q=0.9&amp;#39;,
+      &amp;#39;Accept&amp;#39;: &amp;#39;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;#39;,
+    },
+  }
+);
+
+const $ = cheerio.load(html);
+let product = {};
+$(&amp;#39;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;#39;).each((_, el) =&amp;gt; {
+  try {
+    const ld = JSON.parse($(el).text());
+    if (ld[&amp;#39;@type&amp;#39;] === &amp;#39;Product&amp;#39;) product = ld;
+  } catch { &#x2F;* skip malformed blocks *&#x2F; }
+});
+
+const offer  = product.offers ?? {};
+const rating = product.aggregateRating ?? {};
+
+console.log(JSON.stringify({
+  id:           listingId,
+  name:         product.name ?? null,
+  description:  (product.description ?? &amp;#39;&amp;#39;).slice(0, 200),
+  price:        offer.price ?? null,
+  currency:     offer.priceCurrency ?? null,
+  availability: offer.availability ?? null,
+  rating:       rating.ratingValue ?? null,
+  reviewCount:  rating.reviewCount ?? null,
+}, null, 2));
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;&#x2F;&#x2F; Cargo.toml:
+&#x2F;&#x2F;   reqwest = { version = &amp;quot;0.12&amp;quot;, features = [&amp;quot;blocking&amp;quot;] }
+&#x2F;&#x2F;   scraper = &amp;quot;0.20&amp;quot;
+&#x2F;&#x2F;   serde_json = &amp;quot;1&amp;quot;
+use scraper::{Html, Selector};
+use serde_json::Value;
+
+fn main() -&amp;gt; Result&amp;lt;(), Box&amp;lt;dyn std::error::Error&amp;gt;&amp;gt; {
+    let listing_id = std::env::args().nth(1).unwrap_or_else(|| &amp;quot;1234567890&amp;quot;.into());
+
+    let client = reqwest::blocking::Client::builder()
+        .proxy(reqwest::Proxy::all(std::env::var(&amp;quot;PROXY_URL&amp;quot;)?)?)
+        .danger_accept_invalid_certs(true)
+        .build()?;
+
+    let html = client
+        .get(format!(&amp;quot;https:&#x2F;&#x2F;www.etsy.com&#x2F;listing&#x2F;{listing_id}&#x2F;&amp;quot;))
+        .header(&amp;quot;Accept-Language&amp;quot;, &amp;quot;en-US,en;q=0.9&amp;quot;)
+        .header(&amp;quot;Accept&amp;quot;, &amp;quot;text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q=0.9,*&#x2F;*;q=0.8&amp;quot;)
+        .send()?
+        .text()?;
+
+    let doc = Html::parse_document(&amp;amp;html);
+    let sel = Selector::parse(r#&amp;quot;script[type=&amp;quot;application&#x2F;ld+json&amp;quot;]&amp;quot;#).unwrap();
+
+    let mut product = Value::Null;
+    for el in doc.select(&amp;amp;sel) {
+        let raw = el.text().collect::&amp;lt;String&amp;gt;();
+        if let Ok(ld) = serde_json::from_str::&amp;lt;Value&amp;gt;(&amp;amp;raw) {
+            if ld[&amp;quot;@type&amp;quot;] == &amp;quot;Product&amp;quot; { product = ld; break; }
+        }
+    }
+
+    let offer  = &amp;amp;product[&amp;quot;offers&amp;quot;];
+    let rating = &amp;amp;product[&amp;quot;aggregateRating&amp;quot;];
+    let desc   = product[&amp;quot;description&amp;quot;].as_str().unwrap_or(&amp;quot;&amp;quot;).chars().take(200).collect::&amp;lt;String&amp;gt;();
+
+    let out = serde_json::json!({
+        &amp;quot;id&amp;quot;:           listing_id,
+        &amp;quot;name&amp;quot;:         product[&amp;quot;name&amp;quot;],
+        &amp;quot;description&amp;quot;:  desc,
+        &amp;quot;price&amp;quot;:        offer[&amp;quot;price&amp;quot;],
+        &amp;quot;currency&amp;quot;:     offer[&amp;quot;priceCurrency&amp;quot;],
+        &amp;quot;availability&amp;quot;: offer[&amp;quot;availability&amp;quot;],
+        &amp;quot;rating&amp;quot;:       rating[&amp;quot;ratingValue&amp;quot;],
+        &amp;quot;review_count&amp;quot;: rating[&amp;quot;reviewCount&amp;quot;],
+    });
+
+    println!(&amp;quot;{}&amp;quot;, serde_json::to_string_pretty(&amp;amp;out)?);
+    Ok(())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;extracting-additional-fields&quot;&gt;Extracting additional fields&lt;&#x2F;h2&gt;
+&lt;p&gt;The JSON-LD &lt;code&gt;Product&lt;&#x2F;code&gt; block is intentionally minimal. For additional fields that Etsy renders on the page — seller name, shop URL, individual review text, tags, and secondary images — parse the surrounding HTML after the JSON-LD extraction:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Seller name &#x2F; shop link&lt;&#x2F;strong&gt; — present in an &lt;code&gt;&amp;lt;a&amp;gt;&lt;&#x2F;code&gt; inside the &lt;code&gt;.shop-name-and-title-container&lt;&#x2F;code&gt; section, or in a second JSON-LD block whose &lt;code&gt;@type&lt;&#x2F;code&gt; is &lt;code&gt;Organization&lt;&#x2F;code&gt; or &lt;code&gt;Person&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Tags&lt;&#x2F;strong&gt; — Etsy renders product tags as links in a &lt;code&gt;&amp;lt;div&amp;gt;&lt;&#x2F;code&gt; near the listing description. Select &lt;code&gt;a[href*=&quot;&#x2F;search?q=&quot;]&lt;&#x2F;code&gt; links inside the tag container.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Images&lt;&#x2F;strong&gt; — the JSON-LD &lt;code&gt;image&lt;&#x2F;code&gt; array lists the main product images as absolute URLs; no additional parsing is needed for those.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Variants&lt;&#x2F;strong&gt; — size or color variants are embedded in a React state blob in &lt;code&gt;&amp;lt;script&amp;gt;&lt;&#x2F;code&gt; tags. The key is a JSON object keyed on &lt;code&gt;listingId&lt;&#x2F;code&gt; whose &lt;code&gt;variations&lt;&#x2F;code&gt; array describes each option and its price delta.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;scaling-beyond-a-few-listings&quot;&gt;Scaling beyond a few listings&lt;&#x2F;h2&gt;
+&lt;p&gt;Scraping Etsy at scale — monitoring thousands of competitor listings, tracking price changes over time, or building a trend-detection pipeline — requires rotating proxies, handling blocked responses, and absorbing layout updates without breaking your parser. Managing that infrastructure takes sustained effort that rarely shows up in a roadmap.&lt;&#x2F;p&gt;
+&lt;p&gt;Bright Data&#x27;s &lt;a href=&quot;&#x2F;goto&#x2F;bd-ecommerce&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;e-commerce data collection tools&lt;&#x2F;a&gt; return structured listing data without you owning any of that infrastructure. For a broader look at what structured data extraction looks like across marketplaces, see the &lt;a href=&quot;&#x2F;solutions&#x2F;amazon-product-tracking&#x2F;&quot;&gt;Amazon Product Tracking&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;solutions&#x2F;ebay-product-tracking&#x2F;&quot;&gt;eBay Product Tracking&lt;&#x2F;a&gt; guides, or the &lt;a href=&quot;&#x2F;solutions&#x2F;ecommerce&#x2F;&quot;&gt;E-commerce Web Scraping Solutions&lt;&#x2F;a&gt; overview.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Also see: &lt;a href=&quot;&#x2F;reviews&#x2F;bright-data-web-unlocker&#x2F;&quot;&gt;Bright Data Web Unlocker review&lt;&#x2F;a&gt;, &lt;a href=&quot;&#x2F;learn&#x2F;how-to-avoid-getting-blocked&#x2F;&quot;&gt;How to Avoid Getting Blocked&lt;&#x2F;a&gt;, and the &lt;a href=&quot;&#x2F;solutions&#x2F;web-scraping-use-cases&#x2F;&quot;&gt;Web Scraping Use Cases&lt;&#x2F;a&gt; overview for more context on marketplace intelligence.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;&#x2F;goto&#x2F;bd-ecommerce&#x2F;&quot; rel=&quot;sponsored noopener&quot;&gt;Scrape Etsy at scale with Bright Data →&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;faq&quot;&gt;FAQ&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;is-scraping-etsy-legal&quot;&gt;Is scraping Etsy legal?&lt;&#x2F;h3&gt;
+&lt;p&gt;Etsy&#x27;s Terms of Use prohibit automated scraping of its platform. That said, US courts have generally held that automated collection of publicly visible, non-login-gated data is not a copyright violation on its own. The legal picture depends on your use case, data volume, and jurisdiction — always review the relevant terms and seek appropriate legal advice before deploying at scale.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-does-etsy-embed-its-product-data&quot;&gt;How does Etsy embed its product data?&lt;&#x2F;h3&gt;
+&lt;p&gt;Etsy injects a JSON-LD Product block into every public listing page inside a &lt;code&gt;&amp;lt;script type=&quot;application&#x2F;ld+json&quot;&amp;gt;&lt;&#x2F;code&gt; tag. This block contains the listing name, description, price, currency, availability, and aggregate rating data. Because it is structured data aimed at search engine crawlers, it tends to be more stable than CSS selectors tied to the rendered layout.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-do-etsy-scrapers-get-blocked-so-quickly&quot;&gt;Why do Etsy scrapers get blocked so quickly?&lt;&#x2F;h3&gt;
+&lt;p&gt;Etsy fingerprints TLS handshakes, checks HTTP&#x2F;2 settings, and responds to datacenter IP ranges with CAPTCHAs or empty pages. A residential or ISP proxy that presents a genuine household IP is usually required to retrieve listing pages reliably. The Bright Data Web Unlocker handles fingerprint rotation and CAPTCHA solving automatically.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-etsy-data-is-publicly-accessible-without-a-login&quot;&gt;What Etsy data is publicly accessible without a login?&lt;&#x2F;h3&gt;
+&lt;p&gt;Listing title, description, price, currency, availability, primary and secondary images, aggregate star rating, review count, seller name, and product tags are all visible to anonymous visitors and present in the JSON-LD payload. Buyer identities, private messages, and draft listings require authentication and are off-limits for automated collection.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Web Scraping with Rust: reqwest, scraper &amp; Proxies</title>
         <published>2026-09-24T00:00:00+00:00</published>
