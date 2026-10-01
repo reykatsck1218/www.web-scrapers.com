@@ -35,6 +35,11 @@ jobs:
       - name: Build
         run: zola build
 
+      # Snapshot the sitemap that is live right now so the IndexNow step can tell
+      # which URLs this deploy added or updated.
+      - name: Fetch live sitemap
+        run: curl -fsS --max-time 30 https://www.web-scrapers.com/sitemap.xml -o "$RUNNER_TEMP/old-sitemap.xml" || true
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -44,3 +49,9 @@ jobs:
           cname: www.web-scrapers.com
           # peaceiris adds .nojekyll automatically (enable_jekyll defaults to false)
           commit_message: "Deploy ${{ github.sha }}"
+
+      # Ping IndexNow (Bing & co.) with new/updated URLs; a manual "Run workflow"
+      # submits every URL. A failed ping never fails the deploy.
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: python3 scripts/indexnow.py --old "$RUNNER_TEMP/old-sitemap.xml" ${{ github.event_name == 'workflow_dispatch' && '--all' || '' }}

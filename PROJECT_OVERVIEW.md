@@ -30,6 +30,7 @@ Monetization model: affiliate links to proxy/scraper providers, cloaked behind
 - `scripts/`
   - `gen-goto.py` — generates the `/goto/` redirect pages from an `AFFILIATES` dict
   - `goto-click-logger.gs` — Google Apps Script (lives in the Google Sheet, not run here)
+  - `indexnow.py` — pings IndexNow (Bing & co.) with new/updated URLs after each deploy
 - `config.toml` — site config; site-specific values live under `[extra]`
 - `build` — legacy deploy script (see Deployment); CI now handles deploys
 - `.github/workflows/deploy.yml` — CI build + deploy
@@ -44,6 +45,7 @@ Monetization model: affiliate links to proxy/scraper providers, cloaked behind
 | `adsense_slot` | `2937189529` | end-of-article AdSense unit |
 | `aads_unit` | `2441049` | A-ADS iframe unit |
 | `goto_log_url` | Apps Script `/exec` URL | `gen-goto.py` beacon + newsletter popup |
+| `indexnow_key` | 32-char hex key | `scripts/indexnow.py`; must match `static/<key>.txt` |
 
 Every ad/tracking feature is **gated by its config key** — if the key is absent,
 the feature renders nothing. Follow this pattern for anything new.
@@ -77,6 +79,17 @@ the feature renders nothing. Follow this pattern for anything new.
 - **Legacy fallback:** `./build` does the same thing locally (force-pushes
   `public/` to `gh-pages`). Still works but redundant now.
 - GitHub Pages caches ~10 min; hard-refresh when verifying. `public/` is gitignored.
+
+### IndexNow (search-engine ping on deploy)
+
+After publishing, CI runs `scripts/indexnow.py`, which diffs the built
+`public/sitemap.xml` against the sitemap that was live before the deploy and
+submits only new URLs / URLs whose `<lastmod>` changed to `api.indexnow.org`
+(Bing, Yandex, Seznam, Naver — **not Google**, which ignores IndexNow). A manual
+**Run workflow** submits every URL. The step is `continue-on-error`, so a failed
+ping never fails a deploy. Ownership is proven by `static/<indexnow_key>.txt`;
+to rotate the key, change `indexnow_key` and rename/rewrite that file together.
+Pages only get re-submitted on edits if their `updated` frontmatter changes.
 
 ### Hosting decision (settled — don't re-litigate)
 
